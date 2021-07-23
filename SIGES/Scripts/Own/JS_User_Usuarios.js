@@ -207,32 +207,40 @@ function Guardar() {
             if (confirm("¿Desea aplicar los cambios?") == 1) {
                 var IDUsuario = document.getElementById("TxtIDUsuario").value;
                 var CURP = document.getElementById("TxtCURP").value;
+                var Nombre = document.getElementById("TxtNombreUser").value;
+                var APaterno = document.getElementById("TxtAPaterno").value;
+                var AMaterno = document.getElementById("TxtAMaterno").value;
+                var Foto = document.getElementById("PBFoto").src.replace("data:image/png;base64,", "");
+                var FNacimiento = document.getElementById("TxtFnaci").value;
+                var IDEstado = document.getElementById("cmbEstado").value;
+                var IDMunicipio = document.getElementById("cmbMunicipio").value;
+                var IDLocalidad = document.getElementById("cmbLocalidad").value;
+                var RFC = document.getElementById("TxtRFC").value;
+                var NoSS = document.getElementById("TxtNSS").value;
+                var Correo = document.getElementById("TxtCorreo").value;
+                var Telefono = document.getElementById("TxtTelefono").value;
+                var IDPerfil = document.getElementById("cmbPerfil").value;
+                //**consulta para obtener el nivel
+                $.get("/CardinalSystem/BDPerfil/?IDPerfil=" + IDPerfil, function (Perfil) {
+                    var LVLPerfil = Perfil[0].LVLPerfil;
+                });                
+                //**
                 var IDArea = document.getElementById("cmbArea").value;
                 var TempNA = document.getElementById("cmbArea");
                 var NombreA = TempNA.options[TempNA.selectedIndex].text;
                 var IDSubArea = document.getElementById("cmbSubArea").value;
                 var TempNSA = document.getElementById("cmbSubArea");
                 var NombreAS = TempNSA.options[TempNSA.selectedIndex].text;
-                var IDPerfil = document.getElementById("cmbPerfil").value;
-                var TempPerf = document.getElementById("cmbPerfil");
-                var Perfil = TempPerf.options[TempPerf.selectedIndex].text;
-                var Nombre = document.getElementById("TxtNombreUser").value;
-                var APaterno = document.getElementById("TxtAPaterno").value;
-                var AMaterno = document.getElementById("TxtAMaterno").value;
-                var FNacimiento = document.getElementById("TxtFnaci").value;
-                var Foto = document.getElementById("PBFoto").src.replace("data:image/png;base64,", "");
-                var Contraseña = document.getElementById("TxtContrasena").value;
-                var IDEstado = document.getElementById("cmbEstado").value;
-                var TempEdo = document.getElementById("cmbEstado");
-                var NombreE = TempEdo.options[TempEdo.selectedIndex].text;
-                var IDMunicipio = document.getElementById("cmbMunicipio").value;
-                var TempMuni = document.getElementById("cmbMunicipio");
-                var NombreM = TempMuni.options[TempMuni.selectedIndex].text;
-                var IDLocalidad = document.getElementById("cmbLocalidad").value;
-                var TempLoca = document.getElementById("cmbLocalidad");
-                var NombreL = TempLoca.options[TempLoca.selectedIndex].text;
-                var Correo = document.getElementById("TxtCorreo").value;
-                var Telefono = document.getElementById("TxtTelefono").value;
+                //**
+                var Asignacion = document.getElementById("cmbSubArea");
+                var Sitio = document.getElementById("cmbSubArea");
+                var IDPadre = document.getElementById("cmbSubArea");
+                var Usuario = document.getElementById("cmbSubArea");
+                //**
+                var Contraseña = document.getElementById("TxtContrasena").value;                
+
+                //*****************************************************************************************
+                
                 var f = new Date();
                 var FIngreso = f.getDate() + "/" + (f.getMonth() + 1) + "/" + f.getFullYear();
                 var frm = new FormData();
