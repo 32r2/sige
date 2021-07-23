@@ -1,0 +1,500 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 20.375, 45.875" name="SIGESDB">
+  <DataContextMoniker Name="/SIGESDBDataContext" />
+  <nestedChildShapes>
+    <classShape Id="a56dff6e-fe51-4154-8c30-db49f5686b30" absoluteBounds="12.25, 31.375, 2, 4.0785139973958309">
+      <DataClassMoniker Name="/SIGESDBDataContext/Administration_Evaluacion_Tienda" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2d6c111d-be46-4d0e-a70e-e9f2f4e19744" absoluteBounds="12.265, 31.835, 1.9700000000000002, 3.518513997395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="eb45cff1-fae8-46fa-86a9-348e224a37d7" absoluteBounds="0.75, 24.75, 2, 6.9630354817708309">
+      <DataClassMoniker Name="/SIGESDBDataContext/User_Usuarios" />
+      <nestedChildShapes>
+        <elementListCompartment Id="97a089aa-a1e5-40fe-80d2-6b6dc3b459c8" absoluteBounds="0.765, 25.21, 1.9700000000000002, 6.403035481770833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="59acd639-89d6-4cb8-b9cc-5f23890a38cc" absoluteBounds="15, 32.375, 2, 2.1554996744791595">
+      <DataClassMoniker Name="/SIGESDBDataContext/Administration_Evaluacion_Tienda_Reactivos" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ad7df266-63fc-43cb-87da-298ae8bf956b" absoluteBounds="15.015, 32.835, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="f78aa202-a3cf-4e9e-bd2c-eb8a1330d6ca" absoluteBounds="15, 20, 2, 2.7324039713541666">
+      <DataClassMoniker Name="/SIGESDBDataContext/Administration_Evaluacion_Tienda_Resultados" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ee73d6e6-28f3-4c56-8644-7f5231baf5cb" absoluteBounds="15.015, 20.46, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="80c36792-d426-4d05-80f9-fdc1d53bcb44" absoluteBounds="17.75, 34.5, 2, 1.9631982421875023">
+      <DataClassMoniker Name="/SIGESDBDataContext/Administration_Evaluacion_Tienda_Soluciones" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3b0c9483-90d7-4888-b46a-593db39362b4" absoluteBounds="17.765, 34.96, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d33668ae-21e5-431d-a70d-c0b6419796ee" absoluteBounds="12, 39.625, 2, 4.8477197265625">
+      <DataClassMoniker Name="/SIGESDBDataContext/SIGES_Config" />
+      <nestedChildShapes>
+        <elementListCompartment Id="42f316f8-cd67-40be-91eb-bf19723dd3fd" absoluteBounds="12.015, 40.085, 1.9700000000000002, 4.2877197265625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="0bed65ba-1e3b-4ebb-9d34-c845446bb766" absoluteBounds="3.5, 29.875, 2, 2.3478011067708309">
+      <DataClassMoniker Name="/SIGESDBDataContext/System_Areas" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7572ac7e-931a-4b34-9a69-4fd199acbab1" absoluteBounds="3.515, 30.335, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="23155d43-997c-4499-b021-667d3d6473a0" absoluteBounds="6.25, 25.75, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/SIGESDBDataContext/System_Areas_Recursos" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7d9bfb0c-fed5-4ae0-aa53-8598d3c34b2b" absoluteBounds="6.265, 26.21, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="be384f41-8cab-4247-82e6-ea25586b9f76" absoluteBounds="6.75, 39.75, 2, 4.0785139973958309">
+      <DataClassMoniker Name="/SIGESDBDataContext/System_Areas_SubAreas" />
+      <nestedChildShapes>
+        <elementListCompartment Id="1be8161d-de2c-47d9-9675-8be9d153ab8a" absoluteBounds="6.765, 40.21, 1.9700000000000002, 3.518513997395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="11edae1b-70b3-4dda-9477-36800cc6ab69" absoluteBounds="6.5, 35.875, 2, 2.3478011067708309">
+      <DataClassMoniker Name="/SIGESDBDataContext/System_Incidencias" />
+      <nestedChildShapes>
+        <elementListCompartment Id="27e73657-17ef-4b6c-be0b-6c1f0bb2bc55" absoluteBounds="6.515, 36.335, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="8841bc35-8383-4390-b40f-9c43c4fe85ab" absoluteBounds="9.25, 29.75, 2, 2.5401025390625023">
+      <DataClassMoniker Name="/SIGESDBDataContext/System_Incidencias_MesaAyuda" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d7cb69ec-def0-4c49-8b08-ec6b5492df14" absoluteBounds="9.265, 30.21, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="41673789-9dbb-4753-bc9b-dd4a458667dc" absoluteBounds="9.25, 33.375, 2, 3.1170068359375023">
+      <DataClassMoniker Name="/SIGESDBDataContext/System_Incidencias_User_RInsidencias" />
+      <nestedChildShapes>
+        <elementListCompartment Id="0a8d6532-3558-425c-a609-bc2ae25c10e4" absoluteBounds="9.265, 33.835, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="664a891c-62c6-4f77-8ec5-93e43af5e5cf" absoluteBounds="15, 35.375, 2, 3.5016097005208309">
+      <DataClassMoniker Name="/SIGESDBDataContext/System_Incidencias_User_RInsidencias_Seguimiento" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a23c4fe2-f61e-4700-a8bd-cce02bb1fa3b" absoluteBounds="15.015, 35.835, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="6dc85618-3c2d-4f61-9131-c417d6142c8f" absoluteBounds="3.5, 17.25, 2, 1.7708968098958309">
+      <DataClassMoniker Name="/SIGESDBDataContext/System_Inf_Estados" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c2913a77-0f13-4395-9cfa-865cddd8337b" absoluteBounds="3.515, 17.71, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="59c16329-686a-4436-b3dc-5d09befc311e" absoluteBounds="3.5, 12.875, 2, 2.7324039713541666">
+      <DataClassMoniker Name="/SIGESDBDataContext/System_Inf_Localidades" />
+      <nestedChildShapes>
+        <elementListCompartment Id="43ff84d9-3fc5-4e87-9b27-d310fa279acf" absoluteBounds="3.515, 13.335, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="6b78603d-62c4-492b-964f-c93bb04a43bf" absoluteBounds="0.75, 13.25, 2, 1.7708968098958344">
+      <DataClassMoniker Name="/SIGESDBDataContext/System_Inf_Municipios" />
+      <nestedChildShapes>
+        <elementListCompartment Id="cbf6d283-7ecb-449a-8d76-5f7d11aeffad" absoluteBounds="0.765, 13.71, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="3fe693e0-f04b-4564-a0e2-aa4aee098ae5" absoluteBounds="3.5, 20.125, 2, 1.9631982421875023">
+      <DataClassMoniker Name="/SIGESDBDataContext/System_Sis_Bitacora" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b727c417-2551-450a-987a-9168ae4de88d" absoluteBounds="3.515, 20.585, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="87bfde87-ed9b-4342-ab02-e091533d6a82" absoluteBounds="6.25, 32, 2, 2.732403971354163">
+      <DataClassMoniker Name="/SIGESDBDataContext/System_Sis_Notificacion" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e5f383eb-d555-4905-931e-592e5ec94cd0" absoluteBounds="6.265, 32.46, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="65d8d3f7-5847-4480-91f8-4b5e641dbce5" absoluteBounds="9, 26.75, 2, 1.9631982421875023">
+      <DataClassMoniker Name="/SIGESDBDataContext/System_Sis_Notificacion_Seguimiento" />
+      <nestedChildShapes>
+        <elementListCompartment Id="dc635537-e0b6-4bc0-9dbc-16c9d095b15d" absoluteBounds="9.015, 27.21, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="4350c906-bce0-4a1e-8a57-da893a17d331" absoluteBounds="15, 39.625, 2, 2.3478011067708335">
+      <DataClassMoniker Name="/SIGESDBDataContext/System_Sis_Pagina" />
+      <nestedChildShapes>
+        <elementListCompartment Id="afdeb78c-b741-4105-a326-0396c8fcb52a" absoluteBounds="15.015, 40.085, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a9de6731-a6fd-45d7-b056-f9d66140a81e" absoluteBounds="15, 43.625, 2, 1.9631982421875005">
+      <DataClassMoniker Name="/SIGESDBDataContext/System_Sis_PerfilUsuario" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d7d8d0ab-88a4-48ec-be3f-cebb0439fcfa" absoluteBounds="15.015, 44.085, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="b2aa01b0-ee7f-4ee4-8ea7-e3259175489d" absoluteBounds="6.25, 17.375, 2, 7.1553369140624952">
+      <DataClassMoniker Name="/SIGESDBDataContext/System_Sis_Tienda" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2d2fc6b5-91f1-4220-aa5f-847ca6d533a1" absoluteBounds="6.265, 17.835, 1.9700000000000002, 6.5953369140625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="b9684e3b-606b-4093-a264-a70811fad3a8" absoluteBounds="3.5, 22.875, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/SIGESDBDataContext/System_Supervision" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2b63eb36-6796-47a3-af74-b4358528affa" absoluteBounds="3.515, 23.335, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="9f99a011-43b5-4a79-a1ae-d1ee21e663fa" absoluteBounds="12.25, 26.375, 2, 4.0785139973958309">
+      <DataClassMoniker Name="/SIGESDBDataContext/Trainig_Cuestionario" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f3394d6f-9d65-48ce-8c6c-83bbd855a52a" absoluteBounds="12.265, 26.835, 1.9700000000000002, 3.518513997395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="b7e24b2c-5f68-45dc-9a3b-e87c60a44a67" absoluteBounds="15, 27.375, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/SIGESDBDataContext/Trainig_Cuestionario_Preguntas" />
+      <nestedChildShapes>
+        <elementListCompartment Id="4b5df3c9-a14c-4ebd-8eee-1690821a01f4" absoluteBounds="15.015, 27.835, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="0c868aa1-08de-4838-b425-967ec9393dcc" absoluteBounds="17.75, 27.5, 2, 1.9631982421875023">
+      <DataClassMoniker Name="/SIGESDBDataContext/Trainig_Cuestionario_Respuestas" />
+      <nestedChildShapes>
+        <elementListCompartment Id="22f67e0f-ee8e-402f-af03-8207893e2c5c" absoluteBounds="17.765, 27.96, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="5ff77ed0-9ab7-4d76-aee2-aecace2d3573" absoluteBounds="18, 31, 2, 2.3478011067708309">
+      <DataClassMoniker Name="/SIGESDBDataContext/Trainig_Cuestionario_Respuestas_User" />
+      <nestedChildShapes>
+        <elementListCompartment Id="47a84446-34ea-49fc-8103-93d471b90e6c" absoluteBounds="18.015, 31.46, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="29471634-52ad-4a6d-a8ef-580b685e3f9f" absoluteBounds="18, 24.125, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/SIGESDBDataContext/Trainig_Cuestionario_Seguimiento" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7f1b01ff-9594-4fb1-9d9d-576f1056844e" absoluteBounds="18.015, 24.585, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="70375026-91d9-41e1-8b60-0220f5f03923" absoluteBounds="9.25, 21.625, 2, 3.5016097005208309">
+      <DataClassMoniker Name="/SIGESDBDataContext/Trainig_Cursos" />
+      <nestedChildShapes>
+        <elementListCompartment Id="cfcdca3f-2c8b-4553-b019-0aa144e64bf4" absoluteBounds="9.265, 22.085, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="fa00fd5d-f51e-425c-94b3-913131265cdd" absoluteBounds="15, 23.625, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/SIGESDBDataContext/Trainig_Cursos_Seguimiento" />
+      <nestedChildShapes>
+        <elementListCompartment Id="be79a167-a7e1-4de4-b62f-679331a1601c" absoluteBounds="15.015, 24.085, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="f50710bd-ef10-43b5-9322-841b2ce1896e" absoluteBounds="12, 23.25, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/SIGESDBDataContext/Trainig_Cursos_Temas" />
+      <nestedChildShapes>
+        <elementListCompartment Id="af837aa2-b1e3-4af5-98bb-2b67a9e2bce2" absoluteBounds="12.015, 23.71, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.75 : 28.8902498372396); (3.88541466666667 : 28.8902498372396 : JumpStart); (4.05208133333333 : 28.8902498372396 : JumpEnd); (4.41666666666667 : 28.8902498372396 : JumpStart); (4.58333333333333 : 28.8902498372396 : JumpEnd); (8.41666666666667 : 28.8902498372396 : JumpStart); (8.58333333333333 : 28.8902498372396 : JumpEnd); (8.75 : 28.8902498372396); (8.75 : 28.9631982421875); (9.01041666666667 : 28.9631982421875 : JumpStart); (9.17708333333333 : 28.9631982421875 : JumpEnd); (12 : 28.9631982421875); (12 : 30.7035139973958); (12.0416666666667 : 30.7035139973958 : JumpStart); (12.2083333333333 : 30.7035139973958 : JumpEnd); (13.25 : 30.7035139973958); (13.25 : 31.375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SIGESDBDataContext/User_Usuarios/User_Usuarios_Administration_Evaluacion_Tienda" />
+      <nodes>
+        <classShapeMoniker Id="eb45cff1-fae8-46fa-86a9-348e224a37d7" />
+        <classShapeMoniker Id="a56dff6e-fe51-4154-8c30-db49f5686b30" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(14.25 : 33.4527498372396); (15 : 33.4527498372396)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SIGESDBDataContext/Administration_Evaluacion_Tienda/Administration_Evaluacion_Tienda_Administration_Evaluacion_Tienda_Reactivos" />
+      <nodes>
+        <classShapeMoniker Id="a56dff6e-fe51-4154-8c30-db49f5686b30" />
+        <classShapeMoniker Id="59acd639-89d6-4cb8-b9cc-5f23890a38cc" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(14.25 : 31.375); (14.625 : 31); (14.625 : 21.3662019856771); (15 : 21.3662019856771)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SIGESDBDataContext/Administration_Evaluacion_Tienda/Administration_Evaluacion_Tienda_Administration_Evaluacion_Tienda_Resultados" />
+      <nodes>
+        <classShapeMoniker Id="a56dff6e-fe51-4154-8c30-db49f5686b30" />
+        <classShapeMoniker Id="f78aa202-a3cf-4e9e-bd2c-eb8a1330d6ca" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 28.3978722558594); (3.88541466666667 : 28.3978722558594 : JumpStart); (4.05208133333333 : 28.3978722558594 : JumpEnd); (4.41666666666667 : 28.3978722558594 : JumpStart); (4.58333333333333 : 28.3978722558594 : JumpEnd); (8.41666666666667 : 28.3978722558594 : JumpStart); (8.58333333333333 : 28.3978722558594 : JumpEnd); (8.75 : 28.3978722558594); (8.75 : 26.0304996744792); (10.1666666666667 : 26.0304996744792 : JumpStart); (10.3333333333333 : 26.0304996744792 : JumpEnd); (11.6666666666667 : 26.0304996744792 : JumpStart); (11.8333333333333 : 26.0304996744792 : JumpEnd); (14.5416666666667 : 26.0304996744792 : JumpStart); (14.7083333333333 : 26.0304996744792 : JumpEnd); (14.75 : 26.0304996744792); (14.75 : 23.1074039713542); (16 : 23.1074039713542); (16 : 22.7324039713542)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SIGESDBDataContext/User_Usuarios/User_Usuarios_Administration_Evaluacion_Tienda_Resultados" />
+      <nodes>
+        <classShapeMoniker Id="eb45cff1-fae8-46fa-86a9-348e224a37d7" />
+        <classShapeMoniker Id="f78aa202-a3cf-4e9e-bd2c-eb8a1330d6ca" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(14.25 : 34.9527498372396); (17.75 : 34.9527498372396)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SIGESDBDataContext/Administration_Evaluacion_Tienda/Administration_Evaluacion_Tienda_Administration_Evaluacion_Tienda_Soluciones" />
+      <nodes>
+        <classShapeMoniker Id="a56dff6e-fe51-4154-8c30-db49f5686b30" />
+        <classShapeMoniker Id="80c36792-d426-4d05-80f9-fdc1d53bcb44" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(17 : 33.9551500533854); (17.84375 : 33.9551500533854); (17.84375 : 34.5)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SIGESDBDataContext/Administration_Evaluacion_Tienda_Reactivos/Administration_Evaluacion_Tienda_Reactivos_Administration_Evaluacion_Tienda_Soluciones" />
+      <nodes>
+        <classShapeMoniker Id="59acd639-89d6-4cb8-b9cc-5f23890a38cc" />
+        <classShapeMoniker Id="80c36792-d426-4d05-80f9-fdc1d53bcb44" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 30.9062505); (9 : 30.9062505); (9 : 29.5); (9.01041666666667 : 29.5 : JumpStart); (9.17708333333333 : 29.5 : JumpEnd); (11.75 : 29.5); (11.75 : 30.9535139973958); (12.718748 : 30.9535139973958); (12.718748 : 31.375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SIGESDBDataContext/System_Areas/System_Areas_Administration_Evaluacion_Tienda" />
+      <nodes>
+        <classShapeMoniker Id="0bed65ba-1e3b-4ebb-9d34-c845446bb766" />
+        <classShapeMoniker Id="a56dff6e-fe51-4154-8c30-db49f5686b30" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 30.7940177408854); (3.5 : 30.7940177408854)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SIGESDBDataContext/User_Usuarios/User_Usuarios_System_Areas" />
+      <nodes>
+        <classShapeMoniker Id="eb45cff1-fae8-46fa-86a9-348e224a37d7" />
+        <classShapeMoniker Id="0bed65ba-1e3b-4ebb-9d34-c845446bb766" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(4.5 : 29.875); (4.5 : 26.8277498372396); (6.25 : 26.8277498372396)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SIGESDBDataContext/System_Areas/System_Areas_System_Areas_Recursos" />
+      <nodes>
+        <classShapeMoniker Id="0bed65ba-1e3b-4ebb-9d34-c845446bb766" />
+        <classShapeMoniker Id="23155d43-997c-4499-b021-667d3d6473a0" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(4.5 : 32.2228011067708); (4.5 : 41.7892569986979); (6.75 : 41.7892569986979)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SIGESDBDataContext/System_Areas/System_Areas_System_Areas_SubAreas" />
+      <nodes>
+        <classShapeMoniker Id="0bed65ba-1e3b-4ebb-9d34-c845446bb766" />
+        <classShapeMoniker Id="be384f41-8cab-4247-82e6-ea25586b9f76" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 31.48437525); (8.32291666666667 : 31.48437525 : JumpStart); (8.48958333333333 : 31.48437525 : JumpEnd); (9.01041666666667 : 31.48437525 : JumpStart); (9.17708333333333 : 31.48437525 : JumpEnd); (9.25 : 31.48437525)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SIGESDBDataContext/System_Areas/System_Areas_System_Incidencias_MesaAyuda" />
+      <nodes>
+        <classShapeMoniker Id="0bed65ba-1e3b-4ebb-9d34-c845446bb766" />
+        <classShapeMoniker Id="8841bc35-8383-4390-b40f-9c43c4fe85ab" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 30.32812525); (8.91666666666667 : 30.32812525 : JumpStart); (9.17708333333333 : 30.32812525 : JumpEnd); (9.25 : 30.32812525)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SIGESDBDataContext/System_Areas/System_Areas_System_Incidencias_MesaAyuda1" />
+      <nodes>
+        <classShapeMoniker Id="0bed65ba-1e3b-4ebb-9d34-c845446bb766" />
+        <classShapeMoniker Id="8841bc35-8383-4390-b40f-9c43c4fe85ab" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.40625 : 35.875); (8.40625 : 31.164060375); (9.01041666666667 : 31.164060375 : JumpStart); (9.17708333333333 : 31.164060375 : JumpEnd); (9.25 : 31.164060375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SIGESDBDataContext/System_Incidencias/System_Incidencias_System_Incidencias_MesaAyuda" />
+      <nodes>
+        <classShapeMoniker Id="11edae1b-70b3-4dda-9477-36800cc6ab69" />
+        <classShapeMoniker Id="8841bc35-8383-4390-b40f-9c43c4fe85ab" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.0312525 : 32.2228011067708); (5.0312525 : 35.3037019856771); (8.32291666666667 : 35.3037019856771 : JumpStart); (8.48958333333333 : 35.3037019856771 : JumpEnd); (9.25 : 35.3037019856771)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SIGESDBDataContext/System_Areas/System_Areas_System_Incidencias_User_RInsidencias" />
+      <nodes>
+        <classShapeMoniker Id="0bed65ba-1e3b-4ebb-9d34-c845446bb766" />
+        <classShapeMoniker Id="41673789-9dbb-4753-bc9b-dd4a458667dc" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.5 : 36.1835034179688); (9.25 : 36.1835034179688)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SIGESDBDataContext/System_Incidencias/System_Incidencias_System_Incidencias_User_RInsidencias" />
+      <nodes>
+        <classShapeMoniker Id="11edae1b-70b3-4dda-9477-36800cc6ab69" />
+        <classShapeMoniker Id="41673789-9dbb-4753-bc9b-dd4a458667dc" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(3.9687475 : 32.2228011067708); (3.9687475 : 38.5809554036458); (4.41666666666667 : 38.5809554036458 : JumpStart); (4.58333333333333 : 38.5809554036458 : JumpEnd); (15 : 38.5809554036458)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SIGESDBDataContext/System_Areas/System_Areas_System_Incidencias_User_RInsidencias_Seguimiento" />
+      <nodes>
+        <classShapeMoniker Id="0bed65ba-1e3b-4ebb-9d34-c845446bb766" />
+        <classShapeMoniker Id="664a891c-62c6-4f77-8ec5-93e43af5e5cf" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.5 : 37.3886539713542); (15 : 37.3886539713542)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SIGESDBDataContext/System_Incidencias/System_Incidencias_System_Incidencias_User_RInsidencias_Seguimiento" />
+      <nodes>
+        <classShapeMoniker Id="11edae1b-70b3-4dda-9477-36800cc6ab69" />
+        <classShapeMoniker Id="664a891c-62c6-4f77-8ec5-93e43af5e5cf" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(11.25 : 36.0040104166667); (15 : 36.0040104166667)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SIGESDBDataContext/System_Incidencias_User_RInsidencias/System_Incidencias_User_RInsidencias_System_Incidencias_User_RInsidencias_Seguimiento" />
+      <nodes>
+        <classShapeMoniker Id="41673789-9dbb-4753-bc9b-dd4a458667dc" />
+        <classShapeMoniker Id="664a891c-62c6-4f77-8ec5-93e43af5e5cf" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 14.1354484049479); (3.5 : 14.1354484049479)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SIGESDBDataContext/System_Inf_Municipios/System_Inf_Municipios_System_Inf_Localidades" />
+      <nodes>
+        <classShapeMoniker Id="6b78603d-62c4-492b-964f-c93bb04a43bf" />
+        <classShapeMoniker Id="59c16329-686a-4436-b3dc-5d09befc311e" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(3.5 : 18.1354484049479); (2.36458583333333 : 18.1354484049479 : JumpStart); (2.19791916666667 : 18.1354484049479 : JumpEnd); (1.75 : 18.1354484049479); (1.75 : 15.0208968098958)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SIGESDBDataContext/System_Inf_Estados/System_Inf_Estados_System_Inf_Municipios" />
+      <nodes>
+        <classShapeMoniker Id="6dc85618-3c2d-4f61-9131-c417d6142c8f" />
+        <classShapeMoniker Id="6b78603d-62c4-492b-964f-c93bb04a43bf" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(1.75 : 24.75); (1.75 : 21.1065991210938); (3.5 : 21.1065991210938)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SIGESDBDataContext/User_Usuarios/User_Usuarios_System_Sis_Bitacora" />
+      <nodes>
+        <classShapeMoniker Id="eb45cff1-fae8-46fa-86a9-348e224a37d7" />
+        <classShapeMoniker Id="3fe693e0-f04b-4564-a0e2-aa4aee098ae5" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 31.773439625); (7.25 : 31.773439625); (7.25 : 32)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SIGESDBDataContext/System_Areas/System_Areas_System_Sis_Notificacion" />
+      <nodes>
+        <classShapeMoniker Id="0bed65ba-1e3b-4ebb-9d34-c845446bb766" />
+        <classShapeMoniker Id="87bfde87-ed9b-4342-ab02-e091533d6a82" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.25 : 32.8325512695313); (8.32291666666667 : 32.8325512695313 : JumpStart); (8.48958333333333 : 32.8325512695313 : JumpEnd); (9.09375 : 32.8325512695313); (9.09375 : 28.7131982421875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SIGESDBDataContext/System_Sis_Notificacion/System_Sis_Notificacion_System_Sis_Notificacion_Seguimiento" />
+      <nodes>
+        <classShapeMoniker Id="87bfde87-ed9b-4342-ab02-e091533d6a82" />
+        <classShapeMoniker Id="65d8d3f7-5847-4480-91f8-4b5e641dbce5" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 28.1204359651693); (3.88541466666667 : 28.1204359651693 : JumpStart); (4.05208133333333 : 28.1204359651693 : JumpEnd); (4.41666666666667 : 28.1204359651693 : JumpStart); (4.58333333333333 : 28.1204359651693 : JumpEnd); (8.41666666666667 : 28.1204359651693 : JumpStart); (8.58333333333333 : 28.1204359651693 : JumpEnd); (8.66666666666667 : 28.1204359651693 : JumpStart); (8.95833333333333 : 28.1204359651693 : JumpEnd); (9 : 28.1204359651693)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SIGESDBDataContext/User_Usuarios/User_Usuarios_System_Sis_Notificacion_Seguimiento" />
+      <nodes>
+        <classShapeMoniker Id="eb45cff1-fae8-46fa-86a9-348e224a37d7" />
+        <classShapeMoniker Id="65d8d3f7-5847-4480-91f8-4b5e641dbce5" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.25 : 20.6206009928385); (15 : 20.6206009928385)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SIGESDBDataContext/System_Sis_Tienda/System_Sis_Tienda_Administration_Evaluacion_Tienda_Resultados" />
+      <nodes>
+        <classShapeMoniker Id="b2aa01b0-ee7f-4ee4-8ea7-e3259175489d" />
+        <classShapeMoniker Id="f78aa202-a3cf-4e9e-bd2c-eb8a1330d6ca" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 18.1979484049479); (6.25 : 18.1979484049479)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SIGESDBDataContext/System_Inf_Estados/System_Inf_Estados_System_Sis_Tienda" />
+      <nodes>
+        <classShapeMoniker Id="6dc85618-3c2d-4f61-9131-c417d6142c8f" />
+        <classShapeMoniker Id="b2aa01b0-ee7f-4ee4-8ea7-e3259175489d" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 14.2412019856771); (7.25 : 14.2412019856771); (7.25 : 17.375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SIGESDBDataContext/System_Inf_Localidades/System_Inf_Localidades_System_Sis_Tienda" />
+      <nodes>
+        <classShapeMoniker Id="59c16329-686a-4436-b3dc-5d09befc311e" />
+        <classShapeMoniker Id="b2aa01b0-ee7f-4ee4-8ea7-e3259175489d" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.2812525 : 15.0208968098958); (2.2812525 : 19.5729484049479); (6.25 : 19.5729484049479)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SIGESDBDataContext/System_Inf_Municipios/System_Inf_Municipios_System_Sis_Tienda" />
+      <nodes>
+        <classShapeMoniker Id="6b78603d-62c4-492b-964f-c93bb04a43bf" />
+        <classShapeMoniker Id="b2aa01b0-ee7f-4ee4-8ea7-e3259175489d" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 23.7026684570312); (6.25 : 23.7026684570312)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SIGESDBDataContext/System_Supervision/System_Supervision_System_Sis_Tienda" />
+      <nodes>
+        <classShapeMoniker Id="b9684e3b-606b-4093-a264-a70811fad3a8" />
+        <classShapeMoniker Id="b2aa01b0-ee7f-4ee4-8ea7-e3259175489d" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.2812525 : 24.75); (2.2812525 : 23.7812475); (3.5 : 23.7812475)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SIGESDBDataContext/User_Usuarios/User_Usuarios_System_Supervision" />
+      <nodes>
+        <classShapeMoniker Id="eb45cff1-fae8-46fa-86a9-348e224a37d7" />
+        <classShapeMoniker Id="b9684e3b-606b-4093-a264-a70811fad3a8" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.0312525 : 29.875); (5.0312525 : 29.2315991210938); (9.01041666666667 : 29.2315991210938 : JumpStart); (9.17708333333333 : 29.2315991210938 : JumpEnd); (11.9166666666667 : 29.2315991210938 : JumpStart); (12.2083333333333 : 29.2315991210938 : JumpEnd); (12.25 : 29.2315991210938)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SIGESDBDataContext/System_Areas/System_Areas_Trainig_Cuestionario" />
+      <nodes>
+        <classShapeMoniker Id="0bed65ba-1e3b-4ebb-9d34-c845446bb766" />
+        <classShapeMoniker Id="9f99a011-43b5-4a79-a1ae-d1ee21e663fa" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 29.65625); (3.88541466666667 : 29.65625 : JumpStart); (4.05208133333333 : 29.65625 : JumpEnd); (4.41666666666667 : 29.65625 : JumpStart); (4.58333333333333 : 29.65625 : JumpEnd); (4.94791916666667 : 29.65625 : JumpStart); (5.11458583333333 : 29.65625 : JumpEnd); (8.91666666666667 : 29.65625 : JumpStart); (9.17708333333333 : 29.65625 : JumpEnd); (11.6666666666667 : 29.65625 : JumpStart); (11.8333333333333 : 29.65625 : JumpEnd); (11.9166666666667 : 29.65625 : JumpStart); (12.2083333333333 : 29.65625 : JumpEnd); (12.25 : 29.65625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SIGESDBDataContext/User_Usuarios/User_Usuarios_Trainig_Cuestionario" />
+      <nodes>
+        <classShapeMoniker Id="eb45cff1-fae8-46fa-86a9-348e224a37d7" />
+        <classShapeMoniker Id="9f99a011-43b5-4a79-a1ae-d1ee21e663fa" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(14.25 : 28.4527498372396); (14.5416666666667 : 28.4527498372396 : JumpStart); (14.7083333333333 : 28.4527498372396 : JumpEnd); (15 : 28.4527498372396)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SIGESDBDataContext/Trainig_Cuestionario/Trainig_Cuestionario_Trainig_Cuestionario_Preguntas" />
+      <nodes>
+        <classShapeMoniker Id="9f99a011-43b5-4a79-a1ae-d1ee21e663fa" />
+        <classShapeMoniker Id="b7e24b2c-5f68-45dc-9a3b-e87c60a44a67" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(14.25 : 30.0232568359375); (14.5416666666667 : 30.0232568359375 : JumpStart); (14.7083333333333 : 30.0232568359375 : JumpEnd); (18.75 : 30.0232568359375); (18.75 : 29.4631982421875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SIGESDBDataContext/Trainig_Cuestionario/Trainig_Cuestionario_Trainig_Cuestionario_Respuestas" />
+      <nodes>
+        <classShapeMoniker Id="9f99a011-43b5-4a79-a1ae-d1ee21e663fa" />
+        <classShapeMoniker Id="0c868aa1-08de-4838-b425-967ec9393dcc" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(17 : 28.4815991210938); (17.75 : 28.4815991210938)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SIGESDBDataContext/Trainig_Cuestionario_Preguntas/Trainig_Cuestionario_Preguntas_Trainig_Cuestionario_Respuestas" />
+      <nodes>
+        <classShapeMoniker Id="b7e24b2c-5f68-45dc-9a3b-e87c60a44a67" />
+        <classShapeMoniker Id="0c868aa1-08de-4838-b425-967ec9393dcc" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(14.25 : 26.84375); (14.5416666666667 : 26.84375 : JumpStart); (14.7083333333333 : 26.84375 : JumpEnd); (19.90625 : 26.84375); (19.90625 : 31)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SIGESDBDataContext/Trainig_Cuestionario/Trainig_Cuestionario_Trainig_Cuestionario_Respuestas_User" />
+      <nodes>
+        <classShapeMoniker Id="9f99a011-43b5-4a79-a1ae-d1ee21e663fa" />
+        <classShapeMoniker Id="5ff77ed0-9ab7-4d76-aee2-aecace2d3573" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 25.3902498372396); (8.5 : 25.3902498372396); (8.5 : 29.0881982421875); (9.01041666666667 : 29.0881982421875 : JumpStart); (9.17708333333333 : 29.0881982421875 : JumpEnd); (11.9166666666667 : 29.0881982421875 : JumpStart); (12.0833333333333 : 29.0881982421875 : JumpEnd); (12.125 : 29.0881982421875); (12.125 : 30.8285139973958); (13.1666666666667 : 30.8285139973958 : JumpStart); (13.3333333333333 : 30.8285139973958 : JumpEnd); (14.5416666666667 : 30.8285139973958 : JumpStart); (14.7083333333333 : 30.8285139973958 : JumpEnd); (18.921873 : 30.8285139973958); (18.921873 : 31)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SIGESDBDataContext/User_Usuarios/User_Usuarios_Trainig_Cuestionario_Respuestas_User" />
+      <nodes>
+        <classShapeMoniker Id="eb45cff1-fae8-46fa-86a9-348e224a37d7" />
+        <classShapeMoniker Id="5ff77ed0-9ab7-4d76-aee2-aecace2d3573" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(14.25 : 26.5781225); (14.5416666666667 : 26.5781225 : JumpStart); (14.7083333333333 : 26.5781225 : JumpEnd); (19.859375 : 26.5781225); (19.859375 : 26.2804996744792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SIGESDBDataContext/Trainig_Cuestionario/Trainig_Cuestionario_Trainig_Cuestionario_Seguimiento" />
+      <nodes>
+        <classShapeMoniker Id="9f99a011-43b5-4a79-a1ae-d1ee21e663fa" />
+        <classShapeMoniker Id="29471634-52ad-4a6d-a8ef-580b685e3f9f" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(1.218748 : 24.75); (1.218748 : 24.5); (1.66666666666667 : 24.5 : JumpStart); (1.83333333333333 : 24.5 : JumpEnd); (2.19791916666667 : 24.5 : JumpStart); (2.36458583333333 : 24.5 : JumpEnd); (2.46354491666667 : 24.5 : JumpStart); (2.63021158333333 : 24.5 : JumpEnd); (2.91666666666667 : 24.5 : JumpStart); (3.08333333333333 : 24.5 : JumpEnd); (3.25 : 24.5); (3.25 : 25.2516097005208); (8.79166666666667 : 25.2516097005208 : JumpStart); (8.95833333333333 : 25.2516097005208 : JumpEnd); (10.1666666666667 : 25.2516097005208 : JumpStart); (10.3333333333333 : 25.2516097005208 : JumpEnd); (10.6979191666667 : 25.2516097005208 : JumpStart); (10.8645858333333 : 25.2516097005208 : JumpEnd); (11.75 : 25.2516097005208); (11.75 : 26.1554996744792); (14.5416666666667 : 26.1554996744792 : JumpStart); (14.7083333333333 : 26.1554996744792 : JumpEnd); (17.625 : 26.1554996744792); (17.625 : 25.2027498372396); (18 : 25.2027498372396)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SIGESDBDataContext/User_Usuarios/User_Usuarios_Trainig_Cuestionario_Seguimiento" />
+      <nodes>
+        <classShapeMoniker Id="eb45cff1-fae8-46fa-86a9-348e224a37d7" />
+        <classShapeMoniker Id="29471634-52ad-4a6d-a8ef-580b685e3f9f" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(3.968748 : 29.875); (3.968748 : 25.5304996744792); (8.41666666666667 : 25.5304996744792 : JumpStart); (8.58333333333333 : 25.5304996744792 : JumpEnd); (8.875 : 25.5304996744792); (8.875 : 23.3758048502604); (9.25 : 23.3758048502604)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SIGESDBDataContext/System_Areas/System_Areas_Trainig_Cursos" />
+      <nodes>
+        <classShapeMoniker Id="0bed65ba-1e3b-4ebb-9d34-c845446bb766" />
+        <classShapeMoniker Id="70375026-91d9-41e1-8b60-0220f5f03923" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 28.6440610465495); (3.88541466666667 : 28.6440610465495 : JumpStart); (4.05208133333333 : 28.6440610465495 : JumpEnd); (4.41666666666667 : 28.6440610465495 : JumpStart); (4.58333333333333 : 28.6440610465495 : JumpEnd); (8.41666666666667 : 28.6440610465495 : JumpStart); (8.58333333333333 : 28.6440610465495 : JumpEnd); (8.875 : 28.6440610465495); (8.875 : 26.5); (10.25 : 26.5); (10.25 : 25.1266097005208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SIGESDBDataContext/User_Usuarios/User_Usuarios_Trainig_Cursos" />
+      <nodes>
+        <classShapeMoniker Id="eb45cff1-fae8-46fa-86a9-348e224a37d7" />
+        <classShapeMoniker Id="70375026-91d9-41e1-8b60-0220f5f03923" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(10.7812525 : 25.1266097005208); (10.7812525 : 25.6242496744792); (11.4166666666667 : 25.6242496744792 : JumpStart); (11.5833333333333 : 25.6242496744792 : JumpEnd); (11.6666666666667 : 25.6242496744792 : JumpStart); (11.8333333333333 : 25.6242496744792 : JumpEnd); (14.2916666666667 : 25.6242496744792 : JumpStart); (14.4583333333333 : 25.6242496744792 : JumpEnd); (14.5416666666667 : 25.6242496744792 : JumpStart); (14.8333333333333 : 25.6242496744792 : JumpEnd); (15 : 25.6242496744792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SIGESDBDataContext/Trainig_Cursos/Trainig_Cursos_Trainig_Cursos_Seguimiento" />
+      <nodes>
+        <classShapeMoniker Id="70375026-91d9-41e1-8b60-0220f5f03923" />
+        <classShapeMoniker Id="fa00fd5d-f51e-425c-94b3-913131265cdd" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.54687825 : 24.75); (2.54687825 : 24.25); (3 : 24.25); (3 : 25.3141097005208); (8.79166666666667 : 25.3141097005208 : JumpStart); (8.95833333333333 : 25.3141097005208 : JumpEnd); (10.1666666666667 : 25.3141097005208 : JumpStart); (10.3333333333333 : 25.3141097005208 : JumpEnd); (10.6979191666667 : 25.3141097005208 : JumpStart); (10.8645858333333 : 25.3141097005208 : JumpEnd); (11.5 : 25.3141097005208); (11.5 : 25.7804996744792); (11.6666666666667 : 25.7804996744792 : JumpStart); (11.8333333333333 : 25.7804996744792 : JumpEnd); (14.375 : 25.7804996744792); (14.375 : 24.5933728372396); (14.5416666666667 : 24.5933728372396 : JumpStart); (14.8333333333333 : 24.5933728372396 : JumpEnd); (15 : 24.5933728372396)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SIGESDBDataContext/User_Usuarios/User_Usuarios_Trainig_Cursos_Seguimiento" />
+      <nodes>
+        <classShapeMoniker Id="eb45cff1-fae8-46fa-86a9-348e224a37d7" />
+        <classShapeMoniker Id="fa00fd5d-f51e-425c-94b3-913131265cdd" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(11.25 : 24.1883048502604); (12 : 24.1883048502604)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SIGESDBDataContext/Trainig_Cursos/Trainig_Cursos_Trainig_Cursos_Temas" />
+      <nodes>
+        <classShapeMoniker Id="70375026-91d9-41e1-8b60-0220f5f03923" />
+        <classShapeMoniker Id="f50710bd-ef10-43b5-9322-841b2ce1896e" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

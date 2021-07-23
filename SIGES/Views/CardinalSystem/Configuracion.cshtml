@@ -1,0 +1,175 @@
+﻿
+@{
+    ViewBag.Title = "Configuracion";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<h2>Configuracion</h2>
+
+<div class="accordion" id="accordionConfiguracion">
+    <!--Div de las páginas-->
+    <div class="card m-b-0">
+        <div class="card-header" id="headingOne">
+            <h5 class="mb-0">
+                <a data-toggle="collapse" data-target="#collapsePaginas" aria-expanded="true" aria-controls="collapseOne">
+                    <em class="m-r-5 fas fa-file-code" aria-hidden="true"></em>
+                    <span>Páginas</span>
+                </a>
+            </h5>
+        </div>
+        <div id="collapsePaginas" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionConfiguracion">
+            <div class="card-body">
+                <!--Boton modal páginas-->
+                <button onclick="AModalPaginas(0)" type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalSystem_Pagina">Agregar</button>
+            </div>
+            <div id="Paginas_System" class="card-body">
+                <!--Inserta tabla de las Páginas-->
+                Muestra las paginas dadas de alta en el sistema.
+            </div>
+        </div>
+    </div>
+    <div class="card m-b-0 border-top">
+        <div class="card-header" id="headingTwo">
+            <h5 class="mb-0">
+                <a class="collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    <i class="m-r-5 fas fa-user-secret" aria-hidden="true"></i>
+                    <span>Perfiles</span>
+                </a>
+            </h5>
+        </div>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionConfiguracion">
+            <div class="card-body">
+                <!--Boton modal páginas-->
+                <button onclick="AModalPerfil(0)" type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalSystem_Perfil">Agregar</button>
+            </div>
+            <div id="Paginas_Perfiles" class="card-body">
+                <!--Inserta tabla de las Páginas-->
+                Muestra los perfiles registrados en la plataforma.
+            </div>
+        </div>
+    </div>
+    <div class="card m-b-0 border-top">
+        <div class="card-header" id="headingThree">
+            <h5 class="mb-0">
+                <a class="collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    <i class="m-r-5 fas fa-cogs" aria-hidden="true"></i>
+                    <span>Configuración</span>
+                </a>
+            </h5>
+        </div>
+        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionConfiguracion">
+            <div class="card-body">
+                Muestra la configuración general del sistema.
+            </div>
+        </div>
+    </div>
+</div>
+<!--**************************************************************************************************************************-->
+<!--Pagínas-->
+<div id="ModalSystem_Pagina" class="modal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Página</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="panel-heading ">
+                    <div class="row ">
+                        <div class="col-md-6 col-sm-12 col-xs-12 justify-content-end">
+                            <span class="help-block text-muted small-font">ID Página</span>
+                            <input type="text" id="TxtIDPagina" class="form-control limpiar" placeholder="ID" />
+                        </div>
+                        <div class="col-md-6 col-sm-12 col-xs-12 justify-content-end">
+                            <span class="help-block text-muted small-font">Abreviatura</span>
+                            <input type="text" id="TxtAbreviatura" class="form-control limpiar PaginaObligatorio" placeholder="ID" />
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-md-6 col-sm-12 col-xs-8 justify-content-end">
+                            <span class="help-block text-muted small-font">Texto a mostrar</span>
+                            <input type="text" id="TxtMensaje" class="form-control limpiar PaginaObligatorio" placeholder="Mensaje" />
+                        </div>
+                        <div class="col-md-6 col-sm-12 col-xs-12 justify-content-end">
+                            <span class="help-block text-muted small-font">Acción</span>
+                            <input type="text" id="TxtAccion" class="form-control limpiar PaginaObligatorio" placeholder="Accion" />
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-md-6 col-sm-12 col-xs-12 justify-content-end">
+                            <span class="help-block text-muted small-font">Controlador</span>
+                            <input type="text" id="TxtControlador" class="form-control limpiar PaginaObligatorio" placeholder="Controlador" />
+                        </div>
+                        <div class="col-md-6 col-sm-12 col-xs-12 justify-content-end">
+                            <span class="help-block text-muted small-font">Icono</span>
+                            <input type="text" id="TxtIcono" class="form-control limpiar PaginaObligatorio" placeholder="Icono" />
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-md-12 col-sm-12 col-xs-12 justify-content-end">
+                            <span class="help-block text-muted small-font">Descripción</span>
+                            <textarea type="text" id="TxtDescripcion" class="form-control limpiar" rows="6" wrap="soft" placeholder="Inserte una breve descripción de la página"></textarea>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="modal-footer">
+                        <button id="btnGuardar" type="button" class="btn btn-success" onclick="GuardarPagina()">GUARDAR</button>
+                        <button id="btnCancelar" type="button" class="btn btn-danger" data-dismiss="modal">CANCELAR</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--**************************************************************************************************************************-->
+<!--Perfiles-->
+<div id="ModalSystem_Perfil" class="modal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Perfil</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="panel-heading ">
+                    <div class="row ">
+                        <div class="col-md-3 col-sm-12 col-xs-12 justify-content-end">
+                            <span class="help-block text-muted small-font">ID Perfil</span>
+                            <input type="text" id="TxtIDPerfil" class="form-control limpiar" placeholder="ID" />
+                        </div>
+                        <div class="col-md-3 col-sm-12 col-xs-8 justify-content-end">
+                            <span class="help-block text-muted small-font">Nivel</span>
+                            <input type="number" id="TxtNivel" class="form-control limpiar PerfilObligatorio" placeholder="##" />
+                        </div>
+                        <div class="col-md-6 col-sm-12 col-xs-12 justify-content-end">
+                            <span class="help-block text-muted small-font">Perfil</span>
+                            <input type="text" id="TxtPerfil" class="form-control limpiar PerfilObligatorio" placeholder="Nombre del perfil" />
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-md-12 col-sm-12 col-xs-12 justify-content-end">
+                            <span class="help-block text-muted small-font">Permisos</span>
+                            <div id="TblPaginas">Se inserta una tabla con las páginas ya agregadas a la BD</div>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-md-12 col-sm-12 col-xs-12 justify-content-end">
+                            <span class="help-block text-muted small-font">Descripción</span>
+                            <textarea type="text" id="TxtComentarios" class="form-control limpiar" rows="3" wrap="soft" placeholder="Inserte una breve descripción del perfil."></textarea>                            
+                        </div>
+                    </div>
+                    <br />
+                    <div class="modal-footer">
+                        <button id="btnGuardar" type="button" class="btn btn-success" onclick="GuardarPerfil()">GUARDAR</button>
+                        <button id="btnCancelarPerfil" type="button" class="btn btn-danger" data-dismiss="modal">CANCELAR</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--**************************************************************************************************************************-->
+<!--**************************************************************************************************************************-->
+<script src="~/Scripts/jquery-3.5.0.js"></script>
+<script src="~/Scripts/Own/JS_System_Sis_Paginas.js"></script>
+<script src="~/Scripts/Own/JS_System_Sis_Perfiles.js"></script>

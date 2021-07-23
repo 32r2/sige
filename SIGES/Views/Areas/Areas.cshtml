@@ -1,0 +1,251 @@
+﻿
+@{
+    ViewBag.Title = "Areas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<h2>Areas</h2>
+<button onclick="AbrirMArea(0)" type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalArea">Agregar</button>
+@*<div id="tabla" class="table-responsive"></div>*@
+<div class="accordion" id="accordion"></div>
+<!--******************************************************************************************************************************************************-->
+<!-- Modal áreas -->
+<div id="ModalArea" class="modal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Area</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="panel-heading">
+                    <br />
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4 col-xs-4">
+                            <span class="help-block text-muted small-font"> ID área</span>
+                            <input type="text" id="TxtIDArea" class="form-control bloquear limpiar" placeholder="" />
+                        </div>
+                        <div class="col-md-8 col-sm-8 col-xs-8">
+                            <span class="help-block text-muted small-font"> Nombre de la área</span>
+                            <input type="text" id="TxtNombreArea" class="form-control limpiar AreaObligatorio" placeholder="Nombre área" />
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <span class="help-block text-muted small-font">Jefe del área</span>
+                            <BR />
+                            <div class="btn-group">
+                                <select id="cmbEncargado" class="btn btn-primary  dropdown-toggle limpiar"></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8 col-sm-8 col-xs-8">
+                            <span class="help-block text-muted small-font">Correo</span>
+                            <input type="text" id="TxtCorreo" class="form-control email limpiar AreaObligatorio" placeholder="nombreusuario@servidor.com" />
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-4">
+                            <span class="help-block text-muted small-font">Teléfono</span>
+                            <input type="text" id="TxtTelefono" class="form-control limpiar AreaObligatorio" placeholder="### ## #####" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <span class="help-block text-muted small-font">Carpeta de recursos:</span>
+                            <input type="text" id="TxtRecursos" class="form-control limpiar" placeholder="Nombre de la carpeta" />
+                        </div>
+                    </div>
+                    <br />
+                    <div class="modal-footer">
+                        <button id="btnGuardar" type="button" class="btn btn-success" onclick="GuardarArea()">GUARDAR</button>
+                        <button id="btnCancelar" type="button" class="btn btn-danger" data-dismiss="modal">CANCELAR</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--******************************************************************************************************************************************************-->
+<!--Modal subárea-->
+<div id="ModalSubareas" class="modal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Subárea</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4 col-xs-4">
+                            <span class="help-block text-muted small-font"> ID Subárea</span>
+                            <input type="text" id="TxtIDSubArea" class="form-control limpiar" placeholder="" />
+                        </div>
+                        <div class="col-md-8 col-sm-8 col-xs-8">
+                            <span class="help-block text-muted small-font"> Nombre de la subárea</span>
+                            <input type="text" id="TxtNombreSubArea" class="form-control limpiar PerfilObligatorio" placeholder="Nombre subárea" />
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row ">
+                        <div class="col-md-4 col-sm-4 col-xs-4">
+                            <span class="help-block text-muted small-font">No. Subárea</span>
+                            <input type="text" id="TxtNoSubArea" class="form-control limpiar PerfilObligatorio" placeholder="No. subárea" />
+                        </div>
+                        <div class="col-md-8 col-sm-8 col-xs-8">
+                            <span class="help-block text-muted small-font">Area</span>
+                            <br />
+                            <select id="cmbAreaSubA" class="btn btn-danger dropdown-toggle limpiar"></select>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <span class="help-block text-muted small-font">Encargado 1:</span>
+                            <br />
+                            <select id="cmbEncargado1Sub" class="btn btn-warning dropdown-toggle limpiar"></select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8 col-sm-8 col-xs-8">
+                            <span class="help-block text-muted small-font">Correo</span>
+                            <br />
+                            <input type="email" id="TxtCorreoSub" class="form-control email limpiar" placeholder="nombreusuario@servidor.com" />
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-4">
+                            <span class="help-block text-muted small-font">Teléfono</span>
+                            <br />
+                            <input type="number" id="TxtTelefonoSub" class="form-control limpiar" placeholder="##########" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <span class="help-block text-muted small-font">Encargado 2:</span>
+                            <br />
+                            <select id="cmbEncargado2Sub" class="btn btn-info dropdown-toggle limpiar"></select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8 col-sm-8 col-xs-8">
+                            <span class="help-block text-muted small-font">Correo</span>
+                            <br />
+                            <input type="email" id="TxtCorreoE2Sub" class="form-control email limpiar" placeholder="nombreusuario@servidor.com" />
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-4">
+                            <span class="help-block text-muted small-font">Teléfono</span>
+                            <br />
+                            <input type="number" id="TxtTelefonoE2Sub" class="form-control limpiar" placeholder="##########" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <span class="help-block text-muted small-font">Encargado 3:</span>
+                            <br />
+                            <select id="cmbEncargado3Sub" class="btn btn-primary dropdown-toggle limpiar"></select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8 col-sm-8 col-xs-8">
+                            <span class="help-block text-muted small-font">Correo</span>
+                            <br />
+                            <input type="email" id="TxtCorreoE3Sub" class="form-control email limpiar" placeholder="nombreusuario@servidor.com" />
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-4">
+                            <span class="help-block text-muted small-font">Teléfono</span>
+                            <br />
+                            <input type="number" id="TxtTelefonoE3Sub" class="form-control limpiar" placeholder="##########" />
+                        </div>
+                    </div>
+                    <br />
+                    <div class="modal-footer">
+                        <button id="btnGuardar" type="button" class="btn btn-success" onclick="GuardarSubarea()">GUARDAR</button>
+                        <button id="btnCancelarsub" type="button" class="btn btn-danger" data-dismiss="modal">CANCELAR</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--******************************************************************************************************************************************************-->
+<!--Modal recursos-->
+<div id="RecursosModal" class="modal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Recursos del área</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="panel-heading ">
+                    <!-- Inicia cuerpo Modal-->
+                    <div class="row ">
+                        <div class="col-md-12 col-sm-12 col-xs-12 justify-content-end">
+                            <div>
+                                <input type="text" id="TxtIDRecurso" class="form-control limpiar" placeholder="ID" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-md-12 col-sm-12 col-xs-12 justify-content-end">
+                            <div>
+                                <span class="help-block text-muted small-font">Titulo</span>
+                                <input type="text" id="TxtTitulo" class="form-control limpiar Recursos-obligatorios" placeholder="Nombre" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <span class="help-block text-muted small-font">Área</span>
+                            <BR />
+                            <select id="cmbRecursoArea" style="width: 100%" class="btn btn-danger dropdown-toggle limpiar obligatoriox"></select>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <span class="help-block text-muted small-font"> Nombre del archivo:</span>
+                            <input type="text" id="TxtFileName" class="form-control limpiar Recursos-obligatorios" placeholder="Archivo.png,mp4..." />
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <span class="help-block text-muted small-font"> Directorio:</span>
+                            <input type="text" id="TxtDirectorio" class="form-control" placeholder="" />
+                        </div>
+
+                    </div>
+                    <div class="row ">
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <span class="help-block text-muted small-font"> Fecha de modificación:</span>
+                            <input type="text" id="TxtFModificacionR" class="form-control limpiar Recursos-obligatorios" placeholder="dd/mm/aa" />
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <span class="help-block text-muted small-font">Tipo de recurso:</span>
+                            <BR />
+                            <select id="cmbTipo" style="width: 100%" class="btn btn-info dropdown-toggle limpiar">
+                                <option value="" selected>--Seleccione--</option>
+                                <option value="Imagen">Imagen</option>
+                                <option value="Video">Video</option>
+                                <option value="Simulador">Simulador</option>
+                            </select>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12 justify-content-end" id="MRecurso"></div>
+                    </div>
+                    <br />
+                    <!-- Termina cuerpo Modal content-->
+                    <div class="modal-footer">
+                        <button id="btnGuardarRecurso" type="button" class="btn btn-success" onclick="GuardarRecurso()">GUARDAR</button>
+                        <button id="btnCancelarRecurso" type="button" class="btn btn-danger" data-dismiss="modal">CANCELAR</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Scripts-->
+
+<script src="~/Scripts/jquery-3.5.0.js" type="text/javascript"></script>
+<script src="~/Scripts/Own/JS_System_Areas.js" type="text/javascript"></script>
