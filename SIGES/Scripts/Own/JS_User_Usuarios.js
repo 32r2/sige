@@ -97,7 +97,6 @@ function abrirModal(id) {
             });
             $.get("/Cardinal/BDSubAreas/?IDA=" + InfUsuario[0].IDArea, function (Subareas) {
                 llenarCombo(Subareas, document.getElementById("cmbSubArea"), true);
-
                 document.getElementById("cmbSubArea").value = InfUsuario[0].IDSubArea;
             });
             document.getElementById("TxtCorreo").value = InfUsuario[0].Correo;
@@ -216,8 +215,6 @@ function Guardar() {
                 var NombreAS = TempNSA.options[TempNSA.selectedIndex].text;
                 var IDPerfil = document.getElementById("cmbPerfil").value;
                 var TempPerf = document.getElementById("cmbPerfil");
-                var TempPerf = document.getElementById("cmbPerfil");
-
                 var Perfil = TempPerf.options[TempPerf.selectedIndex].text;
                 var Nombre = document.getElementById("TxtNombreUser").value;
                 var APaterno = document.getElementById("TxtAPaterno").value;
