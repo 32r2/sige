@@ -99,6 +99,8 @@ function abrirModal(id) {
                 llenarCombo(Subareas, document.getElementById("cmbSubArea"), true);
                 document.getElementById("cmbSubArea").value = InfUsuario[0].IDSubArea;
             });
+            document.getElementById("cmbAsignacion").value = InfUsuario[0].Asignacion;
+            Sitio(InfUsuario[0].Asignacion, InfUsuario[0].Sitio);
             document.getElementById("TxtCorreo").value = InfUsuario[0].Correo;
             document.getElementById("TxtTelefono").value = InfUsuario[0].Telefono;
             //document.getElementById("TxtContrasena").value = InfUsuario[0].Contraseña;
@@ -164,11 +166,11 @@ function Pasos(Step) {
 
 var Asig = document.getElementById("cmbAsignacion");
 Asig.addEventListener("change", function () {
-    if (Asig.value == "Oficina") {
+    if (Asig.value == 1) {
         let DatosOficina = [{ "ID": 1, "Nombre": "Oficina" }];
         llenarCombo(DatosOficina, document.getElementById("cmbSitio"), true);
     }
-    else if (Asig.value == "Campo") {
+    else if (Asig.value == 2) {
         $.get("/Cardinal/BDSupervision", function (DatosSupervisiones) {
             if (DatosSupervisiones.length !== 0) {
                 llenarCombo(DatosSupervisiones, document.getElementById("cmbSitio"), true);
@@ -178,7 +180,7 @@ Asig.addEventListener("change", function () {
             }
         });
     }
-    else {
+    else if (Asig.value == 3) {
         $.get("/Cardinal/BDTiendas", function (DatosTiendas) {
             if (DatosTiendas.length !== 0) {
                 llenarCombo(DatosTiendas, document.getElementById("cmbSitio"), true);
@@ -189,6 +191,36 @@ Asig.addEventListener("change", function () {
         });
     }
 });
+
+function Sitio(IDAs, IDSitio) {
+    if (IDAs == 1) {
+        let DatosOficina = [{ "ID": 1, "Nombre": "Oficina" }];
+        llenarCombo(DatosOficina, document.getElementById("cmbSitio"), true);
+        document.getElementById("cmbAsignacion").value = IDSitio;
+    }
+    else if (IDAs == 2) {
+        $.get("/Cardinal/BDSupervision", function (DatosSupervisiones) {
+            if (DatosSupervisiones.length !== 0) {
+                llenarCombo(DatosSupervisiones, document.getElementById("cmbSitio"), true);
+                document.getElementById("cmbAsignacion").value = IDSitio;
+            }
+            else {
+                alert("No hay datos en la tabla Supervision.");
+            }
+        });
+    }
+    else if (IDAs == 3) {
+        $.get("/Cardinal/BDTiendas", function (DatosTiendas) {
+            if (DatosTiendas.length !== 0) {
+                llenarCombo(DatosTiendas, document.getElementById("cmbSitio"), true);
+                document.getElementById("cmbAsignacion").value = IDSitio;
+            }
+            else {
+                alert("No hay datos en la tabla Tiendas.");
+            }
+        });
+    }
+}
 
 function Limpiar() {
     var controles = document.getElementsByClassName("limpiar");
@@ -223,7 +255,7 @@ function Guardar() {
                 //**consulta para obtener el nivel
                 $.get("/CardinalSystem/BDPerfil/?IDPerfil=" + IDPerfil, function (Perfil) {
                     var LVLPerfil = Perfil[0].LVLPerfil;
-                });                
+                });
                 //**
                 var IDArea = document.getElementById("cmbArea").value;
                 var TempNA = document.getElementById("cmbArea");
@@ -237,10 +269,10 @@ function Guardar() {
                 var IDPadre = document.getElementById("cmbSubArea");
                 var Usuario = document.getElementById("cmbSubArea");
                 //**
-                var Contraseña = document.getElementById("TxtContrasena").value;                
+                var Contraseña = document.getElementById("TxtContrasena").value;
 
                 //*****************************************************************************************
-                
+
                 var f = new Date();
                 var FIngreso = f.getDate() + "/" + (f.getMonth() + 1) + "/" + f.getFullYear();
                 var frm = new FormData();

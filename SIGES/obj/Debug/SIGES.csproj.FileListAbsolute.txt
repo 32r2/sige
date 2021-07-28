@@ -231,4 +231,3 @@ C:\Users\AUX_SISTEMAS\Dropbox\SIGES\SIGES\SIGES\obj\Debug\SIGES.csproj.CoreCompi
 C:\Users\AUX_SISTEMAS\Dropbox\SIGES\SIGES\SIGES\obj\Debug\SIGES.csproj.CopyComplete
 C:\Users\AUX_SISTEMAS\Dropbox\SIGES\SIGES\SIGES\obj\Debug\SIGES.dll
 C:\Users\AUX_SISTEMAS\Dropbox\SIGES\SIGES\SIGES\obj\Debug\SIGES.pdb
-C:\Users\AUX_SISTEMAS\Dropbox\SIGES\SIGES\SIGES\obj\Debug\SIGES.csprojAssemblyReference.cache
