@@ -7,13 +7,13 @@ function Consulta() {
         llenarCombo(InfPerfiles, document.getElementById("cmbPerfil"), true);
     });
 }
-$("#TxtFnaci").datepicker(
-    {
-        dateFormat: "dd/mm/yy",
-        changeMonth: true,
-        changeYear: true
-    }
-);
+//$("#TxtFnaci").datepicker(
+//    {
+//        dateFormat: "dd/mm/yy",
+//        changeMonth: true,
+//        changeYear: true
+//    }
+//);
 
 //funcion general para llenar los select
 function llenarCombo(InfPerfiles, control, primerElemento) {
@@ -164,13 +164,20 @@ function Pasos(Step) {
     }
 }
 
-var Asig = document.getElementById("cmbAsignacion");
-Asig.addEventListener("change", function () {
-    if (Asig.value == 1) {
+var IDE = document.getElementById("cmbEstado");
+IDE.addEventListener("change", function () {
+    $.get("/Cardinal/BDMunicipio/?IDE=" + IDE.value, function (data) {
+        llenarCombo(data, document.getElementById("cmbMunicipio"), true);
+    });
+});
+
+var Asigna = document.getElementById("cmbAsignacion");
+Asigna.addEventListener("change", function () {
+    if (Asigna.value == 1) {
         let DatosOficina = [{ "ID": 1, "Nombre": "Oficina" }];
         llenarCombo(DatosOficina, document.getElementById("cmbSitio"), true);
     }
-    else if (Asig.value == 2) {
+    else if (Asigna.value == 2) {
         $.get("/Cardinal/BDSupervision", function (DatosSupervisiones) {
             if (DatosSupervisiones.length !== 0) {
                 llenarCombo(DatosSupervisiones, document.getElementById("cmbSitio"), true);
@@ -180,7 +187,7 @@ Asig.addEventListener("change", function () {
             }
         });
     }
-    else if (Asig.value == 3) {
+    else if (Asigna.value == 3) {
         $.get("/Cardinal/BDTiendas", function (DatosTiendas) {
             if (DatosTiendas.length !== 0) {
                 llenarCombo(DatosTiendas, document.getElementById("cmbSitio"), true);
@@ -190,19 +197,22 @@ Asig.addEventListener("change", function () {
             }
         });
     }
+    else {
+        alert("hay un error en tu codigo y no lo encuentras :)");
+    }
 });
 
 function Sitio(IDAs, IDSitio) {
     if (IDAs == 1) {
         let DatosOficina = [{ "ID": 1, "Nombre": "Oficina" }];
         llenarCombo(DatosOficina, document.getElementById("cmbSitio"), true);
-        document.getElementById("cmbAsignacion").value = IDSitio;
+        document.getElementById("cmbSitio").value = IDSitio;
     }
     else if (IDAs == 2) {
         $.get("/Cardinal/BDSupervision", function (DatosSupervisiones) {
             if (DatosSupervisiones.length !== 0) {
                 llenarCombo(DatosSupervisiones, document.getElementById("cmbSitio"), true);
-                document.getElementById("cmbAsignacion").value = IDSitio;
+                document.getElementById("cmbSitio").value = IDSitio;
             }
             else {
                 alert("No hay datos en la tabla Supervision.");
@@ -213,7 +223,7 @@ function Sitio(IDAs, IDSitio) {
         $.get("/Cardinal/BDTiendas", function (DatosTiendas) {
             if (DatosTiendas.length !== 0) {
                 llenarCombo(DatosTiendas, document.getElementById("cmbSitio"), true);
-                document.getElementById("cmbAsignacion").value = IDSitio;
+                document.getElementById("cmbSitio").value = IDSitio;
             }
             else {
                 alert("No hay datos en la tabla Tiendas.");
@@ -259,15 +269,19 @@ function Guardar() {
                 //**
                 var IDArea = document.getElementById("cmbArea").value;
                 var TempNA = document.getElementById("cmbArea");
-                var NombreA = TempNA.options[TempNA.selectedIndex].text;
+                var NArea = TempNA.options[TempNA.selectedIndex].text;
                 var IDSubArea = document.getElementById("cmbSubArea").value;
                 var TempNSA = document.getElementById("cmbSubArea");
-                var NombreAS = TempNSA.options[TempNSA.selectedIndex].text;
+                var NSArea = TempNSA.options[TempNSA.selectedIndex].text;
                 //**
-                var Asignacion = document.getElementById("cmbSubArea");
-                var Sitio = document.getElementById("cmbSubArea");
-                var IDPadre = document.getElementById("cmbSubArea");
-                var Usuario = document.getElementById("cmbSubArea");
+                var Asignacion = document.getElementById("cmbAsignacion");
+                var Sitio = document.getElementById("cmbSitio");
+
+
+
+                var IDPadre = document.getElementById("TxtUPadre");
+
+                var Usuario = document.getElementById("TxtUsuario");
                 //**
                 var Contraseña = document.getElementById("TxtContrasena").value;
 
