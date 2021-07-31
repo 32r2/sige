@@ -154,6 +154,7 @@
     <Content Include="Content\icons\weather-icons\less\css\variables-wind-names.css" />
     <Content Include="Content\signin.css" />
     <Content Include="Content\style.min.css" />
+    <Content Include="Content\toastr.min.css" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -175,6 +176,7 @@
     <Content Include="Scripts\popper.min.js" />
     <Content Include="Scripts\sidebarmenu.js" />
     <Content Include="Scripts\sparkline.js" />
+    <Content Include="Scripts\toastr.min.js" />
     <Content Include="Scripts\waves.js" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -372,7 +374,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>10413</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>https://localhost:44305/</IISUrl>
+          <IISUrl>http://localhost:10413/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

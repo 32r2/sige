@@ -43,6 +43,7 @@ function LlenarCMBPrin() {
             llenarCombo(DatosTiendas, document.getElementById("cmbIDTienda"), true);
         }
         else {
+            //toastr.error('I do not think that word means what you think it means.', 'Inconceivable!');
             alert("No hay datos en la tabla tiendas.");
         }
 

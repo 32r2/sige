@@ -59,5 +59,15 @@ namespace SIGES.Controllers
                 });
             return Json(InfUsuario, JsonRequestBehavior.AllowGet);
         }
+        public JsonResult DUsuario(string Usuario, string contrasena)
+        {
+            var InfUsuario = SIGES.User_Usuarios.Where(p => p.Usuario.Equals(Usuario) && p.Contraseña.Equals(contrasena))
+                .Select(p => new
+                {
+                    p.IDUsuario,                    
+                    p.LVLPerfil                    
+                });
+            return Json(InfUsuario, JsonRequestBehavior.AllowGet);
+        }
     }
 }
