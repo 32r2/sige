@@ -130,14 +130,21 @@ function Pasos(Step) {
     }
     else if (ClaseMostrar == "step-4") {
         MostrarDiv(ClaseMostrar);
-
+        NomUsuar();
     }
     else {
         //alert("Entro al otro else");
     }
 }
 //Crear Usuario
-function NomUsuar
+function NomUsuar() {
+    let nombres = document.getElementById("TxtNombreUser").value;
+    let NUser = nombres.split(" ");
+    let fech = document.getElementById("TxtFnaci").value;
+    let Nombrefil = NUser[0].replace("A", "4").replace("E", "3").replace("I", "1").replace("O", "0");
+    let Fechfil = fech.replace("/", "").replace("-", "");
+    document.getElementById("TxtUsuario").value = Nombrefil + Fechfil.replace("/", "").replace("-", "");    
+}
 //Unir campos
 function Informacion() {
     let INF = "";
