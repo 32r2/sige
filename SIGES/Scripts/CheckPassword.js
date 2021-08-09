@@ -35,10 +35,10 @@ $(document).ready(function () {
         }
     }
     $('#TxtContrasenaConf').keyup(function () {
-        $('#warningMessage').html(checkSize($('#TxtContrasenaConf', '#TxtContrasena').val()))
+        $('#warningMessage').html(checkSize($('#TxtContrasenaConf').val(), $('#TxtContrasena').val()))
     })
     function checkSize(size, password) {
-        if (size == password) {
+        if (size === password) {
             $('#warningMessage').removeClass()
             $('#warningMessage').addClass('Good')
             return 'Contraseña correcta'
@@ -48,6 +48,5 @@ $(document).ready(function () {
             $('#warningMessage').addClass('Short')
             return 'Contraseña incorrecta'
         }
-
     }
 });

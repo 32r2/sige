@@ -53,13 +53,13 @@ function CrearTabla(DatosUsuarios) {
 }
 //abrir PopUp
 function abrirModal(id) {
-    var controlesObligatorio = document.getElementsByClassName("obligatorio");
-    //Limpiar();
+    var controlesObligatorio = document.getElementsByClassName("border-danger");
     for (var i = 0; i < controlesObligatorio.length; i++) {
-        controlesObligatorio[i].parentNode.classList.remove("error");
+        controlesObligatorio[i].parentNode.classList.remove("border-danger");
     }
     if (id == 0) {
         Limpiar();
+        LimpiarSelect();
     }
     else {
         $.get("/Usuarios/BDUsuario/?ID=" + id, function (InfUsuario) {
@@ -68,8 +68,10 @@ function abrirModal(id) {
             document.getElementById("TxtNombreUser").value = InfUsuario[0].Nombre;
             document.getElementById("TxtAPaterno").value = InfUsuario[0].APaterno;
             document.getElementById("TxtAMaterno").value = InfUsuario[0].AMaterno;
-            //document.getElementById("PBFoto").src = "data:image/png;base64," + InfUsuario[0].FOTOMOSTRAR;
-            document.getElementById("TxtFnaci").value = InfUsuario[0].FechaNaci;
+            document.getElementById("PBFoto").src = "data:image/png;base64," + InfUsuario[0].FOTOMOSTRAR;
+            let FechaDB = InfUsuario[0].FechaNaci.split("/");
+            let fechaConv = FechaDB[2] + "-" + FechaDB[1] + "-" + FechaDB[0];
+            document.getElementById("TxtFnaci").value = fechaConv;
             document.getElementById("TxtRFC").value = InfUsuario[0].RFC;
             document.getElementById("TxtNSS").value = InfUsuario[0].NoSS;
             document.getElementById("cmbEstado").value = InfUsuario[0].IDEstado;
@@ -109,7 +111,6 @@ function Pasos(Step) {
             ClaseM = (paso[i].id).substring(5, 6);
         }
     }
-
     var ClaseMostrar = "";
     if (Step == 0) {
         ClaseMostrar = "step-1";
@@ -132,6 +133,12 @@ function Pasos(Step) {
         MostrarDiv(ClaseMostrar);
         NomUsuar();
     }
+    else if (ObligatoriosDatosP("Datostep-4") == true && ClaseMostrar == "step-5" && document.getElementById("mensage").innerText === "Autenticación correcta") {
+
+        //MostrarDiv(ClaseMostrar);
+        GUsuario();
+        //NomUsuar();
+    }
     else {
         //alert("Entro al otro else");
     }
@@ -143,55 +150,86 @@ function NomUsuar() {
     let fech = document.getElementById("TxtFnaci").value;
     let Nombrefil = NUser[0].replace("A", "4").replace("E", "3").replace("I", "1").replace("O", "0");
     let Fechfil = fech.replace("/", "").replace("-", "");
-    document.getElementById("TxtUsuario").value = Nombrefil + Fechfil.replace("/", "").replace("-", "");    
+    document.getElementById("TxtUsuario").value = Nombrefil + Fechfil.replace("/", "").replace("-", "");
 }
 //Unir campos
 function Informacion() {
     let INF = "";
-    INF += "<table style='border: solid black; border-collapse: collapse;'>";
+    INF += "<div class='row'>";
+    INF += "<div class='col-md-12 col-sm-12 col-xs-12' style='line-height: 100px; text-align: center; background-color: #000000; color:#ffffff'><H4>DATOS PERSONALES</H4></div>";
+    INF += "</div>";
 
-    INF += "<tr><th colspan='4' style='text-align: center; background-color: black; color: white;'><H4>DATOS PERSONALES</H4></th></tr>";
-    INF += "<tr><td>CURP:</td><td>" + document.getElementById("TxtCURP").value + "</td><td>F. de Nacimiento:</td><td>" + document.getElementById("TxtFnaci").value + "</td></tr>";
-    INF += "<tr><td>Nombre completo:</td><td colspan='3'>" + document.getElementById("TxtNombreUser").value + " " + document.getElementById("TxtAPaterno").value + " " + document.getElementById("TxtAMaterno").value + "</td></tr>";
-    INF += "<tr><td>RFC:</td><td>" + document.getElementById("TxtRFC").value + "</td><td>NSS:</td><td>" + document.getElementById("TxtNSS").value + "</td></tr>";
+    INF += "<div class='row'>";
+    INF += "<div class='col-md-6 col-sm-6 col-xs-6'><strong>CURP: </strong>" + document.getElementById("TxtCURP").value + "</div>";
+    INF += "<div class='col-md-6 col-sm-6 col-xs-6'><strong>F.Nacimiento: </strong>" + document.getElementById("TxtFnaci").value + "</div>";
+    INF += "</div>";
 
-    INF += "<tr><th colspan='4' style='text-align: center; background-color: black; color: white;'><H4>INFORMACIÓN DE CONTACTO</H4></th></tr>";
-    INF += "<tr><td>Correo:</td><td>" + document.getElementById("TxtCorreo").value + "</td><td>No. De Teléfono:</td><td>" + document.getElementById("TxtTelefono").value + "</td></tr>";
+    INF += "<div class='row'>";
+    INF += "<div class='col-md-12 col-sm-12 col-xs-12'><strong>Nombre: </strong>" + document.getElementById("TxtNombreUser").value + " " + document.getElementById("TxtAPaterno").value + " " + document.getElementById("TxtAMaterno").value + "</div>";
+    INF += "</div>";
 
-    INF += "<tr><th colspan='4' style='text-align: center; background-color: black; color: white;'><H4>DIRECCIÓN</H4></th></tr>";
+    INF += "<div class='row'>";
+    INF += "<div class='col-md-6 col-sm-6 col-xs-6'><strong>RFC: </strong>" + document.getElementById("TxtRFC").value + "</div>";
+    INF += "<div class='col-md-6 col-sm-6 col-xs-6'><strong>NSS: </strong>" + document.getElementById("TxtNSS").value + "</div>";
+    INF += "</div>";
+
+    INF += "<div class='row'>";
+    INF += "<div class='col-md-12 col-sm-12 col-xs-12' style='line-height: 100px; text-align: center; background-color: #000000; color:#ffffff'><H4>INFORMACIÓN DE CONTACTO</H4></div>";
+    INF += "</div >";
+
+    INF += "<div class='row'>";
+    INF += "<div class='col-md-6 col-sm-6 col-xs-6'><strong>Correo: </strong>" + document.getElementById("TxtCorreo").value + "</div>";
+    INF += "<div class='col-md-6 col-sm-6 col-xs-6'><strong>Teléfono: </strong>" + document.getElementById("TxtTelefono").value + "</div>";
+    INF += "</div>";
+
+    INF += "<div class='row'>";
+    INF += "<div class='col-md-12 col-sm-12 col-xs-12'style='line-height: 100px; text-align: center; background-color: #000000; color:#ffffff'><H4>DIRECCIÓN</H4></div>";
+    INF += "</div>";
 
     let TempEdo = document.getElementById("cmbEstado");
     let Estado = TempEdo.options[TempEdo.selectedIndex].text;
-    INF += "<tr><td>Estado:</td><td colspan='3'>" + Estado + "</td></tr>";
+    INF += "<div class='row'>";
+    INF += "<div class='col-md-12 col-sm-12 col-xs-12'><strong>Estado: </strong>" + Estado + "</div>";
+    INF += "</div>";
 
     let TempMucip = document.getElementById("cmbMunicipio");
     let Municipio = TempMucip.options[TempMucip.selectedIndex].text;
-    INF += "<tr><td>Municipio:</td><td colspan='3'>" + Municipio + "</td></tr>";
-
+    INF += "<div class='row'>";
+    INF += "<div class='col-md-12 col-sm-12 col-xs-12'><strong>Municipio: </strong>" + Municipio + "</div>";
+    INF += "</div>";
     let TempLocal = document.getElementById("cmbLocalidad");
     let Localidad = TempLocal.options[TempLocal.selectedIndex].text;
-    INF += "<tr><td>Localidad:</td><td colspan='3'>" + Localidad + "</td></tr>";
-
-    INF += "<tr><th colspan='4' style='text-align: center; background-color: black; color: white;'><H4>LUGAR DE TRABAJO</H4></th></tr>";
-
+    INF += "<div class='row'>";
+    INF += "<div class='col-md-12 col-sm-12 col-xs-12'><strong>Localidad: </strong>" + Localidad + "</div>";
+    INF += "</div>";
+    INF += "<div class='row'>";
+    INF += "<div class='col-md-12 col-sm-12 col-xs-12' style=' text-align: center; background-color: #000000; color:#ffffff'><H4>LUGAR DE TRABAJO</H4></div>";
+    INF += "</div>";
     let TempAsig = document.getElementById("cmbAsignacion");
     let Asignacion = TempAsig.options[TempAsig.selectedIndex].text;
     let TempUbic = document.getElementById("cmbSitio");
     let Sitio = TempUbic.options[TempUbic.selectedIndex].text;
-    INF += "<tr><td>Lugar:</td><td>" + Asignacion + "</td><td>Ubicación:</td><td>" + Sitio + "</td></tr>";
-
+    INF += "<div class='row'>";
+    INF += "<div class='col-md-6 col-sm-6 col-xs-6'><strong>Lugar: </strong>" + Asignacion + "</div>";
+    INF += "<div class='col-md-6 col-sm-6 col-xs-6'><strong>Ubicación: </strong>" + Sitio + "</div>";
+    INF += "</div>";
     let TempNA = document.getElementById("cmbArea");
     let NArea = TempNA.options[TempNA.selectedIndex].text;
     let TempNSA = document.getElementById("cmbSubArea");
     let NSArea = TempNSA.options[TempNSA.selectedIndex].text;
-
-    INF += "<tr><td>Área:</td><td>" + NArea + "</td><td>Subárea:</td><td>" + NSArea + "</td></tr>";
+    INF += "<div class='row'>";
+    INF += "<div class='col-md-6 col-sm-6 col-xs-6'><strong>Área: </strong>" + NArea + "</div>";
+    INF += "<div class='col-md-6 col-sm-6 col-xs-6'><strong>Subárea: </strong>" + NSArea + "</div>";
+    INF += "</div>";
     let TempPerf = document.getElementById("cmbPerfil");
     let Perfil = TempPerf.options[TempPerf.selectedIndex].text;
-    INF += "<tr><td>Perfil:</td><td>" + Perfil + "</td><td></td><td></td></tr>";
-    INF += "</table>";
+    INF += "<div class='row'>";
+    INF += "<div class='col-md-6 col-sm-6 col-xs-6'><strong>Perfil: </strong>" + Perfil + "</div>";
+    INF += "<div class='col-md-6 col-sm-6 col-xs-6'><strong></div>";
+    INF += "</div>";
     document.getElementById("DivDatos").innerHTML = INF;
 }
+//Mostrar u ocultar según la clase
 function MostrarDiv(ClaseMostrar) {
     for (let o = 1; o < 6; o++) {
         let NClsO = "step-" + o;
@@ -206,9 +244,27 @@ function MostrarDiv(ClaseMostrar) {
         CMos[m].classList.remove('ocultar');
         CMos[m].classList.add('mostrar');
     }
-
 }
-
+//validar el usuario y contrasela padre sea correcto
+function validarParent() {
+    $.get("/Usuarios/DUsuario/?Usuario=" + $('#TxtUPadre').val() + "&contrasena=" + $('#TxtCPadre').val(), function (respuesta) {
+        $('#mensage').html(validar(respuesta.length))
+    });
+}
+//inserta la clase y texto al div
+function validar(Usuario) {
+    if (Usuario === 1) {
+        $('#mensage').removeClass()
+        $('#mensage').addClass('Good')
+        return 'Autenticación correcta'
+    }
+    else {
+        $('#mensage').removeClass()
+        $('#mensage').addClass('Short')
+        return 'Usuario anulo'
+    }
+}
+//valida los campos obligatorios
 function ObligatoriosDatosP(DatosClase) {
     let exito = true;
     let CtrlObligatorio = document.getElementsByClassName(DatosClase);
@@ -223,7 +279,7 @@ function ObligatoriosDatosP(DatosClase) {
     }
     return exito;
 }
-
+//CUANDO SE SELECCIONA EL ESTADO CARGA LA INFORMACION DE LOS MUNICIPIOS
 var IDE = document.getElementById("cmbEstado");
 IDE.addEventListener("change", function () {
     $.get("/Cardinal/BDMunicipio/?IDE=" + IDE.value, function (data) {
@@ -300,94 +356,118 @@ function Limpiar() {
     }
 }
 
+function LimpiarSelect() {
+    var controles = document.getElementsByClassName("SelectCLS");
+    var ncontroles = controles.length;
+    for (var i = 0; i < ncontroles; i++) {
+        document.getElementById(controles[i].id).value = 0;
+    }
+}
+
+//imagenes
+var btnFoto = document.getElementById("BtnFoto");
+btnFoto.onchange = function (e) {
+    var file = document.getElementById("BtnFoto").files[0];
+    var reader = new FileReader();
+    if (reader != null) {
+        reader.onloadend = function () {
+            var img = document.getElementById("PBFoto");
+            img.src = reader.result;
+        }
+    }
+    reader.readAsDataURL(file);
+}
+
 // Guardar
 function GUsuario() {
     var pas1 = document.getElementById("TxtContrasena").value;
     var pas2 = document.getElementById("TxtContrasenaConf").value;
+    var LVLPerfil = 0;
+
     if (pas1 == pas2) {
-        if (CamposObligatorios() == true) {
+        if (ObligatoriosDatosP("DatosGuardar") == true) {
+
             if (confirm("¿Desea aplicar los cambios?") == 1) {
-                var IDUsuario = document.getElementById("TxtIDUsuario").value;
-                var CURP = document.getElementById("TxtCURP").value;
-                var Nombre = document.getElementById("TxtNombreUser").value;
-                var APaterno = document.getElementById("TxtAPaterno").value;
-                var AMaterno = document.getElementById("TxtAMaterno").value;
-                var Foto = document.getElementById("PBFoto").src.replace("data:image/png;base64,", "");
-                var FNacimiento = document.getElementById("TxtFnaci").value;
-                var IDEstado = document.getElementById("cmbEstado").value;
-                var IDMunicipio = document.getElementById("cmbMunicipio").value;
-                var IDLocalidad = document.getElementById("cmbLocalidad").value;
-                var RFC = document.getElementById("TxtRFC").value;
-                var NoSS = document.getElementById("TxtNSS").value;
-                var Correo = document.getElementById("TxtCorreo").value;
-                var Telefono = document.getElementById("TxtTelefono").value;
-                var IDPerfil = document.getElementById("cmbPerfil").value;
                 //**consulta para obtener el nivel
-                $.get("/CardinalSystem/BDPerfil/?IDPerfil=" + IDPerfil, function (Perfil) {
-                    var LVLPerfil = Perfil[0].LVLPerfil;
+                $.get("/CardinalSystem/BDPerfil/?IDPerfil=" + document.getElementById("cmbPerfil").value, function (Perfil) {
+                    LVLPerfil = Perfil[0].Nivel;
+                    let IDUsuario = document.getElementById("TxtIDUsuario").value;
+                    let CURP = document.getElementById("TxtCURP").value;
+                    let Nombre = document.getElementById("TxtNombreUser").value;
+                    let APaterno = document.getElementById("TxtAPaterno").value;
+                    let AMaterno = document.getElementById("TxtAMaterno").value;
+                    let Foto = document.getElementById("PBFoto").src.replace("data:image/png;base64,", "");
+                    let FNacimiento = document.getElementById("TxtFnaci").value;
+                    let IDEstado = document.getElementById("cmbEstado").value;
+                    let IDMunicipio = document.getElementById("cmbMunicipio").value;
+                    let IDLocalidad = document.getElementById("cmbLocalidad").value;
+                    let RFC = document.getElementById("TxtRFC").value;
+                    let NoSS = document.getElementById("TxtNSS").value;
+                    let Correo = document.getElementById("TxtCorreo").value;
+                    let Telefono = document.getElementById("TxtTelefono").value;
+                    let IDPerfil = document.getElementById("cmbPerfil").value;
+                    let IDArea = document.getElementById("cmbArea").value;
+                    let TempNA = document.getElementById("cmbArea");
+                    let NArea = TempNA.options[TempNA.selectedIndex].text;
+                    let IDSubArea = document.getElementById("cmbSubArea").value;
+                    let TempNSA = document.getElementById("cmbSubArea");
+                    let NSArea = TempNSA.options[TempNSA.selectedIndex].text;
+                    let Asignacion = document.getElementById("cmbAsignacion").value;
+                    let Sitio = document.getElementById("cmbSitio").value;
+                    let IDPadre = document.getElementById("TxtUPadre").value;
+                    let Usuario = document.getElementById("TxtUsuario").value;
+                    let Contraseña = document.getElementById("TxtContrasena").value;
+                    let f = new Date();
+                    let FIngreso = f.getDate() + "/" + (f.getMonth() + 1) + "/" + f.getFullYear();
+                    let frm = new FormData();
+                    frm.append("IDUsuario", IDUsuario);
+                    frm.append("CURP", CURP);
+                    frm.append("Nombre", Nombre);
+                    frm.append("APaterno", APaterno);
+                    frm.append("AMaterno", AMaterno);
+                    frm.append("cadF", Foto);
+                    frm.append("FNacimiento", FNacimiento);
+                    frm.append("IDEstado", IDEstado);
+                    frm.append("IDMunicipio", IDMunicipio);
+                    frm.append("IDLocalidad", IDLocalidad);
+                    frm.append("RFC", RFC);
+                    frm.append("NoSS", NoSS);
+                    frm.append("Correo", Correo);
+                    frm.append("Telefono", Telefono);
+                    frm.append("IDPerfil", IDPerfil);
+                    frm.append("LVLPerfil", LVLPerfil);
+                    frm.append("IDArea", IDArea);
+                    frm.append("NArea", NArea);
+                    frm.append("IDSubArea", IDSubArea);
+                    frm.append("NSArea", NSArea);
+                    frm.append("Asignacion", Asignacion);
+                    frm.append("Sitio", Sitio);
+                    frm.append("IDPadre", IDPadre);
+                    frm.append("Usuario", Usuario);
+                    frm.append("Contraseña", Contraseña);
+                    frm.append("FIngreso", FIngreso);
+                    frm.append("Estatus", 1);
+                    $.ajax({
+                        type: "POST",
+                        url: "/Usuarios/GuardarUsuario",
+                        data: frm,
+                        contentType: false,
+                        processData: false,
+                        success: function (data) {
+                            if (data == 0) {
+                                alert("Ocurrio un error");
+                            }
+                            else if (data == -1) {
+                                alert("Ya existe un usuario con esa información");
+                            }
+                            else {
+                                alert("Se ejecuto correctamente");
+                                Consulta();
+                                document.getElementById("btnCancelar").click();
+                            }
+                        }
+                    });
                 });
-                var IDArea = document.getElementById("cmbArea").value;
-                var TempNA = document.getElementById("cmbArea");
-                var NArea = TempNA.options[TempNA.selectedIndex].text;
-                var IDSubArea = document.getElementById("cmbSubArea").value;
-                var TempNSA = document.getElementById("cmbSubArea");
-                var NSArea = TempNSA.options[TempNSA.selectedIndex].text;
-                var Asignacion = document.getElementById("cmbAsignacion").value;
-                var Sitio = document.getElementById("cmbSitio").value;
-                var IDPadre = document.getElementById("TxtUPadre");
-                var Usuario = document.getElementById("TxtUsuario");
-                var Contraseña = document.getElementById("TxtContrasena").value;
-                var f = new Date();
-                var FIngreso = f.getDate() + "/" + (f.getMonth() + 1) + "/" + f.getFullYear();
-                var frm = new FormData();
-                frm.append("IDUsuario", IDUsuario);
-                frm.append("CURP", CURP);
-                frm.append("Nombre", Nombre);
-                frm.append("APaterno", APaterno);
-                frm.append("AMaterno", AMaterno);
-                frm.append("cadF", Foto);
-                frm.append("FNacimiento", FNacimiento);
-                frm.append("IDEstado", IDEstado);
-                frm.append("IDMunicipio", IDMunicipio);
-                frm.append("IDLocalidad", IDLocalidad);
-                frm.append("RFC", RFC);
-                frm.append("NoSS", NoSS);
-                frm.append("Correo", Correo);
-                frm.append("Telefono", Telefono);
-                frm.append("IDPerfil", IDPerfil);
-                frm.append("LVLPerfil", LVLPerfil);
-                frm.append("IDArea", IDArea);
-                frm.append("NArea", NArea);
-                frm.append("IDSubArea", IDSubArea);
-                frm.append("NSArea", NSArea);
-                frm.append("Asignacion", Asignacion);
-                frm.append("Sitio", Sitio);
-                frm.append("IDPadre", IDPadre);
-                frm.append("Usuario", Usuario);
-                frm.append("Contraseña", Contraseña);
-                frm.append("FIngreso", FIngreso);
-                frm.append("Estatus", 1);
-                $.ajax({
-                    type: "POST",
-                    url: "/Usuarios/guardar",
-                    data: frm,
-                    contentType: false,
-                    processData: false,
-                    success: function (data) {
-                        if (data == 0) {
-                            alert("Ocurrio un error");
-                        }
-                        else if (data == -1) {
-                            alert("Ya existe un usuario con esa información");
-                        }
-                        else {
-                            alert("Se ejecuto correctamente");
-                            Consulta();
-                            document.getElementById("btnCancelar").click();
-                        }
-                    }
-                }
-                );
             }
         }
     }
