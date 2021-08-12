@@ -43,7 +43,7 @@ function CrearTabla(DatosUsuarios) {
         CodHtml += "<td>" + DatosUsuarios[i].FechaIngreso + "</td>";
         CodHtml += "<td>";
         CodHtml += "<button class='btn btn-primary' onclick='abrirModal(" + DatosUsuarios[i].ID + ")' data-toggle='modal' data-target='#myModal'><i class='fas fa-edit'></i></button>";
-        CodHtml += "<button class='btn btn-danger' onclick='eliminar(" + DatosUsuarios[i].ID + ",this)' ><i class='fas fa-eraser'></i></button>";
+        CodHtml += "<button class='btn btn-danger' onclick='EliminarUsuario(" + DatosUsuarios[i].ID + ",this)' ><i class='fas fa-eraser'></i></button>";
         CodHtml += "</td>";
         CodHtml += "</tr>";
     }
@@ -57,8 +57,8 @@ function abrirModal(id) {
     for (var i = 0; i < controlesObligatorio.length; i++) {
         controlesObligatorio[i].parentNode.classList.remove("border-danger");
     }
+    Limpiar();
     if (id == 0) {
-        Limpiar();
         LimpiarSelect();
     }
     else {
@@ -93,8 +93,8 @@ function abrirModal(id) {
             Sitio(InfUsuario[0].Asignacion, InfUsuario[0].Sitio);
             document.getElementById("TxtCorreo").value = InfUsuario[0].Correo;
             document.getElementById("TxtTelefono").value = InfUsuario[0].Telefono;
-            //document.getElementById("TxtContrasena").value = InfUsuario[0].Contraseña;
-            //document.getElementById("TxtContrasenaConf").value = InfUsuario[0].Contraseña;
+            document.getElementById("TxtContrasena").value = InfUsuario[0].Contrasena;
+            document.getElementById("TxtContrasenaConf").value = InfUsuario[0].Contrasena;
         });
     }
     Pasos(0);
@@ -134,10 +134,8 @@ function Pasos(Step) {
         NomUsuar();
     }
     else if (ObligatoriosDatosP("Datostep-4") == true && ClaseMostrar == "step-5" && document.getElementById("mensage").innerText === "Autenticación correcta") {
-
-        //MostrarDiv(ClaseMostrar);
         GUsuario();
-        //NomUsuar();
+        MostrarDiv(ClaseMostrar);
     }
     else {
         //alert("Entro al otro else");
@@ -383,10 +381,8 @@ function GUsuario() {
     var pas1 = document.getElementById("TxtContrasena").value;
     var pas2 = document.getElementById("TxtContrasenaConf").value;
     var LVLPerfil = 0;
-
     if (pas1 == pas2) {
         if (ObligatoriosDatosP("DatosGuardar") == true) {
-
             if (confirm("¿Desea aplicar los cambios?") == 1) {
                 //**consulta para obtener el nivel
                 $.get("/CardinalSystem/BDPerfil/?IDPerfil=" + document.getElementById("cmbPerfil").value, function (Perfil) {
@@ -454,17 +450,21 @@ function GUsuario() {
                         contentType: false,
                         processData: false,
                         success: function (data) {
-                            if (data == 0) {
-                                alert("Ocurrio un error");
+                            var CodHTML = "";
+                            if (data === 0) {
+                                CodHTML += "<img src='..Assets/Internal/ERROR.png' width='365' height='365'/>";
+                                CodHTML += "<h4>Ocurrio un error</h4>";
                             }
-                            else if (data == -1) {
-                                alert("Ya existe un usuario con esa información");
+                            else if (data === -1) {
+                                CodHTML += "<img src='../Assets/Internal/ERROR.png' width='365' height='365'/>";
+                                CodHTML += "<h4>Ya existe un usuario con esa información</h4>";
                             }
                             else {
-                                alert("Se ejecuto correctamente");
-                                Consulta();
-                                document.getElementById("btnCancelar").click();
+                                CodHTML += "<img src='../Assets/Internal/SUCCES.png' width='365' height='365'/>";
+                                CodHTML += "<h4>Sus datos se guardaron correctamente.</h4>";
                             }
+                            document.getElementById("Finalmmessage").innerHTML = CodHTML;
+                            Consulta();
                         }
                     });
                 });
@@ -472,6 +472,19 @@ function GUsuario() {
         }
     }
     else {
-        alert("Ingrese nuevamente su contraseña")
+        alert("Ingrese nuevamente su contraseña");
+    }
+}
+//"Elimina" el Usuario cambia el Estatus
+function EliminarUsuario(ID) {
+    if (confirm("¿Desea eliminar el registo?") == 1) {
+        $.get("/Usuarios/EliminarUsuario/?ID=" + ID, function (EliUsuario) {
+            if (EliUsuario == 1) {
+                alert("Se elimino correctamente");
+                Consulta();
+            } else {
+                alert("Ocurrio un error");
+            }
+        });
     }
 }

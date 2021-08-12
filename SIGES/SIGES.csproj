@@ -100,14 +100,15 @@
     <Content Include="Assets\Internal\BtnPass.svg" />
     <Content Include="Assets\Internal\BtnSalir.svg" />
     <Content Include="Assets\Internal\BtnSiberbar.svg" />
+    <Content Include="Assets\Internal\ERROR.png" />
     <Content Include="Assets\Internal\Fondo.jpg" />
     <Content Include="Assets\Internal\Fondo2.jpg" />
     <Content Include="Assets\Internal\Logo.svg" />
     <Content Include="Assets\Internal\Logo2.svg" />
     <Content Include="Assets\Internal\Logo3.svg" />
     <Content Include="Assets\Internal\LogoTexto.svg" />
-    <Content Include="Assets\Internal\ok.png" />
     <Content Include="Assets\Internal\Pass.png" />
+    <Content Include="Assets\Internal\SUCCES.png" />
     <Content Include="Assets\Internal\TxtPassword.svg" />
     <Content Include="Assets\Internal\TxtUser.svg" />
     <Content Include="Assets\Internal\user.jpg" />

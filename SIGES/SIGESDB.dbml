@@ -1,34 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SIGES" Class="SIGESDBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="WebSettings" ConnectionString="Data Source=DESKTOP-G4VRQFR\SQLEXPRESS;Initial Catalog=SIGES;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="SIGESConnectionString2" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.Administration_Evaluacion_Tienda" Member="Administration_Evaluacion_Tienda">
-    <Type Name="Administration_Evaluacion_Tienda">
-      <Column Name="IDEvaluacion" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Nombre" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
-      <Column Name="NoEvaluacion" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
-      <Column Name="IDArea" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
-      <Column Name="NombreA" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
-      <Column Name="IDSubArea" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
-      <Column Name="NombreAs" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
-      <Column Name="IDUsuario" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
-      <Column Name="UNombre" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
-      <Column Name="Evaluadores" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="FCreacion" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="FModificacion" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="NoReactivos" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="NoRespuestas" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Puntaje" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Descripcion" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="Estatus" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="Administration_Evaluacion_Tienda_Administration_Evaluacion_Tienda_Reactivos" Member="Administration_Evaluacion_Tienda_Reactivos" ThisKey="IDEvaluacion" OtherKey="IDEvaluacion" Type="Administration_Evaluacion_Tienda_Reactivos" />
-      <Association Name="Administration_Evaluacion_Tienda_Administration_Evaluacion_Tienda_Resultados" Member="Administration_Evaluacion_Tienda_Resultados" ThisKey="IDEvaluacion" OtherKey="IDEvaluacion" Type="Administration_Evaluacion_Tienda_Resultados" />
-      <Association Name="Administration_Evaluacion_Tienda_Administration_Evaluacion_Tienda_Soluciones" Member="Administration_Evaluacion_Tienda_Soluciones" ThisKey="IDEvaluacion" OtherKey="IDEvaluacion" Type="Administration_Evaluacion_Tienda_Soluciones" />
-      <Association Name="User_Usuarios_Administration_Evaluacion_Tienda" Member="User_Usuarios" ThisKey="IDUsuario" OtherKey="IDUsuario" Type="User_Usuarios" IsForeignKey="true" />
-      <Association Name="System_Areas_Administration_Evaluacion_Tienda" Member="System_Areas" ThisKey="IDArea" OtherKey="IDArea" Type="System_Areas" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.User_Usuarios" Member="User_Usuarios">
     <Type Name="User_Usuarios">
-      <Column Name="IDUsuario" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDUsuario" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="CURP" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="Nombre" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
       <Column Name="APaterno" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
@@ -71,6 +45,32 @@
       <Association Name="User_Usuarios_Trainig_Cuestionario_Seguimiento" Member="Trainig_Cuestionario_Seguimiento" ThisKey="IDUsuario" OtherKey="IDUsuario" Type="Trainig_Cuestionario_Seguimiento" />
       <Association Name="User_Usuarios_Trainig_Cursos" Member="Trainig_Cursos" ThisKey="IDUsuario" OtherKey="IDUsuario" Type="Trainig_Cursos" />
       <Association Name="User_Usuarios_Trainig_Cursos_Seguimiento" Member="Trainig_Cursos_Seguimiento" ThisKey="IDUsuario" OtherKey="IDUsuario" Type="Trainig_Cursos_Seguimiento" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Administration_Evaluacion_Tienda" Member="Administration_Evaluacion_Tienda">
+    <Type Name="Administration_Evaluacion_Tienda">
+      <Column Name="IDEvaluacion" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="NoEvaluacion" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="IDArea" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="NombreA" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="IDSubArea" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="NombreAs" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="IDUsuario" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="UNombre" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="Evaluadores" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="FCreacion" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="FModificacion" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="NoReactivos" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="NoRespuestas" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Puntaje" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Estatus" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Administration_Evaluacion_Tienda_Administration_Evaluacion_Tienda_Reactivos" Member="Administration_Evaluacion_Tienda_Reactivos" ThisKey="IDEvaluacion" OtherKey="IDEvaluacion" Type="Administration_Evaluacion_Tienda_Reactivos" />
+      <Association Name="Administration_Evaluacion_Tienda_Administration_Evaluacion_Tienda_Resultados" Member="Administration_Evaluacion_Tienda_Resultados" ThisKey="IDEvaluacion" OtherKey="IDEvaluacion" Type="Administration_Evaluacion_Tienda_Resultados" />
+      <Association Name="Administration_Evaluacion_Tienda_Administration_Evaluacion_Tienda_Soluciones" Member="Administration_Evaluacion_Tienda_Soluciones" ThisKey="IDEvaluacion" OtherKey="IDEvaluacion" Type="Administration_Evaluacion_Tienda_Soluciones" />
+      <Association Name="User_Usuarios_Administration_Evaluacion_Tienda" Member="User_Usuarios" ThisKey="IDUsuario" OtherKey="IDUsuario" Type="User_Usuarios" IsForeignKey="true" />
+      <Association Name="System_Areas_Administration_Evaluacion_Tienda" Member="System_Areas" ThisKey="IDArea" OtherKey="IDArea" Type="System_Areas" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Administration_Evaluacion_Tienda_Reactivos" Member="Administration_Evaluacion_Tienda_Reactivos">

@@ -44,7 +44,7 @@ namespace SIGES.Controllers
                     p.Nombre,
                     p.APaterno,
                     p.AMaterno,
-                    p.Contraseña,
+                    Contrasena = Decrypt(p.Contraseña),
                     p.IDArea,
                     p.IDSubArea,
                     FOTOMOSTRAR = Convert.ToBase64String(p.Foto.ToArray()),
@@ -79,7 +79,7 @@ namespace SIGES.Controllers
             try
             {
                 long idUser = DatosUsuario.IDUsuario;
-                string newpass= Encrypt(DatosUsuario.Contraseña);
+                string newpass = Encrypt(DatosUsuario.Contraseña);
                 if (idUser.Equals(0))
                 {
                     int nveces = SIGES.User_Usuarios.Where(p => p.CURP.Equals(DatosUsuario.CURP)).Count();
@@ -100,7 +100,7 @@ namespace SIGES.Controllers
                 {
                     int nveces = SIGES.User_Usuarios.Where(p => p.CURP.Equals(DatosUsuario.CURP) && p.Nombre.Equals(DatosUsuario.Nombre) && p.APaterno.Equals(DatosUsuario.APaterno) && p.AMaterno.Equals(DatosUsuario.AMaterno) &&
                     p.Foto.Equals(DatosUsuario.Foto) && p.IDEstado.Equals(DatosUsuario.IDEstado) && p.IDMunicipio.Equals(DatosUsuario.IDMunicipio) && p.IDLocalidad.Equals(DatosUsuario.IDLocalidad) &&
-                    p.RFC.Equals(DatosUsuario.RFC) && p.NoSS.Equals(DatosUsuario.NoSS) && p.Correo.Equals(DatosUsuario.Correo) && p.Telefono.Equals(DatosUsuario.Telefono) &&p.IDPerfil.Equals(DatosUsuario.IDPerfil) &&
+                    p.RFC.Equals(DatosUsuario.RFC) && p.NoSS.Equals(DatosUsuario.NoSS) && p.Correo.Equals(DatosUsuario.Correo) && p.Telefono.Equals(DatosUsuario.Telefono) && p.IDPerfil.Equals(DatosUsuario.IDPerfil) &&
                     p.LVLPerfil.Equals(DatosUsuario.LVLPerfil) && p.IDArea.Equals(DatosUsuario.IDArea) && p.IDSubArea.Equals(DatosUsuario.IDSubArea) && p.Asignacion.Equals(DatosUsuario.Asignacion) && p.Sitio.Equals(DatosUsuario.Sitio) &&
                     p.Usuario.Equals(DatosUsuario.Usuario) && p.Contraseña.Equals(DatosUsuario.Contraseña) && p.CManejador.Equals(DatosUsuario.CManejador) && p.CPlataforma.Equals(DatosUsuario.CPlataforma)).Count();
                     if (nveces == 0)
@@ -150,12 +150,12 @@ namespace SIGES.Controllers
             return Afectados;
         }
         //eliminar
-        public int eliminar(long id)
+        public int EliminarUsuario(long ID)
         {
             int Afectados = 0;
             try
             {
-                User_Usuarios usuario = SIGES.User_Usuarios.Where(p => p.IDUsuario.Equals(id)).First();
+                User_Usuarios usuario = SIGES.User_Usuarios.Where(p => p.IDUsuario.Equals(ID)).First();
                 usuario.Estatus = 0;
                 SIGES.SubmitChanges();
                 Afectados = 1;
@@ -195,7 +195,6 @@ namespace SIGES.Controllers
             var bytesDecrypted = Decrypt(bytesToBeDecrypted, passwordBytes);
             return Encoding.UTF8.GetString(bytesDecrypted);
         }
-
         private static byte[] Encrypt(byte[] bytesToBeEncrypted, byte[] passwordBytes)
         {
             byte[] encryptedBytes = null;
@@ -220,7 +219,6 @@ namespace SIGES.Controllers
             }
             return encryptedBytes;
         }
-
         private static byte[] Decrypt(byte[] bytesToBeDecrypted, byte[] passwordBytes)
         {
             byte[] decryptedBytes = null;

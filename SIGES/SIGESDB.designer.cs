@@ -30,12 +30,12 @@ namespace SIGES
 		
     #region Definiciones de métodos de extensibilidad
     partial void OnCreated();
-    partial void InsertAdministration_Evaluacion_Tienda(Administration_Evaluacion_Tienda instance);
-    partial void UpdateAdministration_Evaluacion_Tienda(Administration_Evaluacion_Tienda instance);
-    partial void DeleteAdministration_Evaluacion_Tienda(Administration_Evaluacion_Tienda instance);
     partial void InsertUser_Usuarios(User_Usuarios instance);
     partial void UpdateUser_Usuarios(User_Usuarios instance);
     partial void DeleteUser_Usuarios(User_Usuarios instance);
+    partial void InsertAdministration_Evaluacion_Tienda(Administration_Evaluacion_Tienda instance);
+    partial void UpdateAdministration_Evaluacion_Tienda(Administration_Evaluacion_Tienda instance);
+    partial void DeleteAdministration_Evaluacion_Tienda(Administration_Evaluacion_Tienda instance);
     partial void InsertAdministration_Evaluacion_Tienda_Reactivos(Administration_Evaluacion_Tienda_Reactivos instance);
     partial void UpdateAdministration_Evaluacion_Tienda_Reactivos(Administration_Evaluacion_Tienda_Reactivos instance);
     partial void DeleteAdministration_Evaluacion_Tienda_Reactivos(Administration_Evaluacion_Tienda_Reactivos instance);
@@ -155,19 +155,19 @@ namespace SIGES
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<Administration_Evaluacion_Tienda> Administration_Evaluacion_Tienda
-		{
-			get
-			{
-				return this.GetTable<Administration_Evaluacion_Tienda>();
-			}
-		}
-		
 		public System.Data.Linq.Table<User_Usuarios> User_Usuarios
 		{
 			get
 			{
 				return this.GetTable<User_Usuarios>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Administration_Evaluacion_Tienda> Administration_Evaluacion_Tienda
+		{
+			get
+			{
+				return this.GetTable<Administration_Evaluacion_Tienda>();
 			}
 		}
 		
@@ -404,618 +404,6 @@ namespace SIGES
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Administration_Evaluacion_Tienda")]
-	public partial class Administration_Evaluacion_Tienda : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private long _IDEvaluacion;
-		
-		private string _Nombre;
-		
-		private System.Nullable<long> _NoEvaluacion;
-		
-		private long _IDArea;
-		
-		private string _NombreA;
-		
-		private System.Nullable<long> _IDSubArea;
-		
-		private string _NombreAs;
-		
-		private long _IDUsuario;
-		
-		private string _UNombre;
-		
-		private string _Evaluadores;
-		
-		private System.DateTime _FCreacion;
-		
-		private System.DateTime _FModificacion;
-		
-		private int _NoReactivos;
-		
-		private int _NoRespuestas;
-		
-		private int _Puntaje;
-		
-		private string _Descripcion;
-		
-		private int _Estatus;
-		
-		private EntitySet<Administration_Evaluacion_Tienda_Reactivos> _Administration_Evaluacion_Tienda_Reactivos;
-		
-		private EntitySet<Administration_Evaluacion_Tienda_Resultados> _Administration_Evaluacion_Tienda_Resultados;
-		
-		private EntitySet<Administration_Evaluacion_Tienda_Soluciones> _Administration_Evaluacion_Tienda_Soluciones;
-		
-		private EntityRef<User_Usuarios> _User_Usuarios;
-		
-		private EntityRef<System_Areas> _System_Areas;
-		
-    #region Definiciones de métodos de extensibilidad
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIDEvaluacionChanging(long value);
-    partial void OnIDEvaluacionChanged();
-    partial void OnNombreChanging(string value);
-    partial void OnNombreChanged();
-    partial void OnNoEvaluacionChanging(System.Nullable<long> value);
-    partial void OnNoEvaluacionChanged();
-    partial void OnIDAreaChanging(long value);
-    partial void OnIDAreaChanged();
-    partial void OnNombreAChanging(string value);
-    partial void OnNombreAChanged();
-    partial void OnIDSubAreaChanging(System.Nullable<long> value);
-    partial void OnIDSubAreaChanged();
-    partial void OnNombreAsChanging(string value);
-    partial void OnNombreAsChanged();
-    partial void OnIDUsuarioChanging(long value);
-    partial void OnIDUsuarioChanged();
-    partial void OnUNombreChanging(string value);
-    partial void OnUNombreChanged();
-    partial void OnEvaluadoresChanging(string value);
-    partial void OnEvaluadoresChanged();
-    partial void OnFCreacionChanging(System.DateTime value);
-    partial void OnFCreacionChanged();
-    partial void OnFModificacionChanging(System.DateTime value);
-    partial void OnFModificacionChanged();
-    partial void OnNoReactivosChanging(int value);
-    partial void OnNoReactivosChanged();
-    partial void OnNoRespuestasChanging(int value);
-    partial void OnNoRespuestasChanged();
-    partial void OnPuntajeChanging(int value);
-    partial void OnPuntajeChanged();
-    partial void OnDescripcionChanging(string value);
-    partial void OnDescripcionChanged();
-    partial void OnEstatusChanging(int value);
-    partial void OnEstatusChanged();
-    #endregion
-		
-		public Administration_Evaluacion_Tienda()
-		{
-			this._Administration_Evaluacion_Tienda_Reactivos = new EntitySet<Administration_Evaluacion_Tienda_Reactivos>(new Action<Administration_Evaluacion_Tienda_Reactivos>(this.attach_Administration_Evaluacion_Tienda_Reactivos), new Action<Administration_Evaluacion_Tienda_Reactivos>(this.detach_Administration_Evaluacion_Tienda_Reactivos));
-			this._Administration_Evaluacion_Tienda_Resultados = new EntitySet<Administration_Evaluacion_Tienda_Resultados>(new Action<Administration_Evaluacion_Tienda_Resultados>(this.attach_Administration_Evaluacion_Tienda_Resultados), new Action<Administration_Evaluacion_Tienda_Resultados>(this.detach_Administration_Evaluacion_Tienda_Resultados));
-			this._Administration_Evaluacion_Tienda_Soluciones = new EntitySet<Administration_Evaluacion_Tienda_Soluciones>(new Action<Administration_Evaluacion_Tienda_Soluciones>(this.attach_Administration_Evaluacion_Tienda_Soluciones), new Action<Administration_Evaluacion_Tienda_Soluciones>(this.detach_Administration_Evaluacion_Tienda_Soluciones));
-			this._User_Usuarios = default(EntityRef<User_Usuarios>);
-			this._System_Areas = default(EntityRef<System_Areas>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDEvaluacion", DbType="BigInt NOT NULL", IsPrimaryKey=true)]
-		public long IDEvaluacion
-		{
-			get
-			{
-				return this._IDEvaluacion;
-			}
-			set
-			{
-				if ((this._IDEvaluacion != value))
-				{
-					this.OnIDEvaluacionChanging(value);
-					this.SendPropertyChanging();
-					this._IDEvaluacion = value;
-					this.SendPropertyChanged("IDEvaluacion");
-					this.OnIDEvaluacionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="VarChar(150) NOT NULL", CanBeNull=false)]
-		public string Nombre
-		{
-			get
-			{
-				return this._Nombre;
-			}
-			set
-			{
-				if ((this._Nombre != value))
-				{
-					this.OnNombreChanging(value);
-					this.SendPropertyChanging();
-					this._Nombre = value;
-					this.SendPropertyChanged("Nombre");
-					this.OnNombreChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NoEvaluacion", DbType="BigInt")]
-		public System.Nullable<long> NoEvaluacion
-		{
-			get
-			{
-				return this._NoEvaluacion;
-			}
-			set
-			{
-				if ((this._NoEvaluacion != value))
-				{
-					this.OnNoEvaluacionChanging(value);
-					this.SendPropertyChanging();
-					this._NoEvaluacion = value;
-					this.SendPropertyChanged("NoEvaluacion");
-					this.OnNoEvaluacionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDArea", DbType="BigInt NOT NULL")]
-		public long IDArea
-		{
-			get
-			{
-				return this._IDArea;
-			}
-			set
-			{
-				if ((this._IDArea != value))
-				{
-					if (this._System_Areas.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnIDAreaChanging(value);
-					this.SendPropertyChanging();
-					this._IDArea = value;
-					this.SendPropertyChanged("IDArea");
-					this.OnIDAreaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NombreA", DbType="VarChar(150) NOT NULL", CanBeNull=false)]
-		public string NombreA
-		{
-			get
-			{
-				return this._NombreA;
-			}
-			set
-			{
-				if ((this._NombreA != value))
-				{
-					this.OnNombreAChanging(value);
-					this.SendPropertyChanging();
-					this._NombreA = value;
-					this.SendPropertyChanged("NombreA");
-					this.OnNombreAChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDSubArea", DbType="BigInt")]
-		public System.Nullable<long> IDSubArea
-		{
-			get
-			{
-				return this._IDSubArea;
-			}
-			set
-			{
-				if ((this._IDSubArea != value))
-				{
-					this.OnIDSubAreaChanging(value);
-					this.SendPropertyChanging();
-					this._IDSubArea = value;
-					this.SendPropertyChanged("IDSubArea");
-					this.OnIDSubAreaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NombreAs", DbType="VarChar(150)")]
-		public string NombreAs
-		{
-			get
-			{
-				return this._NombreAs;
-			}
-			set
-			{
-				if ((this._NombreAs != value))
-				{
-					this.OnNombreAsChanging(value);
-					this.SendPropertyChanging();
-					this._NombreAs = value;
-					this.SendPropertyChanged("NombreAs");
-					this.OnNombreAsChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDUsuario", DbType="BigInt NOT NULL")]
-		public long IDUsuario
-		{
-			get
-			{
-				return this._IDUsuario;
-			}
-			set
-			{
-				if ((this._IDUsuario != value))
-				{
-					if (this._User_Usuarios.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnIDUsuarioChanging(value);
-					this.SendPropertyChanging();
-					this._IDUsuario = value;
-					this.SendPropertyChanged("IDUsuario");
-					this.OnIDUsuarioChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UNombre", DbType="VarChar(150) NOT NULL", CanBeNull=false)]
-		public string UNombre
-		{
-			get
-			{
-				return this._UNombre;
-			}
-			set
-			{
-				if ((this._UNombre != value))
-				{
-					this.OnUNombreChanging(value);
-					this.SendPropertyChanging();
-					this._UNombre = value;
-					this.SendPropertyChanged("UNombre");
-					this.OnUNombreChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Evaluadores", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string Evaluadores
-		{
-			get
-			{
-				return this._Evaluadores;
-			}
-			set
-			{
-				if ((this._Evaluadores != value))
-				{
-					this.OnEvaluadoresChanging(value);
-					this.SendPropertyChanging();
-					this._Evaluadores = value;
-					this.SendPropertyChanged("Evaluadores");
-					this.OnEvaluadoresChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FCreacion", DbType="DateTime NOT NULL")]
-		public System.DateTime FCreacion
-		{
-			get
-			{
-				return this._FCreacion;
-			}
-			set
-			{
-				if ((this._FCreacion != value))
-				{
-					this.OnFCreacionChanging(value);
-					this.SendPropertyChanging();
-					this._FCreacion = value;
-					this.SendPropertyChanged("FCreacion");
-					this.OnFCreacionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FModificacion", DbType="DateTime NOT NULL")]
-		public System.DateTime FModificacion
-		{
-			get
-			{
-				return this._FModificacion;
-			}
-			set
-			{
-				if ((this._FModificacion != value))
-				{
-					this.OnFModificacionChanging(value);
-					this.SendPropertyChanging();
-					this._FModificacion = value;
-					this.SendPropertyChanged("FModificacion");
-					this.OnFModificacionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NoReactivos", DbType="Int NOT NULL")]
-		public int NoReactivos
-		{
-			get
-			{
-				return this._NoReactivos;
-			}
-			set
-			{
-				if ((this._NoReactivos != value))
-				{
-					this.OnNoReactivosChanging(value);
-					this.SendPropertyChanging();
-					this._NoReactivos = value;
-					this.SendPropertyChanged("NoReactivos");
-					this.OnNoReactivosChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NoRespuestas", DbType="Int NOT NULL")]
-		public int NoRespuestas
-		{
-			get
-			{
-				return this._NoRespuestas;
-			}
-			set
-			{
-				if ((this._NoRespuestas != value))
-				{
-					this.OnNoRespuestasChanging(value);
-					this.SendPropertyChanging();
-					this._NoRespuestas = value;
-					this.SendPropertyChanged("NoRespuestas");
-					this.OnNoRespuestasChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Puntaje", DbType="Int NOT NULL")]
-		public int Puntaje
-		{
-			get
-			{
-				return this._Puntaje;
-			}
-			set
-			{
-				if ((this._Puntaje != value))
-				{
-					this.OnPuntajeChanging(value);
-					this.SendPropertyChanging();
-					this._Puntaje = value;
-					this.SendPropertyChanged("Puntaje");
-					this.OnPuntajeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Descripcion", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string Descripcion
-		{
-			get
-			{
-				return this._Descripcion;
-			}
-			set
-			{
-				if ((this._Descripcion != value))
-				{
-					this.OnDescripcionChanging(value);
-					this.SendPropertyChanging();
-					this._Descripcion = value;
-					this.SendPropertyChanged("Descripcion");
-					this.OnDescripcionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estatus", DbType="Int NOT NULL")]
-		public int Estatus
-		{
-			get
-			{
-				return this._Estatus;
-			}
-			set
-			{
-				if ((this._Estatus != value))
-				{
-					this.OnEstatusChanging(value);
-					this.SendPropertyChanging();
-					this._Estatus = value;
-					this.SendPropertyChanged("Estatus");
-					this.OnEstatusChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Administration_Evaluacion_Tienda_Administration_Evaluacion_Tienda_Reactivos", Storage="_Administration_Evaluacion_Tienda_Reactivos", ThisKey="IDEvaluacion", OtherKey="IDEvaluacion")]
-		public EntitySet<Administration_Evaluacion_Tienda_Reactivos> Administration_Evaluacion_Tienda_Reactivos
-		{
-			get
-			{
-				return this._Administration_Evaluacion_Tienda_Reactivos;
-			}
-			set
-			{
-				this._Administration_Evaluacion_Tienda_Reactivos.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Administration_Evaluacion_Tienda_Administration_Evaluacion_Tienda_Resultados", Storage="_Administration_Evaluacion_Tienda_Resultados", ThisKey="IDEvaluacion", OtherKey="IDEvaluacion")]
-		public EntitySet<Administration_Evaluacion_Tienda_Resultados> Administration_Evaluacion_Tienda_Resultados
-		{
-			get
-			{
-				return this._Administration_Evaluacion_Tienda_Resultados;
-			}
-			set
-			{
-				this._Administration_Evaluacion_Tienda_Resultados.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Administration_Evaluacion_Tienda_Administration_Evaluacion_Tienda_Soluciones", Storage="_Administration_Evaluacion_Tienda_Soluciones", ThisKey="IDEvaluacion", OtherKey="IDEvaluacion")]
-		public EntitySet<Administration_Evaluacion_Tienda_Soluciones> Administration_Evaluacion_Tienda_Soluciones
-		{
-			get
-			{
-				return this._Administration_Evaluacion_Tienda_Soluciones;
-			}
-			set
-			{
-				this._Administration_Evaluacion_Tienda_Soluciones.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Usuarios_Administration_Evaluacion_Tienda", Storage="_User_Usuarios", ThisKey="IDUsuario", OtherKey="IDUsuario", IsForeignKey=true)]
-		public User_Usuarios User_Usuarios
-		{
-			get
-			{
-				return this._User_Usuarios.Entity;
-			}
-			set
-			{
-				User_Usuarios previousValue = this._User_Usuarios.Entity;
-				if (((previousValue != value) 
-							|| (this._User_Usuarios.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._User_Usuarios.Entity = null;
-						previousValue.Administration_Evaluacion_Tienda.Remove(this);
-					}
-					this._User_Usuarios.Entity = value;
-					if ((value != null))
-					{
-						value.Administration_Evaluacion_Tienda.Add(this);
-						this._IDUsuario = value.IDUsuario;
-					}
-					else
-					{
-						this._IDUsuario = default(long);
-					}
-					this.SendPropertyChanged("User_Usuarios");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="System_Areas_Administration_Evaluacion_Tienda", Storage="_System_Areas", ThisKey="IDArea", OtherKey="IDArea", IsForeignKey=true)]
-		public System_Areas System_Areas
-		{
-			get
-			{
-				return this._System_Areas.Entity;
-			}
-			set
-			{
-				System_Areas previousValue = this._System_Areas.Entity;
-				if (((previousValue != value) 
-							|| (this._System_Areas.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._System_Areas.Entity = null;
-						previousValue.Administration_Evaluacion_Tienda.Remove(this);
-					}
-					this._System_Areas.Entity = value;
-					if ((value != null))
-					{
-						value.Administration_Evaluacion_Tienda.Add(this);
-						this._IDArea = value.IDArea;
-					}
-					else
-					{
-						this._IDArea = default(long);
-					}
-					this.SendPropertyChanged("System_Areas");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Administration_Evaluacion_Tienda_Reactivos(Administration_Evaluacion_Tienda_Reactivos entity)
-		{
-			this.SendPropertyChanging();
-			entity.Administration_Evaluacion_Tienda = this;
-		}
-		
-		private void detach_Administration_Evaluacion_Tienda_Reactivos(Administration_Evaluacion_Tienda_Reactivos entity)
-		{
-			this.SendPropertyChanging();
-			entity.Administration_Evaluacion_Tienda = null;
-		}
-		
-		private void attach_Administration_Evaluacion_Tienda_Resultados(Administration_Evaluacion_Tienda_Resultados entity)
-		{
-			this.SendPropertyChanging();
-			entity.Administration_Evaluacion_Tienda = this;
-		}
-		
-		private void detach_Administration_Evaluacion_Tienda_Resultados(Administration_Evaluacion_Tienda_Resultados entity)
-		{
-			this.SendPropertyChanging();
-			entity.Administration_Evaluacion_Tienda = null;
-		}
-		
-		private void attach_Administration_Evaluacion_Tienda_Soluciones(Administration_Evaluacion_Tienda_Soluciones entity)
-		{
-			this.SendPropertyChanging();
-			entity.Administration_Evaluacion_Tienda = this;
-		}
-		
-		private void detach_Administration_Evaluacion_Tienda_Soluciones(Administration_Evaluacion_Tienda_Soluciones entity)
-		{
-			this.SendPropertyChanging();
-			entity.Administration_Evaluacion_Tienda = null;
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.User_Usuarios")]
 	public partial class User_Usuarios : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1194,7 +582,7 @@ namespace SIGES
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDUsuario", DbType="BigInt NOT NULL", IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDUsuario", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		public long IDUsuario
 		{
 			get
@@ -2127,6 +1515,618 @@ namespace SIGES
 		{
 			this.SendPropertyChanging();
 			entity.User_Usuarios = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Administration_Evaluacion_Tienda")]
+	public partial class Administration_Evaluacion_Tienda : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private long _IDEvaluacion;
+		
+		private string _Nombre;
+		
+		private System.Nullable<long> _NoEvaluacion;
+		
+		private long _IDArea;
+		
+		private string _NombreA;
+		
+		private System.Nullable<long> _IDSubArea;
+		
+		private string _NombreAs;
+		
+		private long _IDUsuario;
+		
+		private string _UNombre;
+		
+		private string _Evaluadores;
+		
+		private System.DateTime _FCreacion;
+		
+		private System.DateTime _FModificacion;
+		
+		private int _NoReactivos;
+		
+		private int _NoRespuestas;
+		
+		private int _Puntaje;
+		
+		private string _Descripcion;
+		
+		private int _Estatus;
+		
+		private EntitySet<Administration_Evaluacion_Tienda_Reactivos> _Administration_Evaluacion_Tienda_Reactivos;
+		
+		private EntitySet<Administration_Evaluacion_Tienda_Resultados> _Administration_Evaluacion_Tienda_Resultados;
+		
+		private EntitySet<Administration_Evaluacion_Tienda_Soluciones> _Administration_Evaluacion_Tienda_Soluciones;
+		
+		private EntityRef<User_Usuarios> _User_Usuarios;
+		
+		private EntityRef<System_Areas> _System_Areas;
+		
+    #region Definiciones de métodos de extensibilidad
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDEvaluacionChanging(long value);
+    partial void OnIDEvaluacionChanged();
+    partial void OnNombreChanging(string value);
+    partial void OnNombreChanged();
+    partial void OnNoEvaluacionChanging(System.Nullable<long> value);
+    partial void OnNoEvaluacionChanged();
+    partial void OnIDAreaChanging(long value);
+    partial void OnIDAreaChanged();
+    partial void OnNombreAChanging(string value);
+    partial void OnNombreAChanged();
+    partial void OnIDSubAreaChanging(System.Nullable<long> value);
+    partial void OnIDSubAreaChanged();
+    partial void OnNombreAsChanging(string value);
+    partial void OnNombreAsChanged();
+    partial void OnIDUsuarioChanging(long value);
+    partial void OnIDUsuarioChanged();
+    partial void OnUNombreChanging(string value);
+    partial void OnUNombreChanged();
+    partial void OnEvaluadoresChanging(string value);
+    partial void OnEvaluadoresChanged();
+    partial void OnFCreacionChanging(System.DateTime value);
+    partial void OnFCreacionChanged();
+    partial void OnFModificacionChanging(System.DateTime value);
+    partial void OnFModificacionChanged();
+    partial void OnNoReactivosChanging(int value);
+    partial void OnNoReactivosChanged();
+    partial void OnNoRespuestasChanging(int value);
+    partial void OnNoRespuestasChanged();
+    partial void OnPuntajeChanging(int value);
+    partial void OnPuntajeChanged();
+    partial void OnDescripcionChanging(string value);
+    partial void OnDescripcionChanged();
+    partial void OnEstatusChanging(int value);
+    partial void OnEstatusChanged();
+    #endregion
+		
+		public Administration_Evaluacion_Tienda()
+		{
+			this._Administration_Evaluacion_Tienda_Reactivos = new EntitySet<Administration_Evaluacion_Tienda_Reactivos>(new Action<Administration_Evaluacion_Tienda_Reactivos>(this.attach_Administration_Evaluacion_Tienda_Reactivos), new Action<Administration_Evaluacion_Tienda_Reactivos>(this.detach_Administration_Evaluacion_Tienda_Reactivos));
+			this._Administration_Evaluacion_Tienda_Resultados = new EntitySet<Administration_Evaluacion_Tienda_Resultados>(new Action<Administration_Evaluacion_Tienda_Resultados>(this.attach_Administration_Evaluacion_Tienda_Resultados), new Action<Administration_Evaluacion_Tienda_Resultados>(this.detach_Administration_Evaluacion_Tienda_Resultados));
+			this._Administration_Evaluacion_Tienda_Soluciones = new EntitySet<Administration_Evaluacion_Tienda_Soluciones>(new Action<Administration_Evaluacion_Tienda_Soluciones>(this.attach_Administration_Evaluacion_Tienda_Soluciones), new Action<Administration_Evaluacion_Tienda_Soluciones>(this.detach_Administration_Evaluacion_Tienda_Soluciones));
+			this._User_Usuarios = default(EntityRef<User_Usuarios>);
+			this._System_Areas = default(EntityRef<System_Areas>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDEvaluacion", DbType="BigInt NOT NULL", IsPrimaryKey=true)]
+		public long IDEvaluacion
+		{
+			get
+			{
+				return this._IDEvaluacion;
+			}
+			set
+			{
+				if ((this._IDEvaluacion != value))
+				{
+					this.OnIDEvaluacionChanging(value);
+					this.SendPropertyChanging();
+					this._IDEvaluacion = value;
+					this.SendPropertyChanged("IDEvaluacion");
+					this.OnIDEvaluacionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="VarChar(150) NOT NULL", CanBeNull=false)]
+		public string Nombre
+		{
+			get
+			{
+				return this._Nombre;
+			}
+			set
+			{
+				if ((this._Nombre != value))
+				{
+					this.OnNombreChanging(value);
+					this.SendPropertyChanging();
+					this._Nombre = value;
+					this.SendPropertyChanged("Nombre");
+					this.OnNombreChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NoEvaluacion", DbType="BigInt")]
+		public System.Nullable<long> NoEvaluacion
+		{
+			get
+			{
+				return this._NoEvaluacion;
+			}
+			set
+			{
+				if ((this._NoEvaluacion != value))
+				{
+					this.OnNoEvaluacionChanging(value);
+					this.SendPropertyChanging();
+					this._NoEvaluacion = value;
+					this.SendPropertyChanged("NoEvaluacion");
+					this.OnNoEvaluacionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDArea", DbType="BigInt NOT NULL")]
+		public long IDArea
+		{
+			get
+			{
+				return this._IDArea;
+			}
+			set
+			{
+				if ((this._IDArea != value))
+				{
+					if (this._System_Areas.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnIDAreaChanging(value);
+					this.SendPropertyChanging();
+					this._IDArea = value;
+					this.SendPropertyChanged("IDArea");
+					this.OnIDAreaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NombreA", DbType="VarChar(150) NOT NULL", CanBeNull=false)]
+		public string NombreA
+		{
+			get
+			{
+				return this._NombreA;
+			}
+			set
+			{
+				if ((this._NombreA != value))
+				{
+					this.OnNombreAChanging(value);
+					this.SendPropertyChanging();
+					this._NombreA = value;
+					this.SendPropertyChanged("NombreA");
+					this.OnNombreAChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDSubArea", DbType="BigInt")]
+		public System.Nullable<long> IDSubArea
+		{
+			get
+			{
+				return this._IDSubArea;
+			}
+			set
+			{
+				if ((this._IDSubArea != value))
+				{
+					this.OnIDSubAreaChanging(value);
+					this.SendPropertyChanging();
+					this._IDSubArea = value;
+					this.SendPropertyChanged("IDSubArea");
+					this.OnIDSubAreaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NombreAs", DbType="VarChar(150)")]
+		public string NombreAs
+		{
+			get
+			{
+				return this._NombreAs;
+			}
+			set
+			{
+				if ((this._NombreAs != value))
+				{
+					this.OnNombreAsChanging(value);
+					this.SendPropertyChanging();
+					this._NombreAs = value;
+					this.SendPropertyChanged("NombreAs");
+					this.OnNombreAsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDUsuario", DbType="BigInt NOT NULL")]
+		public long IDUsuario
+		{
+			get
+			{
+				return this._IDUsuario;
+			}
+			set
+			{
+				if ((this._IDUsuario != value))
+				{
+					if (this._User_Usuarios.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnIDUsuarioChanging(value);
+					this.SendPropertyChanging();
+					this._IDUsuario = value;
+					this.SendPropertyChanged("IDUsuario");
+					this.OnIDUsuarioChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UNombre", DbType="VarChar(150) NOT NULL", CanBeNull=false)]
+		public string UNombre
+		{
+			get
+			{
+				return this._UNombre;
+			}
+			set
+			{
+				if ((this._UNombre != value))
+				{
+					this.OnUNombreChanging(value);
+					this.SendPropertyChanging();
+					this._UNombre = value;
+					this.SendPropertyChanged("UNombre");
+					this.OnUNombreChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Evaluadores", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Evaluadores
+		{
+			get
+			{
+				return this._Evaluadores;
+			}
+			set
+			{
+				if ((this._Evaluadores != value))
+				{
+					this.OnEvaluadoresChanging(value);
+					this.SendPropertyChanging();
+					this._Evaluadores = value;
+					this.SendPropertyChanged("Evaluadores");
+					this.OnEvaluadoresChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FCreacion", DbType="DateTime NOT NULL")]
+		public System.DateTime FCreacion
+		{
+			get
+			{
+				return this._FCreacion;
+			}
+			set
+			{
+				if ((this._FCreacion != value))
+				{
+					this.OnFCreacionChanging(value);
+					this.SendPropertyChanging();
+					this._FCreacion = value;
+					this.SendPropertyChanged("FCreacion");
+					this.OnFCreacionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FModificacion", DbType="DateTime NOT NULL")]
+		public System.DateTime FModificacion
+		{
+			get
+			{
+				return this._FModificacion;
+			}
+			set
+			{
+				if ((this._FModificacion != value))
+				{
+					this.OnFModificacionChanging(value);
+					this.SendPropertyChanging();
+					this._FModificacion = value;
+					this.SendPropertyChanged("FModificacion");
+					this.OnFModificacionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NoReactivos", DbType="Int NOT NULL")]
+		public int NoReactivos
+		{
+			get
+			{
+				return this._NoReactivos;
+			}
+			set
+			{
+				if ((this._NoReactivos != value))
+				{
+					this.OnNoReactivosChanging(value);
+					this.SendPropertyChanging();
+					this._NoReactivos = value;
+					this.SendPropertyChanged("NoReactivos");
+					this.OnNoReactivosChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NoRespuestas", DbType="Int NOT NULL")]
+		public int NoRespuestas
+		{
+			get
+			{
+				return this._NoRespuestas;
+			}
+			set
+			{
+				if ((this._NoRespuestas != value))
+				{
+					this.OnNoRespuestasChanging(value);
+					this.SendPropertyChanging();
+					this._NoRespuestas = value;
+					this.SendPropertyChanged("NoRespuestas");
+					this.OnNoRespuestasChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Puntaje", DbType="Int NOT NULL")]
+		public int Puntaje
+		{
+			get
+			{
+				return this._Puntaje;
+			}
+			set
+			{
+				if ((this._Puntaje != value))
+				{
+					this.OnPuntajeChanging(value);
+					this.SendPropertyChanging();
+					this._Puntaje = value;
+					this.SendPropertyChanged("Puntaje");
+					this.OnPuntajeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Descripcion", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Descripcion
+		{
+			get
+			{
+				return this._Descripcion;
+			}
+			set
+			{
+				if ((this._Descripcion != value))
+				{
+					this.OnDescripcionChanging(value);
+					this.SendPropertyChanging();
+					this._Descripcion = value;
+					this.SendPropertyChanged("Descripcion");
+					this.OnDescripcionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estatus", DbType="Int NOT NULL")]
+		public int Estatus
+		{
+			get
+			{
+				return this._Estatus;
+			}
+			set
+			{
+				if ((this._Estatus != value))
+				{
+					this.OnEstatusChanging(value);
+					this.SendPropertyChanging();
+					this._Estatus = value;
+					this.SendPropertyChanged("Estatus");
+					this.OnEstatusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Administration_Evaluacion_Tienda_Administration_Evaluacion_Tienda_Reactivos", Storage="_Administration_Evaluacion_Tienda_Reactivos", ThisKey="IDEvaluacion", OtherKey="IDEvaluacion")]
+		public EntitySet<Administration_Evaluacion_Tienda_Reactivos> Administration_Evaluacion_Tienda_Reactivos
+		{
+			get
+			{
+				return this._Administration_Evaluacion_Tienda_Reactivos;
+			}
+			set
+			{
+				this._Administration_Evaluacion_Tienda_Reactivos.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Administration_Evaluacion_Tienda_Administration_Evaluacion_Tienda_Resultados", Storage="_Administration_Evaluacion_Tienda_Resultados", ThisKey="IDEvaluacion", OtherKey="IDEvaluacion")]
+		public EntitySet<Administration_Evaluacion_Tienda_Resultados> Administration_Evaluacion_Tienda_Resultados
+		{
+			get
+			{
+				return this._Administration_Evaluacion_Tienda_Resultados;
+			}
+			set
+			{
+				this._Administration_Evaluacion_Tienda_Resultados.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Administration_Evaluacion_Tienda_Administration_Evaluacion_Tienda_Soluciones", Storage="_Administration_Evaluacion_Tienda_Soluciones", ThisKey="IDEvaluacion", OtherKey="IDEvaluacion")]
+		public EntitySet<Administration_Evaluacion_Tienda_Soluciones> Administration_Evaluacion_Tienda_Soluciones
+		{
+			get
+			{
+				return this._Administration_Evaluacion_Tienda_Soluciones;
+			}
+			set
+			{
+				this._Administration_Evaluacion_Tienda_Soluciones.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Usuarios_Administration_Evaluacion_Tienda", Storage="_User_Usuarios", ThisKey="IDUsuario", OtherKey="IDUsuario", IsForeignKey=true)]
+		public User_Usuarios User_Usuarios
+		{
+			get
+			{
+				return this._User_Usuarios.Entity;
+			}
+			set
+			{
+				User_Usuarios previousValue = this._User_Usuarios.Entity;
+				if (((previousValue != value) 
+							|| (this._User_Usuarios.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._User_Usuarios.Entity = null;
+						previousValue.Administration_Evaluacion_Tienda.Remove(this);
+					}
+					this._User_Usuarios.Entity = value;
+					if ((value != null))
+					{
+						value.Administration_Evaluacion_Tienda.Add(this);
+						this._IDUsuario = value.IDUsuario;
+					}
+					else
+					{
+						this._IDUsuario = default(long);
+					}
+					this.SendPropertyChanged("User_Usuarios");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="System_Areas_Administration_Evaluacion_Tienda", Storage="_System_Areas", ThisKey="IDArea", OtherKey="IDArea", IsForeignKey=true)]
+		public System_Areas System_Areas
+		{
+			get
+			{
+				return this._System_Areas.Entity;
+			}
+			set
+			{
+				System_Areas previousValue = this._System_Areas.Entity;
+				if (((previousValue != value) 
+							|| (this._System_Areas.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._System_Areas.Entity = null;
+						previousValue.Administration_Evaluacion_Tienda.Remove(this);
+					}
+					this._System_Areas.Entity = value;
+					if ((value != null))
+					{
+						value.Administration_Evaluacion_Tienda.Add(this);
+						this._IDArea = value.IDArea;
+					}
+					else
+					{
+						this._IDArea = default(long);
+					}
+					this.SendPropertyChanged("System_Areas");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Administration_Evaluacion_Tienda_Reactivos(Administration_Evaluacion_Tienda_Reactivos entity)
+		{
+			this.SendPropertyChanging();
+			entity.Administration_Evaluacion_Tienda = this;
+		}
+		
+		private void detach_Administration_Evaluacion_Tienda_Reactivos(Administration_Evaluacion_Tienda_Reactivos entity)
+		{
+			this.SendPropertyChanging();
+			entity.Administration_Evaluacion_Tienda = null;
+		}
+		
+		private void attach_Administration_Evaluacion_Tienda_Resultados(Administration_Evaluacion_Tienda_Resultados entity)
+		{
+			this.SendPropertyChanging();
+			entity.Administration_Evaluacion_Tienda = this;
+		}
+		
+		private void detach_Administration_Evaluacion_Tienda_Resultados(Administration_Evaluacion_Tienda_Resultados entity)
+		{
+			this.SendPropertyChanging();
+			entity.Administration_Evaluacion_Tienda = null;
+		}
+		
+		private void attach_Administration_Evaluacion_Tienda_Soluciones(Administration_Evaluacion_Tienda_Soluciones entity)
+		{
+			this.SendPropertyChanging();
+			entity.Administration_Evaluacion_Tienda = this;
+		}
+		
+		private void detach_Administration_Evaluacion_Tienda_Soluciones(Administration_Evaluacion_Tienda_Soluciones entity)
+		{
+			this.SendPropertyChanging();
+			entity.Administration_Evaluacion_Tienda = null;
 		}
 	}
 	

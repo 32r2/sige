@@ -28,7 +28,10 @@
     .mostrar {
         display: block;
     }
-
+    .img-centro {
+        margin: 10px auto 10px;
+        display: block;
+    }
 </style>
 <h2>Usuarios</h2>
 <button onclick="abrirModal(0)" type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Agregar</button>
@@ -213,7 +216,7 @@
             <div id="Paso-4" class="ModAlt steps step-4 ocultar">
                 <div class="container step-4 ocultar">
                     <div class="row">
-                        <div class="col-md-6 col-sm-12 col-xs-12">
+                        <div class="col-md-8 col-sm-12 col-xs-12">
                             <span class="help-block text-muted small-font">Usuario</span>
                             <div class="input-group">
                                 <div class="input-group-prepend">
@@ -263,7 +266,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-4 col-sm-12 col-xs-12">
-                            
+
                         </div>
                         <div class="col-md-4 col-sm-12 col-xs-12">
                             <div id="mensage"></div>
@@ -278,7 +281,9 @@
             @*-----------------------------------------Paso cinco-------------------------------------------------------*@
             <div id="Paso-5" class="ModAlt steps step-5 ocultar">
                 <div class="container text-center step-5 ocultar">
-                    <img src="~/Assets/Internal/ok.png" style="filter: hue-rotate(120deg);" width="96" height="96" />
+                    <div class="row">
+                        <div id="Finalmmessage" class="img-centro"></div>                        
+                    </div>
                 </div>
             </div>
             @*-----------------------------------------Botones del pie--------------------------------------------------*@
@@ -286,14 +291,14 @@
                 <button id="BtnCancelar" type="button" class="btn btn-danger step-1 step-2 step-3 step-4 " data-dismiss="modal"><i class="far fa-times-circle font-16"></i></button>
                 <button id="BtnRetrocdr" type="button" class="btn btn-primary step-2 step-3 step-4" onclick="Pasos(-1)"><i class="fas fa-chevron-circle-left font-16"></i></button>
                 <button id="BtnCntinuar" type="button" class="btn btn-primary step-1 step-2 step-3 step-4" onclick="Pasos(1)"><i class="fas fa-chevron-circle-right font-16"></i></button>
-                <button id="BtnFinalzar" type="button" class="btn btn-success step-5" onclick="GUsuario"><i class="fas fa-check-circle font-16"></i></button>
+                <button id="BtnFinalzar" type="button" class="btn btn-success step-5" data-dismiss="modal"><i class="fas fa-check-circle font-16"></i></button>
             </div>
         </div>
     </div>
 </div>
 
 <script src="~/Scripts/jquery-3.5.0.js"></script>
-<script src="~/Scripts/jquery.validate.js"></script>
+@*<script src="~/Scripts/jquery.validate.js"></script>*@
 <script src="~/Scripts/toastr.min.js"></script>
 <script src="~/Scripts/Own/JS_System_Cardinal.js" type="text/javascript"></script>
 <script src="~/Scripts/Own/JS_User_Usuarios.js" type="text/javascript"></script>
