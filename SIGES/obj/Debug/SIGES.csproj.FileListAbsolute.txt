@@ -227,8 +227,8 @@ C:\Users\AUX_SISTEMAS\Dropbox\SIGES\SIGES\SIGES\bin\es\System.Web.Webpages.Deplo
 C:\Users\AUX_SISTEMAS\Dropbox\SIGES\SIGES\SIGES\bin\es\System.Web.Webpages.Razor.resources.dll
 C:\Users\AUX_SISTEMAS\Dropbox\SIGES\SIGES\SIGES\bin\es\System.Web.Helpers.resources.dll
 C:\Users\AUX_SISTEMAS\Dropbox\SIGES\SIGES\SIGES\bin\es\System.Web.Mvc.resources.dll
-C:\Users\AUX_SISTEMAS\Dropbox\SIGES\SIGES\SIGES\obj\Debug\SIGES.csprojAssemblyReference.cache
 C:\Users\AUX_SISTEMAS\Dropbox\SIGES\SIGES\SIGES\obj\Debug\SIGES.csproj.CoreCompileInputs.cache
 C:\Users\AUX_SISTEMAS\Dropbox\SIGES\SIGES\SIGES\obj\Debug\SIGES.csproj.CopyComplete
 C:\Users\AUX_SISTEMAS\Dropbox\SIGES\SIGES\SIGES\obj\Debug\SIGES.dll
 C:\Users\AUX_SISTEMAS\Dropbox\SIGES\SIGES\SIGES\obj\Debug\SIGES.pdb
+C:\Users\AUX_SISTEMAS\Dropbox\SIGES\SIGES\SIGES\obj\Debug\SIGES.csprojAssemblyReference.cache

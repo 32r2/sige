@@ -77,7 +77,7 @@ function MostrarOcultar(id) {
 }
 //Limpia la información y carga la informacion del área
 function AbrirMArea(id) {
-    var controlesObligatorio = document.getElementsByClassName("AreaObligatorio");    
+    var controlesObligatorio = document.getElementsByClassName("AreaObligatorio");
     for (var i = 0; i < controlesObligatorio.length; i++) {
         controlesObligatorio[i].parentNode.classList.remove("border-danger");
     }
@@ -99,7 +99,7 @@ function AbrirMArea(id) {
 }
 //Guarda los cambios y altas de las áreas
 function GuardarArea() {
-    if (ObligatoriosArea() == true) {
+    if (Obligatorios("Area") == true) {
         if (confirm("¿Desea aplicar los cambios?") == 1) {
             var IDArea = document.getElementById("TxtIDArea").value;
             var Nombre = document.getElementById("TxtNombreArea").value;
@@ -108,7 +108,7 @@ function GuardarArea() {
             var UNombre = temUser.options[temUser.selectedIndex].text;
             var Correo = document.getElementById("TxtCorreo").value;
             var Telefono = document.getElementById("TxtTelefono").value;
-            var Recursos = document.getElementById("TxtRecursos").value;
+            var Carpeta = document.getElementById("TxtRecursos").value;
             var frm = new FormData();
             frm.append("IDArea", IDArea);
             frm.append("Nombre", Nombre);
@@ -116,7 +116,7 @@ function GuardarArea() {
             frm.append("UNombre", UNombre);
             frm.append("Correo", Correo);
             frm.append("Telefono", Telefono);
-            frm.append("Recursos", Recursos);
+            frm.append("Carpeta", Carpeta);
             frm.append("Estatus", 1);
             $.ajax({
                 type: "POST",
@@ -133,7 +133,7 @@ function GuardarArea() {
                     }
                     else {
                         alert("Se ejecuto correctamente");
-                        LlenarAcordion();
+                        CrearAcordeonAreas();
                         document.getElementById("btnCancelar").click();
                     }
                 }
@@ -141,21 +141,7 @@ function GuardarArea() {
         }
     }
 }
-//verifica que los campos obligatorios tengas datos
-function ObligatoriosArea() {
-    let exito = true;
-    let CtrlObligatorio = document.getElementsByClassName("AreaObligatorio");
-    for (let i = 0; i < CtrlObligatorio.length; i++) {
-        if (CtrlObligatorio[i].value == "") {
-            exito = false;
-            CtrlObligatorio[i].classList.add("border-danger");
-        }
-        else {
-            CtrlObligatorio[i].classList.remove("border-danger");
-        }
-    }
-    return exito;
-}
+
 //"Elimina" el área cambia el Estatus
 function EliminarArea(id) {
     if (confirm("¿Desea eliminar el registo?") == 1) {
@@ -205,7 +191,7 @@ function llenaSub(DatosSubareas, control) {
         }
         CodHtml += "<div class='card-header' id='heading" + DatosSubareas[i].ID + "'>";
         CodHtml += "<h5 class='mb-0'>";
-        CodHtml += "<a  data-toggle='collapse' data-target='#collapse" + DatosSubareas[i].ID + "' aria-expanded='false' aria-controls='collapse" + data[i].ID + "' class='collapsed'>";
+        CodHtml += "<a  data-toggle='collapse' data-target='#collapse" + DatosSubareas[i].ID + "' aria-expanded='false' aria-controls='collapse" + DatosSubareas[i].ID + "' class='collapsed'>";
         CodHtml += "<i class='m-r-5 fas fa-clipboard-list' aria-hidden='true'></i>";
         CodHtml += "<span >" + DatosSubareas[i].Nombre + "</span>";
         CodHtml += "</a>";
@@ -273,26 +259,11 @@ function abrirModalSub(id, ida) {
     }
     $("#TxtNoSubArea").attr('disabled', 'disabled');
     $("#cmbAreaSubA").attr('disabled', 'disabled');
-    $("#TxtIDSubArea").attr('disabled', 'disabled'); 
-}
-//marca los campos obligatorios
-function CamposImperativos() {
-    var exito = true;
-    var controlesObligatorio = document.getElementsByClassName("PerfilObligatorio");
-    for (var i = 0; i < controlesObligatorio.length; i++) {
-        if (controlesObligatorio[i].value == "") {
-            exito = false;
-            controlesObligatorio[i].classList.add("border-danger");
-        }
-        else {
-            controlesObligatorio[i].classList.remove("border-danger");
-        }
-    }
-    return exito;
+    $("#TxtIDSubArea").attr('disabled', 'disabled');
 }
 //guardar informacion
 function GuardarSubarea() {
-    if (CamposImperativos() == true) {
+    if (Obligatorios("Subarea") == true) {
         if (confirm("¿Desea aplicar los cambios?") == 1) {
             var IDSubArea = document.getElementById("TxtIDSubArea").value;
             var NoSubArea = document.getElementById("TxtNoSubArea").value;
@@ -387,8 +358,7 @@ function eliminarsub(id, IDArea) {
 function recursos(ida) {
     $.get("/Areas/BDRecursos/?IDArea=" + ida, function (Datosrecurso) {
         TablaRecursos(["Titulo", "Fecha modificación", "Tipo", "Dirección"], Datosrecurso, ida);
-    }
-    );
+    });
 }
 function TablaRecursos(AColumnas, DatosAreas, ida) {
     var CodHtml = "";
@@ -422,8 +392,10 @@ function ModalRecursos(id, ida) {
     for (var i = 0; i < controlesObligatorio.length; i++) {
         controlesObligatorio[i].parentNode.classList.remove("border-danger");
     }
+    
     if (id == 0) {
         Limpiar();
+        $("#PBFoto").attr('src', '');
         $.get("/Areas/BDRecursos/?IDArea=" + ida, function (Datosrecurso) {
             if (Datosrecurso.length > 0) {
                 var no = Datosrecurso.length + 1;
@@ -474,7 +446,7 @@ NoS.addEventListener("change", function () {
 function MostrarRecurso(tipo, ruta) {
     var CodHtml = "";
     if (tipo == "Imagen") {
-        CodHtml = "<img id='PBFoto' src='/assets/images/" + ruta + "' width='470' height='250'/>";
+        CodHtml = "<img id='PBFoto' src='../Assets/Resources/" + ruta + "' width='470' height='250'/>";
     }
     else if (tipo == "Video") {
         CodHtml = "<video width='400' controls>";
@@ -491,7 +463,7 @@ function MostrarRecurso(tipo, ruta) {
 }
 //guardar informacion
 function GuardarRecurso() {
-    if (CamposObligatoriosX() == true) {
+    if (Obligatorios("Recursos") == true) {
         if (confirm("¿Desea aplicar los cambios?") == 1) {
             var IDRecurso = document.getElementById("TxtIDRecurso").value;
             var Titulo = document.getElementById("TxtTitulo").value;
@@ -532,21 +504,6 @@ function GuardarRecurso() {
             );
         }
     }
-}
-//verifica que los campos obligatorios tengas datos
-function ObligatoriosRecursos() {
-    var exito = true;
-    var controlesObligatorio = document.getElementsByClassName("Recursos-obligatorios");    
-    for (var i = 0; i < controlesObligatorio.length; i++) {
-        if (controlesObligatorio[i].value == "") {
-            exito = false;
-            controlesObligatorio[i].parentNode.classList.add("border-danger");
-        }
-        else {
-            controlesObligatorio[i].parentNode.classList.remove("border-danger");
-        }
-    }
-    return exito;
 }
 //eliminar el recurso
 function EliminarRecursos(id, IDArea) {
@@ -589,10 +546,10 @@ function llenarCombo(data, control, primerElemento) {
 }
 //Ejecuta la consulta para llenar el combobox de emcargados
 function LlenarSelects() {
-    $.get("/Usuarios/BDUserPerfil/?IDPerf=" + 4, function (data) {
+    $.get("/Usuarios/BDUserPerfil/?LVLPerfil=" + 4, function (data) {
         llenarCombo(data, document.getElementById("cmbEncargado"), true);
     });
-    $.get("/Usuarios/BDUserPerfil/?IDPerf=" + 9, function (data) {
+    $.get("/Usuarios/BDUserPerfil/?LVLPerfil=" + 5, function (data) {
         llenarCombo(data, document.getElementById("cmbEncargado1Sub"), true);
         llenarCombo(data, document.getElementById("cmbEncargado2Sub"), true);
         llenarCombo(data, document.getElementById("cmbEncargado3Sub"), true);
@@ -606,7 +563,7 @@ function LlenarSelects() {
 function llenarComboAreas(DatosAreas, control, primerElemento) {
     var contenido = "";
     //if (primerElemento == true) {
-        contenido += "<option value=''>--Seleccione--</option>";
+    contenido += "<option value=''>--Seleccione--</option>";
     //}
     for (var i = 0; i < DatosAreas.length; i++) {
         contenido += "<option value='" + DatosAreas[i].ID + "'>" + DatosAreas[i].Nombre + "</option>";
@@ -614,10 +571,26 @@ function llenarComboAreas(DatosAreas, control, primerElemento) {
     control.innerHTML = contenido;
 }
 //******************************************************************************************************************************************************
+
+//verifica que los campos obligatorios tengas datos "AreaObligatorio"
+function Obligatorios(NoClase) {
+    let exito = true;
+    let CtrlObligatorio = document.getElementsByClassName(NoClase);
+    for (let i = 0; i < CtrlObligatorio.length; i++) {
+        if (CtrlObligatorio[i].value == "") {
+            exito = false;
+            CtrlObligatorio[i].classList.add("border-danger");
+        }
+        else {
+            CtrlObligatorio[i].classList.remove("border-danger");
+        }
+    }
+    return exito;
+}
+
 function BloquearCTRL() {
     var CTRL = document.getElementsByClassName("bloquear");
     for (var i = 0; i < CTRL.length; i++) {
         $("#" + CTRL[i].id).attr('disabled', 'disabled');
     }
-
 }

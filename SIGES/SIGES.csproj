@@ -112,6 +112,11 @@
     <Content Include="Assets\Internal\TxtPassword.svg" />
     <Content Include="Assets\Internal\TxtUser.svg" />
     <Content Include="Assets\Internal\user.jpg" />
+    <Content Include="Assets\Resources\DptContabilidad\contabilidad.png" />
+    <Content Include="Assets\Resources\DptMercadeo\marketing.png" />
+    <Content Include="Assets\Resources\DptRHumanos\Recursos_Humanos.png" />
+    <Content Include="Assets\Resources\DptTecInf\TI.png" />
+    <Content Include="Assets\Resources\Gerencia\gerencia.png" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\CheckPassword.css" />
@@ -351,7 +356,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Assets\Resources\" />
+    <Folder Include="Assets\Resources\DptAlmacen\" />
+    <Folder Include="Assets\Resources\DptContraloria\" />
+    <Folder Include="Assets\Resources\DptManto\" />
+    <Folder Include="Assets\Resources\DptOperacion\" />
     <Folder Include="Assets\User\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Cardinal\" />

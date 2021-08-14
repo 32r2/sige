@@ -79,7 +79,7 @@
             <div class="scroll-sidebar">
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
-                    <ul id="sidebarnav" @*class="p-t-30"*@>
+                    <ul id="sidebarnav">
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href='@Url.Action("Inicio", "Inicio")' aria-expanded="false">
                                 <i class="mdi mdi-view-dashboard"></i>
@@ -87,15 +87,15 @@
                             </a>
                         </li>
                     </ul>
-                    <ul id="sidebarnav" @*class="p-t-30"*@>
+                    <ul id="sidebarnav">
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href='@Url.Action("Areas", "Areas")' aria-expanded="false">
-                                <i class="mdi mdi-view-dashboard"></i>
+                                <i class="fas fa-warehouse"></i>
                                 <span class="hide-menu">Áreas</span>
                             </a>
                         </li>
                     </ul>
-                    <ul id="sidebarnav" @*class="p-t-30"*@>
+                    <ul id="sidebarnav">
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href='@Url.Action("Usuario", "Usuarios")' aria-expanded="false">
                                 <i class="fas fa-users"></i>
@@ -103,7 +103,15 @@
                             </a>
                         </li>
                     </ul>
-                    <ul id="sidebarnav" @*class="p-t-30"*@>
+                    <ul id="sidebarnav">
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href='@Url.Action("Informacion", "Informacion")' aria-expanded="false">
+                                <i class="fas fa-info-circle"></i>
+                                <span class="hide-menu">Avisos y Notificaciones</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul id="sidebarnav">
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href='@Url.Action("Configuracion", "CardinalSystem")' aria-expanded="false">
                                 <i class="fas fa-cog"></i>

@@ -381,91 +381,96 @@ function GUsuario() {
     var pas1 = document.getElementById("TxtContrasena").value;
     var pas2 = document.getElementById("TxtContrasenaConf").value;
     var LVLPerfil = 0;
+    let IDParent = 0;
     if (pas1 == pas2) {
         if (ObligatoriosDatosP("DatosGuardar") == true) {
             if (confirm("¿Desea aplicar los cambios?") == 1) {
-                //**consulta para obtener el nivel
-                $.get("/CardinalSystem/BDPerfil/?IDPerfil=" + document.getElementById("cmbPerfil").value, function (Perfil) {
-                    LVLPerfil = Perfil[0].Nivel;
-                    let IDUsuario = document.getElementById("TxtIDUsuario").value;
-                    let CURP = document.getElementById("TxtCURP").value;
-                    let Nombre = document.getElementById("TxtNombreUser").value;
-                    let APaterno = document.getElementById("TxtAPaterno").value;
-                    let AMaterno = document.getElementById("TxtAMaterno").value;
-                    let Foto = document.getElementById("PBFoto").src.replace("data:image/png;base64,", "");
-                    let FNacimiento = document.getElementById("TxtFnaci").value;
-                    let IDEstado = document.getElementById("cmbEstado").value;
-                    let IDMunicipio = document.getElementById("cmbMunicipio").value;
-                    let IDLocalidad = document.getElementById("cmbLocalidad").value;
-                    let RFC = document.getElementById("TxtRFC").value;
-                    let NoSS = document.getElementById("TxtNSS").value;
-                    let Correo = document.getElementById("TxtCorreo").value;
-                    let Telefono = document.getElementById("TxtTelefono").value;
-                    let IDPerfil = document.getElementById("cmbPerfil").value;
-                    let IDArea = document.getElementById("cmbArea").value;
-                    let TempNA = document.getElementById("cmbArea");
-                    let NArea = TempNA.options[TempNA.selectedIndex].text;
-                    let IDSubArea = document.getElementById("cmbSubArea").value;
-                    let TempNSA = document.getElementById("cmbSubArea");
-                    let NSArea = TempNSA.options[TempNSA.selectedIndex].text;
-                    let Asignacion = document.getElementById("cmbAsignacion").value;
-                    let Sitio = document.getElementById("cmbSitio").value;
-                    let IDPadre = document.getElementById("TxtUPadre").value;
-                    let Usuario = document.getElementById("TxtUsuario").value;
-                    let Contraseña = document.getElementById("TxtContrasena").value;
-                    let f = new Date();
-                    let FIngreso = f.getDate() + "/" + (f.getMonth() + 1) + "/" + f.getFullYear();
-                    let frm = new FormData();
-                    frm.append("IDUsuario", IDUsuario);
-                    frm.append("CURP", CURP);
-                    frm.append("Nombre", Nombre);
-                    frm.append("APaterno", APaterno);
-                    frm.append("AMaterno", AMaterno);
-                    frm.append("cadF", Foto);
-                    frm.append("FNacimiento", FNacimiento);
-                    frm.append("IDEstado", IDEstado);
-                    frm.append("IDMunicipio", IDMunicipio);
-                    frm.append("IDLocalidad", IDLocalidad);
-                    frm.append("RFC", RFC);
-                    frm.append("NoSS", NoSS);
-                    frm.append("Correo", Correo);
-                    frm.append("Telefono", Telefono);
-                    frm.append("IDPerfil", IDPerfil);
-                    frm.append("LVLPerfil", LVLPerfil);
-                    frm.append("IDArea", IDArea);
-                    frm.append("NArea", NArea);
-                    frm.append("IDSubArea", IDSubArea);
-                    frm.append("NSArea", NSArea);
-                    frm.append("Asignacion", Asignacion);
-                    frm.append("Sitio", Sitio);
-                    frm.append("IDPadre", IDPadre);
-                    frm.append("Usuario", Usuario);
-                    frm.append("Contraseña", Contraseña);
-                    frm.append("FIngreso", FIngreso);
-                    frm.append("Estatus", 1);
-                    $.ajax({
-                        type: "POST",
-                        url: "/Usuarios/GuardarUsuario",
-                        data: frm,
-                        contentType: false,
-                        processData: false,
-                        success: function (data) {
-                            var CodHTML = "";
-                            if (data === 0) {
-                                CodHTML += "<img src='..Assets/Internal/ERROR.png' width='365' height='365'/>";
-                                CodHTML += "<h4>Ocurrio un error</h4>";
+                $.get("/Usuarios/DUsuario/?Usuario=" + document.getElementById("TxtUPadre").value + "&contrasena=" + document.getElementById("TxtCPadre").value, function (respuesta) {
+                    IDParent = respuesta[0].IDUsuario;
+                    //**consulta para obtener el nivel
+                    $.get("/CardinalSystem/BDPerfil/?IDPerfil=" + document.getElementById("cmbPerfil").value, function (Perfil) {
+                        LVLPerfil = Perfil[0].Nivel;
+                        let IDUsuario = document.getElementById("TxtIDUsuario").value;
+                        let CURP = document.getElementById("TxtCURP").value;
+                        let Nombre = document.getElementById("TxtNombreUser").value;
+                        let APaterno = document.getElementById("TxtAPaterno").value;
+                        let AMaterno = document.getElementById("TxtAMaterno").value;
+                        let Foto = document.getElementById("PBFoto").src.replace("data:image/png;base64,", "");
+                        let FNacimiento = document.getElementById("TxtFnaci").value;
+                        let IDEstado = document.getElementById("cmbEstado").value;
+                        let IDMunicipio = document.getElementById("cmbMunicipio").value;
+                        let IDLocalidad = document.getElementById("cmbLocalidad").value;
+                        let RFC = document.getElementById("TxtRFC").value;
+                        let NoSS = document.getElementById("TxtNSS").value;
+                        let Correo = document.getElementById("TxtCorreo").value;
+                        let Telefono = document.getElementById("TxtTelefono").value;
+                        let IDPerfil = document.getElementById("cmbPerfil").value;
+                        let IDArea = document.getElementById("cmbArea").value;
+                        let TempNA = document.getElementById("cmbArea");
+                        let NArea = TempNA.options[TempNA.selectedIndex].text;
+                        let IDSubArea = document.getElementById("cmbSubArea").value;
+                        let TempNSA = document.getElementById("cmbSubArea");
+                        let NSArea = TempNSA.options[TempNSA.selectedIndex].text;
+                        let Asignacion = document.getElementById("cmbAsignacion").value;
+                        let Sitio = document.getElementById("cmbSitio").value;
+                        //let IDPadre = document.getElementById("TxtUPadre").value;
+                        let IDPadre = IDParent;
+                        let Usuario = document.getElementById("TxtUsuario").value;
+                        let Contraseña = document.getElementById("TxtContrasena").value;
+                        let f = new Date();
+                        let FIngreso = f.getDate() + "/" + (f.getMonth() + 1) + "/" + f.getFullYear();
+                        let frm = new FormData();
+                        frm.append("IDUsuario", IDUsuario);
+                        frm.append("CURP", CURP);
+                        frm.append("Nombre", Nombre);
+                        frm.append("APaterno", APaterno);
+                        frm.append("AMaterno", AMaterno);
+                        frm.append("cadF", Foto);
+                        frm.append("FNacimiento", FNacimiento);
+                        frm.append("IDEstado", IDEstado);
+                        frm.append("IDMunicipio", IDMunicipio);
+                        frm.append("IDLocalidad", IDLocalidad);
+                        frm.append("RFC", RFC);
+                        frm.append("NoSS", NoSS);
+                        frm.append("Correo", Correo);
+                        frm.append("Telefono", Telefono);
+                        frm.append("IDPerfil", IDPerfil);
+                        frm.append("LVLPerfil", LVLPerfil);
+                        frm.append("IDArea", IDArea);
+                        frm.append("NArea", NArea);
+                        frm.append("IDSubArea", IDSubArea);
+                        frm.append("NSArea", NSArea);
+                        frm.append("Asignacion", Asignacion);
+                        frm.append("Sitio", Sitio);
+                        frm.append("IDPadre", IDPadre);
+                        frm.append("Usuario", Usuario);
+                        frm.append("Contraseña", Contraseña);
+                        frm.append("FIngreso", FIngreso);
+                        frm.append("Estatus", 1);
+                        $.ajax({
+                            type: "POST",
+                            url: "/Usuarios/GuardarUsuario",
+                            data: frm,
+                            contentType: false,
+                            processData: false,
+                            success: function (data) {
+                                var CodHTML = "";
+                                if (data === 0) {
+                                    CodHTML += "<img src='..Assets/Internal/ERROR.png' width='365' height='365'/>";
+                                    CodHTML += "<h4>Ocurrio un error</h4>";
+                                }
+                                else if (data === -1) {
+                                    CodHTML += "<img src='../Assets/Internal/ERROR.png' width='365' height='365'/>";
+                                    CodHTML += "<h4>Ya existe un usuario con esa información</h4>";
+                                }
+                                else {
+                                    CodHTML += "<img src='../Assets/Internal/SUCCES.png' width='365' height='365'/>";
+                                    CodHTML += "<h4>Sus datos se guardaron correctamente.</h4>";
+                                }
+                                document.getElementById("Finalmmessage").innerHTML = CodHTML;
+                                Consulta();
                             }
-                            else if (data === -1) {
-                                CodHTML += "<img src='../Assets/Internal/ERROR.png' width='365' height='365'/>";
-                                CodHTML += "<h4>Ya existe un usuario con esa información</h4>";
-                            }
-                            else {
-                                CodHTML += "<img src='../Assets/Internal/SUCCES.png' width='365' height='365'/>";
-                                CodHTML += "<h4>Sus datos se guardaron correctamente.</h4>";
-                            }
-                            document.getElementById("Finalmmessage").innerHTML = CodHTML;
-                            Consulta();
-                        }
+                        });
                     });
                 });
             }

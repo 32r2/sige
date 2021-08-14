@@ -32,7 +32,6 @@ namespace SIGES.Controllers
                 });
             return Json(datos, JsonRequestBehavior.AllowGet);
         }
-
         //consulta usuario por id
         public JsonResult BDUsuario(long ID)
         {
@@ -73,6 +72,18 @@ namespace SIGES.Controllers
             return Json(InfUsuario, JsonRequestBehavior.AllowGet);
         }
         //
+        //consulta usuario por perfil
+        public JsonResult BDUserPerfil(long LVLPerfil)
+        {
+            var datos = SIGES.User_Usuarios.Where(p => p.LVLPerfil.Equals(LVLPerfil) && p.Estatus.Equals(1))
+                .Select(p => new {
+                    p.IDUsuario,
+                    p.Nombre,
+                    p.APaterno,
+                    p.AMaterno
+                });
+            return Json(datos, JsonRequestBehavior.AllowGet);
+        }
         public int GuardarUsuario(User_Usuarios DatosUsuario, string cadF)
         {
             int Afectados = 0;
@@ -166,7 +177,7 @@ namespace SIGES.Controllers
             }
             return Afectados;
         }
-
+        //****** Encriptar y desencriptar
         static readonly string password = "P455W0rd";
         public static string Encrypt(string plainText)
         {
