@@ -197,7 +197,7 @@ namespace SIGES.Controllers
             return Afectados;
         }
         //eliminar subárea
-        public int eliminarsub(long id)
+        public int EliminarSub(long id)
         {
             int Afectados = 0;
             try
@@ -230,6 +230,17 @@ namespace SIGES.Controllers
                 });
             return Json(Recursos, JsonRequestBehavior.AllowGet);
         }
+        //Consulta que muestra los recursos por área
+        public JsonResult BDRecursosImagenes(long IDArea)
+        {
+            var Recursos = SIGES.System_Areas_Recursos.Where(p => p.IDArea.Equals(IDArea) && p.Estatus.Equals(1) && p.Tipo.Equals("Imagen"))
+                .Select(p => new
+                {
+                    ID = p.Direccion,
+                    Nombre = p.Titulo
+                });
+            return Json(Recursos, JsonRequestBehavior.AllowGet);
+        }
         //seleccion de los recursos por ID
         public JsonResult BDRecurso(long IDRecurso)
         {
@@ -249,10 +260,13 @@ namespace SIGES.Controllers
         public int GuardarRecurso(System_Areas_Recursos SRecursos)
         {
             int Afectados = 0;
-            try
+            //try
+            //{
+            int Recurso = SIGES.System_Areas_Recursos.Where(p => p.IDRecurso.Equals(SRecursos.IDRecurso)).Count();
+            if (Recurso.Equals(0))
             {
-                int nveces = SIGES.System_Areas_Recursos.Where(p => p.IDRecurso.Equals(SRecursos.IDRecurso) && p.Titulo.Equals(SRecursos.Titulo) && p.Direccion.Equals(SRecursos.Direccion)).Count();
-                if (nveces.Equals(0))
+                int nveces = SIGES.System_Areas_Recursos.Where(p => p.Titulo.Equals(SRecursos.Titulo) && p.Direccion.Equals(SRecursos.Direccion)).Count();
+                if (nveces == 0)
                 {
                     SIGES.System_Areas_Recursos.InsertOnSubmit(SRecursos);
                     SIGES.SubmitChanges();
@@ -260,25 +274,29 @@ namespace SIGES.Controllers
                 }
                 else
                 {
-                    if (nveces == 0)
-                    {
-                        System_Areas_Recursos obj = SIGES.System_Areas_Recursos.Where(p => p.IDRecurso.Equals(SRecursos.IDRecurso)).First();
-                        obj.Titulo = SRecursos.Titulo;
-                        obj.Direccion = SRecursos.Direccion;
-                        obj.FModificacion = SRecursos.FModificacion;
-                        SIGES.SubmitChanges();
-                        Afectados = 1;
-                    }
-                    else
-                    {
-                        Afectados = -1;
-                    }
+                    Afectados = 0;
                 }
             }
-            catch (Exception ex)
-            {
-                Afectados = 0;
+            else {
+                int nveces = SIGES.System_Areas_Recursos.Where(p => p.IDRecurso.Equals(SRecursos.IDRecurso) && p.Titulo.Equals(SRecursos.Titulo) && p.Direccion.Equals(SRecursos.Direccion)).Count();
+                if (nveces == 0)
+                {
+                    System_Areas_Recursos obj = SIGES.System_Areas_Recursos.Where(p => p.IDRecurso.Equals(SRecursos.IDRecurso)).First();
+                    obj.Titulo = SRecursos.Titulo;
+                    obj.Direccion = SRecursos.Direccion;
+                    obj.FModificacion = SRecursos.FModificacion;
+                    SIGES.SubmitChanges();
+                    Afectados = 1;
+                }
+                else {
+                    Afectados = -1;
+                }
             }
+            //}
+            //catch (Exception ex)
+            //{
+            //    Afectados = 0;
+            //}
             return Afectados;
         }
         //eliman los recursos por id
@@ -298,6 +316,5 @@ namespace SIGES.Controllers
             }
             return Afectados;
         }
-
     }
 }

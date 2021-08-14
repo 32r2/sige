@@ -3,7 +3,7 @@
     ViewBag.Title = "Configuracion";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+@*<link href="~/Content/bootstrap.min.css" rel="stylesheet" />*@
 <h2>Configuracion</h2>
 
 <div class="accordion" id="accordionConfiguracion">
@@ -40,7 +40,7 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionConfiguracion">
             <div class="card-body">
                 <!--Boton modal páginas-->
-                <button onclick="AModalPerfil(0)" type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalSystem_Perfil">Agregar</button>
+                <button onclick="AModalPerfil(0)" type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalSystem_Perfil">Agregar</button>
             </div>
             <div id="Paginas_Perfiles" class="card-body">
                 <!--Inserta tabla de las Páginas-->
@@ -59,8 +59,14 @@
         </div>
         <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionConfiguracion">
             <div class="card-body">
+                <!--Boton modal páginas-->
+                <button onclick="AModalConfiguracion(0)" type="button" class="btn btn-warning" data-toggle="modal" data-target="#ModalSystem_Empresa">Agregar</button>
+            </div>
+            <div id="Paginas_Configuracion" class="card-body">
+                <!--Inserta tabla de las Páginas-->
                 Muestra la configuración general del sistema.
             </div>
+
         </div>
     </div>
 </div>
@@ -155,7 +161,7 @@
                     <div class="row ">
                         <div class="col-md-12 col-sm-12 col-xs-12 justify-content-end">
                             <span class="help-block text-muted small-font">Descripción</span>
-                            <textarea type="text" id="TxtComentarios" class="form-control limpiar" rows="3" wrap="soft" placeholder="Inserte una breve descripción del perfil."></textarea>                            
+                            <textarea type="text" id="TxtComentarios" class="form-control limpiar" rows="3" wrap="soft" placeholder="Inserte una breve descripción del perfil."></textarea>
                         </div>
                     </div>
                     <br />
@@ -169,7 +175,10 @@
     </div>
 </div>
 <!--**************************************************************************************************************************-->
+@* Empresas *@
+
 <!--**************************************************************************************************************************-->
-<script src="~/Scripts/jquery-3.5.0.js"></script>
+@*<script src="~/Scripts/jquery-3.5.0.js"></script>*@
+<script src="~/Scripts/jquery.min.js"></script>
 <script src="~/Scripts/Own/JS_System_Sis_Paginas.js"></script>
 <script src="~/Scripts/Own/JS_System_Sis_Perfiles.js"></script>

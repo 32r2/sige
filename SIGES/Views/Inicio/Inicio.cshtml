@@ -1,7 +1,157 @@
 ﻿
 @{
     ViewBag.Title = "Inicio";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style>
+    .carousel-control {
+        position: absolute;
+        top: 75%;
+        bottom: 0;
+        left: 0;
+        width: 15%;
+        color: rgba(0,0,0,0);
+        text-align: center;
+        opacity: 1;
+        text-shadow: none;
+    }
 
-<h2>Inicio</h2>
+    .carousel-indicators {
+        bottom: -50px;
+    }
 
+        .carousel-indicators li {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            margin: 2px;
+            text-indent: -999px;
+            cursor: pointer;
+            background-color: #07179a;
+            border: 2px solid #fff;
+            border-radius: 50%;
+        }
+
+    .carousel-caption {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 10;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        color: #fff;
+        text-align: center;
+        background: rgba(0,0,0,0.4);
+    }
+</style>
+<div class="row">
+    <div class="container col-md-12 col-sm-12 col-xs-12">
+        <div class="alert alert-warning d-flex justify-content-center"><h2><strong>AVISOS Y NOTIFICACIONES</strong></h2></div>
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <!--carrucel-->
+        </div>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-5 col-sm-12 col-xs-12">
+        <div class="card m-t-30">
+            <a class="card-header link" data-toggle="collapse" data-parent="#accordian-4" href="#Toggle-1" aria-expanded="true" aria-controls="Toggle-1">
+                <i class="seticon fa fa-arrow-right" aria-hidden="true"></i>
+                <span>Misión</span>
+            </a>
+            <div id="Toggle-1" class="collapse multi-collapse">
+                <div id="Mision" class="card-body widget-content">
+                    <p>
+                        Brindar a nuestros clientes una gran variedad de productos y<br />
+                        servicio las 24 horas del día, ofreciéndoles siempre nuestro<br />
+                        plus con la calidad de nuestro servicio. Asimismo, ser una<br />
+                        empresa reconocida por facilitar el desarrollo de nuestros<br />
+                        colaboradores y aportación en la mejora de nuestra<br />
+                        comunidad..
+                    </p>
+                </div>
+            </div>
+            <a class="card-header link border-top" data-toggle="collapse" data-parent="#accordian-4" href="#Toggle-2" aria-expanded="false" aria-controls="Toggle-2">
+                <i class="seticon fa fa-arrow-right" aria-hidden="true"></i>
+                <span>Visión</span>
+            </a>
+            <div id="Toggle-2" class="multi-collapse collapse" style="">
+                <div id="Vision" class="card-body widget-content">
+                    <p>
+                        Ser la empresa líder en la región Mixteca, en tiendas de<br />
+                        conveniencia, incrementando nuestra rentabilidad y<br />
+                        competitividad.
+                    </p><br />
+                </div>
+            </div>
+            <a class="card-header collapsed link border-top" data-toggle="collapse" data-parent="#accordian-4" href="#Toggle-3" aria-expanded="false" aria-controls="Toggle-3">
+                <i class="seticon fa fa-arrow-right" aria-hidden="true"></i>
+                <span>Valores</span>
+            </a>
+            <div id="Toggle-3" class="collapse multi-collapse">
+                <div id="Valores" class="card-body widget-content">
+                    <i class="fas fa-check" aria-hidden="true"></i> Puntualidad<br />
+                    <i class="fas fa-check" aria-hidden="true"></i> Responsabilidad<br />
+                    <i class="fas fa-check" aria-hidden="true"></i> Lealtad<br />
+                    <i class="fas fa-check" aria-hidden="true"></i> Actitud de servicio<br />
+                    <i class="fas fa-check" aria-hidden="true"></i> Liderazgo<br />
+                    <i class="fas fa-check" aria-hidden="true"></i> Compromiso<br />
+                    <i class="fas fa-check" aria-hidden="true"></i> Honestidad<br />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 col-sm-12 col-xs-12">
+        <img src="~/Assets/Internal/Trabajadores.png" width="439" height="656" alt="Somos Súper Plus" />
+    </div>
+    <div class="col-md-3 col-sm-12 col-xs-12">
+        <div class="row">
+            <div class="col-6 m-t-15">
+                <div class="bg-dark p-10 text-white text-center">
+                    <i class="fa fa-user m-b-5 font-16"></i>
+                    <h5 id="Usuarios" class="m-b-0 m-t-5">150</h5>
+                    <small class="font-light">Total de Usuarios</small>
+                </div>
+            </div>
+            <div class="col-6 m-t-15">
+                <div class="bg-dark p-10 text-white text-center">
+                    <i class="fa fa-plus m-b-5 font-16"></i>
+                    <h5 id="NUsuarios" class="m-b-0 m-t-5">20</h5>
+                    <small class="font-light">Usuarios Nuevos</small>
+                </div>
+            </div>
+            <div class="col-6 m-t-15">
+                <div class="bg-dark p-10 text-white text-center">
+                    <i class="fa fa-cart-plus m-b-5 font-16"></i>
+                    <h5 id="Tiendas" class="m-b-0 m-t-5">38</h5>
+                    <small class="font-light">Tiendas</small>
+                </div>
+            </div>
+            <div class="col-6 m-t-15">
+                <div class="bg-dark p-10 text-white text-center">
+                    <i class="fa fa-tag m-b-5 font-16"></i>
+                    <h5 id="Incidencias" class="m-b-0 m-t-5">6</h5>
+                    <small class="font-light">Insidencias</small>
+                </div>
+            </div>
+            <div class="col-6 m-t-15">
+                <div class="bg-dark p-10 text-white text-center">
+                    <i class="fa fa-table m-b-5 font-16"></i>
+                    <h5 id="Cursos" class="m-b-0 m-t-5">10</h5>
+                    <small class="font-light">Cursos</small>
+                </div>
+            </div>
+            <div class="col-6 m-t-15">
+                <div class="bg-dark p-10 text-white text-center">
+                    <i class="fa fa-globe m-b-5 font-16"></i>
+                    <h5 id="Cuestionarios" class="m-b-0 m-t-5">4</h5>
+                    <small class="font-light">Cuestionarios</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jquery.min.js"></script>
+<script src="~/Scripts/Own/JS_System_Sis_Notificacion.js"></script>

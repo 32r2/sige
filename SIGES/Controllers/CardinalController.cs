@@ -73,7 +73,7 @@ namespace SIGES.Controllers
         //consulta Tiendas
         public JsonResult BDTiendas()
         {
-            var datos = SIGES.System_Sis_Tienda.Where(p => p.Estados.Equals(1))
+            var datos = SIGES.System_Sis_Tienda.Where(p => p.Estatus.Equals(1))
                 .Select(p => new
                 {
                     ID = p.IDTienda,
