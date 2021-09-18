@@ -1,8 +1,10 @@
-﻿using System.Linq;
+﻿using SIGES.Filtro;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace SIGES.Controllers
 {
+    [Seguridad]
     public class CardinalController : Controller
     {
         SIGESDBDataContext SIGES = new SIGESDBDataContext();

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SIGES.Filtro;
+using System;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
@@ -7,6 +8,7 @@ using System.Web.Mvc;
 
 namespace SIGES.Controllers
 {
+    [Seguridad]
     public class UsuariosController : Controller
     {
         SIGESDBDataContext SIGES = new SIGESDBDataContext();
@@ -43,6 +45,7 @@ namespace SIGES.Controllers
                     p.Nombre,
                     p.APaterno,
                     p.AMaterno,
+                    //Contrasena = p.Contraseña,
                     Contrasena = Decrypt(p.Contraseña),
                     p.IDArea,
                     p.IDSubArea,
@@ -63,7 +66,8 @@ namespace SIGES.Controllers
         }
         public JsonResult DUsuario(string Usuario, string contrasena)
         {
-            var InfUsuario = SIGES.User_Usuarios.Where(p => p.Usuario.Equals(Usuario) && p.Contraseña.Equals(contrasena))
+            string encriptada = Encrypt(contrasena);
+            var InfUsuario = SIGES.User_Usuarios.Where(p => p.Usuario.Equals(Usuario) && p.Contraseña.Equals(encriptada))
                 .Select(p => new
                 {
                     p.IDUsuario,

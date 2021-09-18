@@ -48,7 +48,7 @@
                     </svg>
                 </span>
                 <input id="TxtPassword" type="password" class="form-control" placeholder="Contraseña" aria-label="Contraseña" aria-describedby="basic-addon1">
-                <div class="input-group-append">
+                @*<div class="input-group-append">
                     <button id="show_password" class="btn btn-primary" type="button" onclick="mostrarPassword()">
                         <div id="BtnPassword">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
@@ -57,17 +57,14 @@
                             </svg>
                         </div>
                     </button>
-                </div>
+                </div>*@
             </div>
-            <div class="checkbox mb-3">
-                <label>
-                    <input type="checkbox" value="remember-me"> Remember me
-                </label>
-            </div>
+
             <button class="btn btn-lg btn-primary btn-block" onclick="Login()">Sign in</button>
         </div>
     </div>
-    <script src="~/Scripts/jquery-3.5.1.slim.min.js"></script>
+
+    <script src="~/Scripts/jquery.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/Own/JS_System_Login.js" type="text/javascript"></script>
 </body>

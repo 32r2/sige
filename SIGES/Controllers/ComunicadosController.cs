@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using SIGES.Filtro;
+using System;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace SIGES.Controllers
 {
+    [Seguridad]
     public class ComunicadosController : Controller
     {
         SIGESDBDataContext SIGES = new SIGESDBDataContext();
@@ -33,7 +33,6 @@ namespace SIGES.Controllers
         public JsonResult ComunicadosUsuario(string Usuario)
         {
             DateTime Fecha = DateTime.Now.Date;
-
             var datos = SIGES.System_Sis_Notificacion.Where(p => p.Estatus.Equals(1) && p.Usuarios.Contains(Usuario) && p.Usuarios.Contains("Todos") && Fecha>= p.FInicio  && Fecha<=p.FFin )
                 .Select(p => new
                 {
@@ -55,7 +54,6 @@ namespace SIGES.Controllers
                     FF = ((DateTime)p.FFin).ToShortDateString(),
                     p.Descripcion,
                     p.Foto
-
                 });
             return Json(datos, JsonRequestBehavior.AllowGet);
         }

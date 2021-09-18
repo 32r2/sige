@@ -1,6 +1,6 @@
 ﻿CrearAcordeonAreas();
 LlenarSelects();
-
+BloquearCTRL();
 
 //****************************************************************************************************************************************************************************************************
 //Áreas
@@ -22,7 +22,7 @@ function AcordeonAreas(DatosAreas, CtrlAreas) {
         }
         CodigoHTMLAreas += "<div class='card-header' id='heading" + DatosAreas[i].ID + "'>";
         CodigoHTMLAreas += "<h5 class='mb-0'>";
-        CodigoHTMLAreas += "<a onclick='AcordionSubareas(" + DatosAreas[i].ID + ")' data-toggle='collapse' data-target='#collapse" + DatosAreas[i].ID + "' aria-expanded='false' aria-controls='collapse" + DatosAreas[i].IDCuestionario + "' class='collapsed'>";
+        CodigoHTMLAreas += "<a onclick='AcordionSubareas(" + DatosAreas[i].ID + ")' data-toggle='collapse' data-target='#collapse" + DatosAreas[i].ID + "' aria-expanded='false' aria-controls='collapse" + DatosAreas[i].ID + "' class='collapsed'>";
         CodigoHTMLAreas += "<i class='m-r-5 fas fa-clipboard-list' aria-hidden='true'></i>";
         CodigoHTMLAreas += "<span >" + DatosAreas[i].Nombre + "</span>";
         CodigoHTMLAreas += "</a>";
@@ -77,12 +77,13 @@ function MostrarOcultar(id) {
 }
 //Limpia la información y carga la informacion del área
 function AbrirMArea(id) {
-    var controlesObligatorio = document.getElementsByClassName("AreaObligatorio");    
+    var controlesObligatorio = document.getElementsByClassName("AreaObligatorio");
     for (var i = 0; i < controlesObligatorio.length; i++) {
         controlesObligatorio[i].parentNode.classList.remove("border-danger");
     }
     if (id == 0) {
         Limpiar();
+
     }
     else {
         $.get("/Areas/ConsultaArea/?IDArea=" + id, function (DatosArea) {
@@ -94,12 +95,11 @@ function AbrirMArea(id) {
             document.getElementById("TxtRecursos").value = DatosArea[0].Carpeta;
         });
     }
-    BloquearCTRL();
-    //$("#TxtIDArea").attr('disabled', 'disabled');
+        
 }
 //Guarda los cambios y altas de las áreas
 function GuardarArea() {
-    if (ObligatoriosArea() == true) {
+    if (Obligatorios("Area") == true) {
         if (confirm("¿Desea aplicar los cambios?") == 1) {
             var IDArea = document.getElementById("TxtIDArea").value;
             var Nombre = document.getElementById("TxtNombreArea").value;
@@ -108,7 +108,7 @@ function GuardarArea() {
             var UNombre = temUser.options[temUser.selectedIndex].text;
             var Correo = document.getElementById("TxtCorreo").value;
             var Telefono = document.getElementById("TxtTelefono").value;
-            var Recursos = document.getElementById("TxtRecursos").value;
+            var Carpeta = document.getElementById("TxtRecursos").value;
             var frm = new FormData();
             frm.append("IDArea", IDArea);
             frm.append("Nombre", Nombre);
@@ -116,7 +116,7 @@ function GuardarArea() {
             frm.append("UNombre", UNombre);
             frm.append("Correo", Correo);
             frm.append("Telefono", Telefono);
-            frm.append("Recursos", Recursos);
+            frm.append("Carpeta", Carpeta);
             frm.append("Estatus", 1);
             $.ajax({
                 type: "POST",
@@ -133,28 +133,13 @@ function GuardarArea() {
                     }
                     else {
                         alert("Se ejecuto correctamente");
-                        LlenarAcordion();
+                        CrearAcordeonAreas();
                         document.getElementById("btnCancelar").click();
                     }
                 }
             });
         }
     }
-}
-//verifica que los campos obligatorios tengas datos
-function ObligatoriosArea() {
-    let exito = true;
-    let CtrlObligatorio = document.getElementsByClassName("AreaObligatorio");
-    for (let i = 0; i < CtrlObligatorio.length; i++) {
-        if (CtrlObligatorio[i].value == "") {
-            exito = false;
-            CtrlObligatorio[i].classList.add("border-danger");
-        }
-        else {
-            CtrlObligatorio[i].classList.remove("border-danger");
-        }
-    }
-    return exito;
 }
 //"Elimina" el área cambia el Estatus
 function EliminarArea(id) {
@@ -205,7 +190,7 @@ function llenaSub(DatosSubareas, control) {
         }
         CodHtml += "<div class='card-header' id='heading" + DatosSubareas[i].ID + "'>";
         CodHtml += "<h5 class='mb-0'>";
-        CodHtml += "<a  data-toggle='collapse' data-target='#collapse" + DatosSubareas[i].ID + "' aria-expanded='false' aria-controls='collapse" + data[i].ID + "' class='collapsed'>";
+        CodHtml += "<a  data-toggle='collapse' data-target='#collapse" + DatosSubareas[i].ID + "' aria-expanded='false' aria-controls='collapse" + DatosSubareas[i].ID + "' class='collapsed'>";
         CodHtml += "<i class='m-r-5 fas fa-clipboard-list' aria-hidden='true'></i>";
         CodHtml += "<span >" + DatosSubareas[i].Nombre + "</span>";
         CodHtml += "</a>";
@@ -248,8 +233,8 @@ function abrirModalSub(id, ida) {
     if (id == 0) {
         $.get("/Areas/BDSubAreas/?IDArea=" + ida, function (data) {
             document.getElementById("TxtNoSubArea").value = data.length + 1;
-        });
-        document.getElementById("cmbAreaSubA").value = ida;
+            document.getElementById("cmbAreaSubA").value = ida;
+        });        
     }
     else {
         $.get("/Areas/BDSubArea/?ID=" + id, function (DatosArea) {
@@ -270,29 +255,11 @@ function abrirModalSub(id, ida) {
             document.getElementById("TxtCorreoE3Sub").value = DatosArea[0].CorreoE3;
             document.getElementById("TxtTelefonoE3Sub").value = DatosArea[0].TelefonoE3;
         });
-    }
-    $("#TxtNoSubArea").attr('disabled', 'disabled');
-    $("#cmbAreaSubA").attr('disabled', 'disabled');
-    $("#TxtIDSubArea").attr('disabled', 'disabled'); 
-}
-//marca los campos obligatorios
-function CamposImperativos() {
-    var exito = true;
-    var controlesObligatorio = document.getElementsByClassName("PerfilObligatorio");
-    for (var i = 0; i < controlesObligatorio.length; i++) {
-        if (controlesObligatorio[i].value == "") {
-            exito = false;
-            controlesObligatorio[i].classList.add("border-danger");
-        }
-        else {
-            controlesObligatorio[i].classList.remove("border-danger");
-        }
-    }
-    return exito;
+    }    
 }
 //guardar informacion
 function GuardarSubarea() {
-    if (CamposImperativos() == true) {
+    if (Obligatorios("Subarea") == true) {
         if (confirm("¿Desea aplicar los cambios?") == 1) {
             var IDSubArea = document.getElementById("TxtIDSubArea").value;
             var NoSubArea = document.getElementById("TxtNoSubArea").value;
@@ -326,18 +293,15 @@ function GuardarSubarea() {
             frm.append("UNombre", UNombre);
             frm.append("Correo", Correo);
             frm.append("Telefono", Telefono);
-
             frm.append("IDEncargado2", IDEncargado2);
             frm.append("NEncargado2", NEncargado2);
             frm.append("CorreoE2", CorreoE2);
             frm.append("TelefonoE2", TelefonoE2);
-
             frm.append("IDEncargado3", IDEncargado3);
             frm.append("NEncargado3", NEncargado3);
             frm.append("CorreoE3", CorreoE3);
             frm.append("TelefonoE3", TelefonoE3);
             frm.append("Estatus", 1);
-
             $.ajax(
                 {
                     type: "POST",
@@ -364,7 +328,7 @@ function GuardarSubarea() {
     }
 }
 //eliminar
-function eliminarsub(id, IDArea) {
+function EliminarSub(id, IDArea) {
     if (confirm("¿Desea eliminar el registo?") == 1) {
         $.get("/Areas/eliminarsub/?id=" + id, function (data) {
             if (data == -1) {
@@ -387,8 +351,7 @@ function eliminarsub(id, IDArea) {
 function recursos(ida) {
     $.get("/Areas/BDRecursos/?IDArea=" + ida, function (Datosrecurso) {
         TablaRecursos(["Titulo", "Fecha modificación", "Tipo", "Dirección"], Datosrecurso, ida);
-    }
-    );
+    });
 }
 function TablaRecursos(AColumnas, DatosAreas, ida) {
     var CodHtml = "";
@@ -421,40 +384,39 @@ function ModalRecursos(id, ida) {
     var controlesObligatorio = document.getElementsByClassName("Recursos-obligatorios");
     for (var i = 0; i < controlesObligatorio.length; i++) {
         controlesObligatorio[i].parentNode.classList.remove("border-danger");
-    }
-    if (id == 0) {
-        Limpiar();
-        $.get("/Areas/BDRecursos/?IDArea=" + ida, function (Datosrecurso) {
-            if (Datosrecurso.length > 0) {
-                var no = Datosrecurso.length + 1;
-                document.getElementById("TxtIDRecurso").value = ida + "" + no;
-            }
-            else {
-                document.getElementById("TxtIDRecurso").value = ida + "1";
-            }
-            document.getElementById("TxtFModificacionR").value = FFecha();
-            document.getElementById("cmbRecursoArea").value = ida;
-        }
-        );
-    }
-    else {
-        $.get("/Areas/BDRecurso/?IDRecurso=" + id, function (datos) {
-            document.getElementById("TxtIDRecurso").value = datos[0].ID;
-            document.getElementById("TxtTitulo").value = datos[0].Titulo;
-            document.getElementById("cmbRecursoArea").value = datos[0].IDArea;
-            document.getElementById("TxtFileName").value = datos[0].Direccion;
-            document.getElementById("TxtFModificacionR").value = datos[0].FechaM;
-            document.getElementById("cmbTipo").value = datos[0].Tipo;
-            MostrarRecurso(datos[0].Tipo, datos[0].Direccion);
-        });
-    }
+    }    
     $.get("/Areas/ConsultaArea/?IDArea=" + ida, function (datas) {
         document.getElementById("TxtDirectorio").value = datas[0].Carpeta;
-    });
-    $("#TxtIDRecurso").attr('disabled', 'disabled');
-    $("#cmbRecursoArea").attr('disabled', 'disabled');
-    $("#TxtDirectorio").attr('disabled', 'disabled');
-    $("#TxtFModificacionR").attr('disabled', 'disabled');
+        if (id == 0) {
+            Limpiar();
+            $("#PBFoto").attr('src', '');
+            $.get("/Areas/BDRecursos/?IDArea=" + ida, function (Datosrecurso) {
+                if (Datosrecurso.length > 0) {
+                    var no = Datosrecurso.length + 1;
+                    document.getElementById("TxtIDRecurso").value = ida + "" + no;
+                }
+                else {
+                    document.getElementById("TxtIDRecurso").value = ida + "1";
+                }
+                document.getElementById("TxtFModificacionR").value = FFecha();
+                document.getElementById("cmbRecursoArea").value = ida;
+            }
+            );
+        }
+        else {
+            $.get("/Areas/BDRecurso/?IDRecurso=" + id, function (datos) {
+                document.getElementById("TxtIDRecurso").value = datos[0].ID;
+                document.getElementById("TxtTitulo").value = datos[0].Titulo;
+                document.getElementById("cmbRecursoArea").value = datos[0].IDArea;
+                let archivo = datos[0].Direccion;
+                let remplazar = document.getElementById("TxtDirectorio").value + "/";
+                document.getElementById("TxtFileName").value = archivo.replace(remplazar, "");
+                document.getElementById("TxtFModificacionR").value = datos[0].FechaM;
+                document.getElementById("cmbTipo").value = datos[0].Tipo;
+                MostrarRecurso(datos[0].Tipo, datos[0].Direccion);
+            });
+        }
+    });   
 }
 //Evento Change index tipo
 var NoS = document.getElementById("cmbTipo");
@@ -474,7 +436,7 @@ NoS.addEventListener("change", function () {
 function MostrarRecurso(tipo, ruta) {
     var CodHtml = "";
     if (tipo == "Imagen") {
-        CodHtml = "<img id='PBFoto' src='/assets/images/" + ruta + "' width='470' height='250'/>";
+        CodHtml = "<img id='PBFoto' src='../Assets/Resources/" + ruta + "' width='470' height='250'/>";
     }
     else if (tipo == "Video") {
         CodHtml = "<video width='400' controls>";
@@ -491,7 +453,7 @@ function MostrarRecurso(tipo, ruta) {
 }
 //guardar informacion
 function GuardarRecurso() {
-    if (CamposObligatoriosX() == true) {
+    if (Obligatorios("Recursos") == true) {
         if (confirm("¿Desea aplicar los cambios?") == 1) {
             var IDRecurso = document.getElementById("TxtIDRecurso").value;
             var Titulo = document.getElementById("TxtTitulo").value;
@@ -533,21 +495,6 @@ function GuardarRecurso() {
         }
     }
 }
-//verifica que los campos obligatorios tengas datos
-function ObligatoriosRecursos() {
-    var exito = true;
-    var controlesObligatorio = document.getElementsByClassName("Recursos-obligatorios");    
-    for (var i = 0; i < controlesObligatorio.length; i++) {
-        if (controlesObligatorio[i].value == "") {
-            exito = false;
-            controlesObligatorio[i].parentNode.classList.add("border-danger");
-        }
-        else {
-            controlesObligatorio[i].parentNode.classList.remove("border-danger");
-        }
-    }
-    return exito;
-}
 //eliminar el recurso
 function EliminarRecursos(id, IDArea) {
     if (confirm("¿Desea eliminar el registo?") == 1) {
@@ -567,57 +514,72 @@ function EliminarRecursos(id, IDArea) {
         });
     }
 }
-
 //****************************************************************************************************************************************************************************************************
-function Limpiar() {
-    var controles = document.getElementsByClassName("limpiar");
-    var ncontroles = controles.length;
-    for (var i = 0; i < ncontroles; i++) {
-        controles[i].value = "";
-    }
+
+//Ejecuta la consulta para llenar el combobox de emcargados
+function LlenarSelects() {
+    $.get("/Usuarios/BDUserNivel/?LVLPerfil=" + 4, function (data) {
+        ComboPersonal(data, document.getElementById("cmbEncargado"));
+    });
+    $.get("/Usuarios/BDUserNivel/?LVLPerfil=" + 5, function (data) {
+        ComboPersonal(data, document.getElementById("cmbEncargado1Sub"));
+        ComboPersonal(data, document.getElementById("cmbEncargado2Sub"));
+        ComboPersonal(data, document.getElementById("cmbEncargado3Sub"));
+    });
+    $.get("/Cardinal/BDAreas", function (DatosAreas) {
+        llenarCombo(DatosAreas, document.getElementById("cmbAreaSubA"));
+        llenarCombo(DatosAreas, document.getElementById("cmbRecursoArea"));
+    });
 }
-//llena el combobox
-function llenarCombo(data, control, primerElemento) {
+
+//******************************************************************************************************************************************************
+//llena los combos personales
+function ComboPersonal(data, control, primerElemento) {
     var contenido = "";
-    if (primerElemento == true) {
-        contenido += "<option value=''>--Seleccione--</option>";
-    }
+    contenido += "<option value='0'>--Seleccione--</option>";    
     for (var i = 0; i < data.length; i++) {
         contenido += "<option value='" + data[i].IDUsuario + "'>" + data[i].Nombre + " " + data[i].APaterno + " " + data[i].AMaterno + "</option>";
     }
     control.innerHTML = contenido;
 }
-//Ejecuta la consulta para llenar el combobox de emcargados
-function LlenarSelects() {
-    $.get("/Usuarios/BDUserPerfil/?IDPerf=" + 4, function (data) {
-        llenarCombo(data, document.getElementById("cmbEncargado"), true);
-    });
-    $.get("/Usuarios/BDUserPerfil/?IDPerf=" + 9, function (data) {
-        llenarCombo(data, document.getElementById("cmbEncargado1Sub"), true);
-        llenarCombo(data, document.getElementById("cmbEncargado2Sub"), true);
-        llenarCombo(data, document.getElementById("cmbEncargado3Sub"), true);
-    });
-    $.get("/Cardinal/BDAreas", function (DatosAreas) {
-        llenarComboAreas(DatosAreas, document.getElementById("cmbAreaSubA"), true);
-        llenarComboAreas(DatosAreas, document.getElementById("cmbRecursoArea"), true);
-    });
-}
-//llena el combobox áreas
-function llenarComboAreas(DatosAreas, control, primerElemento) {
+//llena los combobos
+function llenarCombo(DatosAreas, control) {
     var contenido = "";
-    //if (primerElemento == true) {
-        contenido += "<option value=''>--Seleccione--</option>";
-    //}
+    contenido += "<option value='0'>--Seleccione--</option>";
     for (var i = 0; i < DatosAreas.length; i++) {
         contenido += "<option value='" + DatosAreas[i].ID + "'>" + DatosAreas[i].Nombre + "</option>";
     }
     control.innerHTML = contenido;
 }
-//******************************************************************************************************************************************************
+//verifica que los campos obligatorios tengas datos "AreaObligatorio"
+function Obligatorios(NoClase) {
+    let exito = true;
+    let CtrlObligatorio = document.getElementsByClassName(NoClase);
+    for (let i = 0; i < CtrlObligatorio.length; i++) {
+        if (CtrlObligatorio[i].value == "") {
+            exito = false;
+            CtrlObligatorio[i].classList.add("border-danger");
+        }
+        else {
+            CtrlObligatorio[i].classList.remove("border-danger");
+        }
+    }
+    return exito;
+}
+function Limpiar() {
+    var controles = document.getElementsByClassName("limpiar");    
+    for (var i = 0; i < controles.length; i++) {
+        if (controles[i].nodeName == "SELECT") {
+            controles[i].value = "0";
+        }
+        else {
+            controles[i].value = "";
+        }
+    }
+}
 function BloquearCTRL() {
     var CTRL = document.getElementsByClassName("bloquear");
     for (var i = 0; i < CTRL.length; i++) {
         $("#" + CTRL[i].id).attr('disabled', 'disabled');
     }
-
 }

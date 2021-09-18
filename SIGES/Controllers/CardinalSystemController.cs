@@ -1,9 +1,11 @@
-﻿using System;
+﻿using SIGES.Filtro;
+using System;
 using System.Linq;
 using System.Web.Mvc;
 
 namespace SIGES.Controllers
 {
+    [Seguridad]
     public class CardinalSystemController : Controller
     {
         SIGESDBDataContext SIGES = new SIGESDBDataContext();
@@ -21,7 +23,6 @@ namespace SIGES.Controllers
                 {
                     ID = p.IDPagina,
                     Nombre = p.Mensaje,
-                    p.Abreviatura,
                     p.Accion,
                     p.Controlador,
                     p.Descripcion,
@@ -37,7 +38,6 @@ namespace SIGES.Controllers
                 {
                     ID = p.IDPagina,
                     Nombre = p.Mensaje,
-                    p.Abreviatura,
                     p.Accion,
                     p.Controlador,
                     p.Icono,
@@ -72,7 +72,6 @@ namespace SIGES.Controllers
                     if (nveces == 0)
                     {
                         System_Sis_Pagina obj = SIGES.System_Sis_Pagina.Where(p => p.IDPagina.Equals(IDPagina)).First();
-                        obj.Abreviatura = DataPagina.Abreviatura;
                         obj.Mensaje = DataPagina.Mensaje;
                         obj.Accion = DataPagina.Accion;
                         obj.Controlador = DataPagina.Controlador;

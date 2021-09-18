@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using SIGES.Filtro;
+using System;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace SIGES.Controllers
 {
+    [Seguridad]
     public class SupervisionController : Controller
     {
         SIGESDBDataContext SIGES = new SIGESDBDataContext();

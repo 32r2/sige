@@ -1,14 +1,5 @@
 ﻿LlenarCMBPrin();
-
-//if (DatosAreas.length !== 0) {
-//    llenarCombo(DatosAreas, document.getElementById("cmbArea"), true);
-//}
-//else {
-//    alert("No hay datos en la tabla Áreas.");
-//}
-
-
-//funcion general para llenar los select
+BloquearCTRL();
 function llenarCombo(data, control, primerElemento) {
     var contenido = "";
     if (primerElemento == true) {
@@ -43,13 +34,21 @@ function LlenarCMBPrin() {
             llenarCombo(DatosTiendas, document.getElementById("cmbIDTienda"), true);
         }
         else {
-            //toastr.error('I do not think that word means what you think it means.', 'Inconceivable!');
             alert("No hay datos en la tabla tiendas.");
         }
-
+    });
+    $.get("/CardinalSystem/BDPerfiles", function (DatosPerfiles) {
+        llenarMulti(DatosPerfiles, document.getElementById("cmbUsuarios"))
     });
 }
-
+//llena el multiselect
+function llenarMulti(data, control) {
+    var contenido = "<option value='0'>Todos</option>";
+    for (var i = 0; i < data.length; i++) {
+        contenido += "<option value='" + data[i].ID + "'>" + data[i].Nombre + "</option>";
+    }
+    control.innerHTML = contenido;
+}
 //event Change index Areas
 var IDA = document.getElementById("cmbArea");
 IDA.addEventListener("change", function () {
@@ -77,6 +76,5 @@ function BloquearCTRL() {
     var CTRL = document.getElementsByClassName("bloquear");
     for (var i = 0; i < CTRL.length; i++) {        
         $("#" + CTRL[i].id).attr('disabled', 'disabled');
-    }
-    
+    }    
 }

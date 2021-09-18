@@ -28,6 +28,7 @@
     .mostrar {
         display: block;
     }
+
     .img-centro {
         margin: 10px auto 10px;
         display: block;
@@ -48,9 +49,8 @@
                 <h5 id="HPas-5" class="modal-title step-5 ocultar" style="color:green">Finalizar <i class="fas fa-check-circle font-24"></i></h5>
                 <button type="button" class="close" data-dismiss="modal">&times;</button><br>
             </div>
-            <div id="myProgress">
-                <div class="progress-bar bg-warning progress-bar-striped progress-bar-animated" style="width:1%"></div>
-                <div id="myBar"></div>
+            <div class="progress">
+                <div id="avance" class="progress-bar progress-bar-striped bg-success" role="progressbar" @*style="width: 0%"*@ aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
             @*-----------------------------------------Paso uno---------------------------------------------------------*@
             <div id="Paso-1" class="ModAlt steps step-1 mostrar">
@@ -282,7 +282,7 @@
             <div id="Paso-5" class="ModAlt steps step-5 ocultar">
                 <div class="container text-center step-5 ocultar">
                     <div class="row">
-                        <div id="Finalmmessage" class="img-centro"></div>                        
+                        <div id="Finalmmessage" class="img-centro"></div>
                     </div>
                 </div>
             </div>

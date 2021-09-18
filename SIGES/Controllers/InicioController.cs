@@ -1,7 +1,9 @@
-﻿using System.Web.Mvc;
+﻿using SIGES.Filtro;
+using System.Web.Mvc;
 
 namespace SIGES.Controllers
 {
+    [Seguridad]
     public class InicioController : Controller
     {
         // GET: Inicio

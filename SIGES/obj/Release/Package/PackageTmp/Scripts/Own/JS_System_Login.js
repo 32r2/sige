@@ -33,10 +33,12 @@ function Login() {
         }
     }
     if (val == 0) {
-        if (user == '3v3r' && Pass == '123') {
-            window.location = "index2.html";
-        } else {
-            alert("Haz ingresado datos incorrectos");
-        }
+        $.get("/Login/IniciarUsuario/?User=" + user + "&Password=" + Pass, function (Sesion) {
+            if (Sesion == 1) {                
+                window.location = "/Inicio/Inicio";
+            } else {
+                alert("Haz ingresado datos incorrectos");
+            }
+        });        
     }
 }

@@ -89,6 +89,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Internal\faviconSP.png" />
     <Content Include="Assets\Internal\Trabajadores.png" />
     <Content Include="Assets\Internal\01.png" />
     <Content Include="Assets\Internal\02.png" />
@@ -183,10 +184,12 @@
     <Content Include="Scripts\jquery-ui.min.js" />
     <Content Include="Scripts\jquery.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\Own\JS_Layout.js" />
     <Content Include="Scripts\Own\JS_System_Areas.js" />
     <Content Include="Scripts\Own\JS_System_Cardinal.js" />
     <Content Include="Scripts\Own\JS_System_Comunicados.js" />
     <Content Include="Scripts\Own\JS_System_Incidencias.js" />
+    <Content Include="Scripts\Own\JS_System_Incidencias_MesaAyuda.js" />
     <Content Include="Scripts\Own\JS_System_Login.js" />
     <Content Include="Scripts\Own\JS_System_Sis_Notificacion.js" />
     <Content Include="Scripts\Own\JS_System_Sis_Paginas.js" />
@@ -209,15 +212,18 @@
     <Compile Include="Controllers\CardinalController.cs" />
     <Compile Include="Controllers\CardinalSystemController.cs" />
     <Compile Include="Controllers\ComunicadosController.cs" />
+    <Compile Include="Controllers\EvaluacionController.cs" />
     <Compile Include="Controllers\IncidenciasController.cs" />
     <Compile Include="Controllers\InicioController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\SupervisionController.cs" />
     <Compile Include="Controllers\TiendasController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
+    <Compile Include="Filtro\Seguridad.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Accesos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SIGESDB.designer.cs">
       <AutoGen>True</AutoGen>
@@ -368,6 +374,8 @@
     <Content Include="Views\Incidencias\Incidencias.cshtml" />
     <Content Include="Views\Tiendas\Tiendas.cshtml" />
     <Content Include="Views\Supervision\Supervision.cshtml" />
+    <Content Include="Views\Evaluacion\Evaluacion.cshtml" />
+    <Content Include="Views\Incidencias\Mayuda.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -382,7 +390,6 @@
     <Folder Include="Assets\Resources\DptManto\" />
     <Folder Include="Assets\Resources\DptOperacion\" />
     <Folder Include="Assets\User\" />
-    <Folder Include="Models\" />
     <Folder Include="Views\Cardinal\" />
   </ItemGroup>
   <ItemGroup>

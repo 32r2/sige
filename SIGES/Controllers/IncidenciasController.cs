@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using SIGES.Filtro;
+using System;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace SIGES.Controllers
 {
+    [Seguridad]
     public class IncidenciasController : Controller
     {
         SIGESDBDataContext SIGES = new SIGESDBDataContext();
@@ -186,6 +186,72 @@ namespace SIGES.Controllers
                 Afectados = 0;
             }
             return Afectados;
+        }
+
+        public ActionResult Mayuda()
+        {
+            return View();
+        }
+        //************************************************************************************************************
+        //Consulta Insidencias por área usando join
+        public JsonResult BDInsidenciasJoinArea(long IDA)
+        {
+            var datos = from incidencia in SIGES.System_Incidencias
+                        join area in SIGES.System_Areas
+                        on incidencia.IDArea equals area.IDArea
+                        join subareas in SIGES.System_Areas_SubAreas
+                        on incidencia.IDSubArea equals subareas.IDSubArea
+                        where incidencia.IDArea.Equals(IDA)
+                        select new
+                        {
+                            ID = incidencia.IDIncidencia,
+                            Nombre = incidencia.Nombre,
+                            Area = area.Nombre,
+                            SubArea = subareas.Nombre,
+                            Telefono = area.Telefono,
+                            Descripcion = incidencia.Descripcion,
+                            Nos = incidencia.NoSoluciones
+                        };
+            return Json(datos, JsonRequestBehavior.AllowGet);
+        }
+        //Consulta Insidencias que contengan usando join
+        public JsonResult BDInsidenciasContienen(string Contener)
+        {
+            var datos = from incidencia in SIGES.System_Incidencias
+                        join area in SIGES.System_Areas
+                        on incidencia.IDArea equals area.IDArea
+                        join subareas in SIGES.System_Areas_SubAreas
+                        on incidencia.IDSubArea equals subareas.IDSubArea
+                        where incidencia.Descripcion.Contains(Contener)
+                        select new
+                        {
+                            ID = incidencia.IDIncidencia,
+                            Nombre = incidencia.Nombre,
+                            Area = area.Nombre,
+                            SubArea = subareas.Nombre,
+                            Telefono = area.Telefono,
+                            Descripcion = incidencia.Descripcion,
+                            Nos = incidencia.NoSoluciones
+                        };
+            return Json(datos, JsonRequestBehavior.AllowGet);
+        }
+        //--------metodos para los procedimientos
+        //Conculta metodo por IDIncidencia y No de Solucion
+        public JsonResult BDMesaayuda(long IDI, long NoS)
+        {
+            var datos = SIGES.System_Incidencias_MesaAyuda.Where(p => p.IDIncidencia.Equals(IDI) && p.NoSolucion.Equals(NoS) && p.Estatus.Equals(1))
+                .Select(p => new
+                {
+                    ID = p.IDMesaAyuda,
+                    p.IDIncidencia,
+                    p.IDArea,
+                    p.NoSolucion,
+                    p.FModificacion,
+                    p.NoPaso,
+                    p.Descripcion,
+                    p.Imagen
+                }).OrderBy(p => p.NoPaso);//.OrderByDescending(p=>p.NoPaso);
+            return Json(datos, JsonRequestBehavior.AllowGet);
         }
     }
 }

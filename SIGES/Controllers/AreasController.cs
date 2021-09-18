@@ -1,9 +1,11 @@
-﻿using System;
+﻿using SIGES.Filtro;
+using System;
 using System.Linq;
 using System.Web.Mvc;
 
 namespace SIGES.Controllers
 {
+    [Seguridad]
     public class AreasController : Controller
     {
         SIGESDBDataContext SIGES = new SIGESDBDataContext();

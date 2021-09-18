@@ -134,7 +134,7 @@ function abrirModal(id) {
 
 function Pasos(Step) {
     let paso = document.getElementsByClassName("steps");
-
+    let avance = document.getElementById("avance");
     var ClaseM = 0;
     for (var i = 0; i < paso.length; i++) {
         //en cuantos elementos esta la clase mostrar
@@ -151,21 +151,25 @@ function Pasos(Step) {
         ClaseMostrar = "step-" + (parseInt(ClaseM, 10) + Step);
     }
 
-    if (ClaseMostrar == "step-1") {
+    if (ClaseMostrar == "step-1") {        
         MostrarDiv(ClaseMostrar);
     }
     else if (ObligatoriosDatosP("Datostep-1") == true && ClaseMostrar == "step-2") {
+        avance.style.width = "25%";
         MostrarDiv(ClaseMostrar);
     }
     else if (ObligatoriosDatosP("Datostep-2") == true && ClaseMostrar == "step-3") {
+        avance.style.width = "50%";
         MostrarDiv(ClaseMostrar);
         Informacion();
     }
     else if (ClaseMostrar == "step-4") {
+        avance.style.width = "75%";
         MostrarDiv(ClaseMostrar);
         NomUsuar();
     }
     else if (ObligatoriosDatosP("Datostep-4") == true && ClaseMostrar == "step-5" && document.getElementById("mensage").innerText === "Autenticación correcta") {
+        avance.style.width = "100%";
         GUsuario();
         MostrarDiv(ClaseMostrar);
     }
