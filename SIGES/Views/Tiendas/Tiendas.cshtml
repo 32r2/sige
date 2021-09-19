@@ -41,10 +41,11 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 id="HPas-1" class="modal-title step-1 mostrar">Datos Principales</h5>
-                <h5 id="HPas-2" class="modal-title step-2 ocultar">Datos Generales</h5>
-                <h5 id="HPas-3" class="modal-title step-3 ocultar">Datos Laborales</h5>
-                <h5 id="HPas-4" class="modal-title step-4 ocultar">Datos de Usuario</h5>
-                <h5 id="HPas-5" class="modal-title step-5 ocultar" style="color:green">Finalizar <i class="fas fa-check-circle font-24"></i></h5>
+                <h5 id="HPas-2" class="modal-title step-2 ocultar">Datos del Personal</h5>
+                <h5 id="HPas-3" class="modal-title step-3 ocultar">Datos Sercivios y Plataformas</h5>
+                <h5 id="HPas-4" class="modal-title step-4 ocultar">Validar información</h5>
+                <h5 id="HPas-5" class="modal-title step-5 ocultar">Validar información</h5>
+                <h5 id="HPas-6" class="modal-title step-6 ocultar" style="color:green">Finalizar <i class="fas fa-check-circle font-24"></i></h5>
                 <button type="button" class="close" data-dismiss="modal">&times;</button><br>
             </div>
             <div class="progress">
@@ -65,17 +66,22 @@
                     </div>
                     <div class="row ">
                         <div class="col-md-6 col-sm-6 col-xs-6">
+                            <span class="help-block text-muted small-font">No. de tienda</span>
+                            <BR />
+                            <input type="number" id="TxtNoTienda" class="form-control limpiar Datostep-1" placeholder="###" />
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-6">
                             <span class="help-block text-muted small-font">Estado</span>
                             <BR />
                             <select id="cmbEstado" style="width: 100%" class="btn btn-danger dropdown-toggle SelectCLS Datostep-1"></select>
                         </div>
+                    </div>
+                    <div class="row ">
                         <div class="col-md-6 col-sm-6 col-xs-6">
                             <span class="help-block text-muted small-font">Municipio</span>
                             <BR />
                             <select id="cmbMunicipio" style="width: 100%" class="btn btn-warning dropdown-toggle SelectCLS Datostep-1"></select>
                         </div>
-                    </div>
-                    <div class="row ">
                         <div class="col-md-6 col-sm-6 col-xs-6">
                             <span class="help-block text-muted small-font">Localidad</span>
                             <BR />
@@ -85,7 +91,7 @@
                     <div class="row ">
                         <div class="col-md-12 col-sm-8 col-xs-8">
                             <span class="help-block text-muted small-font">Calle y nùmero</span>
-                            <input type="text" id="TxtCalle" class="form-control limpiar" placeholder="Direccòn y No." />
+                            <input type="text" id="TxtCalle" class="form-control limpiar Datostep-1" placeholder="Direccòn y No." />
                         </div>
                     </div>
                     <div class="row ">
@@ -121,68 +127,28 @@
                 </div>
             </div>
             @*-----------------------------------------Paso dos---------------------------------------------------------*@
-        <div id="Paso-2" class="ModAlt steps step-2 ocultar">
-            <div class="row ">                
-                <div class="col-md-6 col-sm-6 col-xs-6">
-                    <span class="help-block text-muted small-font">No. Servicio CFE</span>
-                    <input type="text" id="TxtNoServicioLuz" class="form-control limpiar" placeholder="No. Servicio CFE" />
-                </div>
-            </div>
-            <hr />
-            <div class="container step-2 ocultar">
-                <div class="row ">
-                    <div class="col-md-6 col-sm-6 col-xs-6">
-                        <span class="help-block text-muted small-font">Código IUSA</span>
-                        <input type="text" id="TxtIUSACodigo" class="form-control limpiar" placeholder="Código IUSA" />
+            <div id="Paso-2" class="ModAlt steps step-2 ocultar">
+                <div class="container step-2 ocultar">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6 col-xs-6 justify-content-end">
+                            <span class="help-block text-muted small-font">Supervisión</span>
+                            <select id="cmbIDSupervision" style="width: 100%" class="btn btn-danger dropdown-toggle SelectCLS Datostep-2"></select>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-6 justify-content-end">
+                            <span class="help-block text-muted small-font">Supervisor</span>
+                            <select id="cmbIDSupervisor" style="width: 100%" class="btn btn-danger dropdown-toggle SelectCLS Datostep-2"></select>
+                        </div>
                     </div>
-                </div>
-                <div class="row ">
-                    <div class="col-md-6 col-sm-6 col-xs-6">
-                        <span class="help-block text-muted small-font">Usuario IUSA</span>
-                        <input type="text" id="TxtIUSAUsuario" class="form-control limpiar" placeholder="Usuario IUSA" />
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6 col-xs-6 justify-content-end">
+                            <span class="help-block text-muted small-font">Lider</span><br />
+                            <select id="cmbIDLider" style="width: 100%" class="btn btn-danger dropdown-toggle SelectCLS Datostep-2"></select>
+                        </div>
                     </div>
-                    <div class="col-md-6 col-sm-6 col-xs-6">
-                        <span class="help-block text-muted small-font">Contraseña IUSA</span>
-                        <input type="text" id="TxtIUSAContrasena" class="form-control limpiar" placeholder="Contraseña IUSA" />
-                    </div>
-                </div>
-                <hr />
-                <div class="row ">
-                    <div class="col-md-6 col-sm-6 col-xs-6">
-                        <span class="help-block text-muted small-font">Usuario PCPAY</span>
-                        <input type="text" id="TxtPCPAYUsuario" class="form-control limpiar" placeholder="Usuario PCPAY" />
-                    </div>
-                    <div class="col-md-6 col-sm-6 col-xs-6">
-                        <span class="help-block text-muted small-font">Contraseña PCPAY</span>
-                        <input type="text" id="TxtPCPAYContraseña" class="form-control limpiar" placeholder="Contraseña PCPAY" />
-                    </div>
-                </div>
-                <hr />
-                <div class="row">
-                    <div class="col-md-6 col-sm-6 col-xs-6 justify-content-end">
-                        <span class="help-block text-muted small-font">Supervisión</span>
-                        <select id="cmbIDSupervision" style="width: 100%" class="btn btn-danger dropdown-toggle SelectCLS"></select>
-                    </div>
-                    <div class="col-md-6 col-sm-6 col-xs-6 justify-content-end">
-                        <span class="help-block text-muted small-font">Supervisor</span>
-                        <select id="cmbIDSupervisor" style="width: 100%" class="btn btn-danger dropdown-toggle SelectCLS"></select>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6 col-sm-6 col-xs-6 justify-content-end">
-                        <span class="help-block text-muted small-font">Lider</span><br />
-                        <select id="cmbIDLider" style="width: 100%" class="btn btn-danger dropdown-toggle SelectCLS"></select>
-                    </div>
-                </div>
-            </div>
-        </div>
-            @*-----------------------------------------Paso tres--------------------------------------------------------*@
-            <div id="Paso-3" class="ModAlt steps step-3 ocultar">
-                <div class="container step-3 ocultar">
                     <div class="row ">
                         <div class="col-md-6 col-sm-6 col-xs-6 justify-content-end">
                             <span class="help-block text-muted small-font">Encargado 1</span><br />
-                            <select id="cmbIDEncargado1" style="width: 100%" class="btn btn-danger dropdown-toggle SelectCLS"></select>
+                            <select id="cmbIDEncargado1" style="width: 100%" class="btn btn-danger dropdown-toggle SelectCLS Datostep-2"></select>
                         </div>
                         <div class="col-md-6 col-sm-6 col-xs-6">
                             <span class="help-block text-muted small-font">Encargado 2</span>
@@ -210,11 +176,44 @@
                             <select id="cmbIDAuxsiliar3" style="width: 100%" class="btn btn-success dropdown-toggle SelectCLS"></select>
                         </div>
                     </div>
-                    <br />
-                    <!-- Termina cuerpo Modal content-->
-                    <div class="modal-footer">
-                        <button id="btnGuardar" type="button" class="btn btn-success" onclick="Guardar()">GUARDAR</button>
-                        <button id="btnCancelar" type="button" class="btn btn-danger" data-dismiss="modal">CANCELAR</button>
+                </div>
+            </div>
+            @*-----------------------------------------Paso tres--------------------------------------------------------*@
+            <div id="Paso-3" class="ModAlt steps step-3 ocultar">
+                <div class="container step-3 ocultar">
+                    <div class="row ">
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <span class="help-block text-muted small-font">No. Servicio CFE</span>
+                            <input type="text" id="TxtNoServicioLuz" class="form-control limpiar" placeholder="No. Servicio CFE" />
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row ">
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <span class="help-block text-muted small-font">Código IUSA</span>
+                            <input type="text" id="TxtIUSACodigo" class="form-control limpiar" placeholder="Código IUSA" />
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <span class="help-block text-muted small-font">Usuario IUSA</span>
+                            <input type="text" id="TxtIUSAUsuario" class="form-control limpiar" placeholder="Usuario IUSA" />
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <span class="help-block text-muted small-font">Contraseña IUSA</span>
+                            <input type="text" id="TxtIUSAContrasena" class="form-control limpiar" placeholder="Contraseña IUSA" />
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row ">
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <span class="help-block text-muted small-font">Usuario PCPAY</span>
+                            <input type="text" id="TxtPCPAYUsuario" class="form-control limpiar" placeholder="Usuario PCPAY" />
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <span class="help-block text-muted small-font">Contraseña PCPAY</span>
+                            <input type="text" id="TxtPCPAYContraseña" class="form-control limpiar" placeholder="Contraseña PCPAY" />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -225,9 +224,16 @@
                     </div>
                 </div>
             </div>
-            @*-----------------------------------------Paso cinco-------------------------------------------------------*@
+            @*-----------------------------------------Paso cuatro------------------------------------------------------*@
             <div id="Paso-5" class="ModAlt steps step-5 ocultar">
-                <div class="container text-center step-5 ocultar">
+                <div class="container step-5 ocultar">
+                    <div id="DivDatos2" class="card">
+                    </div>
+                </div>
+            </div>
+            @*-----------------------------------------Paso cinco-------------------------------------------------------*@
+            <div id="Paso-6" class="ModAlt steps step-6 ocultar">
+                <div class="container text-center step-6 ocultar">
                     <div class="row">
                         <div id="Finalmmessage" class="img-centro"></div>
                     </div>
@@ -235,10 +241,10 @@
             </div>
             @*-----------------------------------------Botones del pie--------------------------------------------------*@
             <div class="modal-footer">
-                <button id="BtnCancelar" type="button" class="btn btn-danger step-1 step-2 step-3 step-4 " data-dismiss="modal"><i class="far fa-times-circle font-16"></i></button>
-                <button id="BtnRetrocdr" type="button" class="btn btn-primary step-2 step-3 step-4" onclick="Pasos(-1)"><i class="fas fa-chevron-circle-left font-16"></i></button>
-                <button id="BtnCntinuar" type="button" class="btn btn-primary step-1 step-2 step-3 step-4" onclick="Pasos(1)"><i class="fas fa-chevron-circle-right font-16"></i></button>
-                <button id="BtnFinalzar" type="button" class="btn btn-success step-5" data-dismiss="modal"><i class="fas fa-check-circle font-16"></i></button>
+                <button id="BtnCancelar" type="button" class="btn btn-danger step-1 step-2 step-3 step-4 step-5" data-dismiss="modal"><i class="far fa-times-circle font-16"></i></button>
+                <button id="BtnRetrocdr" type="button" class="btn btn-primary step-2 step-3 step-4 step-5" onclick="Pasos(-1)"><i class="fas fa-chevron-circle-left font-16"></i></button>
+                <button id="BtnCntinuar" type="button" class="btn btn-primary step-1 step-2 step-3 step-4 step-5" onclick="Pasos(1)"><i class="fas fa-chevron-circle-right font-16"></i></button>
+                <button id="BtnFinalzar" type="button" class="btn btn-success step-6" data-dismiss="modal"><i class="fas fa-check-circle font-16"></i></button>
             </div>
         </div>
     </div>

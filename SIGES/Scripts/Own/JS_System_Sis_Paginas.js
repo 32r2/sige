@@ -29,18 +29,17 @@ function CrearTablaPaginas(InfPaginas) {
 }
 //limpia y llenas los campor del modal si es para la edición
 function AModalPaginas(ID) {
-    var controlesObligatorio = document.getElementsByClassName("obligatorio");
+    var controlesObligatorio = document.getElementsByClassName("PaginaObligatorio");
     var ncontroles = controlesObligatorio.length;
     Limpiar();
     for (var i = 0; i < ncontroles; i++) {
-        controlesObligatorio[i].parentNode.classList.remove("error");
+        controlesObligatorio[i].parentNode.classList.remove("border-danger");
     }
     if (ID == 0) {
     }
     else {
         $.get("/CardinalSystem/BDPagina/?ID=" + ID, function (DatosPagina) {
             document.getElementById("TxtIDPagina").value = DatosPagina[0].ID;
-            document.getElementById("TxtAbreviatura").value = DatosPagina[0].Abreviatura;
             document.getElementById("TxtMensaje").value = DatosPagina[0].Nombre;
             document.getElementById("TxtAccion").value = DatosPagina[0].Accion;
             document.getElementById("TxtControlador").value = DatosPagina[0].Controlador;
@@ -62,7 +61,6 @@ function GuardarPagina() {
             var Descripcion = document.getElementById("TxtDescripcion").value;
             var frm = new FormData();
             frm.append("IDPagina", IDPagina);
-            frm.append("Abreviatura", Abreviatura);
             frm.append("Mensaje", Mensaje);
             frm.append("Accion", Accion);
             frm.append("Controlador", Controlador);

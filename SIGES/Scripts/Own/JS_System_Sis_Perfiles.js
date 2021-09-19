@@ -2,8 +2,7 @@
 function MostrarPerfiles() {
     $.get("/CardinalSystem/BDPerfiles", function (InfPerfiles) {
         CrearTablaPerfiles(InfPerfiles);
-    }
-    );
+    });
 }
 //Inserta la tabla de las páginas
 function CrearTablaPerfiles(InfPerfiles) {
@@ -33,8 +32,7 @@ function AModalPerfil(ID) {
     Limpiar();
     for (var i = 0; i < CtrlObligatorio.length; i++) {
         CtrlObligatorio[i].classList.remove("border-danger");
-    }
-    
+    }    
     if (ID == 0) {        
     }
     else {
@@ -54,8 +52,7 @@ function AModalPerfil(ID) {
                 }                
             }
             //****************************************************************************
-            document.getElementById("TxtComentarios").value = DatosPerfil[0].Comentarios;
-            
+            document.getElementById("TxtComentarios").value = DatosPerfil[0].Comentarios;            
         });
     }
 }
@@ -146,8 +143,7 @@ function Limpiar() {
 function MostrarPaginasPerfiles() {
     $.get("/CardinalSystem/BDPaginas", function (InfPaginas) {
         CrearTblPaginas(InfPaginas);
-    }
-    );
+    });
 }
 //Inserta la tabla de las páginas
 function CrearTblPaginas(InfPaginas) {
@@ -155,7 +151,7 @@ function CrearTblPaginas(InfPaginas) {
     CodigoHtmlTablaPagina += "<div class='row'>";
     for (var i = 0; i < InfPaginas.length; i++) {
         CodigoHtmlTablaPagina += "<div class='col-md-6 col-sm-12 col-xs-12 justify-content-end'>";
-        CodigoHtmlTablaPagina += "<input type='checkbox' class='checkbox-area' id='" + InfPaginas[i].Abreviatura + "' ><span class='help-block text-muted small-font'>" + InfPaginas[i].Descripcion + "</span>";
+        CodigoHtmlTablaPagina += "<input type='checkbox' class='checkbox-area' id='" + InfPaginas[i].ID + "' ><span class='help-block text-muted small-font'>" + InfPaginas[i].Descripcion + "</span>";
         CodigoHtmlTablaPagina += "</div>";
     }
     CodigoHtmlTablaPagina += "</div>";

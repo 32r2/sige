@@ -1,27 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SIGES" Class="SIGESDBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="WebSettings" ConnectionString="Data Source=DESKTOP-G4VRQFR\SQLEXPRESS;Initial Catalog=SIGES;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="SIGESConnectionString1" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.System_Areas_SubAreas" Member="System_Areas_SubAreas">
-    <Type Name="System_Areas_SubAreas">
-      <Column Name="IDSubArea" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Nombre" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
-      <Column Name="NoSubArea" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="IDArea" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
-      <Column Name="IDUsuario" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
-      <Column Name="UNombre" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
-      <Column Name="Telefono" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
-      <Column Name="Correo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="IDEncargado2" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
-      <Column Name="NEncargado2" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
-      <Column Name="TelefonoE2" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
-      <Column Name="CorreoE2" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="IDEncargado3" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
-      <Column Name="NEncargado3" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
-      <Column Name="TelefonoE3" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
-      <Column Name="CorreoE3" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Estatus" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="System_Areas_System_Areas_SubAreas" Member="System_Areas" ThisKey="IDArea" OtherKey="IDArea" Type="System_Areas" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.Administration_Evaluacion_Tienda" Member="Administration_Evaluacion_Tienda">
     <Type Name="Administration_Evaluacion_Tienda">
       <Column Name="IDEvaluacion" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -174,10 +152,9 @@
       <Column Name="Telefono" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
       <Column Name="Carpeta" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="Estatus" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="System_Areas_System_Areas_SubAreas" Member="System_Areas_SubAreas" ThisKey="IDArea" OtherKey="IDArea" Type="System_Areas_SubAreas" />
       <Association Name="System_Areas_Administration_Evaluacion_Tienda" Member="Administration_Evaluacion_Tienda" ThisKey="IDArea" OtherKey="IDArea" Type="Administration_Evaluacion_Tienda" />
       <Association Name="System_Areas_System_Areas_Recursos" Member="System_Areas_Recursos" ThisKey="IDArea" OtherKey="IDArea" Type="System_Areas_Recursos" />
-      <Association Name="System_Areas_System_Areas_SubAreas1" Member="System_Areas_SubAreas1" ThisKey="IDArea" OtherKey="IDArea" Type="System_Areas_SubAreas1" />
+      <Association Name="System_Areas_System_Areas_SubAreas" Member="System_Areas_SubAreas" ThisKey="IDArea" OtherKey="IDArea" Type="System_Areas_SubAreas" />
       <Association Name="System_Areas_System_Incidencias_MesaAyuda" Member="System_Incidencias_MesaAyuda" ThisKey="IDArea" OtherKey="IDArea" Type="System_Incidencias_MesaAyuda" />
       <Association Name="System_Areas_System_Incidencias_MesaAyuda1" Member="System_Incidencias_MesaAyuda1" ThisKey="IDArea" OtherKey="IDArea" Type="System_Incidencias_MesaAyuda" />
       <Association Name="System_Areas_System_Incidencias_User_RInsidencias" Member="System_Incidencias_User_RInsidencias" ThisKey="IDArea" OtherKey="IDArea" Type="System_Incidencias_User_RInsidencias" />
@@ -200,8 +177,8 @@
       <Association Name="System_Areas_System_Areas_Recursos" Member="System_Areas" ThisKey="IDArea" OtherKey="IDArea" Type="System_Areas" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.System_Areas_SubAreas" Member="System_Areas_SubAreas1">
-    <Type Name="System_Areas_SubAreas1">
+  <Table Name="dbo.System_Areas_SubAreas" Member="System_Areas_SubAreas">
+    <Type Name="System_Areas_SubAreas">
       <Column Name="IDSubArea" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Nombre" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
       <Column Name="NoSubArea" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
@@ -219,7 +196,7 @@
       <Column Name="TelefonoE3" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
       <Column Name="CorreoE3" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Estatus" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="System_Areas_System_Areas_SubAreas1" Member="System_Areas" ThisKey="IDArea" OtherKey="IDArea" Type="System_Areas" IsForeignKey="true" />
+      <Association Name="System_Areas_System_Areas_SubAreas" Member="System_Areas" ThisKey="IDArea" OtherKey="IDArea" Type="System_Areas" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.System_Incidencias" Member="System_Incidencias">
@@ -396,6 +373,7 @@
   <Table Name="dbo.System_Sis_Tienda" Member="System_Sis_Tienda">
     <Type Name="System_Sis_Tienda">
       <Column Name="IDTienda" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NoTienda" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
       <Column Name="Nombre" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="IDSupervision" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
       <Column Name="NombreS" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />

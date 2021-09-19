@@ -30,9 +30,6 @@ namespace SIGES
 		
     #region Definiciones de métodos de extensibilidad
     partial void OnCreated();
-    partial void InsertSystem_Areas_SubAreas(System_Areas_SubAreas instance);
-    partial void UpdateSystem_Areas_SubAreas(System_Areas_SubAreas instance);
-    partial void DeleteSystem_Areas_SubAreas(System_Areas_SubAreas instance);
     partial void InsertAdministration_Evaluacion_Tienda(Administration_Evaluacion_Tienda instance);
     partial void UpdateAdministration_Evaluacion_Tienda(Administration_Evaluacion_Tienda instance);
     partial void DeleteAdministration_Evaluacion_Tienda(Administration_Evaluacion_Tienda instance);
@@ -57,9 +54,9 @@ namespace SIGES
     partial void InsertSystem_Areas_Recursos(System_Areas_Recursos instance);
     partial void UpdateSystem_Areas_Recursos(System_Areas_Recursos instance);
     partial void DeleteSystem_Areas_Recursos(System_Areas_Recursos instance);
-    partial void InsertSystem_Areas_SubAreas1(System_Areas_SubAreas1 instance);
-    partial void UpdateSystem_Areas_SubAreas1(System_Areas_SubAreas1 instance);
-    partial void DeleteSystem_Areas_SubAreas1(System_Areas_SubAreas1 instance);
+    partial void InsertSystem_Areas_SubAreas(System_Areas_SubAreas instance);
+    partial void UpdateSystem_Areas_SubAreas(System_Areas_SubAreas instance);
+    partial void DeleteSystem_Areas_SubAreas(System_Areas_SubAreas instance);
     partial void InsertSystem_Incidencias(System_Incidencias instance);
     partial void UpdateSystem_Incidencias(System_Incidencias instance);
     partial void DeleteSystem_Incidencias(System_Incidencias instance);
@@ -158,14 +155,6 @@ namespace SIGES
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<System_Areas_SubAreas> System_Areas_SubAreas
-		{
-			get
-			{
-				return this.GetTable<System_Areas_SubAreas>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Administration_Evaluacion_Tienda> Administration_Evaluacion_Tienda
 		{
 			get
@@ -230,11 +219,11 @@ namespace SIGES
 			}
 		}
 		
-		public System.Data.Linq.Table<System_Areas_SubAreas1> System_Areas_SubAreas1
+		public System.Data.Linq.Table<System_Areas_SubAreas> System_Areas_SubAreas
 		{
 			get
 			{
-				return this.GetTable<System_Areas_SubAreas1>();
+				return this.GetTable<System_Areas_SubAreas>();
 			}
 		}
 		
@@ -411,493 +400,6 @@ namespace SIGES
 			get
 			{
 				return this.GetTable<Trainig_Cursos_Temas>();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.System_Areas_SubAreas")]
-	public partial class System_Areas_SubAreas : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private long _IDSubArea;
-		
-		private string _Nombre;
-		
-		private int _NoSubArea;
-		
-		private long _IDArea;
-		
-		private System.Nullable<long> _IDUsuario;
-		
-		private string _UNombre;
-		
-		private System.Nullable<long> _Telefono;
-		
-		private string _Correo;
-		
-		private System.Nullable<long> _IDEncargado2;
-		
-		private string _NEncargado2;
-		
-		private System.Nullable<long> _TelefonoE2;
-		
-		private string _CorreoE2;
-		
-		private System.Nullable<long> _IDEncargado3;
-		
-		private string _NEncargado3;
-		
-		private System.Nullable<long> _TelefonoE3;
-		
-		private string _CorreoE3;
-		
-		private int _Estatus;
-		
-		private EntityRef<System_Areas> _System_Areas;
-		
-    #region Definiciones de métodos de extensibilidad
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIDSubAreaChanging(long value);
-    partial void OnIDSubAreaChanged();
-    partial void OnNombreChanging(string value);
-    partial void OnNombreChanged();
-    partial void OnNoSubAreaChanging(int value);
-    partial void OnNoSubAreaChanged();
-    partial void OnIDAreaChanging(long value);
-    partial void OnIDAreaChanged();
-    partial void OnIDUsuarioChanging(System.Nullable<long> value);
-    partial void OnIDUsuarioChanged();
-    partial void OnUNombreChanging(string value);
-    partial void OnUNombreChanged();
-    partial void OnTelefonoChanging(System.Nullable<long> value);
-    partial void OnTelefonoChanged();
-    partial void OnCorreoChanging(string value);
-    partial void OnCorreoChanged();
-    partial void OnIDEncargado2Changing(System.Nullable<long> value);
-    partial void OnIDEncargado2Changed();
-    partial void OnNEncargado2Changing(string value);
-    partial void OnNEncargado2Changed();
-    partial void OnTelefonoE2Changing(System.Nullable<long> value);
-    partial void OnTelefonoE2Changed();
-    partial void OnCorreoE2Changing(string value);
-    partial void OnCorreoE2Changed();
-    partial void OnIDEncargado3Changing(System.Nullable<long> value);
-    partial void OnIDEncargado3Changed();
-    partial void OnNEncargado3Changing(string value);
-    partial void OnNEncargado3Changed();
-    partial void OnTelefonoE3Changing(System.Nullable<long> value);
-    partial void OnTelefonoE3Changed();
-    partial void OnCorreoE3Changing(string value);
-    partial void OnCorreoE3Changed();
-    partial void OnEstatusChanging(int value);
-    partial void OnEstatusChanged();
-    #endregion
-		
-		public System_Areas_SubAreas()
-		{
-			this._System_Areas = default(EntityRef<System_Areas>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDSubArea", DbType="BigInt NOT NULL", IsPrimaryKey=true)]
-		public long IDSubArea
-		{
-			get
-			{
-				return this._IDSubArea;
-			}
-			set
-			{
-				if ((this._IDSubArea != value))
-				{
-					this.OnIDSubAreaChanging(value);
-					this.SendPropertyChanging();
-					this._IDSubArea = value;
-					this.SendPropertyChanged("IDSubArea");
-					this.OnIDSubAreaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
-		public string Nombre
-		{
-			get
-			{
-				return this._Nombre;
-			}
-			set
-			{
-				if ((this._Nombre != value))
-				{
-					this.OnNombreChanging(value);
-					this.SendPropertyChanging();
-					this._Nombre = value;
-					this.SendPropertyChanged("Nombre");
-					this.OnNombreChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NoSubArea", DbType="Int NOT NULL")]
-		public int NoSubArea
-		{
-			get
-			{
-				return this._NoSubArea;
-			}
-			set
-			{
-				if ((this._NoSubArea != value))
-				{
-					this.OnNoSubAreaChanging(value);
-					this.SendPropertyChanging();
-					this._NoSubArea = value;
-					this.SendPropertyChanged("NoSubArea");
-					this.OnNoSubAreaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDArea", DbType="BigInt NOT NULL")]
-		public long IDArea
-		{
-			get
-			{
-				return this._IDArea;
-			}
-			set
-			{
-				if ((this._IDArea != value))
-				{
-					if (this._System_Areas.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnIDAreaChanging(value);
-					this.SendPropertyChanging();
-					this._IDArea = value;
-					this.SendPropertyChanged("IDArea");
-					this.OnIDAreaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDUsuario", DbType="BigInt")]
-		public System.Nullable<long> IDUsuario
-		{
-			get
-			{
-				return this._IDUsuario;
-			}
-			set
-			{
-				if ((this._IDUsuario != value))
-				{
-					this.OnIDUsuarioChanging(value);
-					this.SendPropertyChanging();
-					this._IDUsuario = value;
-					this.SendPropertyChanged("IDUsuario");
-					this.OnIDUsuarioChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UNombre", DbType="VarChar(250)")]
-		public string UNombre
-		{
-			get
-			{
-				return this._UNombre;
-			}
-			set
-			{
-				if ((this._UNombre != value))
-				{
-					this.OnUNombreChanging(value);
-					this.SendPropertyChanging();
-					this._UNombre = value;
-					this.SendPropertyChanged("UNombre");
-					this.OnUNombreChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Telefono", DbType="BigInt")]
-		public System.Nullable<long> Telefono
-		{
-			get
-			{
-				return this._Telefono;
-			}
-			set
-			{
-				if ((this._Telefono != value))
-				{
-					this.OnTelefonoChanging(value);
-					this.SendPropertyChanging();
-					this._Telefono = value;
-					this.SendPropertyChanged("Telefono");
-					this.OnTelefonoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Correo", DbType="VarChar(50)")]
-		public string Correo
-		{
-			get
-			{
-				return this._Correo;
-			}
-			set
-			{
-				if ((this._Correo != value))
-				{
-					this.OnCorreoChanging(value);
-					this.SendPropertyChanging();
-					this._Correo = value;
-					this.SendPropertyChanged("Correo");
-					this.OnCorreoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDEncargado2", DbType="BigInt")]
-		public System.Nullable<long> IDEncargado2
-		{
-			get
-			{
-				return this._IDEncargado2;
-			}
-			set
-			{
-				if ((this._IDEncargado2 != value))
-				{
-					this.OnIDEncargado2Changing(value);
-					this.SendPropertyChanging();
-					this._IDEncargado2 = value;
-					this.SendPropertyChanged("IDEncargado2");
-					this.OnIDEncargado2Changed();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NEncargado2", DbType="VarChar(250)")]
-		public string NEncargado2
-		{
-			get
-			{
-				return this._NEncargado2;
-			}
-			set
-			{
-				if ((this._NEncargado2 != value))
-				{
-					this.OnNEncargado2Changing(value);
-					this.SendPropertyChanging();
-					this._NEncargado2 = value;
-					this.SendPropertyChanged("NEncargado2");
-					this.OnNEncargado2Changed();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TelefonoE2", DbType="BigInt")]
-		public System.Nullable<long> TelefonoE2
-		{
-			get
-			{
-				return this._TelefonoE2;
-			}
-			set
-			{
-				if ((this._TelefonoE2 != value))
-				{
-					this.OnTelefonoE2Changing(value);
-					this.SendPropertyChanging();
-					this._TelefonoE2 = value;
-					this.SendPropertyChanged("TelefonoE2");
-					this.OnTelefonoE2Changed();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CorreoE2", DbType="VarChar(50)")]
-		public string CorreoE2
-		{
-			get
-			{
-				return this._CorreoE2;
-			}
-			set
-			{
-				if ((this._CorreoE2 != value))
-				{
-					this.OnCorreoE2Changing(value);
-					this.SendPropertyChanging();
-					this._CorreoE2 = value;
-					this.SendPropertyChanged("CorreoE2");
-					this.OnCorreoE2Changed();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDEncargado3", DbType="BigInt")]
-		public System.Nullable<long> IDEncargado3
-		{
-			get
-			{
-				return this._IDEncargado3;
-			}
-			set
-			{
-				if ((this._IDEncargado3 != value))
-				{
-					this.OnIDEncargado3Changing(value);
-					this.SendPropertyChanging();
-					this._IDEncargado3 = value;
-					this.SendPropertyChanged("IDEncargado3");
-					this.OnIDEncargado3Changed();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NEncargado3", DbType="VarChar(250)")]
-		public string NEncargado3
-		{
-			get
-			{
-				return this._NEncargado3;
-			}
-			set
-			{
-				if ((this._NEncargado3 != value))
-				{
-					this.OnNEncargado3Changing(value);
-					this.SendPropertyChanging();
-					this._NEncargado3 = value;
-					this.SendPropertyChanged("NEncargado3");
-					this.OnNEncargado3Changed();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TelefonoE3", DbType="BigInt")]
-		public System.Nullable<long> TelefonoE3
-		{
-			get
-			{
-				return this._TelefonoE3;
-			}
-			set
-			{
-				if ((this._TelefonoE3 != value))
-				{
-					this.OnTelefonoE3Changing(value);
-					this.SendPropertyChanging();
-					this._TelefonoE3 = value;
-					this.SendPropertyChanged("TelefonoE3");
-					this.OnTelefonoE3Changed();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CorreoE3", DbType="VarChar(50)")]
-		public string CorreoE3
-		{
-			get
-			{
-				return this._CorreoE3;
-			}
-			set
-			{
-				if ((this._CorreoE3 != value))
-				{
-					this.OnCorreoE3Changing(value);
-					this.SendPropertyChanging();
-					this._CorreoE3 = value;
-					this.SendPropertyChanged("CorreoE3");
-					this.OnCorreoE3Changed();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estatus", DbType="Int NOT NULL")]
-		public int Estatus
-		{
-			get
-			{
-				return this._Estatus;
-			}
-			set
-			{
-				if ((this._Estatus != value))
-				{
-					this.OnEstatusChanging(value);
-					this.SendPropertyChanging();
-					this._Estatus = value;
-					this.SendPropertyChanged("Estatus");
-					this.OnEstatusChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="System_Areas_System_Areas_SubAreas", Storage="_System_Areas", ThisKey="IDArea", OtherKey="IDArea", IsForeignKey=true)]
-		public System_Areas System_Areas
-		{
-			get
-			{
-				return this._System_Areas.Entity;
-			}
-			set
-			{
-				System_Areas previousValue = this._System_Areas.Entity;
-				if (((previousValue != value) 
-							|| (this._System_Areas.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._System_Areas.Entity = null;
-						previousValue.System_Areas_SubAreas.Remove(this);
-					}
-					this._System_Areas.Entity = value;
-					if ((value != null))
-					{
-						value.System_Areas_SubAreas.Add(this);
-						this._IDArea = value.IDArea;
-					}
-					else
-					{
-						this._IDArea = default(long);
-					}
-					this.SendPropertyChanged("System_Areas");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}
@@ -4182,13 +3684,11 @@ namespace SIGES
 		
 		private int _Estatus;
 		
-		private EntitySet<System_Areas_SubAreas> _System_Areas_SubAreas;
-		
 		private EntitySet<Administration_Evaluacion_Tienda> _Administration_Evaluacion_Tienda;
 		
 		private EntitySet<System_Areas_Recursos> _System_Areas_Recursos;
 		
-		private EntitySet<System_Areas_SubAreas1> _System_Areas_SubAreas1;
+		private EntitySet<System_Areas_SubAreas> _System_Areas_SubAreas;
 		
 		private EntitySet<System_Incidencias_MesaAyuda> _System_Incidencias_MesaAyuda;
 		
@@ -4230,10 +3730,9 @@ namespace SIGES
 		
 		public System_Areas()
 		{
-			this._System_Areas_SubAreas = new EntitySet<System_Areas_SubAreas>(new Action<System_Areas_SubAreas>(this.attach_System_Areas_SubAreas), new Action<System_Areas_SubAreas>(this.detach_System_Areas_SubAreas));
 			this._Administration_Evaluacion_Tienda = new EntitySet<Administration_Evaluacion_Tienda>(new Action<Administration_Evaluacion_Tienda>(this.attach_Administration_Evaluacion_Tienda), new Action<Administration_Evaluacion_Tienda>(this.detach_Administration_Evaluacion_Tienda));
 			this._System_Areas_Recursos = new EntitySet<System_Areas_Recursos>(new Action<System_Areas_Recursos>(this.attach_System_Areas_Recursos), new Action<System_Areas_Recursos>(this.detach_System_Areas_Recursos));
-			this._System_Areas_SubAreas1 = new EntitySet<System_Areas_SubAreas1>(new Action<System_Areas_SubAreas1>(this.attach_System_Areas_SubAreas1), new Action<System_Areas_SubAreas1>(this.detach_System_Areas_SubAreas1));
+			this._System_Areas_SubAreas = new EntitySet<System_Areas_SubAreas>(new Action<System_Areas_SubAreas>(this.attach_System_Areas_SubAreas), new Action<System_Areas_SubAreas>(this.detach_System_Areas_SubAreas));
 			this._System_Incidencias_MesaAyuda = new EntitySet<System_Incidencias_MesaAyuda>(new Action<System_Incidencias_MesaAyuda>(this.attach_System_Incidencias_MesaAyuda), new Action<System_Incidencias_MesaAyuda>(this.detach_System_Incidencias_MesaAyuda));
 			this._System_Incidencias_MesaAyuda1 = new EntitySet<System_Incidencias_MesaAyuda>(new Action<System_Incidencias_MesaAyuda>(this.attach_System_Incidencias_MesaAyuda1), new Action<System_Incidencias_MesaAyuda>(this.detach_System_Incidencias_MesaAyuda1));
 			this._System_Incidencias_User_RInsidencias = new EntitySet<System_Incidencias_User_RInsidencias>(new Action<System_Incidencias_User_RInsidencias>(this.attach_System_Incidencias_User_RInsidencias), new Action<System_Incidencias_User_RInsidencias>(this.detach_System_Incidencias_User_RInsidencias));
@@ -4409,19 +3908,6 @@ namespace SIGES
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="System_Areas_System_Areas_SubAreas", Storage="_System_Areas_SubAreas", ThisKey="IDArea", OtherKey="IDArea")]
-		public EntitySet<System_Areas_SubAreas> System_Areas_SubAreas
-		{
-			get
-			{
-				return this._System_Areas_SubAreas;
-			}
-			set
-			{
-				this._System_Areas_SubAreas.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="System_Areas_Administration_Evaluacion_Tienda", Storage="_Administration_Evaluacion_Tienda", ThisKey="IDArea", OtherKey="IDArea")]
 		public EntitySet<Administration_Evaluacion_Tienda> Administration_Evaluacion_Tienda
 		{
@@ -4448,16 +3934,16 @@ namespace SIGES
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="System_Areas_System_Areas_SubAreas1", Storage="_System_Areas_SubAreas1", ThisKey="IDArea", OtherKey="IDArea")]
-		public EntitySet<System_Areas_SubAreas1> System_Areas_SubAreas1
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="System_Areas_System_Areas_SubAreas", Storage="_System_Areas_SubAreas", ThisKey="IDArea", OtherKey="IDArea")]
+		public EntitySet<System_Areas_SubAreas> System_Areas_SubAreas
 		{
 			get
 			{
-				return this._System_Areas_SubAreas1;
+				return this._System_Areas_SubAreas;
 			}
 			set
 			{
-				this._System_Areas_SubAreas1.Assign(value);
+				this._System_Areas_SubAreas.Assign(value);
 			}
 		}
 		
@@ -4606,18 +4092,6 @@ namespace SIGES
 			}
 		}
 		
-		private void attach_System_Areas_SubAreas(System_Areas_SubAreas entity)
-		{
-			this.SendPropertyChanging();
-			entity.System_Areas = this;
-		}
-		
-		private void detach_System_Areas_SubAreas(System_Areas_SubAreas entity)
-		{
-			this.SendPropertyChanging();
-			entity.System_Areas = null;
-		}
-		
 		private void attach_Administration_Evaluacion_Tienda(Administration_Evaluacion_Tienda entity)
 		{
 			this.SendPropertyChanging();
@@ -4642,13 +4116,13 @@ namespace SIGES
 			entity.System_Areas = null;
 		}
 		
-		private void attach_System_Areas_SubAreas1(System_Areas_SubAreas1 entity)
+		private void attach_System_Areas_SubAreas(System_Areas_SubAreas entity)
 		{
 			this.SendPropertyChanging();
 			entity.System_Areas = this;
 		}
 		
-		private void detach_System_Areas_SubAreas1(System_Areas_SubAreas1 entity)
+		private void detach_System_Areas_SubAreas(System_Areas_SubAreas entity)
 		{
 			this.SendPropertyChanging();
 			entity.System_Areas = null;
@@ -4987,7 +4461,7 @@ namespace SIGES
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.System_Areas_SubAreas")]
-	public partial class System_Areas_SubAreas1 : INotifyPropertyChanging, INotifyPropertyChanged
+	public partial class System_Areas_SubAreas : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -5068,7 +4542,7 @@ namespace SIGES
     partial void OnEstatusChanged();
     #endregion
 		
-		public System_Areas_SubAreas1()
+		public System_Areas_SubAreas()
 		{
 			this._System_Areas = default(EntityRef<System_Areas>);
 			OnCreated();
@@ -5418,7 +4892,7 @@ namespace SIGES
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="System_Areas_System_Areas_SubAreas1", Storage="_System_Areas", ThisKey="IDArea", OtherKey="IDArea", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="System_Areas_System_Areas_SubAreas", Storage="_System_Areas", ThisKey="IDArea", OtherKey="IDArea", IsForeignKey=true)]
 		public System_Areas System_Areas
 		{
 			get
@@ -5435,12 +4909,12 @@ namespace SIGES
 					if ((previousValue != null))
 					{
 						this._System_Areas.Entity = null;
-						previousValue.System_Areas_SubAreas1.Remove(this);
+						previousValue.System_Areas_SubAreas.Remove(this);
 					}
 					this._System_Areas.Entity = value;
 					if ((value != null))
 					{
-						value.System_Areas_SubAreas1.Add(this);
+						value.System_Areas_SubAreas.Add(this);
 						this._IDArea = value.IDArea;
 					}
 					else
@@ -9165,6 +8639,8 @@ namespace SIGES
 		
 		private long _IDTienda;
 		
+		private long _NoTienda;
+		
 		private string _Nombre;
 		
 		private long _IDSupervision;
@@ -9259,6 +8735,8 @@ namespace SIGES
     partial void OnCreated();
     partial void OnIDTiendaChanging(long value);
     partial void OnIDTiendaChanged();
+    partial void OnNoTiendaChanging(long value);
+    partial void OnNoTiendaChanged();
     partial void OnNombreChanging(string value);
     partial void OnNombreChanged();
     partial void OnIDSupervisionChanging(long value);
@@ -9365,6 +8843,26 @@ namespace SIGES
 					this._IDTienda = value;
 					this.SendPropertyChanged("IDTienda");
 					this.OnIDTiendaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NoTienda", DbType="BigInt NOT NULL")]
+		public long NoTienda
+		{
+			get
+			{
+				return this._NoTienda;
+			}
+			set
+			{
+				if ((this._NoTienda != value))
+				{
+					this.OnNoTiendaChanging(value);
+					this.SendPropertyChanging();
+					this._NoTienda = value;
+					this.SendPropertyChanged("NoTienda");
+					this.OnNoTiendaChanged();
 				}
 			}
 		}
