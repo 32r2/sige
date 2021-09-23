@@ -95,7 +95,8 @@ function AcordionTiendas(DatosTiendas, Control) {
         CodigoHTMLAreas += "<span >" + DatosTiendas[i].Nombre + "</span>";
         CodigoHTMLAreas += "</a>";
         CodigoHTMLAreas += "</h5>";
-        CodigoHTMLAreas += "<div id='collapse" + DatosTiendas[i].ID + "' class='collapse' aria-labelledby='headingOne' data-parent='#accordion' style=''>";
+        //en el data-parent se modifica para que se de un solo clic y se oculten los demás
+        CodigoHTMLAreas += "<div id='collapse" + DatosTiendas[i].ID + "' class='collapse' aria-labelledby='headingOne' data-parent='#AcordeonSucursales' style=''>";
         CodigoHTMLAreas += "<div class='card-body'>";
 
         CodigoHTMLAreas += "<div class='row'>";
@@ -341,16 +342,12 @@ function llenarComboPersonal(Datos, control) {
 }
 //abrir PopUp
 function AbrirModalTienda(id) {
-    var controlesObligatorio = document.getElementsByClassName("Datostep-1");
+    var controlesObligatorio = document.getElementsByClassName("border-danger");
     var ncontroles = controlesObligatorio.length;
     for (var i = 0; i < ncontroles; i++) {
-        controlesObligatorio[i].parentNode.classList.remove("border-danger");
+        controlesObligatorio[i].classList.remove("border-danger");
     }
-    var controlesObligatorio = document.getElementsByClassName("Datostep-2");
-    var ncontroles = controlesObligatorio.length;
-    for (var i = 0; i < ncontroles; i++) {
-        controlesObligatorio[i].parentNode.classList.remove("border-danger");
-    }
+    
     if (id == 0) {
         Limpiar();
         LimpiarSelect();

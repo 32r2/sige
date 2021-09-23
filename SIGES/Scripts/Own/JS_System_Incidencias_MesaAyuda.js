@@ -1,9 +1,62 @@
 ﻿Cargar();
+BloquearCTRL();
+const f = new Date();
 function Cargar() {
     $.get("/Cardinal/BDAreas", function (datos) {
         CrearBtnAreas(["bg-cyan", "bg-success", "bg-warning", "bg-danger", "bg-info"], datos);
-    });
+    });    
+    $.get("/Cardinal/BDAreas", function (DatosAreas) {
+        if (DatosAreas.length !== 0) {
+            llenarCombo(DatosAreas, document.getElementById("cmbArea"), true);
+        }
+        else {
+            alert("No hay datos en la tabla Áreas.");
+        }
+    });    
+    $.get("/Cardinal/BDTiendas", function (DatosTiendas) {
+        if (DatosTiendas.length !== 0) {
+            llenarCombo(DatosTiendas, document.getElementById("cmbIDTienda"), true);
+        }
+        else {
+            alert("No hay datos en la tabla tiendas.");
+        }
+    }); 
 }
+function BloquearCTRL() {
+    let CTRL = document.getElementsByClassName("bloquear");
+    for (var i = 0; i < CTRL.length; i++) {
+        $("#" + CTRL[i].id).attr('disabled', 'disabled');
+    }
+}
+function DESBloquearCTRL() {
+    let CTRL = document.getElementsByClassName("desbloquear");
+    for (var i = 0; i < CTRL.length; i++) {
+        $("#" + CTRL[i].id).attr('enable', 'enable');
+    }
+}
+//event Change index Areas
+var IDA = document.getElementById("cmbArea");
+IDA.addEventListener("change", function () {
+    $.get("/Cardinal/BDSubAreas/?IDA=" + IDA.value, function (DatosArea) {
+        llenarCombo(DatosArea, document.getElementById("cmbSubArea"));
+    });
+
+    $.get("/Incidencias/BDInsidenciasArea/?IDA=" + IDA.value, function (DatosIncidenciaArea) {
+        llenarCombo(DatosIncidenciaArea, document.getElementById("cmbIDInsidencia"));
+    });
+});
+
+//funcion general para llenar los select
+function llenarCombo(DAtos, control) {
+    var contenido = "";
+    contenido += "<option value='0'>--Seleccione--</option>";    
+    for (var i = 0; i < DAtos.length; i++) {
+        contenido += "<option value='" + DAtos[i].ID + "'>" + DAtos[i].Nombre + "</option>";
+    }
+    control.innerHTML = contenido;
+}
+
+
 //Crea los botones de las áreas
 function CrearBtnAreas(BtnAreas, DatosAreas) {
     var NC = 0;
@@ -13,13 +66,13 @@ function CrearBtnAreas(BtnAreas, DatosAreas) {
         if (NC > 4) {
             NC = 0;
         }
-        CodHtml += "<div class='col-md-6 col-lg-2 col-xlg-3' onclick='BuscarIn(" + DatosAreas[j].ID + ")'>";
-        CodHtml += "<div class='card card-hover'>";
-        CodHtml += "<div class='box " + BtnAreas[NC] + " text-center'>";
+        CodHtml += "<div class='col-md-6 col-lg-2 col-xlg-3' onclick='BuscarIn(" + DatosAreas[j].ID + ")' >";
+        CodHtml += "<div class='card card-hover' style ='height:79px;'>" ;
+        CodHtml += "<div class='box " + BtnAreas[NC] + " text-center' style ='height:79px; '>";
         CodHtml += "<h1 class='font-light text-white'>";
         //CodHtml += "<i class='"++"'></i>";
         CodHtml += "</h1>";
-        CodHtml += "<h6  style='color:white; font-size:18px; font-weight: bold;'>" + DatosAreas[j].Nombre + "</h6>";
+        CodHtml += "<h6  style='color:white; font-size:18px; font-weight:bold;'>" + DatosAreas[j].Nombre + "</h6>";
         CodHtml += "</div>";
         CodHtml += "</div>";
         CodHtml += "</div>";
@@ -136,7 +189,7 @@ function MostrarProcedimientos(IDIncidencia) {
                 });
             }
             if (Insidencias[0].Reporte == 2) {
-                CodeHTML += "<button onclick='' type='button' class='btn btn-danger' data-toggle='modal' data-target='#ModalReporteIn'>Iniciar reporte</button>";
+                CodeHTML += "<button onclick='AModalIncidencia(" + IDIncidencia + ")' type='button' class='btn btn-danger' data-toggle='modal' data-target='#ModalReporteIn'>Iniciar reporte</button>";
             }
         }
         else {
@@ -144,4 +197,71 @@ function MostrarProcedimientos(IDIncidencia) {
         }
         document.getElementById("Soluciones" + IDIncidencia).innerHTML = CodeHTML;
     });
+}
+
+function AModalIncidencia(IDIncidencia) {
+    DESBloquearCTRL();
+
+    var FEcha = (f.getDate() + "/" + (f.getMonth() + 1) + "/" + f.getFullYear());
+    document.getElementById("TxtFecha").value = FEcha;
+    $.get("/Usuarios/UsuariosXsitio", function (PersonalTienda) {
+        if (PersonalTienda.lenght != 0) {
+            llenarComboPersonal(PersonalTienda, document.getElementById("cmbIDUsuario"));
+            $.get("/Usuarios/UsuarioINF", function (Usuario) {
+                document.getElementById("cmbIDUsuario").value = Usuario[0].ID;
+                document.getElementById("cmbIDTienda").value = Usuario[0].Sitio;
+                $.get("/Incidencias/ReporteInsidenciasXTienda/?IDTienda=" + Usuario[0].Sitio, function (TiendaIns) {
+                    var NoIns = TiendaIns.length + 1
+                    document.getElementById("TxtNoInsidencia").value = TiendaIns.length + 1;
+                });
+            });
+        }
+        else {
+            alert("No hay datos que mostrar");
+        }
+    });
+
+    if (IDIncidencia > 0) {
+        $.get("/Incidencias/BDInsidencia/?ID=" + IDIncidencia, function (DatosIncidencia) {
+            document.getElementById("cmbArea").value = DatosIncidencia[0].IDArea;
+            $.get("/Cardinal/BDSubAreas/?IDA=" + IDA.value, function (DatosSArea) {
+                llenarCombo(DatosSArea, document.getElementById("cmbSubArea"));
+                document.getElementById("cmbSubArea").value = DatosIncidencia[0].IDSubArea;
+            });
+            $.get("/Incidencias/BDInsidenciasArea/?IDA=" + DatosIncidencia[0].IDArea, function (DatosInArea) {
+                llenarCombo(DatosInArea, document.getElementById("cmbIDInsidencia"));                
+                document.getElementById("cmbIDInsidencia").value = IDIncidencia;
+            });
+            
+        });
+        document.getElementById("cmbIDTienda").classList.add("bloquear");
+        document.getElementById("cmbArea").classList.add("bloquear");
+        document.getElementById("cmbSubArea").classList.add("bloquear");
+        document.getElementById("cmbIDInsidencia").classList.add("bloquear");
+        BloquearCTRL()
+
+    }
+}
+//imagenes
+var btnFoto = document.getElementById("BtnFoto");
+btnFoto.onchange = function (e) {
+    var file = document.getElementById("BtnFoto").files[0];
+    var reader = new FileReader();
+    if (reader != null) {
+        reader.onloadend = function () {
+            var img = document.getElementById("PBFoto");
+            img.src = reader.result;
+        }
+    }
+    reader.readAsDataURL(file);
+}
+
+//combo personal por tienda
+function llenarComboPersonal(Datos, control) {
+    var contenido = "";
+    contenido += "<option value='0'>--Seleccione--</option>";
+    for (var i = 0; i < Datos.length; i++) {
+        contenido += "<option value='" + Datos[i].ID + "'>" + Datos[i].Nombre + " " + Datos[i].APaterno + " " + Datos[i].AMaterno + "</option>";
+    }
+    control.innerHTML = contenido;
 }

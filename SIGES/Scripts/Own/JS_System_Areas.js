@@ -195,7 +195,7 @@ function llenaSub(DatosSubareas, control) {
         CodHtml += "<span >" + DatosSubareas[i].Nombre + "</span>";
         CodHtml += "</a>";
         CodHtml += "</h5>";
-        CodHtml += "<div id='collapse" + DatosSubareas[i].ID + "' class='collapse' aria-labelledby='headingOne' data-parent='#acordsubareas' style=''>";
+        CodHtml += "<div id='collapse" + DatosSubareas[i].ID + "' class='collapse' aria-labelledby='headingOne' data-parent='#" + control.id + "' style=''>";
         CodHtml += "<div class='card-body'>";
         CodHtml += "<div class='row'>";
         CodHtml += "<div class='col-sm-12 col-md-5 col-xs-5'><strong>Encargado 1: </strong>" + DatosSubareas[i].UNombre + "</div>";

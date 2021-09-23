@@ -90,8 +90,8 @@ namespace SIGES.Controllers
         public int GuardarSucursal(System_Sis_Tienda Tienda)
         {
             int Afectados = 0;
-            //try
-            //{
+            try
+            {
                 long idTienda = Tienda.IDTienda;
                 if (idTienda.Equals(0))
                 {
@@ -109,9 +109,34 @@ namespace SIGES.Controllers
                 }
                 else
                 {
-                    int nveces = SIGES.System_Sis_Tienda.Where(p => p.NoTienda.Equals(Tienda.NoTienda) && p.Nombre.Equals(Tienda.Nombre) && p.IDSupervision.Equals(Tienda.IDSupervision)
-                        && p.IDSupervisor.Equals(Tienda.IDSupervisor) && p.IDLider.Equals(Tienda.IDLider) && p.IDEstado.Equals(Tienda.IDEstado)
-                        && p.IDMunicipio.Equals(Tienda.IDMunicipio) && p.IDLocalidad.Equals(Tienda.IDLocalidad) && p.Telefono.Equals(Tienda.Telefono)).Count();
+                    int nveces = SIGES.System_Sis_Tienda.Where(
+                        p => p.NoTienda.Equals(Tienda.NoTienda) 
+                        && p.Nombre.Equals(Tienda.Nombre) 
+                        && p.IDSupervision.Equals(Tienda.IDSupervision)
+                        && p.IDSupervisor.Equals(Tienda.IDSupervisor) 
+                        && p.IDLider.Equals(Tienda.IDLider) 
+                        && p.IDEncargado1.Equals(Tienda.IDEncargado1) 
+                        && p.IDEncargado2.Equals(Tienda.IDEncargado2) 
+                        && p.IDEncargado3.Equals(Tienda.IDEncargado3) 
+                        && p.IDAuxsiliar1.Equals(Tienda.IDAuxsiliar1)
+                        && p.IDAuxsiliar2.Equals(Tienda.IDAuxsiliar2) 
+                        && p.IDAuxsiliar3.Equals(Tienda.IDAuxsiliar3)
+                        && p.IDEstado.Equals(Tienda.IDEstado) 
+                        && p.IDMunicipio.Equals(Tienda.IDMunicipio) 
+                        && p.IDLocalidad.Equals(Tienda.IDLocalidad) 
+                        && p.Calle.Equals(Tienda.Calle)
+                        && p.CP.Equals(Tienda.CP) 
+                        && p.Telefono.Equals(Tienda.Telefono) 
+                        && p.Latitud.Equals(Tienda.Latitud) 
+                        && p.Longitud.Equals(Tienda.Longitud) 
+                        && p.HApertura.Equals(Tienda.HApertura) 
+                        && p.HCierre.Equals(Tienda.HCierre)
+                        && p.IUSACodigo.Equals(Tienda.IUSACodigo) 
+                        && p.IUSAUsuario.Equals(Tienda.IUSAUsuario) 
+                        && p.IUSAContraseña.Equals(Tienda.IUSAContraseña)
+                        && p.PCPAYUsuario.Equals(Tienda.PCPAYUsuario)
+                        && p.PCPAYContraseña.Equals(Tienda.PCPAYContraseña)
+                        && p.NoServicioLuz.Equals(Tienda.NoServicioLuz)).Count();
                     if (nveces == 0)
                     {
                         System_Sis_Tienda obj = SIGES.System_Sis_Tienda.Where(p => p.IDTienda.Equals(idTienda)).First();
@@ -161,11 +186,11 @@ namespace SIGES.Controllers
                         Afectados = -1;
                     }
                 }
-            //}
-            //catch (Exception ex)
-            //{
-            //    Afectados = 0;
-            //}
+            }
+            catch (Exception ex)
+            {
+                Afectados = 0;
+            }
             return Afectados;
         }
         //Eliminar Sucursa

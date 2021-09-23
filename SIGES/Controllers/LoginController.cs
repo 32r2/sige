@@ -49,6 +49,7 @@ namespace SIGES.Controllers
                         }).First();
 
                         Session["Usuario"] = DatosUsuario.IDUsuario;
+                        Accesos.ID = DatosUsuario.IDUsuario;
                         Accesos.CURP = DatosUsuario.CURP;
                         Accesos.Nombre = DatosUsuario.Nombre;
                         Accesos.APaterno = DatosUsuario.APaterno;
@@ -58,6 +59,7 @@ namespace SIGES.Controllers
                         Accesos.NoSS = DatosUsuario.NoSS;
                         Accesos.Foto = "data:image/png;base64," + Convert.ToBase64String(DatosUsuario.Foto.ToArray());
                         Accesos.NArea = DatosUsuario.NArea;
+                        Accesos.Sitio = DatosUsuario.Sitio;
                         if (DatosUsuario.NSArea != "--Seleccione--")
                         {
                             Accesos.NSArea = DatosUsuario.NSArea;

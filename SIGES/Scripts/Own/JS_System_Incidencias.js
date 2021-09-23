@@ -21,8 +21,10 @@ function Inicializar() {
         if (DatosAreas.length > 0) {
             llena(DatosAreas, document.getElementById("AcordeonArea"));
             llenarCombo(DatosAreas, document.getElementById("cmbArea"));
-        } else { alert("No hay información en la tabla áreas") }
-
+        }
+        else {
+            alert("No hay información en la tabla áreas")
+        }
     });
 }
 //Inserta las Áreas

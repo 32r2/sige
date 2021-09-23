@@ -1,0 +1,106 @@
+﻿
+@{
+    ViewBag.Title = "Mesa de ayuda";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Mesa de ayuda</h2>
+<button onclick="AModalIncidencia(0)" type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalReporteIn"><samp class="fas fa-plus-square"></samp> Agregar</button>
+
+<div class="row ">
+    <div class="col-md-4 col-sm-4 col-xs-4 justify-content-end"></div>
+    <div class="col-md-8 col-sm-8 col-xs-8 float-right">
+        <form class="form-inline float-right">
+            <input id="TxtBuscar" class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Buscar" onkeypress="ValidarEntrar(event)">
+            <button id="BtnBuscar" onclick="Buscar()" type="button" class="btn btn-primary my-2 my-sm-0"><samp class="fas fa-search "></samp> Buscar</button>
+        </form>
+    </div>
+</div>
+<br />
+<div class="row " id="BotonesAyuda"></div>
+<div class="accordion" id="accordion"></div>
+<!-- PopUp -->
+<div id="ModalReporteIn" class="modal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Reporte de incidencia</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-md-7 col-sm-12 col-xs-12">
+                            <span class="help-block text-muted small-font">ID Reporte de incidencia</span>
+                            <input type="number" id="TxtIDRInsidencia" class="form-control bloquear limpiar" placeholder="###" />
+                        </div>
+                        <div class="col-md-5 col-sm-12 col-xs-12">
+                            <span class="help-block text-muted small-font">Fecha</span>
+                            <input type="text" id="TxtFecha" class="form-control bloquear limpiar" placeholder="##/##/####" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-7 col-sm-8 col-xs-8">
+                            <span class="help-block text-muted small-font">Área</span>
+                            <br />
+                            <select id="cmbArea" style="width: 100%" class="btn btn-success dropdown-toggle desbloquear limpiar obligatorio"></select>
+                        </div>
+                        <div class="col-md-5 col-sm-4 col-xs-4">
+                            <span class="help-block text-muted small-font">No. Incidencia Tienda</span>
+                            <input type="number" id="TxtNoInsidencia" class="form-control bloquear limpiar" placeholder="###" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8 col-sm-8 col-xs-8">
+                            <span class="help-block text-muted small-font">Subárea</span>
+                            <br />
+                            <select id="cmbSubArea" style="width: 100%" class="btn btn-warning desbloquear dropdown-toggle limpiar"></select>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-4">
+                            <span class="help-block text-muted small-font">Plus</span>
+                            <br />
+                            <select id="cmbIDTienda" style="width: 100%" class="btn btn-primary bloquear dropdown-toggle limpiar"></select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <span class="help-block text-muted small-font">Incidencia</span>
+                            <br />
+                            <select id="cmbIDInsidencia" style="width: 100%" class="btn btn-danger desbloquear dropdown-toggle limpiar obligatorio"></select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <span class="help-block text-muted small-font">Usuario</span>
+                            <br />
+                            <select id="cmbIDUsuario" style="width: 100%" class="btn btn-primary bloquear dropdown-toggle limpiar obligatorio"></select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12 align-items-center">
+                            <span class="help-block text-muted small-font">Foto</span>
+                            <br />
+                            <img id="PBFoto" src="" width="250" height="150" alt="" />
+                            <br />
+                            <input id="BtnFoto" type="file" class="form-control form-control-sm limpiar" value="SUBIR" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <span class="help-block text-muted small-font">Observaciones</span>
+                            <br />
+                            <textarea type="text" id="TxtObservaciones" class="form-control email limpiar" rows="3" wrap="soft" placeholder="Inserte una breve descripción de la incidencia."></textarea>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="modal-footer">
+                        <button id="btnGuardar" type="button" class="btn btn-success" onclick="Guardar()">GUARDAR</button>
+                        <button id="btnCancelar" type="button" class="btn btn-danger" data-dismiss="modal">CANCELAR</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jquery.min.js"></script>
+<script src="~/Scripts/Own/JS_System_Incidencias_MesaAyuda.js"></script>

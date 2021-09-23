@@ -52,8 +52,7 @@ function AModalPaginas(ID) {
 function GuardarPagina() {
     if (ObligatoriosPagina() == true) {
         if (confirm("¿Desea aplicar los cambios?") == 1) {
-            var IDPagina = document.getElementById("TxtIDPagina").value;
-            var Abreviatura = document.getElementById("TxtAbreviatura").value;
+            var IDPagina = document.getElementById("TxtIDPagina").value;            
             var Mensaje = document.getElementById("TxtMensaje").value;
             var Accion = document.getElementById("TxtAccion").value;
             var Controlador = document.getElementById("TxtControlador").value;

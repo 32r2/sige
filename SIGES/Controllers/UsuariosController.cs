@@ -1,4 +1,5 @@
 ﻿using SIGES.Filtro;
+using SIGES.Models;
 using System;
 using System.IO;
 using System.Linq;
@@ -63,6 +64,46 @@ namespace SIGES.Controllers
                     p.Telefono
                 });
             return Json(InfUsuario, JsonRequestBehavior.AllowGet);
+        }
+        //USUARIO
+        public JsonResult UsuarioINF()
+        {
+            var InfUsuario = SIGES.User_Usuarios.Where(p => p.IDUsuario.Equals(Accesos.ID))
+                .Select(p => new
+                {
+                    p.IDUsuario,
+                    p.CURP,
+                    p.Nombre,
+                    p.APaterno,
+                    p.AMaterno,                    
+                    p.IDArea,
+                    p.IDSubArea,
+                    FOTOMOSTRAR = Convert.ToBase64String(p.Foto.ToArray()),
+                    FechaNaci = ((DateTime)p.FNacimiento).ToShortDateString(),
+                    p.RFC,
+                    p.NoSS,
+                    p.IDPerfil,
+                    p.Asignacion,
+                    p.Sitio,
+                    p.IDEstado,
+                    p.IDMunicipio,
+                    p.IDLocalidad,
+                    p.Correo,
+                    p.Telefono
+                });
+            return Json(InfUsuario, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult UsuariosXsitio()
+        { 
+            var UsuariosSitio = SIGES.User_Usuarios.Where(p => p.Sitio.Equals(Accesos.Sitio))
+                .Select(p => new
+                {
+                    p.IDUsuario,                    
+                    p.Nombre,
+                    p.APaterno,
+                    p.AMaterno                    
+                });
+            return Json(UsuariosSitio, JsonRequestBehavior.AllowGet);
         }
         public JsonResult DUsuario(string Usuario, string contrasena)
         {

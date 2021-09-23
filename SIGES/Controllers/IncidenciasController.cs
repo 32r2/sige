@@ -252,6 +252,30 @@ namespace SIGES.Controllers
                     p.Imagen
                 }).OrderBy(p => p.NoPaso);//.OrderByDescending(p=>p.NoPaso);
             return Json(datos, JsonRequestBehavior.AllowGet);
+        }        
+        public JsonResult ReporteInsidenciasXTienda(long IDTienda) {
+            var InsidenciasTienda = SIGES.System_Incidencias_User_RInsidencias.Where(p => p.IDTienda.Equals(IDTienda))
+                .Select(p => new {
+                    ID=p.IDRInsidencia,
+                    p.IDArea,
+                    p.IDSubArea,
+                    p.IDInsidencia,
+                    p.IDUsuario,
+                    p.UNombre,
+                    p.IDTienda,
+                    p.NoInsidencia,
+                    p.Fecha,
+                    p.Observaciones,
+                    p.Foto
+                });
+            return Json(InsidenciasTienda, JsonRequestBehavior.AllowGet);
+        }
+        //*********************************************************************************************************************************************************
+        //*********************************************************************************************************************************************************
+        //*********************************************************************************************************************************************************
+        public ActionResult Reportes()
+        {
+            return View();
         }
     }
 }

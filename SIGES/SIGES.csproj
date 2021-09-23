@@ -376,6 +376,7 @@
     <Content Include="Views\Supervision\Supervision.cshtml" />
     <Content Include="Views\Evaluacion\Evaluacion.cshtml" />
     <Content Include="Views\Incidencias\Mayuda.cshtml" />
+    <Content Include="Views\Incidencias\Reportes.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

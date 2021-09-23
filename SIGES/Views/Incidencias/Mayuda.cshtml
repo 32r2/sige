@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <h2>Mesa de ayuda</h2>
-<button onclick="abrirModal(0)" type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalReporteIn"><samp class="fas fa-plus-square"></samp> Agregar</button>
+<button onclick="AModalIncidencia(0)" type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalReporteIn"><samp class="fas fa-plus-square"></samp> Agregar</button>
 
 <div class="row ">
     <div class="col-md-4 col-sm-4 col-xs-4 justify-content-end"></div>
@@ -30,50 +30,50 @@
             <div class="modal-body">
                 <div class="panel-heading">
                     <div class="row">
-                        <div class="col-md-7 col-sm-7 col-xs-7">
+                        <div class="col-md-7 col-sm-12 col-xs-12">
                             <span class="help-block text-muted small-font">ID Reporte de incidencia</span>
-                            <input type="number" id="TxtIDRInsidencia" class="form-control limpiar" placeholder="###" />
+                            <input type="number" id="TxtIDRInsidencia" class="form-control bloquear limpiar" placeholder="###" />
                         </div>
-                        <div class="col-md-5 col-sm-5 col-xs-5">
+                        <div class="col-md-5 col-sm-12 col-xs-12">
                             <span class="help-block text-muted small-font">Fecha</span>
-                            <input type="date" id="TxtIDRInsidencia" class="form-control limpiar" placeholder="##/##/####" />
+                            <input type="text" id="TxtFecha" class="form-control bloquear limpiar" placeholder="##/##/####" />
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-8 col-sm-8 col-xs-8">
+                        <div class="col-md-7 col-sm-8 col-xs-8">
                             <span class="help-block text-muted small-font">Área</span>
                             <br />
-                            <select id="cmbArea" style="width: 100%" class="btn btn-success dropdown-toggle limpiar obligatorio"></select>
+                            <select id="cmbArea" style="width: 100%" class="btn btn-success dropdown-toggle desbloquear limpiar obligatorio"></select>
                         </div>
-                        <div class="col-md-4 col-sm-4 col-xs-4">
-                            <span class="help-block text-muted small-font">No. Incidencia</span>
-                            <input type="number" id="TxtNoInsidencia" class="form-control limpiar" placeholder="###" />
+                        <div class="col-md-5 col-sm-4 col-xs-4">
+                            <span class="help-block text-muted small-font">No. Incidencia Tienda</span>
+                            <input type="number" id="TxtNoInsidencia" class="form-control bloquear limpiar" placeholder="###" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-8 col-sm-8 col-xs-8">
                             <span class="help-block text-muted small-font">Subárea</span>
                             <br />
-                            <select id="cmbSubArea" style="width: 100%" class="btn btn-warning dropdown-toggle limpiar"></select>
+                            <select id="cmbSubArea" style="width: 100%" class="btn btn-warning desbloquear dropdown-toggle limpiar"></select>
                         </div>
                         <div class="col-md-4 col-sm-4 col-xs-4">
                             <span class="help-block text-muted small-font">Plus</span>
                             <br />
-                            <select id="cmbIDTienda" style="width: 100%" class="btn btn-primary dropdown-toggle limpiar"></select>
+                            <select id="cmbIDTienda" style="width: 100%" class="btn btn-primary bloquear dropdown-toggle limpiar"></select>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <span class="help-block text-muted small-font">Incidencia</span>
                             <br />
-                            <select id="cmbIDInsidencia" style="width: 100%" class="btn btn-danger dropdown-toggle limpiar obligatorio"></select>
+                            <select id="cmbIDInsidencia" style="width: 100%" class="btn btn-danger desbloquear dropdown-toggle limpiar obligatorio"></select>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <span class="help-block text-muted small-font">Usuario</span>
                             <br />
-                            <select id="cmbIDInsidencia" style="width: 100%" class="btn btn-primary dropdown-toggle limpiar obligatorio"></select>
+                            <select id="cmbIDUsuario" style="width: 100%" class="btn btn-primary bloquear dropdown-toggle limpiar obligatorio"></select>
                         </div>
                     </div>
                     <div class="row">
@@ -89,7 +89,7 @@
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <span class="help-block text-muted small-font">Observaciones</span>
                             <br />
-                            <textarea type="text" id="TxtDescripcion" class="form-control email limpiar" rows="6" cols="100%" wrap="soft" placeholder="Inserte una breve descripción de la incidencia."></textarea>
+                            <textarea type="text" id="TxtObservaciones" class="form-control email limpiar" rows="3" wrap="soft" placeholder="Inserte una breve descripción de la incidencia."></textarea>
                         </div>
                     </div>
                     <br />

@@ -32,7 +32,7 @@ function Consulta() {
     });
     $.get("/Cardinal/BDTiendas", function (DatosTiendas) {
         if (DatosTiendas.length !== 0) {
-            llenarCombo(DatosTiendas, document.getElementById("cmbIDTienda"), true);
+            llenarCombo(DatosTiendas, document.getElementById("cmbSitio"), true);
         }
         else {
             alert("No hay datos en la tabla tiendas.");
