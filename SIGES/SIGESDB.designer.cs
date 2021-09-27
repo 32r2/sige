@@ -126,7 +126,7 @@ namespace SIGES
     #endregion
 		
 		public SIGESDBDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["SIGESConnectionString1"].ConnectionString, mappingSource)
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["SIGESConnectionString"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}

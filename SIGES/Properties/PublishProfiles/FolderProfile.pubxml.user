@@ -119,49 +119,49 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>11/28/2018 13:04:36</publishTime>
     </File>
     <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
-      <publishTime>09/05/2018 17:10:50</publishTime>
+      <publishTime>08/07/2020 21:52:58</publishTime>
     </File>
     <File Include="bin/Microsoft.Web.Infrastructure.dll">
       <publishTime>07/25/2012 12:48:56</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
-      <publishTime>08/08/2018 06:38:48</publishTime>
+      <publishTime>05/19/2020 01:51:56</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe.config">
-      <publishTime>08/08/2018 13:18:12</publishTime>
+      <publishTime>05/19/2020 01:51:56</publishTime>
     </File>
     <File Include="bin/roslyn/csc.rsp">
-      <publishTime>08/08/2018 13:09:42</publishTime>
+      <publishTime>05/19/2020 01:40:20</publishTime>
     </File>
     <File Include="bin/roslyn/csi.exe">
-      <publishTime>08/08/2018 06:38:48</publishTime>
+      <publishTime>05/19/2020 01:52:16</publishTime>
     </File>
     <File Include="bin/roslyn/csi.exe.config">
-      <publishTime>08/08/2018 13:18:34</publishTime>
+      <publishTime>05/19/2020 01:52:16</publishTime>
     </File>
     <File Include="bin/roslyn/csi.rsp">
-      <publishTime>08/08/2018 13:09:56</publishTime>
+      <publishTime>05/19/2020 01:40:40</publishTime>
     </File>
     <File Include="bin/roslyn/Microsoft.Build.Tasks.CodeAnalysis.dll">
-      <publishTime>08/08/2018 06:38:48</publishTime>
+      <publishTime>05/19/2020 01:47:18</publishTime>
     </File>
     <File Include="bin/roslyn/Microsoft.CodeAnalysis.CSharp.dll">
-      <publishTime>08/08/2018 06:38:48</publishTime>
+      <publishTime>05/19/2020 01:51:40</publishTime>
     </File>
     <File Include="bin/roslyn/Microsoft.CodeAnalysis.CSharp.Scripting.dll">
-      <publishTime>08/08/2018 06:38:48</publishTime>
+      <publishTime>05/19/2020 01:51:58</publishTime>
     </File>
     <File Include="bin/roslyn/Microsoft.CodeAnalysis.dll">
-      <publishTime>08/08/2018 06:38:48</publishTime>
+      <publishTime>05/19/2020 01:49:16</publishTime>
     </File>
     <File Include="bin/roslyn/Microsoft.CodeAnalysis.Scripting.dll">
-      <publishTime>08/08/2018 06:38:48</publishTime>
+      <publishTime>05/19/2020 01:49:32</publishTime>
     </File>
     <File Include="bin/roslyn/Microsoft.CodeAnalysis.VisualBasic.dll">
-      <publishTime>08/08/2018 06:38:48</publishTime>
+      <publishTime>05/19/2020 01:50:04</publishTime>
     </File>
     <File Include="bin/roslyn/Microsoft.CSharp.Core.targets">
-      <publishTime>08/08/2018 13:09:42</publishTime>
+      <publishTime>05/19/2020 01:40:20</publishTime>
     </File>
     <File Include="bin/roslyn/Microsoft.DiaSymReader.Native.amd64.dll">
       <publishTime>12/05/2017 09:36:44</publishTime>
@@ -170,10 +170,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>12/05/2017 09:36:44</publishTime>
     </File>
     <File Include="bin/roslyn/Microsoft.Managed.Core.targets">
-      <publishTime>08/08/2018 13:09:42</publishTime>
+      <publishTime>05/19/2020 01:40:20</publishTime>
     </File>
     <File Include="bin/roslyn/Microsoft.VisualBasic.Core.targets">
-      <publishTime>08/08/2018 13:09:42</publishTime>
+      <publishTime>05/19/2020 01:40:20</publishTime>
     </File>
     <File Include="bin/roslyn/Microsoft.Win32.Primitives.dll">
       <publishTime>11/05/2016 18:55:32</publishTime>
@@ -181,8 +181,11 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="bin/roslyn/System.AppContext.dll">
       <publishTime>11/05/2016 18:55:34</publishTime>
     </File>
+    <File Include="bin/roslyn/System.Buffers.dll">
+      <publishTime>07/19/2017 17:01:28</publishTime>
+    </File>
     <File Include="bin/roslyn/System.Collections.Immutable.dll">
-      <publishTime>05/16/2018 04:29:34</publishTime>
+      <publishTime>05/15/2018 20:29:34</publishTime>
     </File>
     <File Include="bin/roslyn/System.Console.dll">
       <publishTime>11/05/2016 18:55:48</publishTime>
@@ -211,14 +214,23 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="bin/roslyn/System.IO.FileSystem.Primitives.dll">
       <publishTime>11/05/2016 18:56:08</publishTime>
     </File>
+    <File Include="bin/roslyn/System.Memory.dll">
+      <publishTime>04/17/2019 23:24:34</publishTime>
+    </File>
     <File Include="bin/roslyn/System.Net.Http.dll">
       <publishTime>11/05/2016 18:56:30</publishTime>
     </File>
     <File Include="bin/roslyn/System.Net.Sockets.dll">
       <publishTime>11/05/2016 18:56:34</publishTime>
     </File>
+    <File Include="bin/roslyn/System.Numerics.Vectors.dll">
+      <publishTime>07/19/2017 17:01:36</publishTime>
+    </File>
     <File Include="bin/roslyn/System.Reflection.Metadata.dll">
-      <publishTime>05/16/2018 04:29:44</publishTime>
+      <publishTime>05/15/2018 20:29:44</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Runtime.CompilerServices.Unsafe.dll">
+      <publishTime>11/15/2019 16:37:58</publishTime>
     </File>
     <File Include="bin/roslyn/System.Runtime.InteropServices.RuntimeInformation.dll">
       <publishTime>11/05/2016 18:57:00</publishTime>
@@ -236,10 +248,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>11/05/2016 18:57:18</publishTime>
     </File>
     <File Include="bin/roslyn/System.Text.Encoding.CodePages.dll">
-      <publishTime>11/05/2016 18:57:20</publishTime>
+      <publishTime>11/29/2018 23:39:18</publishTime>
     </File>
     <File Include="bin/roslyn/System.Threading.Tasks.Extensions.dll">
-      <publishTime>11/05/2016 18:57:24</publishTime>
+      <publishTime>06/18/2019 19:08:48</publishTime>
     </File>
     <File Include="bin/roslyn/System.ValueTuple.dll">
       <publishTime>11/05/2016 18:57:30</publishTime>
@@ -257,25 +269,25 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>11/05/2016 18:57:34</publishTime>
     </File>
     <File Include="bin/roslyn/vbc.exe">
-      <publishTime>08/08/2018 06:38:48</publishTime>
+      <publishTime>05/19/2020 01:50:06</publishTime>
     </File>
     <File Include="bin/roslyn/vbc.exe.config">
-      <publishTime>08/08/2018 13:18:18</publishTime>
+      <publishTime>05/19/2020 01:50:06</publishTime>
     </File>
     <File Include="bin/roslyn/vbc.rsp">
-      <publishTime>08/08/2018 13:09:46</publishTime>
+      <publishTime>05/19/2020 01:40:26</publishTime>
     </File>
     <File Include="bin/roslyn/VBCSCompiler.exe">
-      <publishTime>08/08/2018 06:38:48</publishTime>
+      <publishTime>05/19/2020 01:52:02</publishTime>
     </File>
     <File Include="bin/roslyn/VBCSCompiler.exe.config">
-      <publishTime>08/08/2018 13:18:16</publishTime>
+      <publishTime>05/19/2020 01:52:02</publishTime>
     </File>
     <File Include="bin/SIGES.dll">
-      <publishTime>09/23/2021 09:06:49</publishTime>
+      <publishTime>09/24/2021 13:11:03</publishTime>
     </File>
     <File Include="bin/SIGES.pdb">
-      <publishTime>09/23/2021 09:06:49</publishTime>
+      <publishTime>09/24/2021 13:11:03</publishTime>
     </File>
     <File Include="bin/System.Web.Helpers.dll">
       <publishTime>11/28/2018 13:04:24</publishTime>
@@ -878,7 +890,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>09/22/2021 11:05:50</publishTime>
     </File>
     <File Include="Scripts/Own/JS_System_Incidencias_MesaAyuda.js">
-      <publishTime>09/22/2021 16:02:08</publishTime>
+      <publishTime>09/24/2021 12:29:44</publishTime>
     </File>
     <File Include="Scripts/Own/JS_System_Login.js">
       <publishTime>08/18/2021 14:37:58</publishTime>
@@ -887,7 +899,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>08/15/2021 22:21:47</publishTime>
     </File>
     <File Include="Scripts/Own/JS_System_Sis_Paginas.js">
-      <publishTime>09/18/2021 13:20:14</publishTime>
+      <publishTime>09/23/2021 09:34:50</publishTime>
     </File>
     <File Include="Scripts/Own/JS_System_Sis_Perfiles.js">
       <publishTime>09/18/2021 13:00:59</publishTime>
@@ -923,7 +935,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>07/03/2021 21:53:04</publishTime>
     </File>
     <File Include="SIGESDB.dbml">
-      <publishTime>09/18/2021 13:42:30</publishTime>
+      <publishTime>09/24/2021 13:10:54</publishTime>
     </File>
     <File Include="Views/Areas/Areas.cshtml">
       <publishTime>09/19/2021 15:19:58</publishTime>
@@ -941,7 +953,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Views/Incidencias/Mayuda.cshtml">
-      <publishTime>09/22/2021 15:58:07</publishTime>
+      <publishTime>09/24/2021 12:14:26</publishTime>
+    </File>
+    <File Include="Views/Incidencias/Reportes.cshtml">
+      <publishTime>09/23/2021 09:40:02</publishTime>
     </File>
     <File Include="Views/Inicio/Inicio.cshtml">
       <publishTime>08/17/2021 13:58:04</publishTime>
@@ -968,7 +983,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>07/03/2021 21:41:53</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>08/24/2021 14:06:41</publishTime>
+      <publishTime>09/24/2021 13:11:03</publishTime>
     </File>
   </ItemGroup>
 </Project>

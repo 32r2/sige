@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SIGES" Class="SIGESDBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=DESKTOP-G4VRQFR\SQLEXPRESS;Initial Catalog=SIGES;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="SIGESConnectionString1" Provider="System.Data.SqlClient" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=192.168.1.41\SQLEXPRESS;Initial Catalog=SIGES;Persist Security Info=True;User ID=SIGESBD" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="SIGESConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Administration_Evaluacion_Tienda" Member="Administration_Evaluacion_Tienda">
     <Type Name="Administration_Evaluacion_Tienda">
       <Column Name="IDEvaluacion" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />

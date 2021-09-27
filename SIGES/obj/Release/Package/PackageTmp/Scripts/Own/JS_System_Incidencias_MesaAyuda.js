@@ -45,7 +45,6 @@ IDA.addEventListener("change", function () {
         llenarCombo(DatosIncidenciaArea, document.getElementById("cmbIDInsidencia"));
     });
 });
-
 //funcion general para llenar los select
 function llenarCombo(DAtos, control) {
     var contenido = "";
@@ -55,8 +54,6 @@ function llenarCombo(DAtos, control) {
     }
     control.innerHTML = contenido;
 }
-
-
 //Crea los botones de las áreas
 function CrearBtnAreas(BtnAreas, DatosAreas) {
     var NC = 0;
@@ -102,7 +99,6 @@ function ValidarEntrar(e) {
        
     }
 }
-
 // Funcion Buscar
 function Buscar() {
     var conepto = document.getElementById("TxtBuscar").value;
@@ -115,6 +111,7 @@ function Buscar() {
     });
     document.getElementById("TxtBuscar").value = "";
 }
+//Crea la información basica de las insidencias
 function CrearIncidencias(data, IDo) {
     var CodHtml = "";
     for (var i = 0; i < data.length; i++) {
@@ -204,14 +201,14 @@ function AModalIncidencia(IDIncidencia) {
 
     var FEcha = (f.getDate() + "/" + (f.getMonth() + 1) + "/" + f.getFullYear());
     document.getElementById("TxtFecha").value = FEcha;
+
     $.get("/Usuarios/UsuariosXsitio", function (PersonalTienda) {
         if (PersonalTienda.lenght != 0) {
             llenarComboPersonal(PersonalTienda, document.getElementById("cmbIDUsuario"));
             $.get("/Usuarios/UsuarioINF", function (Usuario) {
                 document.getElementById("cmbIDUsuario").value = Usuario[0].ID;
                 document.getElementById("cmbIDTienda").value = Usuario[0].Sitio;
-                $.get("/Incidencias/ReporteInsidenciasXTienda/?IDTienda=" + Usuario[0].Sitio, function (TiendaIns) {
-                    var NoIns = TiendaIns.length + 1
+                $.get("/Incidencias/ReporteInsidenciasXTienda/?IDTienda=" + Usuario[0].Sitio, function (TiendaIns) {                    
                     document.getElementById("TxtNoInsidencia").value = TiendaIns.length + 1;
                 });
             });
@@ -219,8 +216,7 @@ function AModalIncidencia(IDIncidencia) {
         else {
             alert("No hay datos que mostrar");
         }
-    });
-
+    });    
     if (IDIncidencia > 0) {
         $.get("/Incidencias/BDInsidencia/?ID=" + IDIncidencia, function (DatosIncidencia) {
             document.getElementById("cmbArea").value = DatosIncidencia[0].IDArea;
@@ -255,7 +251,6 @@ btnFoto.onchange = function (e) {
     }
     reader.readAsDataURL(file);
 }
-
 //combo personal por tienda
 function llenarComboPersonal(Datos, control) {
     var contenido = "";
@@ -264,4 +259,76 @@ function llenarComboPersonal(Datos, control) {
         contenido += "<option value='" + Datos[i].ID + "'>" + Datos[i].Nombre + " " + Datos[i].APaterno + " " + Datos[i].AMaterno + "</option>";
     }
     control.innerHTML = contenido;
+}
+//Guarda el reporte de la insidencia
+function GenerarReporte() {
+    if (Obligatorios("obligatorio") == true) {
+        if (confirm("¿Desea aplicar los cambios?") == 1) {
+            var IDRInsidencia = document.getElementById("TxtIDRInsidencia").value;
+
+            var IDArea = document.getElementById("cmbArea").value;
+
+            var IDSubArea = document.getElementById("cmbSubArea").value;
+
+            var IDInsidencia = document.getElementById("cmbIDInsidencia").value;
+
+            var IDUsuario = document.getElementById("cmbIDUsuario").value;
+            var temUser = document.getElementById("cmbIDUsuario");
+            var UNombre = temUser.options[temUser.selectedIndex].text;
+
+            var IDTienda = document.getElementById("cmbIDTienda").value;
+            var NoInsidencia = document.getElementById("TxtNoInsidencia").value;
+            var Fecha = document.getElementById("TxtFecha").value;
+            var Observaciones = document.getElementById("TxtObservaciones").value;
+            var Foto = document.getElementById("BtnFoto").value;
+            var frm = new FormData();
+            frm.append("IDRInsidencia", IDRInsidencia);
+            frm.append("IDArea", IDArea);
+            frm.append("IDSubArea", IDSubArea);
+            frm.append("IDInsidencia", IDInsidencia);
+            frm.append("IDUsuario", IDUsuario);
+            frm.append("UNombre", UNombre);
+            frm.append("IDTienda", IDTienda);
+            frm.append("NoInsidencia", NoInsidencia);
+            frm.append("Fecha", Fecha);
+            frm.append("Observaciones", Observaciones);
+            frm.append("Foto", Foto);
+            frm.append("Estatus", 1);
+            $.ajax({
+                type: "POST",
+                url: "/Areas/GuardarArea",
+                data: frm,
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    if (data == 0) {
+                        alert("Ocurrio un error");
+                    }
+                    else if (data == -1) {
+                        alert("Ya existe un reporte de esa insidencia");
+                    }
+                    else {
+                        alert("La insidencia fue reportada");
+                        CrearAcordeonAreas();
+                        document.getElementById("btnCancelar").click();
+                    }
+                }
+            });
+        }
+    }
+}
+//verifica que los campos obligatorios tengas datos "AreaObligatorio"
+function Obligatorios(NoClase) {
+    let exito = true;
+    let CtrlObligatorio = document.getElementsByClassName(NoClase);
+    for (let i = 0; i < CtrlObligatorio.length; i++) {
+        if (CtrlObligatorio[i].value == "") {
+            exito = false;
+            CtrlObligatorio[i].classList.add("border-danger");
+        }
+        else {
+            CtrlObligatorio[i].classList.remove("border-danger");
+        }
+    }
+    return exito;
 }

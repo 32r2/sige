@@ -71,7 +71,7 @@ namespace SIGES.Controllers
             var InfUsuario = SIGES.User_Usuarios.Where(p => p.IDUsuario.Equals(Accesos.ID))
                 .Select(p => new
                 {
-                    p.IDUsuario,
+                    ID=p.IDUsuario,
                     p.CURP,
                     p.Nombre,
                     p.APaterno,
@@ -98,7 +98,7 @@ namespace SIGES.Controllers
             var UsuariosSitio = SIGES.User_Usuarios.Where(p => p.Sitio.Equals(Accesos.Sitio))
                 .Select(p => new
                 {
-                    p.IDUsuario,                    
+                   ID= p.IDUsuario,                    
                     p.Nombre,
                     p.APaterno,
                     p.AMaterno                    

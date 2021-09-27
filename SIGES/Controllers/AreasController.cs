@@ -262,8 +262,8 @@ namespace SIGES.Controllers
         public int GuardarRecurso(System_Areas_Recursos SRecursos)
         {
             int Afectados = 0;
-            //try
-            //{
+            try
+            {
             int Recurso = SIGES.System_Areas_Recursos.Where(p => p.IDRecurso.Equals(SRecursos.IDRecurso)).Count();
             if (Recurso.Equals(0))
             {
@@ -294,11 +294,11 @@ namespace SIGES.Controllers
                     Afectados = -1;
                 }
             }
-            //}
-            //catch (Exception ex)
-            //{
-            //    Afectados = 0;
-            //}
+            }
+            catch (Exception ex)
+            {
+                Afectados = 0;
+            }
             return Afectados;
         }
         //eliman los recursos por id
