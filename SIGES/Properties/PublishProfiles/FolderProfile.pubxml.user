@@ -4,7 +4,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 -->
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <_PublishTargetUrl>C:\Users\AUX_SISTEMAS\Desktop\SCAN\00-ProyectosFinales\SIGES</_PublishTargetUrl>
+    <_PublishTargetUrl>D:\SIGES</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="Assets/Internal/01.png">
@@ -18,6 +18,9 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     </File>
     <File Include="Assets/Internal/04.png">
       <publishTime>07/20/2021 18:15:02</publishTime>
+    </File>
+    <File Include="Assets/Internal/404Imagen.png">
+      <publishTime>10/16/2021 16:51:51</publishTime>
     </File>
     <File Include="Assets/Internal/bootstrap-solid.svg">
       <publishTime>07/04/2021 14:12:52</publishTime>
@@ -64,6 +67,9 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="Assets/Internal/LogoTexto.svg">
       <publishTime>07/04/2021 14:12:52</publishTime>
     </File>
+    <File Include="Assets/Internal/NoUser.png">
+      <publishTime>12/18/2021 11:21:47</publishTime>
+    </File>
     <File Include="Assets/Internal/ok.png">
       <publishTime>07/20/2021 18:17:10</publishTime>
     </File>
@@ -94,17 +100,26 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="Assets/Resources/DptRHumanos/Recursos_Humanos.png">
       <publishTime>08/14/2021 08:57:16</publishTime>
     </File>
+    <File Include="Assets/Resources/DptTecInf/FrontRetai.png">
+      <publishTime>09/30/2021 14:18:57</publishTime>
+    </File>
     <File Include="Assets/Resources/DptTecInf/TI.png">
       <publishTime>08/14/2021 09:06:28</publishTime>
     </File>
     <File Include="Assets/Resources/Gerencia/gerencia.png">
       <publishTime>08/14/2021 08:57:08</publishTime>
     </File>
+    <File Include="bin/App_global.asax.compiled">
+      <publishTime>12/31/2021 12:38:18</publishTime>
+    </File>
+    <File Include="bin/App_global.asax.dll">
+      <publishTime>12/31/2021 12:38:18</publishTime>
+    </File>
     <File Include="bin/es/System.Web.Helpers.resources.dll">
       <publishTime>11/28/2018 13:04:36</publishTime>
     </File>
     <File Include="bin/es/System.Web.Mvc.resources.dll">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>11/28/2018 13:00:00</publishTime>
     </File>
     <File Include="bin/es/System.Web.Razor.resources.dll">
       <publishTime>11/28/2018 13:00:22</publishTime>
@@ -119,7 +134,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>11/28/2018 13:04:36</publishTime>
     </File>
     <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
-      <publishTime>08/07/2020 21:52:58</publishTime>
+      <publishTime>07/08/2020 21:52:58</publishTime>
     </File>
     <File Include="bin/Microsoft.Web.Infrastructure.dll">
       <publishTime>07/25/2012 12:48:56</publishTime>
@@ -164,10 +179,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>05/19/2020 01:40:20</publishTime>
     </File>
     <File Include="bin/roslyn/Microsoft.DiaSymReader.Native.amd64.dll">
-      <publishTime>12/05/2017 09:36:44</publishTime>
+      <publishTime>12/05/2017 01:36:44</publishTime>
     </File>
     <File Include="bin/roslyn/Microsoft.DiaSymReader.Native.x86.dll">
-      <publishTime>12/05/2017 09:36:44</publishTime>
+      <publishTime>12/05/2017 01:36:44</publishTime>
     </File>
     <File Include="bin/roslyn/Microsoft.Managed.Core.targets">
       <publishTime>05/19/2020 01:40:20</publishTime>
@@ -284,10 +299,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>05/19/2020 01:52:02</publishTime>
     </File>
     <File Include="bin/SIGES.dll">
-      <publishTime>09/24/2021 13:11:03</publishTime>
+      <publishTime>12/31/2021 12:38:10</publishTime>
     </File>
     <File Include="bin/SIGES.pdb">
-      <publishTime>09/24/2021 13:11:03</publishTime>
+      <publishTime>12/31/2021 12:38:10</publishTime>
     </File>
     <File Include="bin/System.Web.Helpers.dll">
       <publishTime>11/28/2018 13:04:24</publishTime>
@@ -313,11 +328,26 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="Content/bootstrap.min.css">
       <publishTime>07/03/2021 21:53:34</publishTime>
     </File>
+    <File Include="Content/bootstrap.min_2.css">
+      <publishTime>09/28/2021 16:54:41</publishTime>
+    </File>
+    <File Include="Content/Char_styles.css">
+      <publishTime>09/29/2021 16:33:27</publishTime>
+    </File>
     <File Include="Content/CheckPassword.css">
       <publishTime>08/03/2021 15:23:10</publishTime>
     </File>
     <File Include="Content/dashboard.css">
       <publishTime>07/03/2021 21:53:34</publishTime>
+    </File>
+    <File Include="Content/dataTables.bootstrap4.css">
+      <publishTime>10/26/2021 14:21:05</publishTime>
+    </File>
+    <File Include="Content/Exportar/buttons.dataTables.min.css">
+      <publishTime>11/20/2021 08:43:58</publishTime>
+    </File>
+    <File Include="Content/Exportar/jquery.dataTables.min.css">
+      <publishTime>11/20/2021 08:43:58</publishTime>
     </File>
     <File Include="Content/font-awesome.min.css">
       <publishTime>08/03/2021 15:18:25</publishTime>
@@ -808,6 +838,27 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="Content/icons/weather-icons/sass/weather-icons.scss">
       <publishTime>07/03/2021 21:53:34</publishTime>
     </File>
+    <File Include="Content/images/sort_asc.png">
+      <publishTime>12/22/2021 09:53:36</publishTime>
+    </File>
+    <File Include="Content/images/sort_asc_disabled.png">
+      <publishTime>12/22/2021 09:53:36</publishTime>
+    </File>
+    <File Include="Content/images/sort_both.png">
+      <publishTime>12/22/2021 09:53:36</publishTime>
+    </File>
+    <File Include="Content/images/sort_desc.png">
+      <publishTime>12/22/2021 09:53:36</publishTime>
+    </File>
+    <File Include="Content/images/sort_desc_disabled.png">
+      <publishTime>12/22/2021 09:53:36</publishTime>
+    </File>
+    <File Include="Content/magnific-popup.css">
+      <publishTime>10/25/2021 13:01:27</publishTime>
+    </File>
+    <File Include="Content/ModalMedia.css">
+      <publishTime>10/28/2021 12:42:23</publishTime>
+    </File>
     <File Include="Content/quill.bubble.css">
       <publishTime>08/16/2021 16:44:25</publishTime>
     </File>
@@ -818,10 +869,46 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>07/04/2021 14:23:25</publishTime>
     </File>
     <File Include="Content/style.min.css">
-      <publishTime>07/30/2021 11:32:04</publishTime>
+      <publishTime>09/29/2021 10:29:36</publishTime>
+    </File>
+    <File Include="Content/Switch_Button.css">
+      <publishTime>11/01/2021 14:37:41</publishTime>
     </File>
     <File Include="Content/toastr.min.css">
       <publishTime>07/30/2021 11:17:33</publishTime>
+    </File>
+    <File Include="Controllers/AreasController.cs">
+      <publishTime>09/26/2021 12:42:28</publishTime>
+    </File>
+    <File Include="Controllers/CardinalController.cs">
+      <publishTime>09/29/2021 12:03:56</publishTime>
+    </File>
+    <File Include="Controllers/CardinalSystemController.cs">
+      <publishTime>09/18/2021 12:04:45</publishTime>
+    </File>
+    <File Include="Controllers/ComunicadosController.cs">
+      <publishTime>09/29/2021 12:00:55</publishTime>
+    </File>
+    <File Include="Controllers/EvaluacionController.cs">
+      <publishTime>08/19/2021 15:40:10</publishTime>
+    </File>
+    <File Include="Controllers/IncidenciasController.cs">
+      <publishTime>09/28/2021 15:59:46</publishTime>
+    </File>
+    <File Include="Controllers/InicioController.cs">
+      <publishTime>08/19/2021 15:40:42</publishTime>
+    </File>
+    <File Include="Controllers/LoginController.cs">
+      <publishTime>09/29/2021 11:14:44</publishTime>
+    </File>
+    <File Include="Controllers/SupervisionController.cs">
+      <publishTime>08/19/2021 15:40:59</publishTime>
+    </File>
+    <File Include="Controllers/TiendasController.cs">
+      <publishTime>09/21/2021 11:18:47</publishTime>
+    </File>
+    <File Include="Controllers/UsuariosController.cs">
+      <publishTime>09/29/2021 11:14:44</publishTime>
     </File>
     <File Include="Database/SIGES.mdf">
       <publishTime>08/18/2021 16:46:52</publishTime>
@@ -830,7 +917,13 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>08/18/2021 16:46:52</publishTime>
     </File>
     <File Include="Global.asax">
-      <publishTime>07/03/2021 21:39:24</publishTime>
+      <publishTime>03/07/2021 21:39:24</publishTime>
+    </File>
+    <File Include="PrecompiledApp.config">
+      <publishTime>12/31/2021 12:38:12</publishTime>
+    </File>
+    <File Include="Scripts/apexcharts.js">
+      <publishTime>09/30/2021 09:03:25</publishTime>
     </File>
     <File Include="Scripts/bootstrap.bundle.min.js">
       <publishTime>07/03/2021 21:53:03</publishTime>
@@ -838,17 +931,50 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="Scripts/bootstrap.min.js">
       <publishTime>07/03/2021 21:53:03</publishTime>
     </File>
+    <File Include="Scripts/bootstrap.min_2.js">
+      <publishTime>09/28/2021 16:54:22</publishTime>
+    </File>
     <File Include="Scripts/Chart.js">
       <publishTime>07/03/2021 21:53:03</publishTime>
     </File>
     <File Include="Scripts/CheckPassword.js">
       <publishTime>08/05/2021 09:17:20</publishTime>
     </File>
+    <File Include="Scripts/classList.min.js">
+      <publishTime>09/29/2021 16:37:22</publishTime>
+    </File>
     <File Include="Scripts/custom.min.js">
       <publishTime>07/03/2021 21:53:03</publishTime>
     </File>
+    <File Include="Scripts/datatables.min.js">
+      <publishTime>10/27/2021 11:01:25</publishTime>
+    </File>
+    <File Include="Scripts/Exportar/buttons.html5.min.js">
+      <publishTime>11/20/2021 08:45:11</publishTime>
+    </File>
+    <File Include="Scripts/Exportar/buttons.print.min.js">
+      <publishTime>11/20/2021 08:47:32</publishTime>
+    </File>
+    <File Include="Scripts/Exportar/dataTables.buttons.min.js">
+      <publishTime>11/20/2021 08:45:11</publishTime>
+    </File>
+    <File Include="Scripts/Exportar/jquery.dataTables.min.js">
+      <publishTime>11/20/2021 08:45:11</publishTime>
+    </File>
+    <File Include="Scripts/Exportar/jszip.min.js">
+      <publishTime>11/20/2021 08:45:11</publishTime>
+    </File>
+    <File Include="Scripts/Exportar/pdfmake.min.js">
+      <publishTime>11/20/2021 08:45:11</publishTime>
+    </File>
+    <File Include="Scripts/Exportar/vfs_fonts.js">
+      <publishTime>11/20/2021 08:45:11</publishTime>
+    </File>
     <File Include="Scripts/feather.js">
       <publishTime>07/03/2021 21:53:04</publishTime>
+    </File>
+    <File Include="Scripts/findindex_polyfill_mdn.js">
+      <publishTime>09/30/2021 09:02:28</publishTime>
     </File>
     <File Include="Scripts/jquery-3.5.0.js">
       <publishTime>07/04/2021 21:52:48</publishTime>
@@ -868,56 +994,107 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="Scripts/jquery-ui.min.js">
       <publishTime>07/04/2021 21:52:48</publishTime>
     </File>
+    <File Include="Scripts/jquery.magnific-popup.min.js">
+      <publishTime>10/25/2021 15:30:24</publishTime>
+    </File>
     <File Include="Scripts/jquery.min.js">
       <publishTime>08/16/2021 16:44:10</publishTime>
     </File>
     <File Include="Scripts/jquery.validate.js">
       <publishTime>08/02/2021 16:12:51</publishTime>
     </File>
+    <File Include="Scripts/meg.init.js">
+      <publishTime>10/25/2021 12:59:21</publishTime>
+    </File>
     <File Include="Scripts/Own/JS_Layout.js">
-      <publishTime>08/19/2021 16:51:16</publishTime>
+      <publishTime>10/09/2021 10:21:10</publishTime>
     </File>
     <File Include="Scripts/Own/JS_System_Areas.js">
-      <publishTime>09/22/2021 09:51:36</publishTime>
+      <publishTime>12/12/2021 10:00:52</publishTime>
     </File>
     <File Include="Scripts/Own/JS_System_Cardinal.js">
       <publishTime>08/17/2021 13:57:04</publishTime>
     </File>
     <File Include="Scripts/Own/JS_System_Comunicados.js">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>12/10/2021 12:30:29</publishTime>
+    </File>
+    <File Include="Scripts/Own/JS_System_Comunicados_Area.js">
+      <publishTime>11/03/2021 15:39:48</publishTime>
     </File>
     <File Include="Scripts/Own/JS_System_Incidencias.js">
-      <publishTime>09/22/2021 11:05:50</publishTime>
+      <publishTime>09/29/2021 14:41:39</publishTime>
     </File>
     <File Include="Scripts/Own/JS_System_Incidencias_MesaAyuda.js">
-      <publishTime>09/24/2021 12:29:44</publishTime>
+      <publishTime>11/18/2021 13:00:39</publishTime>
+    </File>
+    <File Include="Scripts/Own/JS_System_Inicidencias_Area.js">
+      <publishTime>11/11/2021 14:50:38</publishTime>
     </File>
     <File Include="Scripts/Own/JS_System_Login.js">
       <publishTime>08/18/2021 14:37:58</publishTime>
     </File>
+    <File Include="Scripts/Own/JS_System_Print.js">
+      <publishTime>09/30/2021 10:17:07</publishTime>
+    </File>
+    <File Include="Scripts/Own/JS_System_Reportes_Area.js">
+      <publishTime>11/18/2021 13:07:58</publishTime>
+    </File>
+    <File Include="Scripts/Own/JS_System_Reportes_Incidencias.js">
+      <publishTime>11/18/2021 13:02:52</publishTime>
+    </File>
+    <File Include="Scripts/Own/JS_System_Reportes_Incidencias_Area.js">
+      <publishTime>11/20/2021 08:40:47</publishTime>
+    </File>
+    <File Include="Scripts/Own/JS_System_Reportes_Supervision.js">
+      <publishTime>11/19/2021 13:14:27</publishTime>
+    </File>
     <File Include="Scripts/Own/JS_System_Sis_Notificacion.js">
-      <publishTime>08/15/2021 22:21:47</publishTime>
+      <publishTime>10/23/2021 13:51:18</publishTime>
     </File>
     <File Include="Scripts/Own/JS_System_Sis_Paginas.js">
       <publishTime>09/23/2021 09:34:50</publishTime>
     </File>
     <File Include="Scripts/Own/JS_System_Sis_Perfiles.js">
-      <publishTime>09/18/2021 13:00:59</publishTime>
+      <publishTime>10/28/2021 13:44:53</publishTime>
     </File>
     <File Include="Scripts/Own/JS_System_Sis_Tienda.js">
-      <publishTime>09/22/2021 09:51:36</publishTime>
+      <publishTime>12/22/2021 14:48:13</publishTime>
     </File>
     <File Include="Scripts/Own/JS_System_Supervision.js">
-      <publishTime>08/18/2021 10:24:41</publishTime>
+      <publishTime>09/29/2021 15:25:24</publishTime>
+    </File>
+    <File Include="Scripts/Own/JS_System_Supervison_Tiendas.js">
+      <publishTime>11/18/2021 13:10:31</publishTime>
+    </File>
+    <File Include="Scripts/Own/JS_Trainig_Cuestionario.js">
+      <publishTime>10/22/2021 16:14:13</publishTime>
+    </File>
+    <File Include="Scripts/Own/JS_Trainig_Cuestionario_Area.js">
+      <publishTime>11/17/2021 12:23:40</publishTime>
+    </File>
+    <File Include="Scripts/Own/JS_Trainig_Evaluacion.js">
+      <publishTime>10/15/2021 13:47:29</publishTime>
+    </File>
+    <File Include="Scripts/Own/JS_Trainig_Evaluacion_Preguntas.js">
+      <publishTime>10/15/2021 16:17:21</publishTime>
+    </File>
+    <File Include="Scripts/Own/JS_User_AdministrarUsuarios.js">
+      <publishTime>12/24/2021 11:16:12</publishTime>
     </File>
     <File Include="Scripts/Own/JS_User_Usuarios.js">
-      <publishTime>09/22/2021 10:49:34</publishTime>
+      <publishTime>12/20/2021 13:35:40</publishTime>
     </File>
     <File Include="Scripts/perfect-scrollbar.jquery.min.js">
       <publishTime>07/03/2021 21:53:04</publishTime>
     </File>
+    <File Include="Scripts/polyfill.min.js">
+      <publishTime>09/29/2021 16:36:08</publishTime>
+    </File>
     <File Include="Scripts/popper.min.js">
-      <publishTime>07/03/2021 21:53:04</publishTime>
+      <publishTime>10/19/2021 16:48:31</publishTime>
+    </File>
+    <File Include="Scripts/popper.min_2.js">
+      <publishTime>09/28/2021 16:51:07</publishTime>
     </File>
     <File Include="Scripts/quill.min.js">
       <publishTime>08/16/2021 16:44:10</publishTime>
@@ -935,46 +1112,79 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>07/03/2021 21:53:04</publishTime>
     </File>
     <File Include="SIGESDB.dbml">
-      <publishTime>09/24/2021 13:10:54</publishTime>
+      <publishTime>12/24/2021 08:51:03</publishTime>
     </File>
     <File Include="Views/Areas/Areas.cshtml">
-      <publishTime>09/19/2021 15:19:58</publishTime>
+      <publishTime>12/11/2021 17:09:37</publishTime>
     </File>
     <File Include="Views/CardinalSystem/Configuracion.cshtml">
       <publishTime>09/18/2021 13:20:16</publishTime>
     </File>
+    <File Include="Views/Comunicados/AvisosArea.cshtml">
+      <publishTime>12/30/2021 16:59:36</publishTime>
+    </File>
     <File Include="Views/Comunicados/Comunicados.cshtml">
-      <publishTime>08/17/2021 16:21:04</publishTime>
+      <publishTime>10/30/2021 15:39:00</publishTime>
+    </File>
+    <File Include="Views/Cuestionarios/Cuestionarios.cshtml">
+      <publishTime>11/17/2021 12:23:40</publishTime>
+    </File>
+    <File Include="Views/Cuestionarios/CuestionariosAreas.cshtml">
+      <publishTime>11/17/2021 12:23:40</publishTime>
+    </File>
+    <File Include="Views/Evaluacion/Cuestionario.cshtml">
+      <publishTime>10/04/2021 15:30:52</publishTime>
     </File>
     <File Include="Views/Evaluacion/Evaluacion.cshtml">
-      <publishTime>08/18/2021 16:45:17</publishTime>
+      <publishTime>10/07/2021 12:05:41</publishTime>
     </File>
     <File Include="Views/Incidencias/Incidencias.cshtml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>11/03/2021 16:58:54</publishTime>
+    </File>
+    <File Include="Views/Incidencias/Incidencias_Area.cshtml">
+      <publishTime>12/30/2021 16:58:26</publishTime>
     </File>
     <File Include="Views/Incidencias/Mayuda.cshtml">
-      <publishTime>09/24/2021 12:14:26</publishTime>
+      <publishTime>10/22/2021 14:05:30</publishTime>
     </File>
     <File Include="Views/Incidencias/Reportes.cshtml">
-      <publishTime>09/23/2021 09:40:02</publishTime>
+      <publishTime>09/30/2021 10:14:53</publishTime>
+    </File>
+    <File Include="Views/Incidencias/ReportesArea.cshtml">
+      <publishTime>11/18/2021 13:08:01</publishTime>
+    </File>
+    <File Include="Views/Incidencias/ReportesTienda.cshtml">
+      <publishTime>11/18/2021 12:48:51</publishTime>
     </File>
     <File Include="Views/Inicio/Inicio.cshtml">
-      <publishTime>08/17/2021 13:58:04</publishTime>
+      <publishTime>12/22/2021 11:23:50</publishTime>
     </File>
     <File Include="Views/Login/Login.cshtml">
-      <publishTime>08/24/2021 16:21:56</publishTime>
+      <publishTime>12/29/2021 15:30:45</publishTime>
+    </File>
+    <File Include="Views/Reportes/Reportes.cshtml">
+      <publishTime>11/20/2021 08:40:18</publishTime>
+    </File>
+    <File Include="Views/Reportes/ReportesArea.cshtml">
+      <publishTime>12/10/2021 13:56:21</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>09/19/2021 15:04:06</publishTime>
+      <publishTime>12/30/2021 15:39:48</publishTime>
+    </File>
+    <File Include="Views/Supervision/SucursalesSupervision.cshtml">
+      <publishTime>11/18/2021 13:08:49</publishTime>
     </File>
     <File Include="Views/Supervision/Supervision.cshtml">
-      <publishTime>08/18/2021 09:26:43</publishTime>
+      <publishTime>12/21/2021 17:12:19</publishTime>
     </File>
     <File Include="Views/Tiendas/Tiendas.cshtml">
-      <publishTime>09/21/2021 13:01:22</publishTime>
+      <publishTime>12/22/2021 15:58:58</publishTime>
+    </File>
+    <File Include="Views/Usuarios/AdministrarUsuarios.cshtml">
+      <publishTime>12/24/2021 08:58:12</publishTime>
     </File>
     <File Include="Views/Usuarios/Usuario.cshtml">
-      <publishTime>09/21/2021 13:08:32</publishTime>
+      <publishTime>12/18/2021 11:44:34</publishTime>
     </File>
     <File Include="Views/web.config">
       <publishTime>07/03/2021 21:39:24</publishTime>
@@ -983,7 +1193,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>07/03/2021 21:41:53</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>09/24/2021 13:11:03</publishTime>
+      <publishTime>12/24/2021 09:18:32</publishTime>
     </File>
   </ItemGroup>
 </Project>

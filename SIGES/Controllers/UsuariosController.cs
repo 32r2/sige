@@ -1,6 +1,7 @@
 ﻿using SIGES.Filtro;
 using SIGES.Models;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
@@ -16,6 +17,8 @@ namespace SIGES.Controllers
         // GET: Usuarios
         public ActionResult Usuario()
         {
+            Razor_Asignasion();
+            RazorUsuarios();
             return View();
         }
         //consulta general 
@@ -35,6 +38,73 @@ namespace SIGES.Controllers
                 });
             return Json(datos, JsonRequestBehavior.AllowGet);
         }
+
+        //consulta general 
+        public void RazorUsuarios()
+        {
+            User_UsuariosM DatosUsuarios = new User_UsuariosM();
+            User_UsuariosM.IDUsuario = new List<long>();
+            User_UsuariosM.Nombre = new List<string>();
+            User_UsuariosM.APaterno = new List<string>();
+            User_UsuariosM.AMaterno = new List<string>();
+            User_UsuariosM.NArea = new List<string>();
+            User_UsuariosM.RFC = new List<string>();
+            User_UsuariosM.NoSS = new List<string>();
+            User_UsuariosM.Correo = new List<string>();
+            User_UsuariosM.Telefono = new List<long>();
+            User_UsuariosM.ContactoEmergencia = new List<long>();
+            User_UsuariosM.ContactoNombre = new List<string>();
+            User_UsuariosM.ContactoParentesco = new List<string>();
+            User_UsuariosM.FIngreso = new List<string>();
+            long LVLPerfil = Convert.ToInt64(Session["LVLPerfil"]);
+            var DUsuarios = SIGES.User_Usuarios.Where(p => p.LVLPerfil > LVLPerfil && p.Estatus.Equals(1))
+                .Select(p => new
+                {
+                    p.IDUsuario,
+                    p.Nombre,
+                    p.APaterno,
+                    p.AMaterno,
+                    p.NArea,
+                    p.RFC,
+                    p.NoSS,
+                    p.Correo,
+                    p.Telefono,
+                    p.ContactoEmergencia,
+                    p.ContactoNombre,
+                    p.ContactoParentesco,
+                    FechaIngreso = ((DateTime)p.FIngreso).ToShortDateString(),
+                });
+            foreach (var DU in DUsuarios)
+            {
+                User_UsuariosM.IDUsuario.Add(DU.IDUsuario);
+                User_UsuariosM.Nombre.Add(DU.Nombre);
+                User_UsuariosM.APaterno.Add(DU.APaterno);
+                User_UsuariosM.AMaterno.Add(DU.AMaterno);
+                User_UsuariosM.NArea.Add(DU.NArea);
+                User_UsuariosM.RFC.Add(DU.RFC);
+                User_UsuariosM.NoSS.Add(DU.NoSS);
+                User_UsuariosM.Correo.Add(DU.Correo);
+                if (DU.Telefono != null)
+                {
+                    User_UsuariosM.Telefono.Add((long)DU.Telefono);
+                }
+                else
+                {
+                    User_UsuariosM.Telefono.Add(0);
+                }
+                if (DU.ContactoEmergencia != null)
+                {
+                    User_UsuariosM.ContactoEmergencia.Add((long)DU.ContactoEmergencia);
+                }
+                else
+                {
+                    User_UsuariosM.ContactoEmergencia.Add(9535300087);
+                }
+                User_UsuariosM.ContactoNombre.Add(DU.ContactoNombre);
+                User_UsuariosM.ContactoParentesco.Add(DU.ContactoParentesco);
+                User_UsuariosM.FIngreso.Add(DU.FechaIngreso);
+            }
+        }
         //consulta usuario por id
         public JsonResult BDUsuario(long ID)
         {
@@ -46,7 +116,10 @@ namespace SIGES.Controllers
                     p.Nombre,
                     p.APaterno,
                     p.AMaterno,
-                    //Contrasena = p.Contraseña,
+                    p.Usuario,
+                    p.ContactoNombre,
+                    p.ContactoEmergencia,
+                    p.ContactoParentesco,
                     Contrasena = Decrypt(p.Contraseña),
                     p.IDArea,
                     p.IDSubArea,
@@ -55,8 +128,8 @@ namespace SIGES.Controllers
                     p.RFC,
                     p.NoSS,
                     p.IDPerfil,
-                    p.Asignacion,
-                    p.Sitio,
+                    p.IDAsignacion,
+                    p.IDSitio,
                     p.IDEstado,
                     p.IDMunicipio,
                     p.IDLocalidad,
@@ -68,14 +141,13 @@ namespace SIGES.Controllers
         //USUARIO
         public JsonResult UsuarioINF()
         {
-            var InfUsuario = SIGES.User_Usuarios.Where(p => p.IDUsuario.Equals(Accesos.ID))
+            long IDUsuario = Convert.ToInt64(Session["IDUsuario"]);
+            var InfUsuario = SIGES.User_Usuarios.Where(p => p.IDUsuario.Equals(IDUsuario))
                 .Select(p => new
                 {
-                    ID=p.IDUsuario,
+                    ID = p.IDUsuario,
                     p.CURP,
-                    p.Nombre,
-                    p.APaterno,
-                    p.AMaterno,                    
+                    Nombre = p.Nombre + " " + p.APaterno + " " + p.AMaterno,
                     p.IDArea,
                     p.IDSubArea,
                     FOTOMOSTRAR = Convert.ToBase64String(p.Foto.ToArray()),
@@ -83,8 +155,8 @@ namespace SIGES.Controllers
                     p.RFC,
                     p.NoSS,
                     p.IDPerfil,
-                    p.Asignacion,
-                    p.Sitio,
+                    p.IDAsignacion,
+                    p.IDSitio,
                     p.IDEstado,
                     p.IDMunicipio,
                     p.IDLocalidad,
@@ -93,15 +165,13 @@ namespace SIGES.Controllers
                 });
             return Json(InfUsuario, JsonRequestBehavior.AllowGet);
         }
-        public JsonResult UsuariosXsitio()
-        { 
-            var UsuariosSitio = SIGES.User_Usuarios.Where(p => p.Sitio.Equals(Accesos.Sitio))
+        public JsonResult UsuariosXTienda(long IDTienda)
+        {
+            var UsuariosSitio = SIGES.User_Usuarios.Where(p => p.IDAsignacion.Equals(1) && p.IDSitio.Equals(IDTienda) && p.Estatus.Equals(1))
                 .Select(p => new
                 {
-                   ID= p.IDUsuario,                    
-                    p.Nombre,
-                    p.APaterno,
-                    p.AMaterno                    
+                    ID = p.IDUsuario,
+                    Nombre = p.Nombre + " " + p.APaterno + " " + p.AMaterno
                 });
             return Json(UsuariosSitio, JsonRequestBehavior.AllowGet);
         }
@@ -116,21 +186,17 @@ namespace SIGES.Controllers
                 });
             return Json(InfUsuario, JsonRequestBehavior.AllowGet);
         }
-        //
         //consulta usuario por perfil
         public JsonResult BDUserNivel(long LVLPerfil)
         {
             var datos = SIGES.User_Usuarios.Where(p => p.LVLPerfil.Equals(LVLPerfil) && p.Estatus.Equals(1))
                 .Select(p => new
                 {
-                    p.IDUsuario,
-                    p.Nombre,
-                    p.APaterno,
-                    p.AMaterno
+                    ID = p.IDUsuario,
+                    Nombre = p.Nombre + " " + p.APaterno + " " + p.AMaterno
                 });
             return Json(datos, JsonRequestBehavior.AllowGet);
         }
-
         //consulta usuario por perfil
         public JsonResult BDUserPerfil(long IDPerfil)
         {
@@ -169,11 +235,15 @@ namespace SIGES.Controllers
                 }
                 else
                 {
-                    int nveces = SIGES.User_Usuarios.Where(p => p.CURP.Equals(DatosUsuario.CURP) && p.Nombre.Equals(DatosUsuario.Nombre) && p.APaterno.Equals(DatosUsuario.APaterno) && p.AMaterno.Equals(DatosUsuario.AMaterno) &&
-                    p.Foto.Equals(DatosUsuario.Foto) && p.IDEstado.Equals(DatosUsuario.IDEstado) && p.IDMunicipio.Equals(DatosUsuario.IDMunicipio) && p.IDLocalidad.Equals(DatosUsuario.IDLocalidad) &&
-                    p.RFC.Equals(DatosUsuario.RFC) && p.NoSS.Equals(DatosUsuario.NoSS) && p.Correo.Equals(DatosUsuario.Correo) && p.Telefono.Equals(DatosUsuario.Telefono) && p.IDPerfil.Equals(DatosUsuario.IDPerfil) &&
-                    p.LVLPerfil.Equals(DatosUsuario.LVLPerfil) && p.IDArea.Equals(DatosUsuario.IDArea) && p.IDSubArea.Equals(DatosUsuario.IDSubArea) && p.Asignacion.Equals(DatosUsuario.Asignacion) && p.Sitio.Equals(DatosUsuario.Sitio) &&
-                    p.Usuario.Equals(DatosUsuario.Usuario) && p.Contraseña.Equals(DatosUsuario.Contraseña) && p.CManejador.Equals(DatosUsuario.CManejador) && p.CPlataforma.Equals(DatosUsuario.CPlataforma)).Count();
+                    int nveces = SIGES.User_Usuarios.Where(p => p.CURP.Equals(DatosUsuario.CURP) && p.Nombre.Equals(DatosUsuario.Nombre) &&
+                    p.APaterno.Equals(DatosUsuario.APaterno) && p.AMaterno.Equals(DatosUsuario.AMaterno) && p.Foto.Equals(DatosUsuario.Foto) &&
+                    p.IDEstado.Equals(DatosUsuario.IDEstado) && p.IDMunicipio.Equals(DatosUsuario.IDMunicipio) && p.IDLocalidad.Equals(DatosUsuario.IDLocalidad) &&
+                    p.RFC.Equals(DatosUsuario.RFC) && p.NoSS.Equals(DatosUsuario.NoSS) && p.ContactoNombre.Equals(DatosUsuario.ContactoNombre) &&
+                    p.ContactoEmergencia.Equals(DatosUsuario.ContactoEmergencia) && p.ContactoParentesco.Equals(DatosUsuario.ContactoParentesco) &&
+                    p.Correo.Equals(DatosUsuario.Correo) && p.Telefono.Equals(DatosUsuario.Telefono) && p.IDPerfil.Equals(DatosUsuario.IDPerfil) &&
+                    p.LVLPerfil.Equals(DatosUsuario.LVLPerfil) && p.IDArea.Equals(DatosUsuario.IDArea) && p.IDSubArea.Equals(DatosUsuario.IDSubArea) &&
+                    p.IDAsignacion.Equals(DatosUsuario.IDAsignacion) && p.IDSitio.Equals(DatosUsuario.IDSitio) && p.Usuario.Equals(DatosUsuario.Usuario) &&
+                    p.Contraseña.Equals(DatosUsuario.Contraseña) && p.CManejador.Equals(DatosUsuario.CManejador) && p.CPlataforma.Equals(DatosUsuario.CPlataforma)).Count();
                     if (nveces == 0)
                     {
                         User_Usuarios obj = SIGES.User_Usuarios.Where(p => p.IDUsuario.Equals(idUser)).First();
@@ -186,6 +256,9 @@ namespace SIGES.Controllers
                         obj.IDLocalidad = DatosUsuario.IDLocalidad;
                         obj.RFC = DatosUsuario.RFC;
                         obj.NoSS = DatosUsuario.NoSS;
+                        obj.ContactoNombre = DatosUsuario.ContactoNombre;
+                        obj.ContactoEmergencia = DatosUsuario.ContactoEmergencia;
+                        obj.ContactoParentesco = DatosUsuario.ContactoParentesco;
                         obj.Correo = DatosUsuario.Correo;
                         obj.Telefono = DatosUsuario.Telefono;
                         obj.IDPerfil = DatosUsuario.IDPerfil;
@@ -194,11 +267,10 @@ namespace SIGES.Controllers
                         obj.NArea = DatosUsuario.NArea;
                         obj.IDSubArea = DatosUsuario.IDSubArea;
                         obj.NSArea = DatosUsuario.NSArea;
-                        obj.Asignacion = DatosUsuario.Asignacion;
-                        obj.Sitio = DatosUsuario.Sitio;
+                        obj.IDAsignacion = DatosUsuario.IDAsignacion;
+                        obj.IDSitio = DatosUsuario.IDSitio;
                         obj.Usuario = DatosUsuario.Usuario;
                         obj.Contraseña = DatosUsuario.Contraseña;
-                        obj.Sitio = DatosUsuario.Sitio;
                         obj.Usuario = DatosUsuario.Usuario;
                         obj.Contraseña = newpass;
                         obj.CManejador = DatosUsuario.CManejador;
@@ -218,6 +290,7 @@ namespace SIGES.Controllers
             {
                 Afectados = 0;
             }
+            RazorUsuarios();
             return Afectados;
         }
         //eliminar
@@ -235,9 +308,63 @@ namespace SIGES.Controllers
             {
                 Afectados = 0;
             }
+            RazorUsuarios();
             return Afectados;
         }
-        //****** Encriptar y desencriptar
+
+        public JsonResult Asignasion()
+        {
+            var datos = SIGES.System_Inf_Asignacion.Where(p => p.Estatus.Equals(1))
+                .Select(p => new
+                {
+                    ID = p.IDAsignacion,
+                    p.Nombre
+                });
+            return Json(datos, JsonRequestBehavior.AllowGet);
+        }
+        public void Razor_Asignasion()
+        {
+            System_Asignacion Asignaciones = new System_Asignacion();
+            System_Asignacion.IDAsignacion = new List<long>();
+            System_Asignacion.Nombre = new List<string>();
+            var Asignar = SIGES.System_Inf_Asignacion.Where(p => p.Estatus.Equals(1))
+                .Select(p => new
+                {
+                    p.IDAsignacion,
+                    p.Nombre
+                });
+            foreach (var Asg in Asignar)
+            {
+                System_Asignacion.IDAsignacion.Add(Asg.IDAsignacion);
+                System_Asignacion.Nombre.Add(Asg.Nombre);
+            }
+        }
+
+        //**********************************************************************************************************************************************************************
+        public ActionResult AdministrarUsuarios()
+        {
+            RazorUsuarios();
+            Razor_Asignasion();
+            return View();
+        }
+        public JsonResult BDUsuariosNivel()
+        {
+            long LVLPerfil = Convert.ToInt64(Session["LVLPerfil"]);
+            var datos = SIGES.User_Usuarios.Where(p => p.Estatus.Equals(1) && p.LVLPerfil > LVLPerfil)
+                .Select(p => new
+                {
+                    ID = p.IDUsuario,
+                    p.Nombre,
+                    p.APaterno,
+                    p.AMaterno,
+                    p.NArea,
+                    p.Correo,
+                    p.Telefono,
+                    FechaIngreso = ((DateTime)p.FIngreso).ToShortDateString(),
+                });
+            return Json(datos, JsonRequestBehavior.AllowGet);
+        }
+        //*********************************************************************************** Encriptar y desencriptar ***********************************************************************************
         static readonly string password = "P455W0rd";
         public static string Encrypt(string plainText)
         {

@@ -155,3 +155,34 @@
 </div>
 <script src="~/Scripts/jquery.min.js"></script>
 <script src="~/Scripts/Own/JS_System_Sis_Notificacion.js"></script>
+<script>
+    prueba_notificacion();
+    function prueba_notificacion() {
+        if (Notification) {
+            if (Notification.permission !== "granted") {
+                Notification.requestPermission()
+                Main_Notificacion("Tenga usted una cordial bienvenida a este portal.");
+            }
+            else {
+                Main_Notificacion("Tenga usted una cordial bienvenida a este portal. 2");
+            }
+            
+        }
+    }
+    function Main_Notificacion(Contenido) {
+        var title = "SIGES Super Plus"
+        var extra = {
+
+            icon: "../Assets/Internal/faviconSP.png",
+            body: Contenido
+        }
+        var noti = new Notification(title, extra)
+        noti.onclick = {
+            // Al hacer click
+        }
+        noti.onclose = {
+            // Al cerrar
+        }
+        setTimeout(function () { noti.close() }, 10000)
+    }
+</script>

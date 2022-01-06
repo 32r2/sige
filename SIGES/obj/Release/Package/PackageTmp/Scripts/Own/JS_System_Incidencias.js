@@ -71,37 +71,34 @@ function llena(DatosAreas, control) {
 //INFORMACION DE LAS INCIDENCIAS **********************************************************
 //Consulta para insertar las INCIDENCIAS
 function InsertIncidencias(IDA) {
-    $.get("/Incidencias/BDInsidenciasArea/?IDA=" + IDA, function (DatosIncidencias) {
-        CrearIncidencias(DatosIncidencias, document.getElementById("Incidencias" + IDA));
+    $.get("/Incidencias/BDIncidenciasArea/?IDA=" + IDA, function (DatosIncidencias) {
+        var CodHtml = "";
+        CodHtml += "<div class='card-body' id='Incidencia'>";
+        CodHtml += "<div class='row'>";
+        CodHtml += "<div class='col-md-4 col-sm-4 col-xs-4'>Incidencia</div>";
+        CodHtml += "<div class='col-md-6 col-sm-6 col-xs-6'>Descripción</div>";
+        CodHtml += "<div class='col-md-2 col-sm-2 col-xs-2'>Opciones</div>";
+        CodHtml += "</div>";
+        for (var i = 0; i < DatosIncidencias.length; i++) {
+            CodHtml += "<div class='row'>";
+            CodHtml += "<div class='col-md-4 col-sm-4 col-xs-4'>"
+            CodHtml += "<button class='btn btn-primary' onclick='AbrirModalIncidencia(" + DatosIncidencias[i].ID + "," + DatosIncidencias[i].IDArea + ")' data-toggle='modal' data-target='#ModalIncidencias'><i class='fas fa-edit'></i></button> ";
+            CodHtml += DatosIncidencias[i].Nombre + "</div>";
+            CodHtml += "<div class='col-md-6 col-sm-6 col-xs-6'>" + DatosIncidencias[i].Descripcion + "</div>";
+            CodHtml += "<div class='col-md-2 col-sm-2 col-xs-2'>";
+            CodHtml += "<button class='btn btn-danger' onclick='EliminarIncidencia(" + DatosIncidencias[i].ID + "," + DatosIncidencias[i].IDArea + ",this)'><i class='fas fa-eraser'></i></button>";
+            CodHtml += "<button class='btn btn-success' onclick='abrirModalProce(0," + DatosIncidencias[i].ID + ");' data-toggle='modal' data-target='#ModalProcedimientos'><i class='fa fa-plus-square'></i></button>";
+            CodHtml += "<button class='btn btn-info' onclick='MostrarOcultar(" + DatosIncidencias[i].ID + ");'><i id='BtnMO" + DatosIncidencias[i].ID + "' class='fas fa-chevron-circle-down'></i></button>";
+            CodHtml += "</div>";
+            CodHtml += "</div>";
+            CodHtml += "<div id='p" + DatosIncidencias[i].ID + "' style='background-color: white; display: none;'>Este elemento aparece y desaparece con el botón</div >";
+            CodHtml += "<hr/>";
+        }
+        CodHtml += "</div>";        
+        document.getElementById("Incidencias" + IDA).innerHTML = CodHtml;
     });
 }
-//Inserta la informacion de las preguntas
-function CrearIncidencias(DatosIncidencias, IDo) {
-    var CodHtml = "";
-    CodHtml += "<div class='card-body' id='Incidencia'>";
-    CodHtml += "<div class='row'>";
-    CodHtml += "<div class='col-md-4 col-sm-4 col-xs-4'>Incidencia</div>";
-    CodHtml += "<div class='col-md-6 col-sm-6 col-xs-6'>Descripción</div>";
-    CodHtml += "<div class='col-md-2 col-sm-2 col-xs-2'>Opciones</div>";
-    CodHtml += "</div>";
-    for (var i = 0; i < DatosIncidencias.length; i++) {
-        CodHtml += "<div class='row'>";
-        CodHtml += "<div class='col-md-4 col-sm-4 col-xs-4'>"
-        CodHtml += "<button class='btn btn-primary' onclick='AbrirModalIncidencia(" + DatosIncidencias[i].ID + "," + DatosIncidencias[i].IDArea + ")' data-toggle='modal' data-target='#ModalIncidencias'><i class='fas fa-edit'></i></button> ";
-        CodHtml += DatosIncidencias[i].Nombre + "</div>";
-        CodHtml += "<div class='col-md-6 col-sm-6 col-xs-6'>" + DatosIncidencias[i].Descripcion + "</div>";
-        CodHtml += "<div class='col-md-2 col-sm-2 col-xs-2'>";
-        CodHtml += "<button class='btn btn-danger' onclick='EliminarIncidencia(" + DatosIncidencias[i].ID + "," + DatosIncidencias[i].IDArea + ",this)'><i class='fas fa-eraser'></i></button>";
-        CodHtml += "<button class='btn btn-success' onclick='abrirModalProce(0," + DatosIncidencias[i].ID + ");' data-toggle='modal' data-target='#ModalProcedimientos'><i class='fa fa-plus-square'></i></button>";
-        CodHtml += "<button class='btn btn-info' onclick='MostrarOcultar(" + DatosIncidencias[i].ID + ");'><i id='BtnMO" + DatosIncidencias[i].ID + "' class='fas fa-chevron-circle-down'></i></button>";
-        CodHtml += "</div>";
-        CodHtml += "</div>";
-        CodHtml += "<div id='p" + DatosIncidencias[i].ID + "' style='background-color: white; display: none;'>Este elemento aparece y desaparece con el botón</div >";
-        CodHtml += "<hr/>";
-    }
-    CodHtml += "</div>";
-    IDo.innerHTML = CodHtml;
-}
+
 //abrir Modal
 function AbrirModalIncidencia(id, IDA) {
     var controlesObligatorio = document.getElementsByClassName("Incidencias");
@@ -117,7 +114,7 @@ function AbrirModalIncidencia(id, IDA) {
         });
     }
     else {
-        $.get("/Incidencias/BDInsidencia/?ID=" + id, function (DatosIncidencia) {
+        $.get("/Incidencias/BDIncidencia/?ID=" + id, function (DatosIncidencia) {
             document.getElementById("TxtIDIncidencia").value = DatosIncidencia[0].IDIncidencia;
             document.getElementById("TxtNombre").value = DatosIncidencia[0].Nombre;
             document.getElementById("TxtNoSoluciones").value = DatosIncidencia[0].NoSoluciones;
@@ -202,13 +199,13 @@ function abrirModalProce(id, idi) {
     LimpiarCampos();
     document.getElementById("carouselRecursos").innerHTML = "";
     if (id == 0) {
-        $.get("/Incidencias/BDInsidencia/?ID=" + idi, function (data) {
+        $.get("/Incidencias/BDIncidencia/?ID=" + idi, function (data) {
             var Area = data[0].IDArea;
             $.get("/Cardinal/BDAreas", function (dataA) {
                 llenarCombo(dataA, document.getElementById("cmbAreaProce"), true);
                 document.getElementById("cmbAreaProce").value = Area;
             });
-            $.get("/Incidencias/BDInsidenciasArea/?IDA=" + Area, function (datosInA) {
+            $.get("/Incidencias/BDIncidenciasArea/?IDA=" + Area, function (datosInA) {
                 llenarCombo(datosInA, document.getElementById("cmbIDIncidencia"), true);
                 document.getElementById("cmbIDIncidencia").value = idi;
             });
@@ -225,7 +222,7 @@ function abrirModalProce(id, idi) {
     else {
         $.get("/Incidencias/BDAyudaID/?IDm=" + id, function (Paso) {
             document.getElementById("TxtIDMesaAyuda").value = Paso[0].ID;
-            $.get("/Incidencias/BDInsidenciasArea/?IDA=" + Paso[0].IDArea, function (datosInA) {
+            $.get("/Incidencias/BDIncidenciasArea/?IDA=" + Paso[0].IDArea, function (datosInA) {
                 llenarCombo(datosInA, document.getElementById("cmbIDIncidencia"), true);
                 document.getElementById("cmbIDIncidencia").value = Paso[0].IDIncidencia;
                 var NoSoluciones = datosInA[0].NoSoluciones;
@@ -346,9 +343,9 @@ function GuardarProcedimiento() {
 }
 //inserta los paso a seguir para solucionar la insidencia
 function MostrarProcedimientos(IDIncidencia) {
-    $.get("/Incidencias/BDInsidencia/?ID=" + IDIncidencia, function (Insidencias) {
+    $.get("/Incidencias/BDIncidencia/?ID=" + IDIncidencia, function (Incidencias) {
         var CodeHTML = "";
-        var Soluciones = Insidencias[0].NoSoluciones;
+        var Soluciones = Incidencias[0].NoSoluciones;
         for (var i = 1; i < Soluciones + 1; i++) {
             CodeHTML += "<br/>";
             CodeHTML += "<h5> Procedimiento No." + i + " para la solución de la insidencia</h5>";
@@ -358,7 +355,7 @@ function MostrarProcedimientos(IDIncidencia) {
     });
 }
 function InsertarPasos(IDIncidencia) {
-    $.get("/Incidencias/BDInsidencia/?ID=" + IDIncidencia, function (Incidencias) {
+    $.get("/Incidencias/BDIncidencia/?ID=" + IDIncidencia, function (Incidencias) {
         let NoSol = Incidencias[0].NoSoluciones;
         for (let Is = 1; Is <= NoSol; Is++) {
             $.get("/Incidencias/BDAyudaPasos/?ID=" + IDIncidencia + "&NoS= " + Is, function (Pasos) {

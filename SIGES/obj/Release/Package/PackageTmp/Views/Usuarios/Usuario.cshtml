@@ -5,95 +5,12 @@
 }
 @*<link href="~/Content/font-awesome.min.css" rel="stylesheet" />*@
 <link href="~/Content/CheckPassword.css" rel="stylesheet" />
-<style>
-    #myProgress {
-        width: 100%;
-        background-color: #ddd;
-    }
-
-    #myBar {
-        width: 1%;
-        height: 30px;
-        background-color: #04AA6D;
-    }
-
-    /*.ModAlt {
-        height: 400px;
-    }*/
-
-    .ocultar {
-        display: none;
-    }
-
-    .mostrar {
-        display: block;
-    }
-
-    .img-centro {
-        margin: 10px auto 10px;
-        display: block;
-    }
-    /*ModAlt*/
-    .ModAlt {
-        height: 400px;
-    }
-
-    @@media (min-width: 572px) {
-        .ModAlt {
-            height: 750px;
-        }
-    }
-
-    @@media (min-width: 768px) {
-        .ModAlt {
-            height: 400px;
-        }
-    }
-
-    @@media (min-width: 992px) {
-        .ModAlt {
-            height: 400px;
-        }
-    }
-
-    @@media (min-width: 1200px) {
-        .ModAlt {
-            height: 400px;
-        }
-    }
-    /*Full screen Modal*/
-    .fullscreen-modal .modal-dialog {
-        margin: 0;
-        margin-right: auto;
-        margin-left: auto;
-        width: 100%;
-        height: 400px;
-    }
-
-    @@media (min-width: 768px) {
-        .fullscreen-modal .modal-dialog {
-            width: 750px;
-            height: 850px;
-        }
-    }
-
-    @@media (min-width: 992px) {
-        .fullscreen-modal .modal-dialog {
-            width: 970px;
-            height: 850px;
-        }
-    }
-
-    @@media (min-width: 1200px) {
-        .fullscreen-modal .modal-dialog {
-            width: 1170px;
-            height: 850px;
-        }
-    }
-</style>
+<link href="~/Content/ModalMedia.css" rel="stylesheet" />
 <h2>Usuarios</h2>
+<div id="Alertas"></div>
 <button onclick="abrirModal(0)" type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Agregar</button>
 <div id="tabla" class="table-responsive"></div>
+<img id="imageid" src="~/Assets/Internal/NoUser.png" style="display: none" />
 <!--*****************************************************************************-->
 <div class="modal fullscreen-modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
@@ -125,7 +42,7 @@
                     <br />
                     <div class="row">
                         <div class="col-md-6 col-sm-6 col-xs-6 justify-content-end">
-                            <img id="PBFoto" src="~/Assets/Internal/01.png" width="220" height="220" alt="" />
+                            <img id="PBFoto" src="" width="220" height="220" alt="" />
                             <br />
                             <input id="BtnFoto" type="file" class="form-control form-control-sm limpiar" value="SUBIR" />
                         </div>
@@ -247,12 +164,7 @@
                         <div class="col-md-6 col-sm-6 col-xs-6">
                             <span class="help-block text-muted small-font">Asignación</span>
                             <BR />
-                            <select id="cmbAsignacion" style="width: 100%" class="btn btn-success dropdown-toggle SelectCLS Datostep-2 DatosGuardar">
-                                <option value="0">--Seleccione--</option>
-                                <option value="1">Oficina</option>
-                                <option value="2">Campo</option>
-                                <option value="3">Tienda</option>
-                            </select>
+                            <select id="cmbAsignacion" style="width: 100%" class="btn btn-success dropdown-toggle SelectCLS Datostep-2 DatosGuardar"></select>
                         </div>
                         <div class="col-md-6 col-sm-6 col-xs-6">
                             <span class="help-block text-muted small-font">Sitio</span>

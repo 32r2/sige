@@ -5,6 +5,7 @@
 }
 
 <h2>Supervisiones</h2>
+<div id="Alertas"></div>
 <button onclick="abrirModal(0)" type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalSupervision">Agregar</button>
 <div id="tabla" class="table-responsive"></div>
 <div id="ModalSupervision" class="modal" role="dialog">
@@ -24,37 +25,23 @@
                             <input type="text" id="TxtIDSupervision" class="form-control limpiar bloquear" placeholder="" />
                         </div>
                         <div class="col-md-8 col-sm-8 col-xs-8">
-                            <span class="help-block text-muted small-font"> Nombre de la Supervision</span>
-                            <input type="text" id="TxtSupervision" class="form-control limpiar Supervision" placeholder="Supervision XX" />
+                            <span class="help-block text-muted small-font"> Nombre de la supervisión</span>
+                            <input type="text" id="TxtSupervision" class="form-control limpiar Supervision" placeholder="Supervisión XX" />
                         </div>
                     </div>
                     <br />
                     <div class="row ">
                         <div class="col-md-8 col-sm-8 col-xs-8">
-                            <span class="help-block text-muted small-font">Encargado</span>
+                            <span class="help-block text-muted small-font">Nombre del supervisor</span>
                             <br />
-                            <select id="cmbEncargado" class="btn btn-warning dropdown-toggle limpiar Supervision"></select>
+                            <select id="cmbEncargado" class="btn btn-warning dropdown-toggle SelectCLS Supervision"></select>
                         </div>
                     </div>
                     <br />
                     <div class="row">
-                        <div class="col-md-12 col-sm-12 col-xs-12">
-                            <span class="help-block text-muted small-font">Tiendas</span>
-                            <br />
-                            <select id="cmbTiendas" multiple="multiple" class="form-control limpiar Supervision">
-                                <option value="1">PLUS 01</option>
-                                <option value="2">PLUS 02</option>
-                                <option value="3">PLUS 03</option>
-                                <option value="4">PLUS 04</option>
-                                <option value="5">PLUS 05</option>
-                                <option value="6">PLUS 06</option>
-                                <option value="7">PLUS 07</option>
-                                <option value="8">PLUS 08</option>
-                                <option value="9">PLUS 09</option>
-                                <option value="10">PLUS 10</option>
-                                <option value="11">PLUS 11</option>
-                                <option value="12">PLUS 12</option>
-                            </select>
+                        <div class="col-md-12 col-sm-12 col-xs-12 justify-content-end">
+                            <span class="help-block text-muted small-font">Sucursales</span>
+                            <div id="TblSucursales">Se inserta una tabla con las Sucursales ya agregadas a la BD</div>
                         </div>
                     </div>
                     <br />

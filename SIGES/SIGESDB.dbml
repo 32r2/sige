@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SIGES" Class="SIGESDBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=192.168.1.41\SQLEXPRESS;Initial Catalog=SIGES;Persist Security Info=True;User ID=SIGESBD" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="SIGESConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=192.168.1.41\SQLEXPRESS;Initial Catalog=SIGES;Persist Security Info=True;User ID=SIGESBD" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="SIGESConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Administration_Evaluacion_Tienda" Member="Administration_Evaluacion_Tienda">
     <Type Name="Administration_Evaluacion_Tienda">
       <Column Name="IDEvaluacion" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -22,55 +22,8 @@
       <Association Name="Administration_Evaluacion_Tienda_Administration_Evaluacion_Tienda_Reactivos" Member="Administration_Evaluacion_Tienda_Reactivos" ThisKey="IDEvaluacion" OtherKey="IDEvaluacion" Type="Administration_Evaluacion_Tienda_Reactivos" />
       <Association Name="Administration_Evaluacion_Tienda_Administration_Evaluacion_Tienda_Resultados" Member="Administration_Evaluacion_Tienda_Resultados" ThisKey="IDEvaluacion" OtherKey="IDEvaluacion" Type="Administration_Evaluacion_Tienda_Resultados" />
       <Association Name="Administration_Evaluacion_Tienda_Administration_Evaluacion_Tienda_Soluciones" Member="Administration_Evaluacion_Tienda_Soluciones" ThisKey="IDEvaluacion" OtherKey="IDEvaluacion" Type="Administration_Evaluacion_Tienda_Soluciones" />
-      <Association Name="User_Usuarios_Administration_Evaluacion_Tienda" Member="User_Usuarios" ThisKey="IDUsuario" OtherKey="IDUsuario" Type="User_Usuarios" IsForeignKey="true" />
       <Association Name="System_Areas_Administration_Evaluacion_Tienda" Member="System_Areas" ThisKey="IDArea" OtherKey="IDArea" Type="System_Areas" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.User_Usuarios" Member="User_Usuarios">
-    <Type Name="User_Usuarios">
-      <Column Name="IDUsuario" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="CURP" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Nombre" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
-      <Column Name="APaterno" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
-      <Column Name="AMaterno" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
-      <Column Name="Foto" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="FNacimiento" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="IDEstado" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="IDLocalidad" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="IDMunicipio" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="RFC" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="NoSS" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Correo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Telefono" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
-      <Column Name="IDPerfil" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
-      <Column Name="LVLPerfil" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
-      <Column Name="IDArea" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
-      <Column Name="NArea" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
-      <Column Name="IDSubArea" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
-      <Column Name="NSArea" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
-      <Column Name="Asignacion" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Sitio" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="IDPadre" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
-      <Column Name="Usuario" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Contraseña" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="CManejador" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
-      <Column Name="FManejador" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="CPlataforma" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
-      <Column Name="FPlataforma" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="FIngreso" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="FEgreso" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="Estatus" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="User_Usuarios_Administration_Evaluacion_Tienda" Member="Administration_Evaluacion_Tienda" ThisKey="IDUsuario" OtherKey="IDUsuario" Type="Administration_Evaluacion_Tienda" />
-      <Association Name="User_Usuarios_Administration_Evaluacion_Tienda_Resultados" Member="Administration_Evaluacion_Tienda_Resultados" ThisKey="IDUsuario" OtherKey="IDUsuario" Type="Administration_Evaluacion_Tienda_Resultados" />
-      <Association Name="User_Usuarios_System_Areas" Member="System_Areas" ThisKey="IDUsuario" OtherKey="IDUsuario" Type="System_Areas" />
-      <Association Name="User_Usuarios_System_Sis_Bitacora" Member="System_Sis_Bitacora" ThisKey="IDUsuario" OtherKey="IDUsuario" Type="System_Sis_Bitacora" />
-      <Association Name="User_Usuarios_System_Sis_Notificacion_Seguimiento" Member="System_Sis_Notificacion_Seguimiento" ThisKey="IDUsuario" OtherKey="IDUsuario" Type="System_Sis_Notificacion_Seguimiento" />
-      <Association Name="User_Usuarios_System_Supervision" Member="System_Supervision" ThisKey="IDUsuario" OtherKey="IDUsuario" Type="System_Supervision" />
-      <Association Name="User_Usuarios_Trainig_Cuestionario" Member="Trainig_Cuestionario" ThisKey="IDUsuario" OtherKey="IDUsuario" Type="Trainig_Cuestionario" />
-      <Association Name="User_Usuarios_Trainig_Cuestionario_Respuestas_User" Member="Trainig_Cuestionario_Respuestas_User" ThisKey="IDUsuario" OtherKey="IDUsuario" Type="Trainig_Cuestionario_Respuestas_User" />
-      <Association Name="User_Usuarios_Trainig_Cuestionario_Seguimiento" Member="Trainig_Cuestionario_Seguimiento" ThisKey="IDUsuario" OtherKey="IDUsuario" Type="Trainig_Cuestionario_Seguimiento" />
-      <Association Name="User_Usuarios_Trainig_Cursos" Member="Trainig_Cursos" ThisKey="IDUsuario" OtherKey="IDUsuario" Type="Trainig_Cursos" />
-      <Association Name="User_Usuarios_Trainig_Cursos_Seguimiento" Member="Trainig_Cursos_Seguimiento" ThisKey="IDUsuario" OtherKey="IDUsuario" Type="Trainig_Cursos_Seguimiento" />
+      <Association Name="User_Usuarios_Administration_Evaluacion_Tienda" Member="User_Usuarios" ThisKey="IDUsuario" OtherKey="IDUsuario" Type="User_Usuarios" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Administration_Evaluacion_Tienda_Reactivos" Member="Administration_Evaluacion_Tienda_Reactivos">
@@ -99,8 +52,8 @@
       <Column Name="Observaciones" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="Total" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="Administration_Evaluacion_Tienda_Administration_Evaluacion_Tienda_Resultados" Member="Administration_Evaluacion_Tienda" ThisKey="IDEvaluacion" OtherKey="IDEvaluacion" Type="Administration_Evaluacion_Tienda" IsForeignKey="true" />
-      <Association Name="User_Usuarios_Administration_Evaluacion_Tienda_Resultados" Member="User_Usuarios" ThisKey="IDUsuario" OtherKey="IDUsuario" Type="User_Usuarios" IsForeignKey="true" />
       <Association Name="System_Sis_Tienda_Administration_Evaluacion_Tienda_Resultados" Member="System_Sis_Tienda" ThisKey="IDTienda" OtherKey="IDTienda" Type="System_Sis_Tienda" IsForeignKey="true" />
+      <Association Name="User_Usuarios_Administration_Evaluacion_Tienda_Resultados" Member="User_Usuarios" ThisKey="IDUsuario" OtherKey="IDUsuario" Type="User_Usuarios" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Administration_Evaluacion_Tienda_Soluciones" Member="Administration_Evaluacion_Tienda_Soluciones">
@@ -157,8 +110,7 @@
       <Association Name="System_Areas_System_Areas_SubAreas" Member="System_Areas_SubAreas" ThisKey="IDArea" OtherKey="IDArea" Type="System_Areas_SubAreas" />
       <Association Name="System_Areas_System_Incidencias_MesaAyuda" Member="System_Incidencias_MesaAyuda" ThisKey="IDArea" OtherKey="IDArea" Type="System_Incidencias_MesaAyuda" />
       <Association Name="System_Areas_System_Incidencias_MesaAyuda1" Member="System_Incidencias_MesaAyuda1" ThisKey="IDArea" OtherKey="IDArea" Type="System_Incidencias_MesaAyuda" />
-      <Association Name="System_Areas_System_Incidencias_User_RInsidencias" Member="System_Incidencias_User_RInsidencias" ThisKey="IDArea" OtherKey="IDArea" Type="System_Incidencias_User_RInsidencias" />
-      <Association Name="System_Areas_System_Incidencias_User_RInsidencias_Seguimiento" Member="System_Incidencias_User_RInsidencias_Seguimiento" ThisKey="IDArea" OtherKey="IDArea" Type="System_Incidencias_User_RInsidencias_Seguimiento" />
+      <Association Name="System_Areas_System_Incidencias_User_RIncidencias" Member="System_Incidencias_User_RIncidencias" ThisKey="IDArea" OtherKey="IDArea" Type="System_Incidencias_User_RIncidencias" />
       <Association Name="System_Areas_System_Sis_Notificacion" Member="System_Sis_Notificacion" ThisKey="IDArea" OtherKey="IDArea" Type="System_Sis_Notificacion" />
       <Association Name="System_Areas_Trainig_Cuestionario" Member="Trainig_Cuestionario" ThisKey="IDArea" OtherKey="IDArea" Type="Trainig_Cuestionario" />
       <Association Name="System_Areas_Trainig_Cursos" Member="Trainig_Cursos" ThisKey="IDArea" OtherKey="IDArea" Type="Trainig_Cursos" />
@@ -167,7 +119,7 @@
   </Table>
   <Table Name="dbo.System_Areas_Recursos" Member="System_Areas_Recursos">
     <Type Name="System_Areas_Recursos">
-      <Column Name="IDRecurso" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDRecurso" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Titulo" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
       <Column Name="IDArea" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
       <Column Name="Direccion" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
@@ -179,7 +131,7 @@
   </Table>
   <Table Name="dbo.System_Areas_SubAreas" Member="System_Areas_SubAreas">
     <Type Name="System_Areas_SubAreas">
-      <Column Name="IDSubArea" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDSubArea" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Nombre" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
       <Column Name="NoSubArea" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="IDArea" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
@@ -210,8 +162,7 @@
       <Column Name="Reporte" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Estatus" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="System_Incidencias_System_Incidencias_MesaAyuda" Member="System_Incidencias_MesaAyuda" ThisKey="IDIncidencia" OtherKey="IDIncidencia" Type="System_Incidencias_MesaAyuda" />
-      <Association Name="System_Incidencias_System_Incidencias_User_RInsidencias" Member="System_Incidencias_User_RInsidencias" ThisKey="IDIncidencia" OtherKey="IDInsidencia" Type="System_Incidencias_User_RInsidencias" />
-      <Association Name="System_Incidencias_System_Incidencias_User_RInsidencias_Seguimiento" Member="System_Incidencias_User_RInsidencias_Seguimiento" ThisKey="IDIncidencia" OtherKey="IDIncidencia" Type="System_Incidencias_User_RInsidencias_Seguimiento" />
+      <Association Name="System_Incidencias_System_Incidencias_User_RIncidencias" Member="System_Incidencias_User_RIncidencias" ThisKey="IDIncidencia" OtherKey="IDIncidencia" Type="System_Incidencias_User_RIncidencias" />
     </Type>
   </Table>
   <Table Name="dbo.System_Incidencias_MesaAyuda" Member="System_Incidencias_MesaAyuda">
@@ -230,44 +181,35 @@
       <Association Name="System_Incidencias_System_Incidencias_MesaAyuda" Member="System_Incidencias" ThisKey="IDIncidencia" OtherKey="IDIncidencia" Type="System_Incidencias" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.System_Incidencias_User_RInsidencias" Member="System_Incidencias_User_RInsidencias">
-    <Type Name="System_Incidencias_User_RInsidencias">
-      <Column Name="IDRInsidencia" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+  <Table Name="dbo.System_Incidencias_User_RIncidencias" Member="System_Incidencias_User_RIncidencias">
+    <Type Name="System_Incidencias_User_RIncidencias">
+      <Column Name="IDRIncidencia" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="IDArea" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
       <Column Name="IDSubArea" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
-      <Column Name="IDInsidencia" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
-      <Column Name="IDUsuario" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
-      <Column Name="UNombre" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="IDIncidencia" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="ReporteIDUsuario" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="ReporteUNombre" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
       <Column Name="IDTienda" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="NoInsidencia" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
-      <Column Name="Fecha" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="Observaciones" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
-      <Column Name="Foto" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ReporteFecha" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ReporteObservaciones" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="ReporteFoto" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="SolucionIDUsuario" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="SolucionUNombre" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="SolucionFecha" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="SolucionDescripcion" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="SolucionFoto" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
       <Column Name="Estatus" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="System_Incidencias_User_RInsidencias_System_Incidencias_User_RInsidencias_Seguimiento" Member="System_Incidencias_User_RInsidencias_Seguimiento" ThisKey="IDRInsidencia" OtherKey="IDRInsidencia" Type="System_Incidencias_User_RInsidencias_Seguimiento" />
-      <Association Name="System_Areas_System_Incidencias_User_RInsidencias" Member="System_Areas" ThisKey="IDArea" OtherKey="IDArea" Type="System_Areas" IsForeignKey="true" />
-      <Association Name="System_Incidencias_System_Incidencias_User_RInsidencias" Member="System_Incidencias" ThisKey="IDInsidencia" OtherKey="IDIncidencia" Type="System_Incidencias" IsForeignKey="true" />
+      <Association Name="System_Areas_System_Incidencias_User_RIncidencias" Member="System_Areas" ThisKey="IDArea" OtherKey="IDArea" Type="System_Areas" IsForeignKey="true" />
+      <Association Name="System_Incidencias_System_Incidencias_User_RIncidencias" Member="System_Incidencias" ThisKey="IDIncidencia" OtherKey="IDIncidencia" Type="System_Incidencias" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.System_Incidencias_User_RInsidencias_Seguimiento" Member="System_Incidencias_User_RInsidencias_Seguimiento">
-    <Type Name="System_Incidencias_User_RInsidencias_Seguimiento">
-      <Column Name="IDSeguimiento" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="IDArea" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
-      <Column Name="NombreA" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
-      <Column Name="IDSubArea" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
-      <Column Name="NombreAs" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
-      <Column Name="IDUsuario" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
-      <Column Name="UNombre" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
-      <Column Name="IDIncidencia" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
-      <Column Name="IDRInsidencia" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
-      <Column Name="FechaInsidencia" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="FechaSolucion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="Descripcion" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
-      <Column Name="Foto" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="Estatus" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="System_Areas_System_Incidencias_User_RInsidencias_Seguimiento" Member="System_Areas" ThisKey="IDArea" OtherKey="IDArea" Type="System_Areas" IsForeignKey="true" />
-      <Association Name="System_Incidencias_System_Incidencias_User_RInsidencias_Seguimiento" Member="System_Incidencias" ThisKey="IDIncidencia" OtherKey="IDIncidencia" Type="System_Incidencias" IsForeignKey="true" />
-      <Association Name="System_Incidencias_User_RInsidencias_System_Incidencias_User_RInsidencias_Seguimiento" Member="System_Incidencias_User_RInsidencias" ThisKey="IDRInsidencia" OtherKey="IDRInsidencia" Type="System_Incidencias_User_RInsidencias" IsForeignKey="true" />
+  <Table Name="dbo.System_Inf_Asignacion" Member="System_Inf_Asignacion">
+    <Type Name="System_Inf_Asignacion">
+      <Column Name="IDAsignacion" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Estatus" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="System_Inf_Asignacion_User_Usuarios" Member="User_Usuarios" ThisKey="IDAsignacion" OtherKey="IDAsignacion" Type="User_Usuarios" />
     </Type>
   </Table>
   <Table Name="dbo.System_Inf_Estados" Member="System_Inf_Estados">
@@ -279,10 +221,42 @@
       <Column Name="Estatus" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="System_Inf_Estados_System_Inf_Municipios" Member="System_Inf_Municipios" ThisKey="IDEstado" OtherKey="IDEstado" Type="System_Inf_Municipios" />
       <Association Name="System_Inf_Estados_System_Sis_Tienda" Member="System_Sis_Tienda" ThisKey="IDEstado" OtherKey="IDEstado" Type="System_Sis_Tienda" />
+      <Association Name="System_Inf_Estados_User_Usuarios" Member="User_Usuarios" ThisKey="IDEstado" OtherKey="IDEstado" Type="User_Usuarios" />
+    </Type>
+  </Table>
+  <Table Name="dbo.System_Inf_Estados2" Member="System_Inf_Estados2">
+    <Type Name="System_Inf_Estados2">
+      <Column Name="IDEstado" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Clave" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(40) NOT NULL" CanBeNull="false" />
+      <Column Name="Abrev" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Estatus" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="System_Inf_Estados2_System_Inf_Municipios2" Member="System_Inf_Municipios2" ThisKey="IDEstado" OtherKey="IDEstado" Type="System_Inf_Municipios2" />
+      <Association Name="System_Inf_Estados2_System_Sis_Tienda" Member="System_Sis_Tienda" ThisKey="IDEstado" OtherKey="IDEstado" Type="System_Sis_Tienda" />
     </Type>
   </Table>
   <Table Name="dbo.System_Inf_Localidades" Member="System_Inf_Localidades">
     <Type Name="System_Inf_Localidades">
+      <Column Name="IDLocalidad" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDMunicipio" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Clave" Type="System.String" DbType="VarChar(4) NOT NULL" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Mapa" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Ambito" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
+      <Column Name="Latitud" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Longitud" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Lat" Type="System.Decimal" DbType="Decimal(10,7) NOT NULL" CanBeNull="false" />
+      <Column Name="Lng" Type="System.Decimal" DbType="Decimal(10,7) NOT NULL" CanBeNull="false" />
+      <Column Name="Altitud" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="Carta" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Estatus" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="System_Inf_Localidades_System_Sis_Tienda" Member="System_Sis_Tienda" ThisKey="IDLocalidad" OtherKey="IDLocalidad" Type="System_Sis_Tienda" />
+      <Association Name="System_Inf_Localidades_User_Usuarios" Member="User_Usuarios" ThisKey="IDLocalidad" OtherKey="IDLocalidad" Type="User_Usuarios" />
+      <Association Name="System_Inf_Municipios_System_Inf_Localidades" Member="System_Inf_Municipios" ThisKey="IDMunicipio" OtherKey="IDMunicipio" Type="System_Inf_Municipios" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.System_Inf_Localidades2" Member="System_Inf_Localidades2">
+    <Type Name="System_Inf_Localidades2">
       <Column Name="IDLocalidad" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="IDMunicipio" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Clave" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
@@ -293,8 +267,8 @@
       <Column Name="Lat" Type="System.Decimal" DbType="Decimal(10,7) NOT NULL" CanBeNull="false" />
       <Column Name="Lng" Type="System.Decimal" DbType="Decimal(10,7) NOT NULL" CanBeNull="false" />
       <Column Name="Estatus" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="System_Inf_Localidades_System_Sis_Tienda" Member="System_Sis_Tienda" ThisKey="IDLocalidad" OtherKey="IDLocalidad" Type="System_Sis_Tienda" />
-      <Association Name="System_Inf_Municipios_System_Inf_Localidades" Member="System_Inf_Municipios" ThisKey="IDMunicipio" OtherKey="IDMunicipio" Type="System_Inf_Municipios" IsForeignKey="true" />
+      <Association Name="System_Inf_Localidades2_System_Sis_Tienda" Member="System_Sis_Tienda" ThisKey="IDLocalidad" OtherKey="IDLocalidad" Type="System_Sis_Tienda" />
+      <Association Name="System_Inf_Municipios2_System_Inf_Localidades2" Member="System_Inf_Municipios2" ThisKey="IDMunicipio" OtherKey="IDMunicipio" Type="System_Inf_Municipios2" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.System_Inf_Municipios" Member="System_Inf_Municipios">
@@ -306,7 +280,20 @@
       <Column Name="Estatus" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="System_Inf_Municipios_System_Inf_Localidades" Member="System_Inf_Localidades" ThisKey="IDMunicipio" OtherKey="IDMunicipio" Type="System_Inf_Localidades" />
       <Association Name="System_Inf_Municipios_System_Sis_Tienda" Member="System_Sis_Tienda" ThisKey="IDMunicipio" OtherKey="IDMunicipio" Type="System_Sis_Tienda" />
+      <Association Name="System_Inf_Municipios_User_Usuarios" Member="User_Usuarios" ThisKey="IDMunicipio" OtherKey="IDMunicipio" Type="User_Usuarios" />
       <Association Name="System_Inf_Estados_System_Inf_Municipios" Member="System_Inf_Estados" ThisKey="IDEstado" OtherKey="IDEstado" Type="System_Inf_Estados" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.System_Inf_Municipios2" Member="System_Inf_Municipios2">
+    <Type Name="System_Inf_Municipios2">
+      <Column Name="IDMunicipio" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDEstado" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Clave" Type="System.String" DbType="VarChar(3) NOT NULL" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Estatus" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="System_Inf_Municipios2_System_Inf_Localidades2" Member="System_Inf_Localidades2" ThisKey="IDMunicipio" OtherKey="IDMunicipio" Type="System_Inf_Localidades2" />
+      <Association Name="System_Inf_Municipios2_System_Sis_Tienda" Member="System_Sis_Tienda" ThisKey="IDMunicipio" OtherKey="IDMunicipio" Type="System_Sis_Tienda" />
+      <Association Name="System_Inf_Estados2_System_Inf_Municipios2" Member="System_Inf_Estados2" ThisKey="IDEstado" OtherKey="IDEstado" Type="System_Inf_Estados2" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.System_Sis_Bitacora" Member="System_Sis_Bitacora">
@@ -414,8 +401,11 @@
       <Column Name="NoServicioLuz" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
       <Column Name="Estatus" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="System_Sis_Tienda_Administration_Evaluacion_Tienda_Resultados" Member="Administration_Evaluacion_Tienda_Resultados" ThisKey="IDTienda" OtherKey="IDTienda" Type="Administration_Evaluacion_Tienda_Resultados" />
+      <Association Name="System_Inf_Estados2_System_Sis_Tienda" Member="System_Inf_Estados2" ThisKey="IDEstado" OtherKey="IDEstado" Type="System_Inf_Estados2" IsForeignKey="true" />
       <Association Name="System_Inf_Estados_System_Sis_Tienda" Member="System_Inf_Estados" ThisKey="IDEstado" OtherKey="IDEstado" Type="System_Inf_Estados" IsForeignKey="true" />
+      <Association Name="System_Inf_Localidades2_System_Sis_Tienda" Member="System_Inf_Localidades2" ThisKey="IDLocalidad" OtherKey="IDLocalidad" Type="System_Inf_Localidades2" IsForeignKey="true" />
       <Association Name="System_Inf_Localidades_System_Sis_Tienda" Member="System_Inf_Localidades" ThisKey="IDLocalidad" OtherKey="IDLocalidad" Type="System_Inf_Localidades" IsForeignKey="true" />
+      <Association Name="System_Inf_Municipios2_System_Sis_Tienda" Member="System_Inf_Municipios2" ThisKey="IDMunicipio" OtherKey="IDMunicipio" Type="System_Inf_Municipios2" IsForeignKey="true" />
       <Association Name="System_Inf_Municipios_System_Sis_Tienda" Member="System_Inf_Municipios" ThisKey="IDMunicipio" OtherKey="IDMunicipio" Type="System_Inf_Municipios" IsForeignKey="true" />
       <Association Name="System_Supervision_System_Sis_Tienda" Member="System_Supervision" ThisKey="IDSupervision" OtherKey="IDSupervision" Type="System_Supervision" IsForeignKey="true" />
     </Type>
@@ -439,8 +429,6 @@
       <Column Name="Nombre" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
       <Column Name="IDArea" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
       <Column Name="NombreA" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
-      <Column Name="IDSubArea" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
-      <Column Name="NombreAs" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
       <Column Name="IDUsuario" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
       <Column Name="UNombre" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
       <Column Name="Usuarios" Type="System.String" DbType="VarChar(300) NOT NULL" CanBeNull="false" />
@@ -454,14 +442,13 @@
       <Association Name="Trainig_Cuestionario_Trainig_Cuestionario_Preguntas" Member="Trainig_Cuestionario_Preguntas" ThisKey="IDCuestionario" OtherKey="IDCuestionario" Type="Trainig_Cuestionario_Preguntas" />
       <Association Name="Trainig_Cuestionario_Trainig_Cuestionario_Respuestas" Member="Trainig_Cuestionario_Respuestas" ThisKey="IDCuestionario" OtherKey="IDCuestionario" Type="Trainig_Cuestionario_Respuestas" />
       <Association Name="Trainig_Cuestionario_Trainig_Cuestionario_Respuestas_User" Member="Trainig_Cuestionario_Respuestas_User" ThisKey="IDCuestionario" OtherKey="IDCuestionario" Type="Trainig_Cuestionario_Respuestas_User" />
-      <Association Name="Trainig_Cuestionario_Trainig_Cuestionario_Seguimiento" Member="Trainig_Cuestionario_Seguimiento" ThisKey="IDCuestionario" OtherKey="IDCuestionario" Type="Trainig_Cuestionario_Seguimiento" />
       <Association Name="System_Areas_Trainig_Cuestionario" Member="System_Areas" ThisKey="IDArea" OtherKey="IDArea" Type="System_Areas" IsForeignKey="true" />
       <Association Name="User_Usuarios_Trainig_Cuestionario" Member="User_Usuarios" ThisKey="IDUsuario" OtherKey="IDUsuario" Type="User_Usuarios" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Trainig_Cuestionario_Preguntas" Member="Trainig_Cuestionario_Preguntas">
     <Type Name="Trainig_Cuestionario_Preguntas">
-      <Column Name="IDPregunta" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDPregunta" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="IDCuestionario" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
       <Column Name="NoPregunta" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Pregunta" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
@@ -489,26 +476,16 @@
       <Column Name="IDRespuestas" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="IDCuestionario" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
       <Column Name="IDUsuario" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
-      <Column Name="UNombre" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
       <Column Name="Fecha" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="NoSemana" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Año" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Respuestas" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
       <Column Name="Total" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Observacion" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Historial" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Finalizado" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Association Name="Trainig_Cuestionario_Trainig_Cuestionario_Respuestas_User" Member="Trainig_Cuestionario" ThisKey="IDCuestionario" OtherKey="IDCuestionario" Type="Trainig_Cuestionario" IsForeignKey="true" />
       <Association Name="User_Usuarios_Trainig_Cuestionario_Respuestas_User" Member="User_Usuarios" ThisKey="IDUsuario" OtherKey="IDUsuario" Type="User_Usuarios" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Trainig_Cuestionario_Seguimiento" Member="Trainig_Cuestionario_Seguimiento">
-    <Type Name="Trainig_Cuestionario_Seguimiento">
-      <Column Name="IDCuestionarioSeg" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="IDCuestionario" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
-      <Column Name="IDUsuario" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
-      <Column Name="UNombre" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
-      <Column Name="Avance" Type="System.String" DbType="VarChar(300) NOT NULL" CanBeNull="false" />
-      <Column Name="Fecha" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="Estatus" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="Trainig_Cuestionario_Trainig_Cuestionario_Seguimiento" Member="Trainig_Cuestionario" ThisKey="IDCuestionario" OtherKey="IDCuestionario" Type="Trainig_Cuestionario" IsForeignKey="true" />
-      <Association Name="User_Usuarios_Trainig_Cuestionario_Seguimiento" Member="User_Usuarios" ThisKey="IDUsuario" OtherKey="IDUsuario" Type="User_Usuarios" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Trainig_Cursos" Member="Trainig_Cursos">
@@ -523,6 +500,7 @@
       <Column Name="IDUsuario" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
       <Column Name="UNombre" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
       <Column Name="Usuarios" Type="System.String" DbType="VarChar(300) NOT NULL" CanBeNull="false" />
+      <Column Name="Portafa" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="FInicio" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="FFin" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="Descripcion" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
@@ -556,6 +534,59 @@
       <Column Name="Recurso" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
       <Column Name="Estatus" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="Trainig_Cursos_Trainig_Cursos_Temas" Member="Trainig_Cursos" ThisKey="IDCurso" OtherKey="IDCurso" Type="Trainig_Cursos" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.User_Usuarios" Member="User_Usuarios">
+    <Type Name="User_Usuarios">
+      <Column Name="IDUsuario" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CURP" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="APaterno" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="AMaterno" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="Foto" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="FNacimiento" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="IDEstado" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IDLocalidad" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IDMunicipio" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RFC" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="NoSS" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Correo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Telefono" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="ContactoEmergencia" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="ContactoNombre" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="ContactoParentesco" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="IDPerfil" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="LVLPerfil" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="IDArea" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="NArea" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="IDSubArea" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="NSArea" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="IDAsignacion" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="IDSitio" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="IDPadre" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Usuario" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Contraseña" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="CManejador" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="FManejador" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CPlataforma" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="FPlataforma" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FIngreso" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="FEgreso" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Estatus" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="User_Usuarios_Administration_Evaluacion_Tienda" Member="Administration_Evaluacion_Tienda" ThisKey="IDUsuario" OtherKey="IDUsuario" Type="Administration_Evaluacion_Tienda" />
+      <Association Name="User_Usuarios_Administration_Evaluacion_Tienda_Resultados" Member="Administration_Evaluacion_Tienda_Resultados" ThisKey="IDUsuario" OtherKey="IDUsuario" Type="Administration_Evaluacion_Tienda_Resultados" />
+      <Association Name="User_Usuarios_System_Areas" Member="System_Areas" ThisKey="IDUsuario" OtherKey="IDUsuario" Type="System_Areas" />
+      <Association Name="User_Usuarios_System_Sis_Bitacora" Member="System_Sis_Bitacora" ThisKey="IDUsuario" OtherKey="IDUsuario" Type="System_Sis_Bitacora" />
+      <Association Name="User_Usuarios_System_Sis_Notificacion_Seguimiento" Member="System_Sis_Notificacion_Seguimiento" ThisKey="IDUsuario" OtherKey="IDUsuario" Type="System_Sis_Notificacion_Seguimiento" />
+      <Association Name="User_Usuarios_System_Supervision" Member="System_Supervision" ThisKey="IDUsuario" OtherKey="IDUsuario" Type="System_Supervision" />
+      <Association Name="User_Usuarios_Trainig_Cuestionario" Member="Trainig_Cuestionario" ThisKey="IDUsuario" OtherKey="IDUsuario" Type="Trainig_Cuestionario" />
+      <Association Name="User_Usuarios_Trainig_Cuestionario_Respuestas_User" Member="Trainig_Cuestionario_Respuestas_User" ThisKey="IDUsuario" OtherKey="IDUsuario" Type="Trainig_Cuestionario_Respuestas_User" />
+      <Association Name="User_Usuarios_Trainig_Cursos" Member="Trainig_Cursos" ThisKey="IDUsuario" OtherKey="IDUsuario" Type="Trainig_Cursos" />
+      <Association Name="User_Usuarios_Trainig_Cursos_Seguimiento" Member="Trainig_Cursos_Seguimiento" ThisKey="IDUsuario" OtherKey="IDUsuario" Type="Trainig_Cursos_Seguimiento" />
+      <Association Name="System_Inf_Asignacion_User_Usuarios" Member="System_Inf_Asignacion" ThisKey="IDAsignacion" OtherKey="IDAsignacion" Type="System_Inf_Asignacion" IsForeignKey="true" />
+      <Association Name="System_Inf_Estados_User_Usuarios" Member="System_Inf_Estados" ThisKey="IDEstado" OtherKey="IDEstado" Type="System_Inf_Estados" IsForeignKey="true" />
+      <Association Name="System_Inf_Localidades_User_Usuarios" Member="System_Inf_Localidades" ThisKey="IDLocalidad" OtherKey="IDLocalidad" Type="System_Inf_Localidades" IsForeignKey="true" />
+      <Association Name="System_Inf_Municipios_User_Usuarios" Member="System_Inf_Municipios" ThisKey="IDMunicipio" OtherKey="IDMunicipio" Type="System_Inf_Municipios" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

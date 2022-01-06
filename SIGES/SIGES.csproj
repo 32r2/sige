@@ -88,7 +88,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Internal\404Imagen.png" />
     <Content Include="Assets\Internal\faviconSP.png" />
+    <Content Include="Assets\Internal\NoUser.png" />
     <Content Include="Assets\Internal\Trabajadores.png" />
     <Content Include="Assets\Internal\01.png" />
     <Content Include="Assets\Internal\02.png" />
@@ -116,15 +118,41 @@
     <Content Include="Assets\Resources\DptContabilidad\contabilidad.png" />
     <Content Include="Assets\Resources\DptMercadeo\marketing.png" />
     <Content Include="Assets\Resources\DptRHumanos\Recursos_Humanos.png" />
+    <Content Include="Assets\Resources\DptTecInf\FrontRetai.png" />
     <Content Include="Assets\Resources\DptTecInf\TI.png" />
     <Content Include="Assets\Resources\Gerencia\gerencia.png" />
     <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min_2.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Char_styles.css" />
     <Content Include="Content\CheckPassword.css" />
+    <Content Include="Content\dataTables.bootstrap4.css" />
+    <Content Include="Content\Exportar\buttons.dataTables.min.css" />
+    <Content Include="Content\Exportar\jquery.dataTables.min.css" />
+    <Content Include="Content\images\sort_asc.png" />
+    <Content Include="Content\images\sort_asc_disabled.png" />
+    <Content Include="Content\images\sort_both.png" />
+    <Content Include="Content\images\sort_desc.png" />
+    <Content Include="Content\images\sort_desc_disabled.png" />
+    <Content Include="Content\magnific-popup.css" />
+    <Content Include="Content\ModalMedia.css" />
+    <Content Include="Scripts\datatables.min.js" />
+    <Content Include="Scripts\Exportar\buttons.html5.min.js" />
+    <Content Include="Scripts\Exportar\buttons.print.min.js" />
+    <Content Include="Scripts\Exportar\dataTables.buttons.min.js" />
+    <Content Include="Scripts\Exportar\jquery.dataTables.min.js" />
+    <Content Include="Scripts\Exportar\jszip.min.js" />
+    <Content Include="Scripts\Exportar\pdfmake.min.js" />
+    <Content Include="Scripts\Exportar\vfs_fonts.js" />
+    <Content Include="Scripts\jquery.magnific-popup.min.js" />
+    <Content Include="Scripts\meg.init.js" />
     <Content Include="Content\quill.bubble.css" />
     <Content Include="Content\quill.snow.css" />
+    <Content Include="Content\Switch_Button.css" />
     <Content Include="Database\SIGES.mdf" />
     <Content Include="Database\SIGES_log.ldf" />
+    <Content Include="Scripts\apexcharts.js" />
+    <Content Include="Scripts\bootstrap.min_2.js" />
     <Content Include="Scripts\CheckPassword.js" />
     <Content Include="Content\dashboard.css" />
     <Content Include="Content\font-awesome.min.css" />
@@ -173,8 +201,10 @@
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\Chart.js" />
+    <Content Include="Scripts\classList.min.js" />
     <Content Include="Scripts\custom.min.js" />
     <Content Include="Scripts\feather.js" />
+    <Content Include="Scripts\findindex_polyfill_mdn.js" />
     <Content Include="Scripts\jquery-3.5.0.js" />
     <Content Include="Scripts\jquery-3.5.1.js" />
     <Content Include="Scripts\jquery-3.5.1.min.js" />
@@ -187,17 +217,31 @@
     <Content Include="Scripts\Own\JS_System_Areas.js" />
     <Content Include="Scripts\Own\JS_System_Cardinal.js" />
     <Content Include="Scripts\Own\JS_System_Comunicados.js" />
+    <Content Include="Scripts\Own\JS_System_Comunicados_Area.js" />
     <Content Include="Scripts\Own\JS_System_Incidencias.js" />
     <Content Include="Scripts\Own\JS_System_Incidencias_MesaAyuda.js" />
+    <Content Include="Scripts\Own\JS_System_Inicidencias_Area.js" />
     <Content Include="Scripts\Own\JS_System_Login.js" />
+    <Content Include="Scripts\Own\JS_System_Print.js" />
+    <Content Include="Scripts\Own\JS_System_Reportes_Area.js" />
     <Content Include="Scripts\Own\JS_System_Reportes_Incidencias.js" />
+    <Content Include="Scripts\Own\JS_System_Reportes_Incidencias_Area.js" />
+    <Content Include="Scripts\Own\JS_System_Reportes_Supervision.js" />
     <Content Include="Scripts\Own\JS_System_Sis_Notificacion.js" />
     <Content Include="Scripts\Own\JS_System_Sis_Paginas.js" />
     <Content Include="Scripts\Own\JS_System_Sis_Perfiles.js" />
     <Content Include="Scripts\Own\JS_System_Sis_Tienda.js" />
     <Content Include="Scripts\Own\JS_System_Supervision.js" />
+    <Content Include="Scripts\Own\JS_System_Supervison_Tiendas.js" />
+    <Content Include="Scripts\Own\JS_Trainig_Cuestionario.js" />
+    <Content Include="Scripts\Own\JS_Trainig_Cuestionario_Area.js" />
+    <Content Include="Scripts\Own\JS_Trainig_Evaluacion.js" />
+    <Content Include="Scripts\Own\JS_Trainig_Evaluacion_Preguntas.js" />
+    <Content Include="Scripts\Own\JS_User_AdministrarUsuarios.js" />
     <Content Include="Scripts\Own\JS_User_Usuarios.js" />
     <Content Include="Scripts\perfect-scrollbar.jquery.min.js" />
+    <Content Include="Scripts\polyfill.min.js" />
+    <Content Include="Scripts\popper.min_2.js" />
     <Content Include="Scripts\popper.min.js" />
     <Content Include="Scripts\quill.min.js" />
     <Content Include="Scripts\sidebarmenu.js" />
@@ -212,10 +256,12 @@
     <Compile Include="Controllers\CardinalController.cs" />
     <Compile Include="Controllers\CardinalSystemController.cs" />
     <Compile Include="Controllers\ComunicadosController.cs" />
+    <Compile Include="Controllers\CuestionariosController.cs" />
     <Compile Include="Controllers\EvaluacionController.cs" />
     <Compile Include="Controllers\IncidenciasController.cs" />
     <Compile Include="Controllers\InicioController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\ReportesController.cs" />
     <Compile Include="Controllers\SupervisionController.cs" />
     <Compile Include="Controllers\TiendasController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
@@ -224,6 +270,14 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Accesos.cs" />
+    <Compile Include="Models\Departamentos.cs" />
+    <Compile Include="Models\IncidenciasSupervision.cs" />
+    <Compile Include="Models\PerfilesUsuario.cs" />
+    <Compile Include="Models\Sucursales.cs" />
+    <Compile Include="Models\System_Asignacion.cs" />
+    <Compile Include="Models\System_EstadosM.cs" />
+    <Compile Include="Models\TiendasSupervision.cs" />
+    <Compile Include="Models\User_UsuariosM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SIGESDB.designer.cs">
       <AutoGen>True</AutoGen>
@@ -376,8 +430,17 @@
     <Content Include="Views\Supervision\Supervision.cshtml" />
     <Content Include="Views\Evaluacion\Evaluacion.cshtml" />
     <Content Include="Views\Incidencias\Mayuda.cshtml" />
-    <Content Include="Views\Incidencias\Reportes.cshtml" />
     <Content Include="Views\Incidencias\ReportesTienda.cshtml" />
+    <Content Include="Views\Cuestionarios\Cuestionarios.cshtml" />
+    <Content Include="Views\Evaluacion\Cuestionario.cshtml" />
+    <Content Include="Views\Supervision\SucursalesSupervision.cshtml" />
+    <Content Include="Views\Reportes\Reportes.cshtml" />
+    <Content Include="Views\Comunicados\AvisosArea.cshtml" />
+    <Content Include="Views\Incidencias\Incidencias_Area.cshtml" />
+    <Content Include="Views\Cuestionarios\CuestionariosAreas.cshtml" />
+    <Content Include="Views\Incidencias\ReportesArea.cshtml" />
+    <Content Include="Views\Reportes\ReportesArea.cshtml" />
+    <Content Include="Views\Usuarios\AdministrarUsuarios.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

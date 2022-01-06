@@ -1,5 +1,5 @@
 ﻿Inicializar();
-
+BloquearCTRL();
 
 function Inicializar() {
     $.get("/Cardinal/BDEstados", function (DatosEstados) {
@@ -64,7 +64,29 @@ function Inicializar() {
             alert("No hay datos que mostrar");
         }
     });
+
 }
+
+//Funcion para bloquear los controles
+function BloquearCTRL() {
+    let CTRL = document.getElementsByClassName("bloquear");
+    for (var i = 0; i < CTRL.length; i++) {
+        $("#" + CTRL[i].id).attr('disabled', 'disabled');
+    }
+}
+
+var IDS = document.getElementById("cmbIDSupervision");
+IDS.addEventListener("change", function () {
+    $.get("/Supervision/BDSupervision/?ID=" + IDS.value, function (DatosSupervision) {        
+        $.get("/Usuarios/BDUserPerfil/?IDPerfil=" + 9, function (DatosSupervisores) {
+            if (DatosSupervisores.lenght != 0) {
+                llenarComboPersonal(DatosSupervisores, document.getElementById("cmbIDSupervisor"));
+                document.getElementById("cmbIDSupervisor").value = DatosSupervision[0].IDUsuario;
+            }
+        });        
+    });    
+});
+
 //CUANDO SE SELECCIONA EL ESTADO CARGA LA INFORMACION DE LOS MUNICIPIOS
 var IDE = document.getElementById("cmbEstado");
 IDE.addEventListener("change", function () {
@@ -284,19 +306,40 @@ function GuardarTienda() {
                     contentType: false,
                     processData: false,
                     success: function (data) {
+                        var HTMLAdvertencia = "";
+                        let Alerta = "";
                         if (data == 0) {
-                            alert("Ocurrio un error");
-                            document.getElementById("btnCancelar").click();
+                            HTMLAdvertencia += "<div class='alert alert-danger alert-dismissible fade show' role='alert'>";
+                            HTMLAdvertencia += "<strong>Ocurrio un error!</strong>";
+                            HTMLAdvertencia += "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>";
+                            HTMLAdvertencia += "<span aria-hidden='true'>&times;</span>";
+                            HTMLAdvertencia += "</button>";
+                            HTMLAdvertencia += "</div>";
+                            Alerta = "¡Ocurrio un error!";
+
                         }
                         else if (data == -1) {
-                            alert("Ya existe la Tienda");
-                            document.getElementById("btnCancelar").click();
+                            HTMLAdvertencia += "<div class='alert alert-warning alert-dismissible fade show' role='alert'>";
+                            HTMLAdvertencia += "<strong>Ya existe una sucursal con esa información!</strong>";
+                            HTMLAdvertencia += "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>";
+                            HTMLAdvertencia += "<span aria-hidden='true'>&times;</span>";
+                            HTMLAdvertencia += "</button>";
+                            HTMLAdvertencia += "</div>";
+                            Alerta ="¡Ya existe una sucursal con esa información!";                            
                         }
                         else {
-                            alert("Se ejecuto correctamente");
-                            Inicializar();
-                            document.getElementById("btnCancelar").click();
+                            HTMLAdvertencia += "<div class='alert alert-success alert-dismissible fade show' role='alert'>";
+                            HTMLAdvertencia += "<strong>Los datos se guardaron correctamente.</strong>";
+                            HTMLAdvertencia += "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>";
+                            HTMLAdvertencia += "<span aria-hidden='true'>&times;</span>";
+                            HTMLAdvertencia += "</button>";
+                            HTMLAdvertencia += "</div>";
+                            Alerta ="Los datos se guardaron correctamente.";                            
                         }
+                        document.getElementById("Alertas").innerHTML = HTMLAdvertencia;
+                        prueba_notificacion(Alerta);
+                        Inicializar();
+                        document.getElementById("BtnCancelar").click();
                     }
                 }
             );
@@ -347,14 +390,13 @@ function AbrirModalTienda(id) {
     for (var i = 0; i < ncontroles; i++) {
         controlesObligatorio[i].classList.remove("border-danger");
     }
-    
+
     if (id == 0) {
         Limpiar();
-        LimpiarSelect();
     }
     else {
         $.get("/Tiendas/BDTienda/?ID=" + id, function (data) {
-            document.getElementById("TxtIDTienda").value = data[0].IDTienda;
+            document.getElementById("TxtIDTienda").value = data[0].ID;
             document.getElementById("TxtNoTienda").value = data[0].NoTienda;
             document.getElementById("TxtTienda").value = data[0].Nombre;
             document.getElementById("cmbIDSupervision").value = data[0].IDSupervision;
@@ -374,7 +416,7 @@ function AbrirModalTienda(id) {
             $.get("/Cardinal/BDLocalidades/?IDM=" + data[0].IDMunicipio, function (Localidades) {
                 llenarCombo(Localidades, document.getElementById("cmbLocalidad"), true);
                 document.getElementById("cmbLocalidad").value = data[0].IDLocalidad;
-            });            
+            });
             document.getElementById("TxtCalle").value = data[0].Calle;
             document.getElementById("TxtCP").value = data[0].CP;
             document.getElementById("TxtTelefono").value = data[0].Telefono;
@@ -435,7 +477,7 @@ function Pasos(Step) {
     else if (ObligatoriosDatosP("Datostep-5") == true && ClaseMostrar == "step-6") {
         avance.style.width = "100%";
         GuardarTienda();
-        MostrarDiv(ClaseMostrar);
+        //MostrarDiv(ClaseMostrar);
     }
     else {
         //alert("Entro al otro else");
@@ -458,19 +500,16 @@ function MostrarDiv(ClaseMostrar) {
     }
 }
 function Limpiar() {
-    var controles = document.getElementsByClassName("limpiar");
-    var ncontroles = controles.length;
-    for (var i = 0; i < ncontroles; i++) {
-        controles[i].value = "";
+    var controlesTxt = document.getElementsByClassName("limpiar");
+    for (var i = 0; i < controlesTxt.length; i++) {
+        controlesTxt[i].value = "";
+    }
+    var controlesCMB = document.getElementsByClassName("SelectCLS");
+    for (var i = 0; i < controlesCMB.length; i++) {
+        document.getElementById(controlesCMB[i].id).value = 0;
     }
 }
-function LimpiarSelect() {
-    var controles = document.getElementsByClassName("SelectCLS");
-    var ncontroles = controles.length;
-    for (var i = 0; i < ncontroles; i++) {
-        document.getElementById(controles[i].id).value = 0;
-    }
-}
+
 function ObligatoriosDatosP(DatosClase) {
     let exito = true;
     let CtrlObligatorio = document.getElementsByClassName(DatosClase);
@@ -636,4 +675,33 @@ function Informacion2() {
     INF += "<div class='col-md-12 col-sm-12 col-xs-12'><h4 style='color: red'><strong>Favor de verificar la información ya que el proceso de registro está por concluir.</strong></h4></div>";
     INF += "</div>";
     document.getElementById("DivDatos2").innerHTML = INF;
+}
+//Notificaciones en el escritorio
+function prueba_notificacion(MensajeAlerta) {
+    if (Notification) {
+        if (Notification.permission !== "granted") {
+            Notification.requestPermission()
+            Main_Notificacion(MensajeAlerta);
+        }
+        else {
+            Main_Notificacion(MensajeAlerta);
+        }
+
+    }
+}
+function Main_Notificacion(Contenido) {
+    var title = "SIGES Super Plus"
+    var extra = {
+
+        icon: "../Assets/Internal/faviconSP.png",
+        body: Contenido
+    }
+    var noti = new Notification(title, extra)
+    noti.onclick = {
+        // Al hacer click
+    }
+    noti.onclose = {
+        // Al cerrar
+    }
+    setTimeout(function () { noti.close() }, 10000)
 }

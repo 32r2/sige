@@ -1,0 +1,210 @@
+﻿
+@{
+    ViewBag.Title = "Cuestionarios";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Cuestionarios</h2>
+<div id="Alertas"></div>
+<button onclick="ModalCuestionario(0)" type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalCuestionario">Agregar</button>
+<div class="accordion" id="accordion"></div>
+<!-- PopUp -->
+<div id="ModalCuestionario" class="modal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Cuestionario</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="panel-heading ">
+                    <!-- Inicia cuerpo Modal-->
+                    <div class="row ">
+                        <div class="col-md-4 col-sm-4 col-xs-4 justify-content-end">
+                            <span class="help-block text-muted small-font">ID del Cuestionario</span>
+                            <input type="text" id="TxtIDCuestionario" class="form-control limpiar" placeholder="ID" disabled="disabled" />
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-4 justify-content-end">
+                            <span class="help-block text-muted small-font">No. de Cuestionario</span>
+                            <input type="number" id="TxtNoCuestionario" class="form-control limpiar Cuestionario" placeholder="##" />
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-4 justify-content-end">
+                            <span class="help-block text-muted small-font">No. de preguntas</span><br />
+                            <input type="number" id="TxtNoPreguntas" class="form-control limpiar Cuestionario" placeholder="##" />
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-md-6 col-sm-8 col-xs-8 justify-content-end">
+                            <span class="help-block text-muted small-font">Nombre</span><br />
+                            <input type="text" id="TxtNombre" class="form-control limpiar Cuestionario" placeholder="Nombre" />
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <span class="help-block text-muted small-font">Área</span>
+                            <BR />
+                            <select id="cmbArea" style="width: 100%" class="btn btn-danger dropdown-toggle SelectCLS Cuestionario"></select>
+                        </div>
+                    </div>                    
+                    <div class="row ">
+                        <div class="col-md-4 col-sm-6 col-xs-6">
+                            <span class="help-block text-muted small-font"> Fecha Inicio</span>
+                            <input type="date" id="TxtFInicio" class="form-control limpiar Cuestionario" placeholder="dd/mm/aa" />
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-xs-6">
+                            <span class="help-block text-muted small-font"> Fecha Fin</span>
+                            <input type="date" id="TxtFFin" class="form-control limpiar Cuestionario" placeholder="dd/mm/aa" />
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-xs-6">
+                            <span class="help-block text-muted small-font">No de Respuestas: </span>
+                            <input type="number" id="TxtNoRespuestas" class="form-control limpiar Cuestionario" placeholder="##" />
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-xs-6">
+                            <span class="help-block text-muted small-font"> Calificación maxima</span>
+                            <input type="number" id="TxtCalificacion" class="form-control limpiar Cuestionario" placeholder="###" />
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <span class="help-block text-muted small-font">Autor</span>
+                            <BR />
+                            <select id="cmbEncargado" style="width: 100%" class="btn btn-warning dropdown-toggle SelectCLS Cuestionario"></select>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-md-12 col-sm-12 col-xs-12 justify-content-end">
+                            <span class="help-block text-muted small-font">Sucursales</span>
+                            <div id="TblPerfiles">Se inserta una tabla con los perfiles.</div>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <span class="help-block text-muted small-font">Descripción</span>
+                            <input type="text" id="TxtDescripcion" class="form-control limpiar Cuestionario" placeholder="Descripción" />
+                        </div>
+                    </div>
+                    <!-- Termina cuerpo Modal content-->
+                    <div class="modal-footer">
+                        <button id="btnGuardar" type="button" class="btn btn-success" onclick="GuardarCuestionario()">GUARDAR</button>
+                        <button id="btnCancelar" type="button" class="btn btn-danger" data-dismiss="modal">CANCELAR</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ********************************************** -->
+<!-- ********************************************** -->
+
+<div id="ModalPreguntas" class="modal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Pregunta</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="panel-heading ">
+                    <!-- Inicia cuerpo Modal-->
+                    <div class="row ">
+                        <div class="col-md-6 col-sm-12 col-xs-12 justify-content-end">
+                            <span class="help-block text-muted small-font">ID de la pregunta</span>
+                            <input type="text" id="TxtIDPregunta" class="form-control limpiar" placeholder="ID Pregunta" disabled="disabled" />
+                        </div>
+                        <div class="col-md-6 col-sm-12 col-xs-12 justify-content-end">
+                            <span class="help-block text-muted small-font">ID del cuestionario</span>
+                            <input type="text" id="TxtIDPCuestionario" class="form-control " placeholder="ID Cuestionario" disabled="disabled" />
+                        </div>                        
+                    </div>
+                    <div class="row ">
+                        <div class="col-md-6 col-sm-12 col-xs-12 justify-content-end">
+                            <span class="help-block text-muted small-font">No. de pregunta</span>
+                            <input type="number" id="TxtNoPregunta" class="form-control limpiar Pregunta" placeholder="##" disabled="disabled" />
+                        </div>
+                        <div class="col-md-6 col-sm-12 col-xs-12 justify-content-end">
+                            <span class="help-block text-muted small-font">Valor</span><br />
+                            <input type="number" id="TxtValor" class="form-control limpiar Pregunta" placeholder="##" />
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-md-12 col-sm-12 col-xs-12 justify-content-end">
+                            <span class="help-block text-muted small-font">Pregunta</span><br />
+                            <input type="text" id="TxtPregunta" class="form-control limpiar Pregunta" placeholder="Pregunta" />
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <span class="help-block text-muted small-font">Respuesta</span>
+                            <BR />
+                            <select id="cmbIDRespuesta" style="width: 100%" class="btn btn-warning dropdown-toggle SelectCLS"></select>                        
+                        </div>
+                    </div>
+                    <!-- Termina cuerpo Modal content-->
+                    <div class="modal-footer">
+                        <button id="btnGuardar" type="button" class="btn btn-success" onclick="GuardarPregunta()">GUARDAR</button>
+                        <button id="btnCancelarP" type="button" class="btn btn-danger" data-dismiss="modal">CANCELAR</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ********************************************** -->
+<!-- ********************************************** -->
+<div id="myModalRespuesta" class="modal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Respuesta</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="panel-heading ">
+                    <!-- Inicia cuerpo Modal-->
+                    <div class="row ">
+                        <div class="col-md-4 col-sm-4 col-xs-4 justify-content-end">
+                            <span class="help-block text-muted small-font">ID de la Respuesta</span>
+                            <input type="text" id="TxtIDRespuesta" class="form-control limpiar" placeholder="ID" disabled="disabled"/>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-4 justify-content-end">
+                            <span class="help-block text-muted small-font">ID de la pregunta</span>
+                            <input type="text" id="TxtIDRpregunta" class="form-control limpiar" placeholder="ID" disabled="disabled"/>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-4 justify-content-end">
+                            <span class="help-block text-muted small-font">ID del cuestionario</span>
+                            <input type="text" id="TxtIDRCuestionario" class="form-control limpiar" placeholder="ID" disabled="disabled"/>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-md-4 col-sm-4 col-xs-4 justify-content-end">
+                            <span class="help-block text-muted small-font">No. Pregunta</span>
+                            <input type="text" id="TxtNoPreguntaR" class="form-control limpiar" placeholder="##" disabled="disabled"/>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-4 justify-content-end">
+                            <span class="help-block text-muted small-font">No. de respuesta]</span>
+                            <input type="number" id="TxtNoRespuesta" class="form-control limpiar" placeholder="##" disabled="disabled"/>
+                        </div>
+                    </div>
+
+                    <div class="row ">
+                        <div class="col-md-12 col-sm-12 col-xs-12 justify-content-end">
+                            <span class="help-block text-muted small-font">Respuesta</span><br />
+                            <input type="text" id="TxtRespuesta" class="form-control limpiar Respuesta" placeholder="Respuesta"/>
+                        </div>
+                    </div>
+                    <!-- Termina cuerpo Modal content-->
+                    <div class="modal-footer">
+                        <button id="btnGuardarR" type="button" class="btn btn-success" onclick="GuardarRespuesta()">GUARDAR</button>
+                        <button id="btnCancelarR" type="button" class="btn btn-danger" data-dismiss="modal">CANCELAR</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery.min.js"></script>
+<script src="~/Scripts/Own/JS_Trainig_Cuestionario.js"></script>

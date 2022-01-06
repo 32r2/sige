@@ -7,8 +7,9 @@ namespace SIGES.Filtro
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            var Usuario = HttpContext.Current.Session["Usuario"];
-            if (Usuario == null) {
+            var Usuario = HttpContext.Current.Session["IDUsuario"];
+            if (Usuario == null)
+            {
                 filterContext.Result = new RedirectResult("~/Login/Login");
             }
             base.OnActionExecuting(filterContext);

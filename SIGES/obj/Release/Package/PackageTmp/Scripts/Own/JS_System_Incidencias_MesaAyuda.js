@@ -1,113 +1,23 @@
-﻿Cargar();
+﻿var base64;
+Cargar();
 BloquearCTRL();
 const f = new Date();
-function Cargar() {
-    $.get("/Cardinal/BDAreas", function (datos) {
-        CrearBtnAreas(["bg-cyan", "bg-success", "bg-warning", "bg-danger", "bg-info"], datos);
-    });    
-    $.get("/Cardinal/BDAreas", function (DatosAreas) {
-        if (DatosAreas.length !== 0) {
-            llenarCombo(DatosAreas, document.getElementById("cmbArea"), true);
-        }
-        else {
-            alert("No hay datos en la tabla Áreas.");
-        }
-    });    
-    $.get("/Cardinal/BDTiendas", function (DatosTiendas) {
-        if (DatosTiendas.length !== 0) {
-            llenarCombo(DatosTiendas, document.getElementById("cmbIDTienda"), true);
-        }
-        else {
-            alert("No hay datos en la tabla tiendas.");
-        }
-    }); 
-}
-function BloquearCTRL() {
-    let CTRL = document.getElementsByClassName("bloquear");
-    for (var i = 0; i < CTRL.length; i++) {
-        $("#" + CTRL[i].id).attr('disabled', 'disabled');
-    }
-}
-function DESBloquearCTRL() {
-    let CTRL = document.getElementsByClassName("desbloquear");
-    for (var i = 0; i < CTRL.length; i++) {
-        $("#" + CTRL[i].id).attr('enable', 'enable');
-    }
-}
-//event Change index Areas
-var IDA = document.getElementById("cmbArea");
-IDA.addEventListener("change", function () {
-    $.get("/Cardinal/BDSubAreas/?IDA=" + IDA.value, function (DatosArea) {
-        llenarCombo(DatosArea, document.getElementById("cmbSubArea"));
-    });
-
-    $.get("/Incidencias/BDInsidenciasArea/?IDA=" + IDA.value, function (DatosIncidenciaArea) {
-        llenarCombo(DatosIncidenciaArea, document.getElementById("cmbIDInsidencia"));
-    });
-});
-//funcion general para llenar los select
-function llenarCombo(DAtos, control) {
-    var contenido = "";
-    contenido += "<option value='0'>--Seleccione--</option>";    
-    for (var i = 0; i < DAtos.length; i++) {
-        contenido += "<option value='" + DAtos[i].ID + "'>" + DAtos[i].Nombre + "</option>";
-    }
-    control.innerHTML = contenido;
-}
-//Crea los botones de las áreas
-function CrearBtnAreas(BtnAreas, DatosAreas) {
-    var NC = 0;
-    var CodHtml = "";
-    var Nareas = DatosAreas.length;
-    for (var j = 1; j < Nareas; j++) {
-        if (NC > 4) {
-            NC = 0;
-        }
-        CodHtml += "<div class='col-md-6 col-lg-2 col-xlg-3' onclick='BuscarIn(" + DatosAreas[j].ID + ")' >";
-        CodHtml += "<div class='card card-hover' style ='height:79px;'>" ;
-        CodHtml += "<div class='box " + BtnAreas[NC] + " text-center' style ='height:79px; '>";
-        CodHtml += "<h1 class='font-light text-white'>";
-        //CodHtml += "<i class='"++"'></i>";
-        CodHtml += "</h1>";
-        CodHtml += "<h6  style='color:white; font-size:18px; font-weight:bold;'>" + DatosAreas[j].Nombre + "</h6>";
-        CodHtml += "</div>";
-        CodHtml += "</div>";
-        CodHtml += "</div>";
-        NC++;
-    }
-    document.getElementById("BotonesAyuda").innerHTML = CodHtml;
-}
+//*********************************************************************************************************************************************************************************************************
 //Busca las insidencias por área
 function BuscarIn(IDA) {
-    $.get("/Incidencias/BDInsidenciasJoinArea/?IDA=" + IDA, function (datos) {
+    $.get("/Incidencias/BDIncidenciasJoinArea/?IDA=" + IDA, function (datos) {
         CrearIncidencias(datos, document.getElementById("accordion"));
     });
-}
-// Funcion Buscar con Entrar
-function ValidarEntrar(e) {
-    tecla = (document.all) ? e.keyCode : e.which;
-    if (tecla == 13) {
-        var conepto = document.getElementById("TxtBuscar").value;
-        $.get("/Incidencias/BDInsidenciasContienen/?Contener=" + conepto, function (datos) {
-            if (datos.length !== 0) {
-                CrearIncidencias(datos, document.getElementById("accordion"));
-            } else {
-                document.getElementById("accordion").innerHTML = "Su búsqueda no tiene posibles resultados."
-            }
-        });
-        //document.getElementById("TxtBuscar").value = "";
-       
-    }
 }
 // Funcion Buscar
 function Buscar() {
     var conepto = document.getElementById("TxtBuscar").value;
-    $.get("/Incidencias/BDInsidenciasContienen/?Contener=" + conepto, function (datos) {
+    $.get("/Incidencias/BDIncidenciasContienen/?Contener=" + conepto, function (datos) {
         if (datos.length !== 0) {
             CrearIncidencias(datos, document.getElementById("accordion"));
         } else {
-            document.getElementById("accordion").innerHTML ="Su búsqueda no tiene posibles resultados."
-        }        
+            document.getElementById("accordion").innerHTML = "Su búsqueda no tiene posibles resultados."
+        }
     });
     document.getElementById("TxtBuscar").value = "";
 }
@@ -144,9 +54,7 @@ function CrearIncidencias(data, IDo) {
         CodHtml += "<div class='row'>";
         CodHtml += "<div class='col-md-9 col-sm-9 col-xs-9'><strong>Posibles soluciones: </strong></div >";
         CodHtml += "</div>";
-        CodHtml += "<div class='row'>";
-        CodHtml += "<div class='col-md-12 col-sm-12 col-xs-12' id='Soluciones" + data[i].ID + "'>Espacio para las soluciones de las incidencias.</div>";
-        CodHtml += "</div>";
+        CodHtml += "<div class='row' id='Soluciones" + data[i].ID + "'>Espacio para las soluciones de las incidencias.</div>";
         CodHtml += "</div>";
         CodHtml += "</div>";
         CodHtml += "</div>";
@@ -154,15 +62,25 @@ function CrearIncidencias(data, IDo) {
     }
     IDo.innerHTML = CodHtml;
 }
+//Cambio de index en el Select
+var IDA = document.getElementById("cmbArea");
+IDA.addEventListener("change", function () {
+    $.get("/Cardinal/BDSubAreas/?IDA=" + IDA.value, function (DatosArea) {
+        llenarCombo(DatosArea, document.getElementById("cmbSubArea"));
+    });
+    $.get("/Incidencias/BDIncidenciasArea/?IDA=" + IDA.value, function (DatosIncidenciaArea) {
+        llenarCombo(DatosIncidenciaArea, document.getElementById("cmbIDInsidencia"));
+    });
+});
 //inserta los paso a seguir para solucionar la insidencia
 function MostrarProcedimientos(IDIncidencia) {
-    $.get("/Incidencias/BDInsidencia/?ID=" + IDIncidencia, function (Insidencias) {
+    $.get("/Incidencias/BDIncidencia/?ID=" + IDIncidencia, function (Insidencias) {
         var CodeHTML = "";
         if (Insidencias.length !== 0) {
             var Soluciones = Insidencias[0].NoSoluciones;
             for (var i = 1; i < Soluciones + 1; i++) {
                 CodeHTML += "<h5> Procedimiento No." + i + " para la solución de la insidencia</h5>";
-                CodeHTML += "<div class='row col-md-12 col-sm-12 col-xs-12' id='P" + IDIncidencia + "nP" + i + "'></div>";
+                CodeHTML += "<div class='col-md-12 col-sm-12 col-xs-12' id='P" + IDIncidencia + "nP" + i + "'></div>";
                 $.get("/Incidencias/BDMesaayuda/?IDI=" + IDIncidencia + "&NoS= " + i, function (Pasos) {
                     var CodigoHTML = "";
                     CodigoHTML += "<p>";
@@ -196,47 +114,108 @@ function MostrarProcedimientos(IDIncidencia) {
     });
 }
 
+
+//*********************************************************************************************************************************************************************************************************
+function Cargar() {
+    base64 = getBase64Image(document.getElementById("imageid"));
+}
+//Funcion para bloquear los controles
+function BloquearCTRL() {
+    let CTRL = document.getElementsByClassName("bloquear");
+    for (var i = 0; i < CTRL.length; i++) {
+        $("#" + CTRL[i].id).attr('disabled', 'disabled');
+    }
+}
+//Funcion para desbloquear los controles
+function DESBloquearCTRL() {
+    let CTRL = document.getElementsByClassName("desbloquear");
+    for (var i = 0; i < CTRL.length; i++) {
+        var StatusItem = $("#" + CTRL[i].id).attr("disabled");
+        if (StatusItem == "disabled") {
+            $("#" + CTRL[i].id).removeAttr('disabled');
+        }
+    }
+}
+//Convierte a base 64 la imagen
+function getBase64Image(img) {
+    var canvas = document.createElement("canvas");
+    canvas.width = img.width;
+    canvas.height = img.height;
+    var ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0);
+    var dataURL = canvas.toDataURL("image/png");
+    return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+}
+//funcion general para llenar los select
+function llenarCombo(DAtos, control) {
+    var contenido = "";
+    contenido += "<option value='0'>--Seleccione--</option>";
+    for (var i = 0; i < DAtos.length; i++) {
+        contenido += "<option value='" + DAtos[i].ID + "'>" + DAtos[i].Nombre + "</option>";
+    }
+    control.innerHTML = contenido;
+}
+
 function AModalIncidencia(IDIncidencia) {
     DESBloquearCTRL();
-
+    LimpiarSelect();
     var FEcha = (f.getDate() + "/" + (f.getMonth() + 1) + "/" + f.getFullYear());
     document.getElementById("TxtFecha").value = FEcha;
+    //**************************************************************************************//
+    let Asignacion = sessionStorage.getItem('IDAsignacion');
+    if (Asignacion == 1) {
+        Usuarios_X_Tienda(sessionStorage.getItem('Tiendas'), "", "");
+        document.getElementById("cmbIDTienda").value = sessionStorage.getItem('Tiendas');
+        document.getElementById("cmbIDTienda").classList.add("bloquear");
+        Incidencias_X_Tienda(sessionStorage.getItem('Tiendas'));
+        BloquearCTRL();
+    }
 
-    $.get("/Usuarios/UsuariosXsitio", function (PersonalTienda) {
-        if (PersonalTienda.lenght != 0) {
-            llenarComboPersonal(PersonalTienda, document.getElementById("cmbIDUsuario"));
-            $.get("/Usuarios/UsuarioINF", function (Usuario) {
-                document.getElementById("cmbIDUsuario").value = Usuario[0].ID;
-                document.getElementById("cmbIDTienda").value = Usuario[0].Sitio;
-                $.get("/Incidencias/ReporteInsidenciasXTienda/?IDTienda=" + Usuario[0].Sitio, function (TiendaIns) {                    
-                    document.getElementById("TxtNoInsidencia").value = TiendaIns.length + 1;
-                });
-            });
-        }
-        else {
-            alert("No hay datos que mostrar");
-        }
-    });    
+    //BloquearCTRL();
+
     if (IDIncidencia > 0) {
-        $.get("/Incidencias/BDInsidencia/?ID=" + IDIncidencia, function (DatosIncidencia) {
+        $.get("/Incidencias/BDIncidencia/?ID=" + IDIncidencia, function (DatosIncidencia) {
             document.getElementById("cmbArea").value = DatosIncidencia[0].IDArea;
             $.get("/Cardinal/BDSubAreas/?IDA=" + IDA.value, function (DatosSArea) {
                 llenarCombo(DatosSArea, document.getElementById("cmbSubArea"));
                 document.getElementById("cmbSubArea").value = DatosIncidencia[0].IDSubArea;
             });
-            $.get("/Incidencias/BDInsidenciasArea/?IDA=" + DatosIncidencia[0].IDArea, function (DatosInArea) {
-                llenarCombo(DatosInArea, document.getElementById("cmbIDInsidencia"));                
+            $.get("/Incidencias/BDIncidenciasArea/?IDA=" + DatosIncidencia[0].IDArea, function (DatosInArea) {
+                llenarCombo(DatosInArea, document.getElementById("cmbIDInsidencia"));
                 document.getElementById("cmbIDInsidencia").value = IDIncidencia;
             });
-            
         });
-        document.getElementById("cmbIDTienda").classList.add("bloquear");
         document.getElementById("cmbArea").classList.add("bloquear");
         document.getElementById("cmbSubArea").classList.add("bloquear");
         document.getElementById("cmbIDInsidencia").classList.add("bloquear");
-        BloquearCTRL()
-
+        BloquearCTRL();
     }
+    else {
+        DESBloquearCTRL();
+    }    
+}
+
+var NoS = document.getElementById("cmbIDTienda");
+NoS.addEventListener("change", function () {
+    var IDTienda = document.getElementById("cmbIDTienda").value;
+    Incidencias_X_Tienda(IDTienda);
+    Usuarios_X_Tienda(IDTienda);
+});
+
+//Incidencias por tienda
+function Incidencias_X_Tienda(IDTienda) {
+    $.get("/Incidencias/ReporteIncidenciasXTienda/?IDTienda=" + IDTienda, function (TiendaIns) {
+        document.getElementById("TxtNoInsidencia").value = TiendaIns.length + 1;
+    });
+}
+//Usuarios por tienda
+function Usuarios_X_Tienda(IDTienda) {
+    $.get("/Usuarios/UsuariosXTienda/?IDTienda=" + IDTienda, function (PersonalTienda) {
+        if (PersonalTienda.lenght != 0) {
+            llenarComboPersonal(PersonalTienda, document.getElementById("cmbIDUsuario"), sessionStorage.getItem('IDUsuario'), sessionStorage.getItem('Nombre'));
+            document.getElementById("cmbIDUsuario").value = sessionStorage.getItem('IDUsuario');
+        }
+    });
 }
 //imagenes
 var btnFoto = document.getElementById("BtnFoto");
@@ -252,11 +231,14 @@ btnFoto.onchange = function (e) {
     reader.readAsDataURL(file);
 }
 //combo personal por tienda
-function llenarComboPersonal(Datos, control) {
+function llenarComboPersonal(Datos, control, IDExtra, NombreExtra) {
     var contenido = "";
     contenido += "<option value='0'>--Seleccione--</option>";
     for (var i = 0; i < Datos.length; i++) {
-        contenido += "<option value='" + Datos[i].ID + "'>" + Datos[i].Nombre + " " + Datos[i].APaterno + " " + Datos[i].AMaterno + "</option>";
+        contenido += "<option value='" + Datos[i].ID + "'>" + Datos[i].Nombre + "</option>";
+    }
+    if (IDExtra != "") {
+        contenido += "<option value='" + IDExtra + "'>" + NombreExtra + "</option>";
     }
     control.innerHTML = contenido;
 }
@@ -264,52 +246,73 @@ function llenarComboPersonal(Datos, control) {
 function GenerarReporte() {
     if (Obligatorios("obligatorio") == true) {
         if (confirm("¿Desea aplicar los cambios?") == 1) {
-            var IDRInsidencia = document.getElementById("TxtIDRInsidencia").value;
-
-            var IDArea = document.getElementById("cmbArea").value;
-
-            var IDSubArea = document.getElementById("cmbSubArea").value;
-
-            var IDInsidencia = document.getElementById("cmbIDInsidencia").value;
-
-            var IDUsuario = document.getElementById("cmbIDUsuario").value;
-            var temUser = document.getElementById("cmbIDUsuario");
-            var UNombre = temUser.options[temUser.selectedIndex].text;
-
-            var IDTienda = document.getElementById("cmbIDTienda").value;
-            var NoInsidencia = document.getElementById("TxtNoInsidencia").value;
-            var Fecha = document.getElementById("TxtFecha").value;
-            var Observaciones = document.getElementById("TxtObservaciones").value;
-            var Foto = document.getElementById("BtnFoto").value;
+            var HTMLAdvertencia = "";
+            let IDRIncidencia = document.getElementById("TxtIDRInsidencia").value;
+            let IDArea = document.getElementById("cmbArea").value;
+            let IDSubArea = document.getElementById("cmbSubArea").value;
+            if (IDSubArea == '') {
+                IDSubArea = 0;
+            }
+            let IDIncidencia = document.getElementById("cmbIDInsidencia").value;
+            let ReporteIDUsuario = document.getElementById("cmbIDUsuario").value;
+            let temUser = document.getElementById("cmbIDUsuario");
+            let ReporteUNombre = temUser.options[temUser.selectedIndex].text;
+            let IDTienda = document.getElementById("cmbIDTienda").value;
+            let NoInsidencia = document.getElementById("TxtNoInsidencia").value;
+            let ReporteFecha = document.getElementById("TxtFecha").value;
+            let ReporteObservaciones = document.getElementById("TxtObservaciones").value;
+            let Foto = document.getElementById("PBFoto").src.replace("data:image/png;base64,", "");
+            if (Foto.endsWith('Mayuda')) {
+                Foto = base64.replace("data:image/png;base64,", "");
+            }
+            SolucionFoto = base64.replace("data:image/png;base64,", "");
             var frm = new FormData();
-            frm.append("IDRInsidencia", IDRInsidencia);
+            frm.append("IDRIncidencia", IDRIncidencia);
             frm.append("IDArea", IDArea);
             frm.append("IDSubArea", IDSubArea);
-            frm.append("IDInsidencia", IDInsidencia);
-            frm.append("IDUsuario", IDUsuario);
-            frm.append("UNombre", UNombre);
+            frm.append("IDIncidencia", IDIncidencia);
+            frm.append("ReporteIDUsuario", ReporteIDUsuario);
+            frm.append("ReporteUNombre", ReporteUNombre);
             frm.append("IDTienda", IDTienda);
             frm.append("NoInsidencia", NoInsidencia);
-            frm.append("Fecha", Fecha);
-            frm.append("Observaciones", Observaciones);
-            frm.append("Foto", Foto);
+            frm.append("ReporteFecha", ReporteFecha);
+            frm.append("ReporteObservaciones", ReporteObservaciones);
+            frm.append("cadF", Foto);
+            frm.append("SFoto", SolucionFoto);
             frm.append("Estatus", 1);
             $.ajax({
                 type: "POST",
-                url: "/Areas/GuardarArea",
+                url: "/Incidencias/GuardarReporte",
                 data: frm,
                 contentType: false,
                 processData: false,
                 success: function (data) {
                     if (data == 0) {
-                        alert("Ocurrio un error");
+                        HTMLAdvertencia += "<div class='alert alert-danger alert-dismissible fade show' role='alert'>";
+                        HTMLAdvertencia += "<strong>Ocurrio un error!</strong>";
+                        HTMLAdvertencia += "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>";
+                        HTMLAdvertencia += "<span aria-hidden='true'>&times;</span>";
+                        HTMLAdvertencia += "</button>";
+                        HTMLAdvertencia += "</div>";
+                        document.getElementById("Alertas").innerHTML = HTMLAdvertencia;
                     }
                     else if (data == -1) {
-                        alert("Ya existe un reporte de esa insidencia");
+                        HTMLAdvertencia += "<div class='alert alert-warning alert-dismissible fade show' role='alert'>";
+                        HTMLAdvertencia += "<strong>Ya se reportó de esa incidencia!</strong>";
+                        HTMLAdvertencia += "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>";
+                        HTMLAdvertencia += "<span aria-hidden='true'>&times;</span>";
+                        HTMLAdvertencia += "</button>";
+                        HTMLAdvertencia += "</div>";
+                        document.getElementById("Alertas").innerHTML = HTMLAdvertencia;
                     }
                     else {
-                        alert("La insidencia fue reportada");
-                        CrearAcordeonAreas();
+                        HTMLAdvertencia += "<div class='alert alert-success alert-dismissible fade show' role='alert'>";
+                        HTMLAdvertencia += "<strong>Se genero correctamente el reporte.</strong>";
+                        HTMLAdvertencia += "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>";
+                        HTMLAdvertencia += "<span aria-hidden='true'>&times;</span>";
+                        HTMLAdvertencia += "</button>";
+                        HTMLAdvertencia += "</div>";
+                        document.getElementById("Alertas").innerHTML = HTMLAdvertencia;
                         document.getElementById("btnCancelar").click();
                     }
                 }
@@ -317,6 +320,7 @@ function GenerarReporte() {
         }
     }
 }
+
 //verifica que los campos obligatorios tengas datos "AreaObligatorio"
 function Obligatorios(NoClase) {
     let exito = true;
@@ -331,4 +335,16 @@ function Obligatorios(NoClase) {
         }
     }
     return exito;
+}
+function LimpiarSelect() {
+    var controlesTxt = document.getElementsByClassName("Limpiar");
+    var ncontrolesTxt = controlesTxt.length;
+    for (var i = 0; i < ncontrolesTxt; i++) {
+        document.getElementById(controlesTxt[i].id).value = "";
+    }
+    var controles = document.getElementsByClassName("SelectCLS");
+    var ncontroles = controles.length;
+    for (var i = 0; i < ncontroles; i++) {
+        document.getElementById(controles[i].id).value = 0;
+    }
 }

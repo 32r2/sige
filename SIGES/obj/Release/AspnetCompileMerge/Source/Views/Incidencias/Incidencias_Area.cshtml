@@ -1,0 +1,201 @@
+﻿@using SIGES.Models;
+
+@{
+    ViewBag.Title = "Incidencias por área";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/quill.min.js"></script>
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+<link href="https://cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
+
+<h2>Incidencias por área</h2>
+<div class="row ">
+    <div class="col-md-4 col-sm-4 col-xs-4 justify-content-end">
+        @{
+            long IDArea = Convert.ToInt64(Session["IDArea"]);
+            <div class="col-md-3 col-sm-3 col-xs-3"><button onclick="AbrirModalIncidencia(0,@IDArea )" type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalIncidencias">Agregar</button></div>
+        }
+    </div>
+    <div class="col-md-8 col-sm-8 col-xs-8 float-right ">
+        <form class="form-inline float-right">
+            <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Buscar">
+            <button class="btn btn-outline-primary my-2 my-sm-0">Buscar</button>
+        </form>
+    </div>
+</div>
+<div class="accordion" id="accordion"></div>
+<div id="ModalIncidencias" class="modal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Incidencia</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4 col-xs-4">
+                            <span class="help-block text-muted small-font">ID Incidencia</span>
+                            <input type="number" id="TxtIDIncidencia" class="form-control limpiar bloquear" placeholder="###" />
+                        </div>
+                        <div class="col-md-8 col-sm-8 col-xs-8">
+                            <span class="help-block text-muted small-font">Área</span>
+                            <br />
+                            <select id="cmbArea" style="width: 100%" class="btn btn-primary dropdown-toggle LimpiarSLT Incidencias bloquear">
+                                <option value="0">--Seleccione--</option>
+                                @{
+                                    if (Departamentos.IDArea != null)
+                                    {
+                                        for (var i = 1; i < Departamentos.IDArea.Count(); i++)
+                                        {
+                                            <option value="@Departamentos.IDArea[i]">@Departamentos.Nombre[i]</option>
+                                        }
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4 col-xs-4">
+                            <span class="help-block text-muted small-font">No. Soluciones</span>
+                            <input type="number" id="TxtNoSoluciones" class="form-control limpiar" placeholder="###" />
+                        </div>
+                        <div class="col-md-8 col-sm-8 col-xs-8">
+                            <span class="help-block text-muted small-font">Subárea</span>
+                            <br />
+                            <select id="cmbSubArea" style="width: 100%" class="btn btn-warning dropdown-toggle LimpiarSLT"></select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <span class="help-block text-muted small-font">Incidencia</span>
+                            <input type="text" id="TxtNombre" class="form-control limpiar Incidencias" placeholder="Nombre Incidencia" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <span class="help-block text-muted small-font">Descripción</span>
+                            <br />
+                            <textarea type="text" id="TxtDescripcion" class="form-control email limpiar Incidencias" rows="6" wrap="soft" placeholder="Inserte una breve descripción de la incidencia."></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12 col-xs-6">
+                            <span class="help-block text-muted small-font">Genera reporte</span>
+                            <br />
+                            <select id="cmbReporte" class="btn btn-success dropdown-toggle LimpiarSLT Incidencias">
+                                <option value="0">--Seleccione--</option>
+                                <option value="1">No</option>
+                                <option value="2">Si</option>
+                            </select>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="modal-footer">
+                        <button id="btnGuardar" type="button" class="btn btn-success" onclick="GuardarIncidencia()">GUARDAR</button>
+                        <button id="btnCancelar" type="button" class="btn btn-danger" data-dismiss="modal">CANCELAR</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="ModalProcedimientos" class="modal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Procedimientos</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="panel-heading ">
+                    <!-- Inicia cuerpo Modal-->
+                    <div class="row ">
+                        <div class="col-md-4 col-sm-4 col-xs-4 justify-content-end">
+                            <span class="help-block text-muted small-font">ID</span>
+                            <input type="text" id="TxtIDMesaAyuda" class="form-control limpiar bloquear" placeholder="ID" />
+                        </div>
+                        <div class="col-md-8 col-sm-8 col-xs-8 justify-content-end">
+                            <span class="help-block text-muted small-font">Área</span>
+                            <BR />
+                            <select id="cmbAreaProce" style="width: 100%" class="btn btn-warning dropdown-toggle LimpiarSLT bloquear"></select>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-md-12 col-sm-12 col-xs-12 justify-content-end">
+                            <span class="help-block text-muted small-font">Incidencia</span>
+                            <BR />
+                            <select id="cmbIDIncidencia" style="width: 100%" class="btn btn-danger dropdown-toggle LimpiarSLT bloquear"></select>
+                        </div>
+                    </div>
+                    <div class="row " rows="25">
+                        <div class="col-md-4 col-sm-4 col-xs-4 justify-content-end">
+                            <span class="help-block text-muted small-font">Modificación</span>
+                            <input type="text" id="TxtFModificacion" class="form-control limpiar bloquear" placeholder="dd/mm/aa" />
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-4 justify-content-end">
+                            <span class="help-block text-muted small-font">No. de Solución</span><br />
+                            <select id="cmbNoSolucion" style="width: 100%" class="btn btn-primary dropdown-toggle limpiar Procedimiento "></select>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-4 justify-content-end">
+                            <span class="help-block text-muted small-font">No. Procedimiento</span><br />
+                            <input type="number" id="TxtNoPaso" class="form-control limpiar Procedimiento bloquear" placeholder="##" />
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <span class="help-block text-muted small-font">Descripción</span>
+                            <br />
+                            <!-- Create the editor container -->
+                            <div id="editor" class="limpiar"></div>
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+                    <br />
+                    <div class="row ">
+                        <div class="col-md-8 col-sm-12 col-xs-8">
+                            <span class="help-block text-muted small-font">Imagen</span>
+                            <BR />
+                            <select id="cmbRecurso" style="width: 100%" class="btn btn-success dropdown-toggle LimpiarSLT"></select>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row ">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div id="carouselRecursos" class="carousel slide limpiar" data-ride="carousel"></div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="btnGuardar" type="button" class="btn btn-success" onclick="GuardarProcedimiento();">GUARDAR</button>
+                        <button id="btnCancelarPro" type="button" class="btn btn-danger" data-dismiss="modal">CANCELAR</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jquery.min.js"></script>
+<script src="~/Scripts/Own/JS_System_Inicidencias_Area.js"></script>
+<script>
+    // The activated editor functions
+    var toolbarOptions = [
+        ['bold', 'italic'],
+        [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+        ['link', 'underline', 'blockquote', 'code-block']
+    ];
+    // Quill configuration
+    var options = {
+        modules: {
+            toolbar: toolbarOptions
+        },
+        placeholder: 'Type something...',
+        readOnly: false,
+        theme: 'snow'
+    };
+    // The quill instance
+    var editor = new Quill('#editor', options);
+</script>

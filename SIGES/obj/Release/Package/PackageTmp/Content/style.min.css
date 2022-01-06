@@ -11241,7 +11241,9 @@ ul.list-style-none {
 .left-sidebar {
     position: absolute;
     width: 250px;
-    height: 100%;
+    /*Modificar el tamaño del aside*/
+    /*height: 100%;*/
+    height: 185%;
     top: 0px;
     z-index: 10;
     padding-top: 64px;

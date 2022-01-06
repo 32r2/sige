@@ -1,11 +1,11 @@
-﻿
+﻿@using SIGES.Models;
 @{
     ViewBag.Title = "Mesa de ayuda";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <h2>Mesa de ayuda</h2>
+<div id="Alertas"></div>
 <button onclick="AModalIncidencia(0)" type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalReporteIn"><samp class="fas fa-plus-square"></samp> Agregar</button>
-
 <div class="row ">
     <div class="col-md-4 col-sm-4 col-xs-4 justify-content-end"></div>
     <div class="col-md-8 col-sm-8 col-xs-8 float-right">
@@ -16,8 +16,36 @@
     </div>
 </div>
 <br />
-<div class="row " id="BotonesAyuda"></div>
-<div class="accordion" id="accordion"></div>
+<div class="row " id="BotonesAyuda">
+    @{
+        string EstilosBotones = "bg-cyan,bg-success,bg-warning,bg-danger,bg-info";
+        string[] BtnEstilos = EstilosBotones.Split(',');
+        int Posicion = 0;
+        if (Departamentos.IDArea != null)
+        {
+            for (var i = 1; i < Departamentos.IDArea.Count(); i++)
+            {
+                string evento = "BuscarIn(" + Departamentos.IDArea[i] + ");";
+                if (Posicion > BtnEstilos.Length - 1)
+                {
+                    Posicion = 0;
+                }
+                string Clase = "box " + BtnEstilos[Posicion] + " text-center";
+                <div class="col-md-6 col-lg-2 col-xlg-3" onclick="@evento" style="text-align: center;">
+                    <div class="card card-hover" style="height:79px">
+                        <div class="@Clase" style="height:79px ">
+                            <h6 style="color:white; font-size:18px; font-weight:bold;">@Departamentos.Nombre[i]</h6>
+                        </div>
+                    </div>
+                </div>
+                Posicion++;
+            }
+        }
+    }
+</div>
+<div class="accordion" id="accordion">
+</div>
+<img id="imageid" src="~/Assets/Internal/404Imagen.png" style="display: none" />
 <!-- PopUp -->
 <div id="ModalReporteIn" class="modal" role="dialog">
     <div class="modal-dialog">
@@ -32,48 +60,70 @@
                     <div class="row">
                         <div class="col-md-7 col-sm-12 col-xs-12">
                             <span class="help-block text-muted small-font">ID Reporte de incidencia</span>
-                            <input type="number" id="TxtIDRInsidencia" class="form-control bloquear limpiar" placeholder="###" />
+                            <input type="number" id="TxtIDRInsidencia" class="form-control bloquear Limpiar" placeholder="###" />
                         </div>
                         <div class="col-md-5 col-sm-12 col-xs-12">
                             <span class="help-block text-muted small-font">Fecha</span>
-                            <input type="text" id="TxtFecha" class="form-control bloquear limpiar" placeholder="##/##/####" />
+                            <input type="text" id="TxtFecha" class="form-control bloquear Limpiar" placeholder="##/##/####" />
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-7 col-sm-8 col-xs-8">
+                        <div class="col-md-8 col-sm-8 col-xs-8">
                             <span class="help-block text-muted small-font">Área</span>
                             <br />
-                            <select id="cmbArea" style="width: 100%" class="btn btn-success dropdown-toggle desbloquear limpiar obligatorio"></select>
+                            <select id="cmbArea" style="width: 100%" class="btn btn-success dropdown-toggle desbloquear SelectCLS obligatorio">
+                                <option value="0">--Seleccione--</option>
+                                @{
+                                    if (Departamentos.IDArea != null)
+                                    {
+                                        for (var i = 1; i < Departamentos.IDArea.Count(); i++)
+                                        {
+                                            <option value="@Departamentos.IDArea[i]">@Departamentos.Nombre[i]</option>
+                                        }
+                                    }
+                                }
+                            </select>
                         </div>
-                        <div class="col-md-5 col-sm-4 col-xs-4">
-                            <span class="help-block text-muted small-font">No. Incidencia Tienda</span>
-                            <input type="number" id="TxtNoInsidencia" class="form-control bloquear limpiar" placeholder="###" />
+                        <div class="col-md-4 col-sm-4 col-xs-4">
+                            <span class="help-block text-muted small-font">Plus</span>
+                            <br />
+                            <select id="cmbIDTienda" style="width: 100%" class="btn btn-primary dropdown-toggle SelectCLS">
+                                <option value="0">--Seleccione--</option>
+                                @{
+                                    if (Sucursales.IDTienda != null)
+                                    {
+                                        for (int t = 0; t < Sucursales.IDTienda.Count(); t++)
+                                        {
+                                            <option value="@Sucursales.IDTienda[t]">@Sucursales.Nombre[t]</option>
+                                        }
+                                    }
+                                }
+                            </select>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-8 col-sm-8 col-xs-8">
                             <span class="help-block text-muted small-font">Subárea</span>
                             <br />
-                            <select id="cmbSubArea" style="width: 100%" class="btn btn-warning desbloquear dropdown-toggle limpiar"></select>
+                            <select id="cmbSubArea" style="width: 100%" class="btn btn-warning desbloquear dropdown-toggle SelectCLS"></select>
                         </div>
                         <div class="col-md-4 col-sm-4 col-xs-4">
-                            <span class="help-block text-muted small-font">Plus</span>
-                            <br />
-                            <select id="cmbIDTienda" style="width: 100%" class="btn btn-primary bloquear dropdown-toggle limpiar"></select>
+                            <span class="help-block text-muted small-font">No. Incidencia Tienda</span>
+                            <input type="number" id="TxtNoInsidencia" class="form-control bloquear Limpiar" placeholder="###" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <span class="help-block text-muted small-font">Incidencia</span>
                             <br />
-                            <select id="cmbIDInsidencia" style="width: 100%" class="btn btn-danger desbloquear dropdown-toggle limpiar obligatorio"></select>
+                            <select id="cmbIDInsidencia" style="width: 100%" class="btn btn-danger desbloquear dropdown-toggle SelectCLS obligatorio"></select>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <span class="help-block text-muted small-font">Usuario</span>
                             <br />
-                            <select id="cmbIDUsuario" style="width: 100%" class="btn btn-primary bloquear dropdown-toggle limpiar obligatorio"></select>
+                            <select id="cmbIDUsuario" style="width: 100%" class="btn btn-primary bloquear dropdown-toggle SelectCLS obligatorio"></select>
                         </div>
                     </div>
                     <div class="row">
@@ -82,14 +132,14 @@
                             <br />
                             <img id="PBFoto" src="" width="250" height="150" alt="" />
                             <br />
-                            <input id="BtnFoto" type="file" class="form-control form-control-sm limpiar" value="SUBIR" />
+                            <input id="BtnFoto" type="file" class="form-control form-control-sm Limpiar" value="SUBIR" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12 col-sm-12 col-xs-12">
-                            <span class="help-block text-muted small-font">Observaciones</span>
+                            <span class="help-block text-muted limpiar small-font">Observaciones</span>
                             <br />
-                            <textarea type="text" id="TxtObservaciones" class="form-control limpiar obligatorio" rows="3" wrap="soft" placeholder="Inserte una breve descripción de la incidencia."></textarea>
+                            <textarea type="text" id="TxtObservaciones" class="form-control Limpiar obligatorio" rows="3" wrap="soft" placeholder="Inserte una breve descripción de la incidencia."></textarea>
                         </div>
                     </div>
                     <br />
@@ -104,3 +154,4 @@
 </div>
 <script src="~/Scripts/jquery.min.js"></script>
 <script src="~/Scripts/Own/JS_System_Incidencias_MesaAyuda.js"></script>
+

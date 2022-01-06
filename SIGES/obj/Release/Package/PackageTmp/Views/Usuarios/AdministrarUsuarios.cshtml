@@ -1,0 +1,419 @@
+﻿@using SIGES.Models;
+@{
+    ViewBag.Title = "Administrar Usuarios";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/CheckPassword.css" rel="stylesheet" />
+<link href="~/Content/ModalMedia.css" rel="stylesheet" />
+
+<script src="~/Scripts/polyfill.min.js"></script>
+<script src="~/Scripts/classList.min.js"></script>
+<script src="~/Scripts/findindex_polyfill_mdn.js"></script>
+<link href="~/Content/dataTables.bootstrap4.css" rel="stylesheet" />
+<script src="~/Scripts/apexcharts.js"></script>
+<link href="~/Content/Exportar/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/Exportar/buttons.dataTables.min.css" rel="stylesheet" />
+<h2>Administrar Usuarios</h2>
+<div id="Alertas"></div>
+<button onclick="abrirModal(0)" type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Agregar</button>
+<div class="card">
+    <div class="card-body">
+        <div id="tabla" class="table-responsive">
+            <table id="zero_config" class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>Nombre Completo</th>
+                        <th>Noss</th>
+                        <th>Teléfono</th>
+                        <th>N. Contacto E.</th>
+                        <th>T. Contacto E.</th>
+                        <th>Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        if (User_UsuariosM.IDUsuario != null)
+                        {
+                            for (int i = 0; i < User_UsuariosM.IDUsuario.Count(); i++)
+                            {
+                                <tr>
+                                    <td>@User_UsuariosM.Nombre[i] @User_UsuariosM.APaterno[i] @User_UsuariosM.AMaterno[i]</td>
+                                    <td>@User_UsuariosM.NoSS[i]</td>
+                                    <td>@User_UsuariosM.Telefono[i]</td>
+                                    <td>@User_UsuariosM.ContactoNombre[i]</td>
+                                    <td>@User_UsuariosM.ContactoEmergencia[i]</td>
+                                    <td><button class="btn btn-primary" onclick="abrirModal(@User_UsuariosM.IDUsuario[i])" data-toggle="modal" data-target="#myModal"><i class="fas fa-edit"></i></button><button class="btn btn-danger" onclick="EliminarUsuario(@User_UsuariosM.IDUsuario[i],this)"><i class="fas fa-eraser"></i></button></td>
+                                </tr>
+                            }
+                        }
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>Nombre Completo</th>
+                        <th>Noss</th>
+                        <th>Teléfono</th>
+                        <th>N. Contacto E.</th>
+                        <th>T. Contacto E.</th>
+                        <th>Opciones</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+<img id="imageid" src="~/Assets/Internal/NoUser.png" style="display: none" />
+<div class="modal fullscreen-modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 id="HPas-1" class="modal-title step-1 mostrar">Datos Personales</h5>
+                <h5 id="HPas-2" class="modal-title step-2 ocultar">Datos Generales</h5>
+                <h5 id="HPas-3" class="modal-title step-3 ocultar">Datos Laborales</h5>
+                <h5 id="HPas-4" class="modal-title step-4 ocultar">Datos de Usuario</h5>
+                <h5 id="HPas-5" class="modal-title step-5 ocultar" style="color:green">Finalizar <i class="fas fa-check-circle font-24"></i></h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button><br>
+            </div>
+            <div class="progress">
+                <div id="avance" class="progress-bar progress-bar-striped bg-success" role="progressbar" @*style="width: 0%"*@ aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            @*-----------------------------------------Paso uno---------------------------------------------------------*@
+            <div id="Paso-1" class="ModAlt steps step-1 mostrar">
+                <div class="container step-1 mostrar">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-12 col-xs-12 justify-content-end">
+                            <span class="help-block text-muted small-font">ID Usuario</span>
+                            <input type="text" id="TxtIDUsuario" class="form-control bloquear limpiar" placeholder="ID" />
+                        </div>
+                        <div class="col-md-8 col-sm-12 col-xs-12 justify-content-end">
+                            <span class="help-block text-muted small-font">CURP</span>
+                            <input type="text" id="TxtCURP" class="form-control limpiar Datostep-1 DatosGuardar" placeholder="Clave Única de Registro de Población" />
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6 col-xs-6 justify-content-end">
+                            <img id="PBFoto" src="" width="220" height="220" alt="" />
+                            <br />
+                            <input id="BtnFoto" type="file" class="form-control form-control-sm limpiar" value="SUBIR" />
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <div>
+                                <span class="help-block text-muted small-font">Nombre</span><br />
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fa fa-user"></i></span>
+                                    </div>
+                                    <input type="text" id="TxtNombreUser" class="form-control limpiar Datostep-1 DatosGuardar" placeholder="Nombre" />
+                                </div>
+                            </div>
+                            <div>
+                                <span class="help-block text-muted small-font">Apellido Paterno</span>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fa fa-user"></i></span>
+                                    </div>
+                                    <input type="text" id="TxtAPaterno" class="form-control limpiar Datostep-1 DatosGuardar" placeholder="Apellido paterno" />
+                                </div>
+                            </div>
+                            <div>
+                                <span class="help-block text-muted small-font">Apellido Materno</span>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fa fa-user"></i></span>
+                                    </div>
+                                    <input type="text" id="TxtAMaterno" class="form-control limpiar" placeholder="Apellido materno" />
+                                </div>
+                            </div>
+                            <div>
+                                <span class="help-block text-muted small-font">Fecha Nacimiento</span>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                                    </div>
+                                    <input type="date" id="TxtFnaci" class="form-control limpiar Datostep-1 DatosGuardar" placeholder="dd/mm/aa" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8 col-sm-6 col-xs-6 justify-content-end">
+                            <span class="help-block text-muted small-font">RFC</span>
+                            <input type="text" id="TxtRFC" class="form-control limpiar" placeholder="Registro Federal del Contribuyente" />
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-xs-6 justify-content-end">
+                            <span class="help-block text-muted small-font">NSS</span>
+                            <input type="text" id="TxtNSS" class="form-control limpiar" placeholder="Número de Seguro Social" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @*-----------------------------------------Paso dos---------------------------------------------------------*@
+            <div id="Paso-2" class="ModAlt steps step-2 ocultar">
+                <div class="container step-2 ocultar">
+                    <div class="row ">
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <span class="help-block text-muted small-font">Correo</span>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                                </div>
+                                <input type="email" id="TxtCorreo" class="form-control limpiar Datostep-2 DatosGuardar" placeholder="nombreusuario@servidor.com" />
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <span class="help-block text-muted small-font">Teléfono</span>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                </div>
+                                <input type="tel" id="TxtTelefono" class="form-control limpiar Datostep-2 DatosGuardar" placeholder="### ## #####" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <span class="help-block text-muted small-font">Estado</span>
+                            <BR />
+                            <select id="cmbEstado" style="width: 100%" class="btn btn-success dropdown-toggle SelectCLS Datostep-2 DatosGuardar">
+                                @{
+                                    if (System_EstadosM.IDEstado != null)
+                                    {
+                                        for (int t = 0; t < System_EstadosM.IDEstado.Count(); t++)
+                                        {
+                                            <option value="@System_EstadosM.IDEstado[t]">@System_EstadosM.Nombre[t]</option>
+                                        }
+                                    }
+                                }
+                            </select>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <span class="help-block text-muted small-font">Municipio</span>
+                            <BR />
+                            <select id="cmbMunicipio" style="width: 100%" class="btn btn-primary dropdown-toggle SelectCLS Datostep-2 DatosGuardar"></select>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <span class="help-block text-muted small-font">Localidad</span>
+                            <BR />
+                            <select id="cmbLocalidad" style="width: 100%" class="btn btn-secondary dropdown-toggle SelectCLS Datostep-2 DatosGuardar"></select>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <span class="help-block text-muted small-font">Nombre del contacto de emergencia</span><br />
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-user"></i></span>
+                                </div>
+                                <input type="text" id="TxtContactoNombre" class="form-control limpiar" placeholder="Nombre" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <span class="help-block text-muted small-font">Teléfono del contacto de emergencia</span>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                </div>
+                                <input type="tel" id="TxtContactoTelefono" class="form-control limpiar" placeholder="### ## #####" />
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <span class="help-block text-muted small-font">Parentesco</span><br />
+                            <select id="cmbContactoParentesco" style="width: 100%" class="btn btn-primary dropdown-toggle SelectCLS">
+                                <option value="0">--Seleccione--</option>
+                                <option value="1">Padre/Madre</option>
+                                <option value="2">Hermano/Hermana</option>
+                                <option value="3">Esposo/Esposa</option>
+                                <option value="4">Tio/Tia</option>
+                                <option value="5">Hijo/Hija</option>
+                                <option value="6">Otro</option>
+                            </select>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row ">
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <span class="help-block text-muted small-font">Área</span>
+                            <BR />
+                            <select id="cmbArea" style="width: 100%" class="btn btn-danger dropdown-toggle SelectCLS Datostep-2 DatosGuardar">
+                                <option value="0">--Seleccione--</option>
+                                @{
+                                    if (Departamentos.IDArea != null)
+                                    {
+                                        for (var i = 1; i < Departamentos.IDArea.Count(); i++)
+                                        {
+                                            <option value="@Departamentos.IDArea[i]">@Departamentos.Nombre[i]</option>
+                                        }
+                                    }
+                                }
+                            </select>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <span class="help-block text-muted small-font">SubÁrea</span>
+                            <BR />
+                            <select id="cmbSubArea" style="width: 100%" class="btn btn-info dropdown-toggle SelectCLS"></select>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row ">
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <span class="help-block text-muted small-font">Asignación</span>
+                            <BR />
+                            <select id="cmbAsignacion" style="width: 100%" class="btn btn-success dropdown-toggle SelectCLS Datostep-4 DatosGuardar">
+                                <option value="0">--Seleccione--</option>
+                                @{
+                                    if (System_Asignacion.IDAsignacion != null)
+                                    {
+                                        for (int t = 0; t < System_Asignacion.IDAsignacion.Count(); t++)
+                                        {
+                                            <option value="@System_Asignacion.IDAsignacion[t]">@System_Asignacion.Nombre[t]</option>
+                                        }
+                                    }
+                                }
+                            </select>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <span class="help-block text-muted small-font">Sitio</span>
+                            <BR />
+                            <select id="cmbSitio" style="width: 100%" class="btn btn-primary dropdown-toggle SelectCLS Datostep-4 DatosGuardar"></select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @*-----------------------------------------Paso tres--------------------------------------------------------*@
+            <div id="Paso-3" class="ModAlt steps step-3 ocultar">
+                <div class="container step-3 ocultar">
+                    <div id="DivDatos" class="card">
+                    </div>
+                </div>
+            </div>
+            @*-----------------------------------------Paso cuatro------------------------------------------------------*@
+            <div id="Paso-4" class="ModAlt steps step-4 ocultar">
+                <div class="container step-4 ocultar">
+                    <div class="row">
+                        <div class="col-md-8 col-sm-12 col-xs-12">
+                            <span class="help-block text-muted small-font">Usuario</span>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-user-secret"></i></span>
+                                </div>
+                                <input type="text" id="TxtUsuario" class="form-control limpiar Datostep-4 DatosGuardar" placeholder="Usuario" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <span class="help-block text-muted small-font">Contraseña</span>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                                </div>
+                                <input type="password" id="TxtContrasena" class="form-control limpiar Datostep-4 DatosGuardar" placeholder="Contraseña" />
+                            </div>
+                            <div id="strengthMessage"></div>
+                        </div>
+                        <br />
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <span class="help-block text-muted small-font">Confirme</span>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                                </div>
+                                <input type="password" id="TxtContrasenaConf" class="form-control limpiar Datostep-4 DatosGuardar" placeholder="Contraseña" />
+                            </div>
+                            <div id="warningMessage"></div>
+                        </div>
+                        <br />
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <span class="help-block text-muted small-font">Perfil</span>
+                            <BR />
+                            <select id="cmbPerfil" style="width: 100%" class="btn btn-warning dropdown-toggle SelectCLS Datostep-4 DatosGuardar">
+                                <option value="0">--Seleccione--</option>
+                                @{
+                                    if (PerfilesUsuario.IDPerfil != null)
+                                    {
+                                        for (int t = 0; t < PerfilesUsuario.IDPerfil.Count(); t++)
+                                        {
+                                            <option value="@PerfilesUsuario.IDPerfil[t]">@PerfilesUsuario.Perfil[t]</option>
+                                        }
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col-md-3 col-sm-12 col-xs-12"></div>
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <span class="help-block text-muted small-font">Usuario Padre</span>
+                            <input type="text" id="TxtUPadre" class="form-control limpiar Datostep-4 DatosGuardar" placeholder="Usuario" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 col-sm-12 col-xs-12"></div>
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <span class="help-block text-muted small-font">Contraseña Padre</span>
+                            <input type="password" id="TxtCPadre" class="form-control limpiar Datostep-4 DatosGuardar" placeholder="Contraseña" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 col-sm-12 col-xs-12">
+                        </div>
+                        <div class="col-md-4 col-sm-12 col-xs-12">
+                            <div id="mensage"></div>
+                        </div>
+                        <div class="col-md-4 col-sm-12 col-xs-12">
+                            <button id="BtnValidar" type="button" class="btn btn-success" onclick="validarParent()"><i class="fas fa-check-circle font-16"></i></button>
+                        </div>
+                    </div>
+                    <hr />
+                </div>
+            </div>
+            @*-----------------------------------------Paso cinco-------------------------------------------------------*@
+            <div id="Paso-5" class="ModAlt steps step-5 ocultar">
+                <div class="container text-center step-5 ocultar">
+                    <div class="row">
+                        <div id="Finalmmessage" class="img-centro"></div>
+                    </div>
+                </div>
+            </div>
+            @*-----------------------------------------Botones del pie--------------------------------------------------*@
+            <div class="modal-footer">
+                <button id="BtnCancelar" type="button" class="btn btn-danger step-1 step-2 step-3 step-4 " data-dismiss="modal"><i class="far fa-times-circle font-16"></i></button>
+                <button id="BtnRetrocdr" type="button" class="btn btn-primary step-2 step-3 step-4" onclick="Pasos(-1)"><i class="fas fa-chevron-circle-left font-16"></i></button>
+                <button id="BtnCntinuar" type="button" class="btn btn-primary step-1 step-2 step-3 step-4" onclick="Pasos(1)"><i class="fas fa-chevron-circle-right font-16"></i></button>
+                <button id="BtnFinalzar" type="button" class="btn btn-success step-5" data-dismiss="modal"><i class="fas fa-check-circle font-16"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jquery.min.js"></script>
+<script src="~/Scripts/Own/JS_User_AdministrarUsuarios.js" type="text/javascript"></script>
+<script src="~/Scripts/CheckPassword.js"></script>
+@*/********************************//*@
+<script src="~/Scripts/Exportar/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/Exportar/dataTables.buttons.min.js"></script>
+<script src="~/Scripts/Exportar/buttons.print.min.js"></script>
+<script src="~/Scripts/Exportar/jszip.min.js"></script>
+<script src="~/Scripts/Exportar/pdfmake.min.js"></script>
+<script src="~/Scripts/Exportar/vfs_fonts.js"></script>
+<script src="~/Scripts/Exportar/buttons.html5.min.js"></script>
+@* ********************************** *@
+
+<script>
+    $('#zero_config').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            'print',
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',
+            'pdfHtml5'
+        ]
+    });
+</script>

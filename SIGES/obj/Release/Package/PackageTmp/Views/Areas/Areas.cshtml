@@ -1,13 +1,76 @@
-﻿
+﻿@using SIGES.Models;
 @{
     ViewBag.Title = "Areas";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Areas</h2>
+<div id="Alertas"></div>
 <button onclick="AbrirMArea(0)" type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalArea">Agregar</button>
 @*<div id="tabla" class="table-responsive"></div>*@
-<div class="accordion" id="accordion"></div>
+<div class="accordion" id="accordion">
+    @{
+        if (Departamentos.IDArea != null)
+        {
+
+            for (var i = 0; i < Departamentos.IDArea.Count(); i++)
+            {
+                string ClaseIn = "card m-b-0";
+                if (i > 1)
+                {
+                    ClaseIn = "card m-b-0 border-top";
+                }
+                string HeadingDepto = "heading" + @Departamentos.IDArea[i];
+                string ColappseDEpto = "collapse" + @Departamentos.IDArea[i];
+                string Recursos = "Recursos_areas" + @Departamentos.IDArea[i];
+                string NAcordeonSub = "Acordeon_Subarea" + @Departamentos.IDArea[i];
+                string Boton = "BtnMO" + @Departamentos.IDArea[i];
+                <div class="@ClaseIn">
+                    <div class="card-header" id="@HeadingDepto">
+                        <h5 class="mb-0">
+                            <a onclick="AcordionSubareas(@Departamentos.IDArea[i])" data-toggle="collapse" data-target="#@ColappseDEpto" aria-expanded="false" aria-controls="@ColappseDEpto" class="collapsed">
+                                <i class="m-r-5 fas fa-clipboard-list" aria-hidden="true"></i>
+                                <span>@Departamentos.Nombre[i]</span>
+                            </a>
+                        </h5>
+                        <div id="@ColappseDEpto" class="collapse" aria-labelledby="headingOne" data-parent="#accordion" style="">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12 col-xs-12"><strong>Jefe de área: </strong>  @Departamentos.UNombre[i]</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6 col-xs-6"><strong>Correo: </strong>@Departamentos.Correo[i]</div>
+                                    <div class="col-md-6 col-sm-6 col-xs-6"><strong>Teléfono: </strong>@Departamentos.Telefono[i]</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-9 col-sm-9 col-xs-9"><strong>Subáreas: </strong></div>
+                                    <div class="col-md-3 col-sm-3 col-xs-3"><button onclick="abrirModalSub(0,@Departamentos.IDArea[i])" type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalSubareas">Agregar</button></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-12 col-xs-12 accordion" id="@NAcordeonSub">Espacio para las Subáreas del Área</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-9 col-md-9 col-xs-9"><strong>Recursos: </strong></div>
+                                    <div class="col-sm-3 col-md-3 col-xs-3">
+                                        <button onclick="ModalRecursos(0,@Departamentos.IDArea[i])" type="button" class="btn btn-warning" data-toggle="modal" data-target="#RecursosModal">Agregar</button>
+                                        <button class="btn btn-info" onclick="MostrarOcultar(@Departamentos.IDArea[i])"><i id="@Boton" class="fas fa-chevron-circle-down"></i></button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12 col-xs-12" id="@Recursos" style="background-color: white; display: none;">Este elemento aparece y desaparece con el botón</div>
+                                </div>
+                                <div class="col-md-12 col-sm-12 col-xs-12 align-self-end">
+                                    <button class="btn btn-success" onclick="AbrirMArea(@Departamentos.IDArea[i])" data-toggle="modal" data-target="#ModalArea"><i class="fas fa-edit"></i></button>
+                                    <button class="btn btn-danger" onclick="EliminarArea(@Departamentos.IDArea[i],this)"><i class="fas fa-eraser"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    }
+</div>
 <!--******************************************************************************************************************************************************-->
 <!-- Modal áreas -->
 <div id="ModalArea" class="modal" role="dialog">
@@ -36,7 +99,7 @@
                             <span class="help-block text-muted small-font">Jefe del área</span>
                             <BR />
                             <div class="btn-group">
-                                <select id="cmbEncargado" class="btn btn-primary  dropdown-toggle limpiar"></select>
+                                <select id="cmbEncargado" class="btn btn-primary  dropdown-toggle Area LimpiarSLT"></select>
                             </div>
                         </div>
                     </div>
@@ -97,7 +160,7 @@
                         <div class="col-md-8 col-sm-8 col-xs-8">
                             <span class="help-block text-muted small-font">Area</span>
                             <br />
-                            <select id="cmbAreaSubA" class="btn btn-danger dropdown-toggle limpiar bloquear"></select>
+                            <select id="cmbAreaSubA" class="btn btn-danger dropdown-toggle LimpiarSLT bloquear Subarea"></select>
                         </div>
                     </div>
                     <br />
@@ -105,7 +168,7 @@
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <span class="help-block text-muted small-font">Encargado 1:</span>
                             <br />
-                            <select id="cmbEncargado1Sub" class="btn btn-warning dropdown-toggle limpiar Subarea"></select>
+                            <select id="cmbEncargado1Sub" class="btn btn-warning dropdown-toggle LimpiarSLT Subarea"></select>
                         </div>
                     </div>
                     <div class="row">
@@ -124,7 +187,7 @@
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <span class="help-block text-muted small-font">Encargado 2:</span>
                             <br />
-                            <select id="cmbEncargado2Sub" class="btn btn-info dropdown-toggle limpiar"></select>
+                            <select id="cmbEncargado2Sub" class="btn btn-info dropdown-toggle LimpiarSLT"></select>
                         </div>
                     </div>
                     <div class="row">
@@ -143,7 +206,7 @@
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <span class="help-block text-muted small-font">Encargado 3:</span>
                             <br />
-                            <select id="cmbEncargado3Sub" class="btn btn-primary dropdown-toggle limpiar"></select>
+                            <select id="cmbEncargado3Sub" class="btn btn-primary dropdown-toggle LimpiarSLT"></select>
                         </div>
                     </div>
                     <div class="row">

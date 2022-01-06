@@ -1,0 +1,258 @@
+﻿@using SIGES.Models;
+
+<link href="~/Content/Switch_Button.css" rel="stylesheet" />
+@{
+    ViewBag.Title = "Sucursales de la supervisión";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/magnific-popup.css" rel="stylesheet" />
+<h2>Sucursales de la supervisión</h2>
+
+<div class="accordion" id="AcordeonSucursales">
+    @{
+        if (TiendasSupervision.IDTienda != null)
+        {
+            int NSucursales = TiendasSupervision.IDTienda.Count();
+            string InsrtClases = "card m-b-0";
+            for (int i = 0; i < NSucursales; i++)
+            {
+                if (i == 0)
+                {
+                    InsrtClases = "card m-b-0";
+                }
+                else
+                {
+                    InsrtClases = "card m-b-0  border-top";
+                }
+                string Colapse = "Collapse_Sucursa_" + @TiendasSupervision.IDTienda[i];
+                string Header = "Heading_Sucursa_" + @TiendasSupervision.IDTienda[i];
+                string IDAcordeon = "Acordeon_Sucursal_" + @TiendasSupervision.IDTienda[i] + "_Deptos";
+                string BadgeDepto = "Badge_Sucursal_" + @TiendasSupervision.IDTienda[i];
+                <div class="@InsrtClases">
+                    <div class="card-header" id="@Header">
+                        <h4 class="mb-0">
+                            <a onclick="llenarBadges(@TiendasSupervision.IDTienda[i])" data-toggle="collapse" data-target="#@Colapse" aria-expanded="false" aria-controls="@Colapse" class="collapsed">
+                                <i class="m-r-5 mdi mdi-store" aria-hidden="true"></i>
+                                <span>@TiendasSupervision.Nombre[i]</span><span id="@BadgeDepto" class="badge badge-danger"></span>
+                            </a>
+                        </h4>
+                        <div id="@Colapse" class="collapse" aria-labelledby="headingOne" data-parent="#AcordeonSucursales" style="">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6 col-xs-6"><strong>Lider: </strong>@TiendasSupervision.LNombre[i]  </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-6"><strong>Encargado: </strong>@TiendasSupervision.E1Nombre[i]</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6 col-xs-6"><strong>Encargado: </strong>@TiendasSupervision.E2Nombre[i]</div>
+                                    <div class="col-md-6 col-sm-6 col-xs-6"><strong>Encargado: </strong>@TiendasSupervision.E3Nombre[i]</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6 col-xs-6"><strong>Auxiliar: </strong>@TiendasSupervision.A1Nombre[i]</div>
+                                    <div class="col-md-6 col-sm-6 col-xs-6"><strong>Auxiliar: </strong>@TiendasSupervision.A2Nombre[i]</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6 col-xs-6"><strong>Auxiliar: </strong>@TiendasSupervision.A3Nombre[i]</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12 col-xs-12"><strong>Dirección</strong></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5 col-sm-6 col-xs-6"><strong>Estado: </strong>@TiendasSupervision.Estado[i]</div>
+                                    <div class="col-md-7 col-sm-6 col-xs-6"><strong>Municipio: </strong>@TiendasSupervision.Municipio[i]  </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-6 col-xs-6"><strong>Localidas: </strong>@TiendasSupervision.Localidad[i]  </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-6 col-xs-6"><strong>Calle: </strong>@TiendasSupervision.Calle[i]  </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3 col-sm-6 col-xs-6"><strong>Teléfono: </strong>@TiendasSupervision.Telefono[i]  </div>
+                                    <div class="col-md-3 col-sm-6 col-xs-6"><strong>Latitud: </strong> @TiendasSupervision.Latitud[i]  </div>
+                                    <div class="col-md-3 col-sm-6 col-xs-6"><strong>Apertura: </strong>@TiendasSupervision.HApertura[i]</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3 col-sm-6 col-xs-6"><strong>C.p.: </strong>    @TiendasSupervision.CP[i]  </div>
+                                    <div class="col-md-3 col-sm-6 col-xs-6"><strong>Longitud: </strong>@TiendasSupervision.Longitud[i] </div>
+                                    <div class="col-md-3 col-sm-6 col-xs-6"><strong>Cierre: </strong>  @TiendasSupervision.HCierre[i]</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4 col-sm-6 col-xs-6"><strong>Código IUSA: </strong>@TiendasSupervision.IUSACodigo[i]  </div>
+                                    <div class="col-md-4 col-sm-6 col-xs-6"><strong>Usuario IUSA: </strong>@TiendasSupervision.IUSAUsuario[i]  </div>
+                                    <div class="col-md-4 col-sm-6 col-xs-6"><strong>Contraseña IUSA: </strong>@TiendasSupervision.IUSAContraseña[i]  </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4 col-sm-6 col-xs-6"><strong>Usuario PCPay: </strong>@TiendasSupervision.PCPAYUsuario[i]  </div>
+                                    <div class="col-md-4 col-sm-6 col-xs-6"><strong>Contraseña PCPay: </strong>@TiendasSupervision.PCPAYContraseña[i]  </div>
+                                    <div class="col-md-4 col-sm-6 col-xs-6"><strong>No. de servicio de luz: </strong>@TiendasSupervision.NoServicioLuz[i]  </div>
+                                </div>
+                                <br />
+                                <hr size="8px" color="gray" />
+                                <div class="row">
+                                    <h5>Incidencias del @TiendasSupervision.Nombre[i]</h5>
+                                </div>
+                                <div class="accordion" id="@IDAcordeon">
+                                    @{
+                                        if (Departamentos.IDArea != null)
+                                        {
+                                            string Classe = "card m-b-0";
+                                            for (var d = 0; d < Departamentos.IDArea.Count(); d++)
+                                            {
+                                                if (d > 0)
+                                                {
+                                                    Classe = "card m-b-0 border-top";
+                                                }
+                                                string Collapse = "Collapse_Sucursal_" + @TiendasSupervision.IDTienda[i] + "_Depto_" + @Departamentos.IDArea[d];
+                                                string IDTabla = "Tabla_Sucursal_" + @TiendasSupervision.IDTienda[i] + "_Depto_" + @Departamentos.IDArea[d];
+                                                string Heading = "Heading_Sucursal_" + @TiendasSupervision.IDTienda[i] + "_Depto_" + @Departamentos.IDArea[d];
+                                                string Badge = "Badge_Sucursal_" + @TiendasSupervision.IDTienda[i] + "_Depto_" + @Departamentos.IDArea[d];
+                                                <div class="@Classe">
+                                                    <div class="card-header" id="@Heading">
+                                                        <h5 class="mb-0">
+                                                            <a data-toggle="collapse" data-target="#@Collapse" aria-expanded="false" aria-controls="Collapse" class="collapsed">
+                                                                <i class="m-r-5 fas fa-clipboard-list" aria-hidden="true"></i>
+                                                                <span>@Departamentos.Nombre[d] </span><span id="@Badge" class="badge badge-warning"></span>
+                                                            </a>
+                                                        </h5>
+                                                        <div id="@Collapse" class="collapse" aria-labelledby="headingOne" data-parent="#@IDAcordeon" style="">
+                                                            <div class="card-body">
+                                                                <div class="row">
+                                                                    <div class="col-md-12 col-sm-12 col-xs-12"><strong>Jefe de área: </strong>@Departamentos.UNombre[d]</div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-6 col-sm-6 col-xs-6"><strong>Correo: </strong>@Departamentos.Correo[d]</div>
+                                                                    <div class="col-md-6 col-sm-6 col-xs-6"><strong>Teléfono: </strong>@Departamentos.Telefono[d]</div>
+                                                                </div>
+                                                                <div class="row"><div class="col-md-6 col-sm-6 col-xs-6"><br> </div></div>
+                                                                <div class="row">
+                                                                    <div id="@IDTabla" class="col-md-12 col-sm-12 col-xs-12">Espacio para las Incidencias por área</div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    }
+</div>
+<img id="imageid" src="~/Assets/Internal/404Imagen.png" style="display: none" />
+@* ************************************************************************************ *@
+<div class="row el-element-overlay">
+    <div id="ModalFinIncidencia" class="modal" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Reporte de incidencia</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-md-7 col-sm-12 col-xs-12">
+                                <span class="help-block text-muted small-font">ID Reporte de incidencia</span>
+                                <input type="number" id="TxtIDRInsidencia" class="form-control limpiar" placeholder="###" disabled="disabled" />
+                            </div>
+                            <div class="col-md-5 col-sm-12 col-xs-12">
+                                <span class="help-block text-muted small-font">Fecha</span>
+                                <input type="text" id="TxtFecha" class="form-control limpiar" placeholder="##/##/####" disabled="disabled" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8 col-sm-8 col-xs-8">
+                                <span class="help-block text-muted small-font">Incidencia</span>
+                                <br />
+                                <select id="cmbIDInsidencia" style="width: 100%" class="btn btn-danger dropdown-toggle SelectCLS" disabled="disabled"></select>
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-4">
+                                <span class="help-block text-muted small-font">No. Incidencia Tienda</span>
+                                <input type="number" id="TxtNoInsidencia" class="form-control limpiar" placeholder="###" disabled="disabled" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8 col-sm-8 col-xs-8">
+                                <span class="help-block text-muted small-font">Reporto incidencia:</span>
+                                <br />
+                                <input type="text" id="TxtNombreUsuario" class="form-control limpiar" placeholder="Nombre usuario" disabled="disabled" />
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-4">
+                                <span class="help-block text-muted small-font">Plus</span>
+                                <br />
+                                <select id="cmbIDTienda" style="width: 100%" class="btn btn-primary dropdown-toggle limpiar" disabled="disabled">
+                                    <option value="0">--Seleccione--</option>
+                                    @{
+                                        if (Sucursales.IDTienda != null)
+                                        {
+                                            for (int t = 0; t < Sucursales.IDTienda.Count(); t++)
+                                            {
+                                                <option value="@Sucursales.IDTienda[t]">@Sucursales.Nombre[t]</option>
+                                            }
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <span class="help-block text-muted small-font">Usuario</span>
+                                <br />
+                                <select id="cmbIDUsuario" style="width: 100%" class="btn btn-primary dropdown-toggle limpiar" disabled="disabled"></select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            @*<div class="row el-element-overlay">*@
+                            <div class="col-md-6 col-sm-12 col-xs-12 align-items-center">
+                                <div class="card">
+                                    <div class="el-card-item">
+                                        <div class="el-card-avatar el-overlay-1">
+                                            <span class="help-block text-muted small-font">Foto</span>
+                                            <br />
+                                            <img id="PBFotoReporte" width="225" height="150" alt="" data-toggle="modal" data-target="#ModalImagen" />
+                                            <div class="el-overlay">
+                                                <ul class="list-style-none el-info">
+                                                    <li class="el-item">
+                                                        <a class="btn default btn-outline image-popup-vertical-fit el-link" id="aPBFotoReporte" onclick="CambiarIndex()"><i class="mdi mdi-magnify-plus"></i></a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12 col-xs-12 align-items-center">
+                                <span class="help-block text-muted small-font">Foto</span>
+                                <br />
+                                <img id="PBFotoSolucion" src="" width="225" height="150" alt="" />
+                                <br />
+                                <input id="BtnFoto" type="file" class="form-control form-control-sm limpiar" value="SUBIR" />
+                            </div>
+                            @*</div>*@
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <span class="help-block text-muted small-font">Observaciones</span>
+                                <br />
+                                <textarea type="text" id="TxtObservaciones" class="form-control limpiar obligatorio" rows="3" wrap="soft" placeholder="Inserte una breve descripción de la incidencia."></textarea>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="modal-footer">
+                            <button id="btnGuardar" type="button" class="btn btn-success" onclick="FinalizarReporte()">GUARDAR</button>
+                            <button id="btnCancelar" type="reset" class="btn btn-danger" onclick="location.reload()" data-dismiss="modal">CANCELAR</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jquery.min.js"></script>
+<script src="~/Scripts/Own/JS_System_Supervison_Tiendas.js"></script>

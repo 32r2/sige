@@ -6,6 +6,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace SIGES.Controllers
 {
@@ -16,18 +17,18 @@ namespace SIGES.Controllers
         {
             return View();
         }
-        public int IniciarUsuario(string User, string Password)
+        [HttpPost]
+        public ActionResult Login(string Usuario, string Contrasena)
         {
-            int solicitud = 0;
-            try
+            using (SIGESDBDataContext SIGES = new SIGESDBDataContext())
             {
-                string ConSif = Encrypt(Password);
-                using (SIGESDBDataContext SIGES = new SIGESDBDataContext())
+                int solicitud = 0;
+                try
                 {
-                    solicitud = SIGES.User_Usuarios.Where(p => p.Usuario == User && p.Contraseña == ConSif && p.Estatus.Equals(1)).Count();
+                    solicitud = SIGES.User_Usuarios.Where(p => p.Usuario == Usuario && p.Contraseña == Encrypt(Contrasena) && p.Estatus.Equals(1)).Count();
                     if (solicitud == 1)
                     {
-                        var DatosUsuario = SIGES.User_Usuarios.Where(p => p.Usuario == User && p.Contraseña == ConSif && p.Estatus.Equals(1))
+                        var DatosUsuario = SIGES.User_Usuarios.Where(p => p.Usuario == Usuario && p.Contraseña == Encrypt(Contrasena) && p.Estatus.Equals(1))
                         .Select(p => new
                         {
                             p.IDUsuario,
@@ -39,64 +40,89 @@ namespace SIGES.Controllers
                             p.RFC,
                             p.NoSS,
                             p.Foto,
+                            p.IDArea,
                             p.NArea,
                             p.NSArea,
-                            p.Asignacion,
+                            p.IDAsignacion,
                             p.CManejador,
                             p.CPlataforma,
-                            p.Sitio,
-                            p.IDPerfil
+                            p.IDSitio,
+                            p.IDPerfil,
+                            p.LVLPerfil
                         }).First();
 
-                        Session["Usuario"] = DatosUsuario.IDUsuario;
-                        Accesos.ID = DatosUsuario.IDUsuario;
-                        Accesos.CURP = DatosUsuario.CURP;
-                        Accesos.Nombre = DatosUsuario.Nombre;
-                        Accesos.APaterno = DatosUsuario.APaterno;
-                        Accesos.AMaterno = DatosUsuario.AMaterno;
-                        Accesos.FNacimiento = DatosUsuario.FNacimiento;
-                        Accesos.RFC = DatosUsuario.RFC;
-                        Accesos.NoSS = DatosUsuario.NoSS;
-                        Accesos.Foto = "data:image/png;base64," + Convert.ToBase64String(DatosUsuario.Foto.ToArray());
-                        Accesos.NArea = DatosUsuario.NArea;
-                        Accesos.Sitio = DatosUsuario.Sitio;
+                        Session["IDUsuario"] = DatosUsuario.IDUsuario;
+                        Session["CURP"] = DatosUsuario.CURP;
+                        Session["Nombre"] = DatosUsuario.Nombre + " " + DatosUsuario.APaterno + " " + DatosUsuario.AMaterno;
+                        /*****/
+                        //Accesos.FNacimiento = DatosUsuario.FNacimiento;
+
+                        Session["RFC"] = DatosUsuario.RFC;
+                        Session["NoSS"] = DatosUsuario.NoSS;
+                        Session["Foto"] = "data:image/png;base64," + Convert.ToBase64String(DatosUsuario.Foto.ToArray());
+                        Session["IDArea"] = DatosUsuario.IDArea;
+                        Session["LVLPerfil"] = (long)DatosUsuario.LVLPerfil;
+                        Session["IDAsignacion"] = (long)DatosUsuario.IDAsignacion;
+                        Session["IDSitio"] = (long)DatosUsuario.IDSitio;
+                        if ((long)DatosUsuario.IDAsignacion != 0)
+                        {
+                            var Asignasion = SIGES.System_Inf_Asignacion.Where(p => p.IDAsignacion.Equals(DatosUsuario.IDAsignacion)).First();
+                            Session["NombreAsignacion"] = Asignasion.Nombre;
+                            if (DatosUsuario.IDAsignacion == 1)
+                            {
+                                var Sucursal = SIGES.System_Sis_Tienda.Where(p => p.IDTienda.Equals(DatosUsuario.IDSitio)).First();
+                                Session["Sitio"] = Sucursal.Nombre;
+                                Session["Tiendas"] = DatosUsuario.IDSitio.ToString();
+                            }
+                            else if (DatosUsuario.IDAsignacion == 2)
+                            {
+                                var Supervision = SIGES.System_Supervision.Where(p => p.IDSupervision.Equals(DatosUsuario.IDSitio)).First();
+                                Session["Sitio"] = Supervision.Supervision;
+                                Session["Tiendas"] = Supervision.Tiendas;
+                            }
+                            else if (DatosUsuario.IDAsignacion == 3)
+                            {
+                                Session["Sitio"] = "Oficina";
+                                Session["Tiendas"] = "";
+                            }
+                            else
+                            {
+                                Session["Sitio"] = "No tiene ninguna asignación";
+                                Session["Tiendas"] = "";
+                            }
+                        }
                         if (DatosUsuario.NSArea != "--Seleccione--")
                         {
-                            Accesos.NSArea = DatosUsuario.NSArea;
+                            Session["NSArea"] = DatosUsuario.NSArea;
                         }
                         else
                         {
-                            Accesos.NSArea = "";
+                            Session["NSArea"] = "";
                         }
-                        Accesos.Asignacion = DatosUsuario.Asignacion;
                         if (DatosUsuario.CManejador != null)
                         {
-                            Accesos.CManejador = DatosUsuario.CManejador;
+                            Session["CManejador"] = DatosUsuario.CManejador;
                         }
                         else
                         {
-                            Accesos.CManejador = "Aun no se le ha asignado una contraseña de la plataforma FRONT.";
+                            Session["CManejador"] = "Aun no se le ha asignado una contraseña de la plataforma FRONT.";
                         }
-
                         if (DatosUsuario.CPlataforma != null)
                         {
-                            Accesos.CPlataforma = DatosUsuario.CPlataforma;
+                            Session["CPlataforma"] = DatosUsuario.CPlataforma;
                         }
                         else
                         {
-                            Accesos.CPlataforma = "Aun no se le ha asignado una contraseña de la plataforma MTCenter.";
+                            Session["CPlataforma"] = "Aun no se le ha asignado una contraseña de la plataforma MTCenter.";
                         }
-
-                        Accesos.Sitio = DatosUsuario.Sitio;
-
-                        var Permisos = SIGES.System_Sis_PerfilUsuario.Where(p => p.IDPerfil.Equals(DatosUsuario.IDPerfil)).First().Permisos;
-                        string[] abreviaturas = Permisos.Split('$');
+                        var Permisos = SIGES.System_Sis_PerfilUsuario.Where(p => p.IDPerfil.Equals(DatosUsuario.IDPerfil)).First();
+                        string[] abreviaturas = Permisos.Permisos.Split('$');
                         int Filas = abreviaturas.GetLength(0);
                         string[,] Paginas = new string[Filas, 3];
-                        Accesos.Accion = new List<string>();
-                        Accesos.Controlador = new List<string>();
-                        Accesos.Mensaje = new List<string>();
-                        Accesos.Icono = new List<string>();
+
+                        Session["Perfil"] = Permisos.Perfil;
+                        List<string> Acceso_Perfil = new List<string>();
+
                         for (int i = 0; i < Filas; i++)
                         {
                             var Pagina = SIGES.System_Sis_Pagina.Where(p => p.IDPagina.Equals(abreviaturas[i]))
@@ -109,22 +135,21 @@ namespace SIGES.Controllers
                                 });
                             foreach (var item in Pagina)
                             {
-                                Accesos.Accion.Add(item.Accion);
-                                Accesos.Controlador.Add(item.Controlador);
-                                Accesos.Mensaje.Add(item.Mensaje);
-                                Accesos.Icono.Add(item.Icono);
+                                Acceso_Perfil.Add(item.Accion + "," + item.Controlador + "," + item.Mensaje + "," + item.Icono);
                             }
                         }
+                        Session["Acceso_Perfil"] = Acceso_Perfil;
+                        return RedirectToAction("Inicio", "Inicio");
                     }
                 }
+                catch (Exception ex)
+                {
+                    solicitud = 0;
+                }
             }
-            catch (Exception ex)
-            {
-                solicitud = 0;
-            }
-            return solicitud;
+            return View();
         }
-
+        /*****************************************************************************************************/
         static readonly string password = "P455W0rd";
         public static string Encrypt(string plainText)
         {
@@ -162,10 +187,26 @@ namespace SIGES.Controllers
             }
             return encryptedBytes;
         }
-
-        public ActionResult logout()
+        public ActionResult Logout()
         {
-            Session["Usuario"] = null;
+            Session["IDUsuario"] = null;
+            Session["CURP"] = null;
+            Session["Nombre"] = null;
+            Session["RFC"] = null;
+            Session["NoSS"] = null;
+            Session["Foto"] = null;
+            Session["IDArea"] = null;
+            Session["LVLPerfil"] = null;
+            Session["IDAsignacion"] = null;
+            Session["IDSitio"] = null;
+            Session["NombreAsignacion"] = null;
+            Session["Sitio"] = null;
+            Session["Tiendas"] = null;
+            Session["NSArea"] = null;
+            Session["CManejador"] = null;
+            Session["CPlataforma"] = null;
+            Session["Perfil"] = null;
+            Session["Acceso_Perfil"] = null;
             return RedirectToAction("Login");
         }
     }

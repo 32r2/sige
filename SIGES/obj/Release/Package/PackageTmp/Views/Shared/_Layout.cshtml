@@ -11,6 +11,86 @@
     <link rel="icon" type="image/png" sizes="16x16" href="~/Assets/Internal/Logo.svg" />
     <title>SIGES Super Plus</title>
     <link href="~/Content/style.min.css" rel="stylesheet" type="text/css" />
+    <style>
+        .CardPerfil {
+            position: relative;
+            width: 500px;
+            height: 452px;
+            margin-left: auto;
+            margin-right: auto;
+            background-color: white;
+            border-radius: .3rem;
+            overflow: hidden;
+        }
+
+        .CardPerfil_Header {
+            position: relative;
+            height: 120px;
+            text-align: center;
+            align-items: center;
+        }
+
+        .CardPerfil_Header_Fondo {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .CardPerfil_Header_FPerfil {
+            position: absolute;
+            top: 50px;
+            left: 195px;
+            border-radius: 50%;
+            border: 5px solid white;
+            background-color: white;
+        }
+
+        .CardBody {
+            position: absolute;
+            top: 200px;
+            width: 100%;
+            height: 100px;
+            text-align: center;
+            margin-bottom: 1rem;
+            /*border-bottom: 2px solid gainsboro;*/
+        }
+
+        .CardBody_Text {
+            margin: 0;
+            margin-bottom: .5em;
+        }
+
+        .Info {
+            text-align: center;
+        }
+
+        .CardBody_Text_Claro {
+            color: hsl(227, 10%, 46%);
+        }
+
+        .CardFooter_PCPay {
+            position: absolute;
+            bottom: 10px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .CardFooter_IUSA {
+            position: absolute;
+            bottom: 80px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .CardFooter_Stats {
+            display: inline-block;
+            margin: 0 0.5em;
+            width: 130px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
     <div class="preloader">
@@ -37,7 +117,7 @@
                     <!-- toggle and nav items -->
                     <ul class="navbar-nav float-left mr-auto">
                         <li class="nav-item d-none d-md-block">
-                            <a class="nav-link sidebartoggler waves-effect waves-light" onclick="icono('logotip','/Assets/Internal/LogoTexto.svg','/Assets/Internal/Logo.svg');" href="javascript:void(0)" data-sidebartype="mini-sidebar">                                
+                            <a class="nav-link sidebartoggler waves-effect waves-light" onclick="icono('logotip','/Assets/Internal/LogoTexto.svg','/Assets/Internal/Logo.svg');" href="javascript:void(0)" data-sidebartype="mini-sidebar">
                                 <i class="mdi mdi-menu font-24 text-white"></i>
                             </a>
                         </li>
@@ -59,60 +139,110 @@
                         <!-- User profile -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                @*<img src="~/Assets/Internal/01.png" alt="user" class="rounded-circle" width="31" />*@
-                                @{<img src=@Accesos.Foto alt="user" class="rounded-circle" width="31" />}
+
+                                @{
+                                    string Foto = HttpContext.Current.Session["Foto"].ToString();
+                                    <img src=@Foto alt="user" class="rounded-circle" width="31" />}
                                 </a>
-                            <div class="dropdown-menu dropdown-menu-right user-dd animated">
-                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user m-r-5 m-l-5"></i> Perfil</a>
-                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-email m-r-5 m-l-5"></i> Mensajes</a>
-                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-settings m-r-5 m-l-5"></i>Mi Informaciòn</a>
-                                <a class="dropdown-item" href='@Url.Action("logout", "Login")'><i class="fa fa-power-off m-r-5 m-l-5"></i>Salir</a>
-                                <div class="dropdown-divider"></div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </header>
-        <aside class="left-sidebar" data-sidebarbg="skin5">
-            <div class="scroll-sidebar">
-                <!-- Sidebar navigation-->
-                <nav class="sidebar-nav">
-                    @{
-                        int Elemt = Accesos.Accion.Count();
-                        for (int i = 0; i < Elemt; i++)
-                        {
-                            <ul id="sidebarnav">
-                                <li class="sidebar-item">
-                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href='@Url.Action(Accesos.Accion[i], Accesos.Controlador[i])' aria-expanded="false">
-                                        <i class='@Accesos.Icono[i]'></i>
-                                        <span class="hide-menu">@Accesos.Mensaje[i]</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        }
-                    }
+                                <div class="dropdown-menu dropdown-menu-right user-dd animated">
+                                    <a class="dropdown-item" data-toggle="modal" data-target="#ModalPerfil"><i class="ti-user m-r-5 m-l-5"></i> Perfil</a>
+                                    <a class="dropdown-item" href="javascript:void(0)"><i class="ti-email m-r-5 m-l-5"></i> Mensajes</a>
+                                    <a class="dropdown-item" href="javascript:void(0)"><i class="ti-settings m-r-5 m-l-5"></i>Mi Informaciòn</a>
+                                    <a class="dropdown-item" href='@Url.Action("logout", "Login")'><i class="fa fa-power-off m-r-5 m-l-5"></i>Salir</a>
+                                    <div class="dropdown-divider"></div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
                 </nav>
+            </header>
+            <aside class="left-sidebar" data-sidebarbg="skin5">
+                <div class="scroll-sidebar">
+                    <!-- Sidebar navigation-->
+                    <nav class="sidebar-nav">
+                        @{
+                            if (Session["Acceso_Perfil"] != null)
+                            {
+                                List<String> Acceso_Perfil = HttpContext.Current.Session["Acceso_Perfil"] as List<String>;
+                                int Elemt = Acceso_Perfil.Count();
+                                for (int i = 0; i < Elemt; i++)
+                                {
+                                    string[] Acceso = Acceso_Perfil[i].Split(',');
+                                    <ul id="sidebarnav">
+                                        <li class="sidebar-item">
+                                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href='@Url.Action(Acceso[0], Acceso[1])' aria-expanded="false">
+                                                <i class='@Acceso[3]'></i>
+                                                <span class="hide-menu">@Acceso[2]</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                }
+                            }
+                        }
+                    </nav>
+                </div>
+            </aside>
+            <div class="page-wrapper">
+                <div class="container-fluid">
+                    @RenderBody()
+                    <hr />
+                    <footer>
+                        <p>&copy; @DateTime.Now.Year - SIGES Application WEB by Sin Soluciones</p>
+                    </footer>
+                </div>
             </div>
-        </aside>
-        <div class="page-wrapper">
-            <div class="container-fluid">
-                @RenderBody()
-                <hr />
-                <footer>
-                    <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-                </footer>
+            @*  *@
+            <div id="ModalPerfil" class="modal" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <article class="CardPerfil">
+                            <header class="CardPerfil_Header">
+                                <img src="~/Assets/Internal/Fondo.jpg" alt="Fondo" class="CardPerfil_Header_Fondo" />
+                                @{<img src=@Foto class="CardPerfil_Header_FPerfil" alt="Foto perfil" />}
+                                </header>
+                            </article>
+                            <section class="CardBody">
+                                @{
+                                    string Nombre = HttpContext.Current.Session["Nombre"].ToString();
+                                    <p class="CardBody_Text" id="NombreUModal">@Nombre<span class="CardBody_Text_Claro"><br>Nombre</span></p>}
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-4 col-xs-4">
+                                        @{
+                                            string Perfil = HttpContext.Current.Session["Perfil"].ToString();
+                                            <p class="CardBody_Text" id="PuestoModal">@Perfil<span class="CardBody_Text_Claro"><br>Puesto</span></p>}
+                                    </div>
+                                    <div class="col-md-6 col-sm-4 col-xs-4">
+                                        @{
+                                            string Sitio = HttpContext.Current.Session["Sitio"].ToString();
+                                            long IDAsignacion = Convert.ToInt64(HttpContext.Current.Session["IDAsignacion"].ToString());
+                                            string NombreAsignacion = HttpContext.Current.Session["NombreAsignacion"].ToString();
+                                            <p class="CardBody_Text" id="SitioModal">@Sitio</p><p><span id="IDAsignacionModal" class="text-light">@IDAsignacion</span><span id="AsignacionModal" class="CardBody_Text_Claro">@NombreAsignacion</span></p>}
+                                    </div>
+                                </div>
+                            </section>
+                            <footer class="CardFooter_IUSA">
+                                <div id="DatosIUSA"></div>
+                            </footer>
+                            <footer class="CardFooter_PCPay">
+                                <div id="DatosPCPay"></div>
+                            </footer>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-    <script src="~/Scripts/Own/JS_Layout.js"></script>
-    <script src="~/Scripts/jquery.min.js"></script>
-    <script src="~/Scripts/popper.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
-    <script src="~/Scripts/perfect-scrollbar.jquery.min.js"></script>
-    <script src="~/Scripts/sparkline.js"></script>
-    <script src="~/Scripts/waves.js"></script>
-    <script src="~/Scripts/sidebarmenu.js"></script>
-    <script src="~/Scripts/custom.min.js "></script>
-</body>
-</html>
+
+            <script src="~/Scripts/jquery.min.js"></script>
+
+            <script src="~/Scripts/popper.min.js"></script>
+            <script src="~/Scripts/bootstrap.min.js"></script>
+            <script src="~/Scripts/perfect-scrollbar.jquery.min.js"></script>
+
+            <script src="~/Scripts/sparkline.js"></script>
+            <script src="~/Scripts/waves.js"></script>
+            <script src="~/Scripts/sidebarmenu.js"></script>
+            <script src="~/Scripts/custom.min.js "></script>
+            <script src="~/Scripts/jquery.magnific-popup.min.js"></script>
+            <script src="~/Scripts/meg.init.js"></script>
+            <script src="~/Scripts/Own/JS_Layout.js"></script>
+        </body>
+    </html>

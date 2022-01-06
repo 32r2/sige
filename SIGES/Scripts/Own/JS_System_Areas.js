@@ -1,67 +1,9 @@
-﻿CrearAcordeonAreas();
+﻿//CrearAcordeonAreas();
 LlenarSelects();
 BloquearCTRL();
 
 //****************************************************************************************************************************************************************************************************
 //Áreas
-function CrearAcordeonAreas() {
-    $.get("/Cardinal/BDAreas", function (DatosAreas) {
-        AcordeonAreas(DatosAreas, document.getElementById("accordion"));
-    });
-}
-//Crea el acordeon de las areas y lo inserta
-//Inserta las Áreas
-function AcordeonAreas(DatosAreas, CtrlAreas) {
-    var CodigoHTMLAreas = "";
-    for (var i = 0; i < DatosAreas.length; i++) {
-        if (i < 1) {
-            CodigoHTMLAreas += "<div class='card m-b-0'>";
-        }
-        else {
-            CodigoHTMLAreas += "<div class='card m-b-0 border-top'>";
-        }
-        CodigoHTMLAreas += "<div class='card-header' id='heading" + DatosAreas[i].ID + "'>";
-        CodigoHTMLAreas += "<h5 class='mb-0'>";
-        CodigoHTMLAreas += "<a onclick='AcordionSubareas(" + DatosAreas[i].ID + ")' data-toggle='collapse' data-target='#collapse" + DatosAreas[i].ID + "' aria-expanded='false' aria-controls='collapse" + DatosAreas[i].ID + "' class='collapsed'>";
-        CodigoHTMLAreas += "<i class='m-r-5 fas fa-clipboard-list' aria-hidden='true'></i>";
-        CodigoHTMLAreas += "<span >" + DatosAreas[i].Nombre + "</span>";
-        CodigoHTMLAreas += "</a>";
-        CodigoHTMLAreas += "</h5>";
-        CodigoHTMLAreas += "<div id='collapse" + DatosAreas[i].ID + "' class='collapse' aria-labelledby='headingOne' data-parent='#accordion' style=''>";
-        CodigoHTMLAreas += "<div class='card-body'>";
-        CodigoHTMLAreas += "<div class='row'>";
-        CodigoHTMLAreas += "<div class='col-md-12 col-sm-12 col-xs-12'><strong>Jefe de área: </strong>" + DatosAreas[i].UNombre + "</div>";
-        CodigoHTMLAreas += "</div>";
-        CodigoHTMLAreas += "<div class='row'>";
-        CodigoHTMLAreas += "<div class='col-md-6 col-sm-6 col-xs-6'><strong>Correo: </strong>" + DatosAreas[i].Correo + "</div>";
-        CodigoHTMLAreas += "<div class='col-md-6 col-sm-6 col-xs-6'><strong>Teléfono: </strong>" + DatosAreas[i].Telefono + "</div>";
-        CodigoHTMLAreas += "</div>";
-        CodigoHTMLAreas += "<div class='row'>";
-        CodigoHTMLAreas += "<div class='col-md-9 col-sm-9 col-xs-9'><strong>Subáreas: </strong></div >";
-        CodigoHTMLAreas += "<div class='col-md-3 col-sm-3 col-xs-3'><button onclick='abrirModalSub(0, " + DatosAreas[i].ID + ")' type='button' class='btn btn-primary' data-toggle='modal' data-target='#ModalSubareas'>Agregar</button></div > ";
-        CodigoHTMLAreas += "</div>";
-        CodigoHTMLAreas += "<div class='row'>";
-        CodigoHTMLAreas += "<div class='col-sm-12 col-md-12 col-xs-12 accordion' id='acordsubareas" + DatosAreas[i].ID + "'>Espacio para las Subáreas del Área</div>";
-        CodigoHTMLAreas += "</div>";
-        CodigoHTMLAreas += "<div class='row'>";
-        CodigoHTMLAreas += "<div class='col-sm-9 col-md-9 col-xs-9'><strong>Recursos: </strong></div >";
-        CodigoHTMLAreas += "<div class='col-sm-3 col-md-3 col-xs-3'><button onclick='ModalRecursos(0," + DatosAreas[i].ID + ")' type='button' class='btn btn-warning' data-toggle='modal' data-target='#RecursosModal'>Agregar</button>";
-        CodigoHTMLAreas += "<button class='btn btn-info' onclick='MostrarOcultar(" + DatosAreas[i].ID + ")'><i id='BtnMO" + DatosAreas[i].ID + "' class='fas fa-chevron-circle-down'></i></button></div>";
-        CodigoHTMLAreas += "</div>";
-        CodigoHTMLAreas += "<div class='row'>";
-        CodigoHTMLAreas += "<div class='col-md-12 col-sm-12 col-xs-12' id='Recursos_areas" + DatosAreas[i].ID + "'style='background-color: white; display: none;'>Este elemento aparece y desaparece con el botón</div >";
-        CodigoHTMLAreas += "</div>";
-        CodigoHTMLAreas += "<div class='col-md-12 col-sm-12 col-xs-12 align-self-end'>";
-        CodigoHTMLAreas += "<button class='btn btn-success' onclick='AbrirMArea(" + DatosAreas[i].ID + ")' data-toggle='modal' data-target='#ModalArea'><i class='fas fa-edit'></i></button> ";
-        CodigoHTMLAreas += "<button class='btn btn-danger' onclick='EliminarArea(" + DatosAreas[i].ID + ",this)' ><i class='fas fa-eraser'></i></button>";
-        CodigoHTMLAreas += "</div>";
-        CodigoHTMLAreas += "</div>";
-        CodigoHTMLAreas += "</div>";
-        CodigoHTMLAreas += "</div>";
-        CodigoHTMLAreas += "</div>";
-    }
-    CtrlAreas.innerHTML = CodigoHTMLAreas;
-}
 //fucnion que oculta o muestra un div, cambia el icono del boton
 function MostrarOcultar(id) {
     var x = document.getElementById("Recursos_areas" + id);
@@ -81,11 +23,8 @@ function AbrirMArea(id) {
     for (var i = 0; i < controlesObligatorio.length; i++) {
         controlesObligatorio[i].parentNode.classList.remove("border-danger");
     }
-    if (id == 0) {
-        Limpiar();
-
-    }
-    else {
+    Limpiar();
+    if (id > 0) {
         $.get("/Areas/ConsultaArea/?IDArea=" + id, function (DatosArea) {
             document.getElementById("TxtIDArea").value = DatosArea[0].IDArea;
             document.getElementById("TxtNombreArea").value = DatosArea[0].Nombre;
@@ -95,12 +34,13 @@ function AbrirMArea(id) {
             document.getElementById("TxtRecursos").value = DatosArea[0].Carpeta;
         });
     }
-        
+
 }
 //Guarda los cambios y altas de las áreas
 function GuardarArea() {
     if (Obligatorios("Area") == true) {
         if (confirm("¿Desea aplicar los cambios?") == 1) {
+            let HTMLAdvertencia = "";
             var IDArea = document.getElementById("TxtIDArea").value;
             var Nombre = document.getElementById("TxtNombreArea").value;
             var IDUsuario = document.getElementById("cmbEncargado").value;
@@ -126,13 +66,31 @@ function GuardarArea() {
                 processData: false,
                 success: function (data) {
                     if (data == 0) {
-                        alert("Ocurrio un error");
+                        HTMLAdvertencia += "<div class='alert alert-danger alert-dismissible fade show' role='alert'>";
+                        HTMLAdvertencia += "<strong>¡Ocurrio un error!</strong>";
+                        HTMLAdvertencia += "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>";
+                        HTMLAdvertencia += "<span aria-hidden='true'>&times;</span>";
+                        HTMLAdvertencia += "</button>";
+                        HTMLAdvertencia += "</div>";
+                        document.getElementById("Alertas").innerHTML = HTMLAdvertencia;
                     }
                     else if (data == -1) {
-                        alert("Ya existe la área");
+                        HTMLAdvertencia += "<div class='alert alert-warning alert-dismissible fade show' role='alert'>";
+                        HTMLAdvertencia += "<strong>¡Ya existe un departamento con la misma información!</strong>";
+                        HTMLAdvertencia += "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>";
+                        HTMLAdvertencia += "<span aria-hidden='true'>&times;</span>";
+                        HTMLAdvertencia += "</button>";
+                        HTMLAdvertencia += "</div>";
+                        document.getElementById("Alertas").innerHTML = HTMLAdvertencia;
                     }
                     else {
-                        alert("Se ejecuto correctamente");
+                        HTMLAdvertencia += "<div class='alert alert-success alert-dismissible fade show' role='alert'>";
+                        HTMLAdvertencia += "<strong>Se guardo correctamente la información del nuevo departamento.</strong>";
+                        HTMLAdvertencia += "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>";
+                        HTMLAdvertencia += "<span aria-hidden='true'>&times;</span>";
+                        HTMLAdvertencia += "</button>";
+                        HTMLAdvertencia += "</div>";
+                        document.getElementById("Alertas").innerHTML = HTMLAdvertencia;
                         CrearAcordeonAreas();
                         document.getElementById("btnCancelar").click();
                     }
@@ -144,12 +102,26 @@ function GuardarArea() {
 //"Elimina" el área cambia el Estatus
 function EliminarArea(id) {
     if (confirm("¿Desea eliminar el registo?") == 1) {
+        let HTMLAdvertencia = "";
         $.get("/Areas/EliminarArea/?IDArea=" + id, function (DatoArea) {
             if (DatoArea == 1) {
-                alert("Se elimino correctamente");
+                HTMLAdvertencia += "<div class='alert alert-success alert-dismissible fade show' role='alert'>";
+                HTMLAdvertencia += "<strong>Se elimino el departamento correctamente.</strong>";
+                HTMLAdvertencia += "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>";
+                HTMLAdvertencia += "<span aria-hidden='true'>&times;</span>";
+                HTMLAdvertencia += "</button>";
+                HTMLAdvertencia += "</div>";
+                document.getElementById("Alertas").innerHTML = HTMLAdvertencia;
+
                 CrearAcordeonAreas();
             } else {
-                alert("Ocurrio un error");
+                HTMLAdvertencia += "<div class='alert alert-danger alert-dismissible fade show' role='alert'>";
+                HTMLAdvertencia += "<strong>Ocurrio un error!</strong>";
+                HTMLAdvertencia += "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>";
+                HTMLAdvertencia += "<span aria-hidden='true'>&times;</span>";
+                HTMLAdvertencia += "</button>";
+                HTMLAdvertencia += "</div>";
+                document.getElementById("Alertas").innerHTML = HTMLAdvertencia;
             }
         });
     }
@@ -175,12 +147,14 @@ function addZero(i) {
 //consulta para llenar el actodion de las subareas
 function AcordionSubareas(area) {
     $.get("/Areas/BDSubAreas/?IDArea=" + area, function (DatosSubareas) {
-        llenaSub(DatosSubareas, document.getElementById("acordsubareas" + area));
+        let NombreAcordeon = "Acordeon_Subarea" + area;
+        llenaSub(DatosSubareas, NombreAcordeon);
     });
 }
 //inserta el acorion y la informacion de las areas
-function llenaSub(DatosSubareas, control) {
+function llenaSub(DatosSubareas, NombreAcordeon) {
     var CodHtml = "";
+    let NoSub = DatosSubareas.length;
     for (var i = 0; i < DatosSubareas.length; i++) {
         if (i < 1) {
             CodHtml += "<div class='card m-b-0'>";
@@ -188,14 +162,14 @@ function llenaSub(DatosSubareas, control) {
         else {
             CodHtml += "<div class='card m-b-0 border-top'>";
         }
-        CodHtml += "<div class='card-header' id='heading" + DatosSubareas[i].ID + "'>";
+        CodHtml += "<div class='card-header' id='heading_Sub" + DatosSubareas[i].ID + "'>";
         CodHtml += "<h5 class='mb-0'>";
-        CodHtml += "<a  data-toggle='collapse' data-target='#collapse" + DatosSubareas[i].ID + "' aria-expanded='false' aria-controls='collapse" + DatosSubareas[i].ID + "' class='collapsed'>";
+        CodHtml += "<a  data-toggle='collapse' data-target='#collapse_Sub" + DatosSubareas[i].ID + "' aria-expanded='false' aria-controls='collapse" + DatosSubareas[i].ID + "' class='collapsed'>";
         CodHtml += "<i class='m-r-5 fas fa-clipboard-list' aria-hidden='true'></i>";
         CodHtml += "<span >" + DatosSubareas[i].Nombre + "</span>";
         CodHtml += "</a>";
         CodHtml += "</h5>";
-        CodHtml += "<div id='collapse" + DatosSubareas[i].ID + "' class='collapse' aria-labelledby='headingOne' data-parent='#" + control.id + "' style=''>";
+        CodHtml += "<div id='collapse_Sub" + DatosSubareas[i].ID + "' class='collapse' aria-labelledby='headingOne' data-parent='#" + NombreAcordeon + "' style=''>";
         CodHtml += "<div class='card-body'>";
         CodHtml += "<div class='row'>";
         CodHtml += "<div class='col-sm-12 col-md-5 col-xs-5'><strong>Encargado 1: </strong>" + DatosSubareas[i].UNombre + "</div>";
@@ -221,7 +195,7 @@ function llenaSub(DatosSubareas, control) {
         CodHtml += "</div>";
         CodHtml += "</div>";
     }
-    control.innerHTML = CodHtml;
+    document.getElementById(NombreAcordeon).innerHTML = CodHtml;
 }
 //abrir PopUp
 function abrirModalSub(id, ida) {
@@ -234,7 +208,7 @@ function abrirModalSub(id, ida) {
         $.get("/Areas/BDSubAreas/?IDArea=" + ida, function (data) {
             document.getElementById("TxtNoSubArea").value = data.length + 1;
             document.getElementById("cmbAreaSubA").value = ida;
-        });        
+        });
     }
     else {
         $.get("/Areas/BDSubArea/?ID=" + id, function (DatosArea) {
@@ -255,12 +229,13 @@ function abrirModalSub(id, ida) {
             document.getElementById("TxtCorreoE3Sub").value = DatosArea[0].CorreoE3;
             document.getElementById("TxtTelefonoE3Sub").value = DatosArea[0].TelefonoE3;
         });
-    }    
+    }
 }
 //guardar informacion
 function GuardarSubarea() {
     if (Obligatorios("Subarea") == true) {
         if (confirm("¿Desea aplicar los cambios?") == 1) {
+            let HTMLAdvertencia = "";
             var IDSubArea = document.getElementById("TxtIDSubArea").value;
             var NoSubArea = document.getElementById("TxtNoSubArea").value;
             var Nombre = document.getElementById("TxtNombreSubArea").value;
@@ -311,13 +286,31 @@ function GuardarSubarea() {
                     processData: false,
                     success: function (data) {
                         if (data == 0) {
-                            alert("Ocurrio un error");
+                            HTMLAdvertencia += "<div class='alert alert-danger alert-dismissible fade show' role='alert'>";
+                            HTMLAdvertencia += "<strong>Ocurrio un error!</strong>";
+                            HTMLAdvertencia += "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>";
+                            HTMLAdvertencia += "<span aria-hidden='true'>&times;</span>";
+                            HTMLAdvertencia += "</button>";
+                            HTMLAdvertencia += "</div>";
+                            document.getElementById("Alertas").innerHTML = HTMLAdvertencia;
                         }
                         else if (data == -1) {
-                            alert("Ya existe la sub-área");
+                            HTMLAdvertencia += "<div class='alert alert-warning alert-dismissible fade show' role='alert'>";
+                            HTMLAdvertencia += "<strong>Ya existe una subárea con esa información!</strong>";
+                            HTMLAdvertencia += "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>";
+                            HTMLAdvertencia += "<span aria-hidden='true'>&times;</span>";
+                            HTMLAdvertencia += "</button>";
+                            HTMLAdvertencia += "</div>";
+                            document.getElementById("Alertas").innerHTML = HTMLAdvertencia;
                         }
                         else {
-                            alert("Se ejecuto correctamente");
+                            HTMLAdvertencia += "<div class='alert alert-success alert-dismissible fade show' role='alert'>";
+                            HTMLAdvertencia += "<strong>Se guardo correctamente la información de la nueva Subárea.</strong>";
+                            HTMLAdvertencia += "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>";
+                            HTMLAdvertencia += "<span aria-hidden='true'>&times;</span>";
+                            HTMLAdvertencia += "</button>";
+                            HTMLAdvertencia += "</div>";
+                            document.getElementById("Alertas").innerHTML = HTMLAdvertencia;
                             AcordionSubareas(IDArea);
                             document.getElementById("btnCancelarsub").click();
                         }
@@ -330,18 +323,26 @@ function GuardarSubarea() {
 //eliminar
 function EliminarSub(id, IDArea) {
     if (confirm("¿Desea eliminar el registo?") == 1) {
+        let HTMLAdvertencia = "";
         $.get("/Areas/eliminarsub/?id=" + id, function (data) {
-            if (data == -1) {
-                alert("Ya existe el docente");
+            if (data == 0) {
+                HTMLAdvertencia += "<div class='alert alert-danger alert-dismissible fade show' role='alert'>";
+                HTMLAdvertencia += "<strong>Ocurrio un error!</strong>";
+                HTMLAdvertencia += "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>";
+                HTMLAdvertencia += "<span aria-hidden='true'>&times;</span>";
+                HTMLAdvertencia += "</button>";
+                HTMLAdvertencia += "</div>";
+                document.getElementById("Alertas").innerHTML = HTMLAdvertencia;
             }
             else {
-                if (data == 0) {
-                    alert("Ocurrio un error");
-                }
-                else {
-                    alert("Se elimino correctamente");
-                    AcordionSubareas(IDArea);
-                }
+                HTMLAdvertencia += "<div class='alert alert-success alert-dismissible fade show' role='alert'>";
+                HTMLAdvertencia += "<strong>Se elimino la Subárea correctamente.</strong>";
+                HTMLAdvertencia += "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>";
+                HTMLAdvertencia += "<span aria-hidden='true'>&times;</span>";
+                HTMLAdvertencia += "</button>";
+                HTMLAdvertencia += "</div>";
+                document.getElementById("Alertas").innerHTML = HTMLAdvertencia;
+                AcordionSubareas(IDArea);
             }
         });
     }
@@ -384,24 +385,14 @@ function ModalRecursos(id, ida) {
     var controlesObligatorio = document.getElementsByClassName("Recursos-obligatorios");
     for (var i = 0; i < controlesObligatorio.length; i++) {
         controlesObligatorio[i].parentNode.classList.remove("border-danger");
-    }    
+    }
     $.get("/Areas/ConsultaArea/?IDArea=" + ida, function (datas) {
         document.getElementById("TxtDirectorio").value = datas[0].Carpeta;
         if (id == 0) {
             Limpiar();
             $("#PBFoto").attr('src', '');
-            $.get("/Areas/BDRecursos/?IDArea=" + ida, function (Datosrecurso) {
-                if (Datosrecurso.length > 0) {
-                    var no = Datosrecurso.length + 1;
-                    document.getElementById("TxtIDRecurso").value = ida + "" + no;
-                }
-                else {
-                    document.getElementById("TxtIDRecurso").value = ida + "1";
-                }
-                document.getElementById("TxtFModificacionR").value = FFecha();
-                document.getElementById("cmbRecursoArea").value = ida;
-            }
-            );
+            document.getElementById("TxtFModificacionR").value = FFecha();
+            document.getElementById("cmbRecursoArea").value = ida;
         }
         else {
             $.get("/Areas/BDRecurso/?IDRecurso=" + id, function (datos) {
@@ -416,7 +407,7 @@ function ModalRecursos(id, ida) {
                 MostrarRecurso(datos[0].Tipo, datos[0].Direccion);
             });
         }
-    });   
+    });
 }
 //Evento Change index tipo
 var NoS = document.getElementById("cmbTipo");
@@ -455,6 +446,7 @@ function MostrarRecurso(tipo, ruta) {
 function GuardarRecurso() {
     if (Obligatorios("Recursos") == true) {
         if (confirm("¿Desea aplicar los cambios?") == 1) {
+            let HTMLAdvertencia = "";
             var IDRecurso = document.getElementById("TxtIDRecurso").value;
             var Titulo = document.getElementById("TxtTitulo").value;
             var IDArea = document.getElementById("cmbRecursoArea").value;
@@ -479,13 +471,31 @@ function GuardarRecurso() {
                     processData: false,
                     success: function (data) {
                         if (data == 0) {
-                            alert("Ocurrio un error");
+                            HTMLAdvertencia += "<div class='alert alert-danger alert-dismissible fade show' role='alert'>";
+                            HTMLAdvertencia += "<strong>Ocurrio un error!</strong>";
+                            HTMLAdvertencia += "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>";
+                            HTMLAdvertencia += "<span aria-hidden='true'>&times;</span>";
+                            HTMLAdvertencia += "</button>";
+                            HTMLAdvertencia += "</div>";
+                            document.getElementById("Alertas").innerHTML = HTMLAdvertencia;
                         }
                         else if (data == -1) {
-                            alert("Ya existe la sub-área");
+                            HTMLAdvertencia += "<div class='alert alert-warning alert-dismissible fade show' role='alert'>";
+                            HTMLAdvertencia += "<strong>Ya existe un recurso con esa información!</strong>";
+                            HTMLAdvertencia += "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>";
+                            HTMLAdvertencia += "<span aria-hidden='true'>&times;</span>";
+                            HTMLAdvertencia += "</button>";
+                            HTMLAdvertencia += "</div>";
+                            document.getElementById("Alertas").innerHTML = HTMLAdvertencia;
                         }
                         else {
-                            alert("Se ejecuto correctamente");
+                            HTMLAdvertencia += "<div class='alert alert-success alert-dismissible fade show' role='alert'>";
+                            HTMLAdvertencia += "<strong>Se guardo la información del recurso correctamente.</strong>";
+                            HTMLAdvertencia += "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>";
+                            HTMLAdvertencia += "<span aria-hidden='true'>&times;</span>";
+                            HTMLAdvertencia += "</button>";
+                            HTMLAdvertencia += "</div>";
+                            document.getElementById("Alertas").innerHTML = HTMLAdvertencia;
                             recursos(IDArea);
                             document.getElementById("btnCancelarRecurso").click();
                         }
@@ -515,32 +525,20 @@ function EliminarRecursos(id, IDArea) {
     }
 }
 //****************************************************************************************************************************************************************************************************
-
 //Ejecuta la consulta para llenar el combobox de emcargados
 function LlenarSelects() {
     $.get("/Usuarios/BDUserNivel/?LVLPerfil=" + 4, function (data) {
-        ComboPersonal(data, document.getElementById("cmbEncargado"));
+        llenarCombo(data, document.getElementById("cmbEncargado"));
     });
     $.get("/Usuarios/BDUserNivel/?LVLPerfil=" + 5, function (data) {
-        ComboPersonal(data, document.getElementById("cmbEncargado1Sub"));
-        ComboPersonal(data, document.getElementById("cmbEncargado2Sub"));
-        ComboPersonal(data, document.getElementById("cmbEncargado3Sub"));
+        llenarCombo(data, document.getElementById("cmbEncargado1Sub"));
+        llenarCombo(data, document.getElementById("cmbEncargado2Sub"));
+        llenarCombo(data, document.getElementById("cmbEncargado3Sub"));
     });
     $.get("/Cardinal/BDAreas", function (DatosAreas) {
         llenarCombo(DatosAreas, document.getElementById("cmbAreaSubA"));
         llenarCombo(DatosAreas, document.getElementById("cmbRecursoArea"));
     });
-}
-
-//******************************************************************************************************************************************************
-//llena los combos personales
-function ComboPersonal(data, control, primerElemento) {
-    var contenido = "";
-    contenido += "<option value='0'>--Seleccione--</option>";    
-    for (var i = 0; i < data.length; i++) {
-        contenido += "<option value='" + data[i].IDUsuario + "'>" + data[i].Nombre + " " + data[i].APaterno + " " + data[i].AMaterno + "</option>";
-    }
-    control.innerHTML = contenido;
 }
 //llena los combobos
 function llenarCombo(DatosAreas, control) {
@@ -566,17 +564,18 @@ function Obligatorios(NoClase) {
     }
     return exito;
 }
+
 function Limpiar() {
-    var controles = document.getElementsByClassName("limpiar");    
-    for (var i = 0; i < controles.length; i++) {
-        if (controles[i].nodeName == "SELECT") {
-            controles[i].value = "0";
-        }
-        else {
-            controles[i].value = "";
-        }
+    var controlesTXT = document.getElementsByClassName("limpiar");
+    for (var i = 0; i < controlesTXT.length; i++) {
+        controlesTXT[i].value = "";
+    }
+    var controlesCMB = document.getElementsByClassName("SelectCLS");
+    for (var i = 0; i < controlesCMB.length; i++) {
+        document.getElementById(controlesCMB[i].id).value = 0;
     }
 }
+
 function BloquearCTRL() {
     var CTRL = document.getElementsByClassName("bloquear");
     for (var i = 0; i < CTRL.length; i++) {

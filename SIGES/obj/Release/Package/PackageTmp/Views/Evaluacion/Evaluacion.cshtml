@@ -1,8 +1,18 @@
-﻿
+﻿<style>
+    .not-active {
+        pointer-events: none;
+        cursor: default;
+        /*background-color: rgba(0,0,0,0.8);*/
+        filter: brightness(0.7);
+    } 
+
+</style>
 @{
-    ViewBag.Title = "Evaluacion";
+    ViewBag.Title = "Evaluación";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Evaluacion</h2>
-
+<h2>Evaluación</h2>
+<div class="accordion" id="accordion"></div>
+<script src="~/Scripts/jquery.min.js"></script>
+<script src="~/Scripts/Own/JS_Trainig_Evaluacion.js"></script>

@@ -1,5 +1,7 @@
-﻿Consulta();
-function Consulta() {    
+﻿var base64;
+Consulta();
+function Consulta() {
+    base64 = getBase64Image(document.getElementById("imageid"));
     $.get("/Usuarios/BDUsuarios", function (DatosUsuarios) {
         if (DatosUsuarios.length !== 0) {
             CrearTabla(DatosUsuarios);
@@ -7,16 +9,23 @@ function Consulta() {
             alert("No hay datos en la tabla Usuarios.");
         }
     });
+    $.get("/Usuarios/Asignasion", function (DatosAsignasion) {
+        if (DatosAsignasion.length !== 0) {
+            llenarCombo(DatosAsignasion, document.getElementById("cmbAsignacion"));
+        } else {
+            alert("No hay datos en la tabla Asignasión.");
+        }
+    });
     $.get("/CardinalSystem/BDPerfiles", function (InfPerfiles) {
         if (InfPerfiles.length !== 0) {
-            llenarCombo(InfPerfiles, document.getElementById("cmbPerfil"), true);
+            llenarCombo(InfPerfiles, document.getElementById("cmbPerfil"));
         } else {
             alert("No hay datos en la tabla Perfiles.");
         }
     });
     $.get("/Cardinal/BDAreas", function (DatosAreas) {
         if (DatosAreas.length !== 0) {
-            llenarCombo(DatosAreas, document.getElementById("cmbArea"), true);
+            llenarCombo(DatosAreas, document.getElementById("cmbArea"));
         }
         else {
             alert("No hay datos en la tabla Áreas.");
@@ -24,34 +33,22 @@ function Consulta() {
     });
     $.get("/Cardinal/BDEstados", function (DatosEstados) {
         if (DatosEstados.length !== 0) {
-            llenarCombo(DatosEstados, document.getElementById("cmbEstado"), true);
+            llenarCombo(DatosEstados, document.getElementById("cmbEstado"));
         }
         else {
             alert("No hay datos en la tabla Estados.");
         }
     });
-    $.get("/Cardinal/BDTiendas", function (DatosTiendas) {
-        if (DatosTiendas.length !== 0) {
-            llenarCombo(DatosTiendas, document.getElementById("cmbSitio"), true);
-        }
-        else {
-            alert("No hay datos en la tabla tiendas.");
-        }
-    });   
 }
-
 //funcion general para llenar los select
-function llenarCombo(InfPerfiles, control, primerElemento) {
+function llenarCombo(InfPerfiles, control) {
     var contenido = "";
-    if (primerElemento == true) {
-        contenido += "<option value='0'>--Seleccione--</option>";
-    }
+    contenido += "<option value='0'>--Seleccione--</option>";
     for (var i = 0; i < InfPerfiles.length; i++) {
         contenido += "<option value='" + InfPerfiles[i].ID + "'>" + InfPerfiles[i].Nombre + "</option>";
     }
     control.innerHTML = contenido;
 }
-
 function CrearTabla(DatosUsuarios) {
     var CodHtml = "";
     CodHtml += "<table id='tablas'  class='table table table-sm' >";
@@ -85,15 +82,9 @@ function CrearTabla(DatosUsuarios) {
 }
 //abrir PopUp
 function abrirModal(id) {
-    var controlesObligatorio = document.getElementsByClassName("border-danger");
-    for (var i = 0; i < controlesObligatorio.length; i++) {
-        controlesObligatorio[i].parentNode.classList.remove("border-danger");
-    }
+    sessionStorage.setItem('IDUsuarioM', id);
     Limpiar();
-    if (id == 0) {
-        LimpiarSelect();
-    }
-    else {
+    if (id != 0) {
         $.get("/Usuarios/BDUsuario/?ID=" + id, function (InfUsuario) {
             document.getElementById("TxtIDUsuario").value = InfUsuario[0].IDUsuario;
             document.getElementById("TxtCURP").value = InfUsuario[0].CURP;
@@ -121,10 +112,11 @@ function abrirModal(id) {
                 llenarCombo(Subareas, document.getElementById("cmbSubArea"), true);
                 document.getElementById("cmbSubArea").value = InfUsuario[0].IDSubArea;
             });
-            document.getElementById("cmbAsignacion").value = InfUsuario[0].Asignacion;
-            Sitio(InfUsuario[0].Asignacion, InfUsuario[0].Sitio);
+            document.getElementById("cmbAsignacion").value = InfUsuario[0].IDAsignacion;
+            Sitio(InfUsuario[0].IDAsignacion, InfUsuario[0].IDSitio);
             document.getElementById("TxtCorreo").value = InfUsuario[0].Correo;
             document.getElementById("TxtTelefono").value = InfUsuario[0].Telefono;
+            document.getElementById("TxtUsuario").value = InfUsuario[0].Usuario;
             document.getElementById("TxtContrasena").value = InfUsuario[0].Contrasena;
             document.getElementById("TxtContrasenaConf").value = InfUsuario[0].Contrasena;
         });
@@ -133,6 +125,7 @@ function abrirModal(id) {
 }
 
 function Pasos(Step) {
+    let ID = sessionStorage.getItem('IDUsuarioM');
     let paso = document.getElementsByClassName("steps");
     let avance = document.getElementById("avance");
     var ClaseM = 0;
@@ -151,7 +144,7 @@ function Pasos(Step) {
         ClaseMostrar = "step-" + (parseInt(ClaseM, 10) + Step);
     }
 
-    if (ClaseMostrar == "step-1") {        
+    if (ClaseMostrar == "step-1") {
         MostrarDiv(ClaseMostrar);
     }
     else if (ObligatoriosDatosP("Datostep-1") == true && ClaseMostrar == "step-2") {
@@ -166,12 +159,13 @@ function Pasos(Step) {
     else if (ClaseMostrar == "step-4") {
         avance.style.width = "75%";
         MostrarDiv(ClaseMostrar);
-        NomUsuar();
+        if (ID == 0) {
+            NomUsuar();
+        }
     }
     else if (ObligatoriosDatosP("Datostep-4") == true && ClaseMostrar == "step-5" && document.getElementById("mensage").innerText === "Autenticación correcta") {
         avance.style.width = "100%";
         GUsuario();
-        MostrarDiv(ClaseMostrar);
     }
     else {
         //alert("Entro al otro else");
@@ -313,7 +307,6 @@ function ObligatoriosDatosP(DatosClase) {
     }
     return exito;
 }
-
 //event Change index Areas
 var IDA = document.getElementById("cmbArea");
 IDA.addEventListener("change", function () {
@@ -328,7 +321,6 @@ IDE.addEventListener("change", function () {
         llenarCombo(data, document.getElementById("cmbMunicipio"), true);
     });
 });
-
 //event Change index Municipio para llenar el combo box Municipios
 var IDM = document.getElementById("cmbMunicipio");
 IDM.addEventListener("change", function () {
@@ -336,27 +328,33 @@ IDM.addEventListener("change", function () {
         llenarCombo(data, document.getElementById("cmbLocalidad"), true);
     });
 });
-
 var Asigna = document.getElementById("cmbAsignacion");
 Asigna.addEventListener("change", function () {
-    if (Asigna.value == 1) {
+    Sitio(Asigna.value, 0);
+});
+
+function Sitio(IDAsignacion, IDSitio) {
+    if (IDAsignacion == 3) {
         let DatosOficina = [{ "ID": 1, "Nombre": "Oficina" }];
-        llenarCombo(DatosOficina, document.getElementById("cmbSitio"), true);
+        llenarCombo(DatosOficina, document.getElementById("cmbSitio"));
+        document.getElementById("cmbSitio").value = IDSitio;
     }
-    else if (Asigna.value == 2) {
+    else if (IDAsignacion == 2) {
         $.get("/Cardinal/BDSupervision", function (DatosSupervisiones) {
             if (DatosSupervisiones.length !== 0) {
-                llenarCombo(DatosSupervisiones, document.getElementById("cmbSitio"), true);
+                llenarCombo(DatosSupervisiones, document.getElementById("cmbSitio"));
+                document.getElementById("cmbSitio").value = IDSitio;
             }
             else {
                 alert("No hay datos en la tabla Supervision.");
             }
         });
     }
-    else if (Asigna.value == 3) {
+    else if (IDAsignacion == 1) {
         $.get("/Cardinal/BDTiendas", function (DatosTiendas) {
             if (DatosTiendas.length !== 0) {
-                llenarCombo(DatosTiendas, document.getElementById("cmbSitio"), true);
+                llenarCombo(DatosTiendas, document.getElementById("cmbSitio"));
+                document.getElementById("cmbSitio").value = IDSitio;
             }
             else {
                 alert("No hay datos en la tabla Tiendas.");
@@ -366,51 +364,21 @@ Asigna.addEventListener("change", function () {
     else {
         alert("hay un error en tu codigo y no lo encuentras :)");
     }
-});
 
-function Sitio(IDAs, IDSitio) {
-    if (IDAs == 1) {
-        let DatosOficina = [{ "ID": 1, "Nombre": "Oficina" }];
-        llenarCombo(DatosOficina, document.getElementById("cmbSitio"), true);
-        document.getElementById("cmbSitio").value = IDSitio;
-    }
-    else if (IDAs == 2) {
-        $.get("/Cardinal/BDSupervision", function (DatosSupervisiones) {
-            if (DatosSupervisiones.length !== 0) {
-                llenarCombo(DatosSupervisiones, document.getElementById("cmbSitio"), true);
-                document.getElementById("cmbSitio").value = IDSitio;
-            }
-            else {
-                alert("No hay datos en la tabla Supervision.");
-            }
-        });
-    }
-    else if (IDAs == 3) {
-        $.get("/Cardinal/BDTiendas", function (DatosTiendas) {
-            if (DatosTiendas.length !== 0) {
-                llenarCombo(DatosTiendas, document.getElementById("cmbSitio"), true);
-                document.getElementById("cmbSitio").value = IDSitio;
-            }
-            else {
-                alert("No hay datos en la tabla Tiendas.");
-            }
-        });
-    }
 }
 
 function Limpiar() {
-    var controles = document.getElementsByClassName("limpiar");
-    var ncontroles = controles.length;
-    for (var i = 0; i < ncontroles; i++) {
-        controles[i].value = "";
+    var Ctrls = document.getElementsByClassName("border-danger");
+    for (var i = 0; i < Ctrls.length; i++) {
+        Ctrls[i].classList.remove("border-danger");
     }
-}
-
-function LimpiarSelect() {
-    var controles = document.getElementsByClassName("SelectCLS");
-    var ncontroles = controles.length;
-    for (var i = 0; i < ncontroles; i++) {
-        document.getElementById(controles[i].id).value = 0;
+    var ControlesTXT = document.getElementsByClassName("limpiar");
+    for (var i = 0; i < ControlesTXT.length; i++) {
+        ControlesTXT[i].value = "";
+    }
+    var ControlesSLT = document.getElementsByClassName("SelectCLS");
+    for (var i = 0; i < ControlesSLT.length; i++) {
+        document.getElementById(ControlesSLT[i].id).value = 0;
     }
 }
 
@@ -439,7 +407,7 @@ function GUsuario() {
             if (confirm("¿Desea aplicar los cambios?") == 1) {
                 $.get("/Usuarios/DUsuario/?Usuario=" + document.getElementById("TxtUPadre").value + "&contrasena=" + document.getElementById("TxtCPadre").value, function (respuesta) {
                     IDParent = respuesta[0].IDUsuario;
-                    //**consulta para obtener el nivel
+                    //**consulta para obtener el nivel                    
                     $.get("/CardinalSystem/BDPerfil/?IDPerfil=" + document.getElementById("cmbPerfil").value, function (Perfil) {
                         LVLPerfil = Perfil[0].Nivel;
                         let IDUsuario = document.getElementById("TxtIDUsuario").value;
@@ -447,7 +415,11 @@ function GUsuario() {
                         let Nombre = document.getElementById("TxtNombreUser").value;
                         let APaterno = document.getElementById("TxtAPaterno").value;
                         let AMaterno = document.getElementById("TxtAMaterno").value;
+
                         let Foto = document.getElementById("PBFoto").src.replace("data:image/png;base64,", "");
+                        if (Foto.endsWith('Usuario')) {
+                            Foto = base64.replace("data:image/png;base64,", "");
+                        }
                         let FNacimiento = document.getElementById("TxtFnaci").value;
                         let IDEstado = document.getElementById("cmbEstado").value;
                         let IDMunicipio = document.getElementById("cmbMunicipio").value;
@@ -463,9 +435,8 @@ function GUsuario() {
                         let IDSubArea = document.getElementById("cmbSubArea").value;
                         let TempNSA = document.getElementById("cmbSubArea");
                         let NSArea = TempNSA.options[TempNSA.selectedIndex].text;
-                        let Asignacion = document.getElementById("cmbAsignacion").value;
-                        let Sitio = document.getElementById("cmbSitio").value;
-                        //let IDPadre = document.getElementById("TxtUPadre").value;
+                        let IDAsignacion = document.getElementById("cmbAsignacion").value;
+                        let IDSitio = document.getElementById("cmbSitio").value;
                         let IDPadre = IDParent;
                         let Usuario = document.getElementById("TxtUsuario").value;
                         let Contraseña = document.getElementById("TxtContrasena").value;
@@ -492,8 +463,8 @@ function GUsuario() {
                         frm.append("NArea", NArea);
                         frm.append("IDSubArea", IDSubArea);
                         frm.append("NSArea", NSArea);
-                        frm.append("Asignacion", Asignacion);
-                        frm.append("Sitio", Sitio);
+                        frm.append("IDAsignacion", IDAsignacion);
+                        frm.append("IDSitio", IDSitio);
                         frm.append("IDPadre", IDPadre);
                         frm.append("Usuario", Usuario);
                         frm.append("Contraseña", Contraseña);
@@ -506,21 +477,34 @@ function GUsuario() {
                             contentType: false,
                             processData: false,
                             success: function (data) {
-                                var CodHTML = "";
+                                var HTMLAdvertencia = "";
                                 if (data === 0) {
-                                    CodHTML += "<img src='..Assets/Internal/ERROR.png' width='365' height='365'/>";
-                                    CodHTML += "<h4>Ocurrio un error</h4>";
+                                    HTMLAdvertencia += "<div class='alert alert-danger alert-dismissible fade show' role='alert'>";
+                                    HTMLAdvertencia += "<strong>Ocurrio un error!</strong>";
+                                    HTMLAdvertencia += "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>";
+                                    HTMLAdvertencia += "<span aria-hidden='true'>&times;</span>";
+                                    HTMLAdvertencia += "</button>";
+                                    HTMLAdvertencia += "</div>";
                                 }
                                 else if (data === -1) {
-                                    CodHTML += "<img src='../Assets/Internal/ERROR.png' width='365' height='365'/>";
-                                    CodHTML += "<h4>Ya existe un usuario con esa información</h4>";
+                                    HTMLAdvertencia += "<div class='alert alert-warning alert-dismissible fade show' role='alert'>";
+                                    HTMLAdvertencia += "<strong>Ya existe un usuario con esa información!</strong>";
+                                    HTMLAdvertencia += "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>";
+                                    HTMLAdvertencia += "<span aria-hidden='true'>&times;</span>";
+                                    HTMLAdvertencia += "</button>";
+                                    HTMLAdvertencia += "</div>";
                                 }
-                                else {
-                                    CodHTML += "<img src='../Assets/Internal/SUCCES.png' width='365' height='365'/>";
-                                    CodHTML += "<h4>Sus datos se guardaron correctamente.</h4>";
+                                else {                                    
+                                    HTMLAdvertencia += "<div class='alert alert-success alert-dismissible fade show' role='alert'>";
+                                    HTMLAdvertencia += "<strong>Los datos se guardaron correctamente.</strong>";
+                                    HTMLAdvertencia += "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>";
+                                    HTMLAdvertencia += "<span aria-hidden='true'>&times;</span>";
+                                    HTMLAdvertencia += "</button>";
+                                    HTMLAdvertencia += "</div>";
                                 }
-                                document.getElementById("Finalmmessage").innerHTML = CodHTML;
+                                document.getElementById("Alertas").innerHTML = HTMLAdvertencia;
                                 Consulta();
+                                document.getElementById("BtnCancelar").click();
                             }
                         });
                     });
@@ -544,4 +528,15 @@ function EliminarUsuario(ID) {
             }
         });
     }
+}
+
+//Convierte a base 64 la imagen
+function getBase64Image(img) {
+    var canvas = document.createElement("canvas");
+    canvas.width = img.width;
+    canvas.height = img.height;
+    var ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0);
+    var dataURL = canvas.toDataURL("image/png");
+    return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
 }

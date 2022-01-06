@@ -1,4 +1,5 @@
 ﻿using SIGES.Filtro;
+using SIGES.Models;
 using System;
 using System.Linq;
 using System.Web.Mvc;
@@ -9,6 +10,7 @@ namespace SIGES.Controllers
     public class ComunicadosController : Controller
     {
         SIGESDBDataContext SIGES = new SIGESDBDataContext();
+        readonly DateTime Fecha = DateTime.Now.Date;
         // GET: Informacion
         public ActionResult Comunicados()
         {
@@ -30,18 +32,6 @@ namespace SIGES.Controllers
                 });
             return Json(datos, JsonRequestBehavior.AllowGet);
         }
-        public JsonResult ComunicadosUsuario(string Usuario)
-        {
-            DateTime Fecha = DateTime.Now.Date;
-            var datos = SIGES.System_Sis_Notificacion.Where(p => p.Estatus.Equals(1) && p.Usuarios.Contains(Usuario) && p.Usuarios.Contains("Todos") && Fecha>= p.FInicio  && Fecha<=p.FFin )
-                .Select(p => new
-                {
-                    p.Nombre,
-                    p.Foto,
-                    p.Descripcion
-                });
-            return Json(datos, JsonRequestBehavior.AllowGet);
-        }
         public JsonResult BDComunicado(long ID)
         {
             var datos = SIGES.System_Sis_Notificacion.Where(p => p.IDNotificacion.Equals(ID))
@@ -52,6 +42,7 @@ namespace SIGES.Controllers
                     p.IDArea,
                     FI = ((DateTime)p.FInicio).ToShortDateString(),
                     FF = ((DateTime)p.FFin).ToShortDateString(),
+                    p.Usuarios,
                     p.Descripcion,
                     p.Foto
                 });
@@ -125,6 +116,47 @@ namespace SIGES.Controllers
                 Afectados = 0;
             }
             return Afectados;
+        }
+        //*****************************************************************************************************************
+        public ActionResult AvisosArea()
+        {
+            return View();
+        }
+
+        public JsonResult Comunicados_Area()
+        {
+            long IDArea = Convert.ToInt64(Session["IDArea"]);
+            var datos = SIGES.System_Sis_Notificacion.Where(p => p.Estatus.Equals(1) && p.IDArea.Equals(IDArea) && Fecha >= p.FInicio && Fecha <= p.FFin)
+                .Select(p => new
+                {
+                    ID = p.IDNotificacion,
+                    p.Nombre,
+                    p.NombreA,
+                    p.Foto,
+                    FechaIni = ((DateTime)p.FInicio).ToShortDateString(),
+                    FechaFin = ((DateTime)p.FFin).ToShortDateString(),
+                    p.Usuarios,
+                    p.Descripcion
+                });
+            return Json(datos, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult TodosComunicados_Area()
+        {
+            long IDArea = Convert.ToInt64(Session["IDArea"]);
+            var datos = SIGES.System_Sis_Notificacion.Where(p => p.IDArea.Equals(IDArea))
+                .Select(p => new
+                {
+                    ID = p.IDNotificacion,
+                    p.Nombre,
+                    p.NombreA,
+                    p.Foto,
+                    FechaIni = ((DateTime)p.FInicio).ToShortDateString(),
+                    FechaFin = ((DateTime)p.FFin).ToShortDateString(),
+                    p.Usuarios,
+                    p.Descripcion
+                });
+            return Json(datos, JsonRequestBehavior.AllowGet);
         }
     }
 }

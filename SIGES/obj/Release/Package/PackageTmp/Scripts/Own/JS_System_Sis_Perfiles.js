@@ -32,8 +32,8 @@ function AModalPerfil(ID) {
     Limpiar();
     for (var i = 0; i < CtrlObligatorio.length; i++) {
         CtrlObligatorio[i].classList.remove("border-danger");
-    }    
-    if (ID == 0) {        
+    }
+    if (ID == 0) {
     }
     else {
         $.get("/CardinalSystem/BDPerfil/?IDPerfil=" + ID, function (DatosPerfil) {
@@ -44,15 +44,15 @@ function AModalPerfil(ID) {
             var activar = DatosPerfil[0].Permisos.split('$');
             var ChevPermisos = document.getElementsByClassName("checkbox-area");
             for (let j = 0; j < activar.length; j++) {
-                for (let i = 0; i < ChevPermisos.length; i++){
-                    if (ChevPermisos[i].id==activar[j]) {
+                for (let i = 0; i < ChevPermisos.length; i++) {
+                    if (ChevPermisos[i].id == activar[j]) {
                         ChevPermisos[i].checked = true;
                         break;
                     }
-                }                
+                }
             }
             //****************************************************************************
-            document.getElementById("TxtComentarios").value = DatosPerfil[0].Comentarios;            
+            document.getElementById("TxtComentarios").value = DatosPerfil[0].Comentarios;
         });
     }
 }
@@ -142,18 +142,14 @@ function Limpiar() {
 //MostrarPaginasPerfiles();
 function MostrarPaginasPerfiles() {
     $.get("/CardinalSystem/BDPaginas", function (InfPaginas) {
-        CrearTblPaginas(InfPaginas);
-    });
-}
-//Inserta la tabla de las páginas
-function CrearTblPaginas(InfPaginas) {
-    var CodigoHtmlTablaPagina = "";
-    CodigoHtmlTablaPagina += "<div class='row'>";
-    for (var i = 0; i < InfPaginas.length; i++) {
-        CodigoHtmlTablaPagina += "<div class='col-md-6 col-sm-12 col-xs-12 justify-content-end'>";
-        CodigoHtmlTablaPagina += "<input type='checkbox' class='checkbox-area' id='" + InfPaginas[i].ID + "' ><span class='help-block text-muted small-font'>" + InfPaginas[i].Descripcion + "</span>";
+        var CodigoHtmlTablaPagina = "";
+        CodigoHtmlTablaPagina += "<div class='row'>";
+        for (var i = 0; i < InfPaginas.length; i++) {
+            CodigoHtmlTablaPagina += "<div class='col-md-6 col-sm-12 col-xs-12 justify-content-end'>";
+            CodigoHtmlTablaPagina += "<input type='checkbox' class='checkbox-area' id='" + InfPaginas[i].ID + "' ><span class='help-block text-muted small-font'>" + InfPaginas[i].Descripcion + "</span>";
+            CodigoHtmlTablaPagina += "</div>";
+        }
         CodigoHtmlTablaPagina += "</div>";
-    }
-    CodigoHtmlTablaPagina += "</div>";
-    document.getElementById("TblPaginas").innerHTML = CodigoHtmlTablaPagina;
+        document.getElementById("TblPaginas").innerHTML = CodigoHtmlTablaPagina;
+    });
 }

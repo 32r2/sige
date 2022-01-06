@@ -1,4 +1,5 @@
 ﻿using SIGES.Filtro;
+using SIGES.Models;
 using System;
 using System.Linq;
 using System.Web.Mvc;
@@ -46,7 +47,7 @@ namespace SIGES.Controllers
                     p.IUSAContraseña,
                     p.PCPAYUsuario,
                     p.PCPAYContraseña,
-                    p.NoServicioLuz,                    
+                    p.NoServicioLuz,
                 });
             return Json(datos, JsonRequestBehavior.AllowGet);
         }
@@ -54,19 +55,56 @@ namespace SIGES.Controllers
         public JsonResult BDTienda(long ID)
         {
             var datos = SIGES.System_Sis_Tienda.Where(p => p.IDTienda.Equals(ID))
-                .Select(p => new {
-                    ID= p.IDTienda,
+                .Select(p => new
+                {
+                    ID = p.IDTienda,
                     p.NoTienda,
                     p.Nombre,
-                    p.IDSupervision,                    
+                    p.IDSupervision,
                     p.IDSupervisor,
                     p.IDLider,
                     p.IDEncargado1,
+                    p.E1Nombre,
                     p.IDEncargado2,
+                    p.E2Nombre,
                     p.IDEncargado3,
+                    p.E3Nombre,
                     p.IDAuxsiliar1,
+                    p.A1Nombre,
                     p.IDAuxsiliar2,
+                    p.A2Nombre,
                     p.IDAuxsiliar3,
+                    p.A3Nombre,
+                    p.IDEstado,
+                    p.IDMunicipio,
+                    p.IDLocalidad,
+                    p.Calle,
+                    p.CP,
+                    p.Telefono,
+                    p.Latitud,
+                    p.Longitud,
+                    p.HApertura,
+                    p.HCierre,
+                    p.IUSACodigo,
+                    p.IUSAUsuario,
+                    p.IUSAContraseña,
+                    p.PCPAYUsuario,
+                    p.PCPAYContraseña,
+                    p.NoServicioLuz,
+                });
+            return Json(datos, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult SucursalUsuario()
+        {
+            long IDSitio = Convert.ToInt64(Session["IDSitio"]);
+            var datos = SIGES.System_Sis_Tienda.Where(p => p.IDTienda.Equals(IDSitio))
+                .Select(p => new
+                {
+                    ID = p.IDTienda,
+                    p.NoTienda,
+                    p.Nombre,
+                    p.IDSupervision,
+                    p.IDSupervisor,
                     p.IDEstado,
                     p.IDMunicipio,
                     p.IDLocalidad,
@@ -110,29 +148,29 @@ namespace SIGES.Controllers
                 else
                 {
                     int nveces = SIGES.System_Sis_Tienda.Where(
-                        p => p.NoTienda.Equals(Tienda.NoTienda) 
-                        && p.Nombre.Equals(Tienda.Nombre) 
+                        p => p.NoTienda.Equals(Tienda.NoTienda)
+                        && p.Nombre.Equals(Tienda.Nombre)
                         && p.IDSupervision.Equals(Tienda.IDSupervision)
-                        && p.IDSupervisor.Equals(Tienda.IDSupervisor) 
-                        && p.IDLider.Equals(Tienda.IDLider) 
-                        && p.IDEncargado1.Equals(Tienda.IDEncargado1) 
-                        && p.IDEncargado2.Equals(Tienda.IDEncargado2) 
-                        && p.IDEncargado3.Equals(Tienda.IDEncargado3) 
+                        && p.IDSupervisor.Equals(Tienda.IDSupervisor)
+                        && p.IDLider.Equals(Tienda.IDLider)
+                        && p.IDEncargado1.Equals(Tienda.IDEncargado1)
+                        && p.IDEncargado2.Equals(Tienda.IDEncargado2)
+                        && p.IDEncargado3.Equals(Tienda.IDEncargado3)
                         && p.IDAuxsiliar1.Equals(Tienda.IDAuxsiliar1)
-                        && p.IDAuxsiliar2.Equals(Tienda.IDAuxsiliar2) 
+                        && p.IDAuxsiliar2.Equals(Tienda.IDAuxsiliar2)
                         && p.IDAuxsiliar3.Equals(Tienda.IDAuxsiliar3)
-                        && p.IDEstado.Equals(Tienda.IDEstado) 
-                        && p.IDMunicipio.Equals(Tienda.IDMunicipio) 
-                        && p.IDLocalidad.Equals(Tienda.IDLocalidad) 
+                        && p.IDEstado.Equals(Tienda.IDEstado)
+                        && p.IDMunicipio.Equals(Tienda.IDMunicipio)
+                        && p.IDLocalidad.Equals(Tienda.IDLocalidad)
                         && p.Calle.Equals(Tienda.Calle)
-                        && p.CP.Equals(Tienda.CP) 
-                        && p.Telefono.Equals(Tienda.Telefono) 
-                        && p.Latitud.Equals(Tienda.Latitud) 
-                        && p.Longitud.Equals(Tienda.Longitud) 
-                        && p.HApertura.Equals(Tienda.HApertura) 
+                        && p.CP.Equals(Tienda.CP)
+                        && p.Telefono.Equals(Tienda.Telefono)
+                        && p.Latitud.Equals(Tienda.Latitud)
+                        && p.Longitud.Equals(Tienda.Longitud)
+                        && p.HApertura.Equals(Tienda.HApertura)
                         && p.HCierre.Equals(Tienda.HCierre)
-                        && p.IUSACodigo.Equals(Tienda.IUSACodigo) 
-                        && p.IUSAUsuario.Equals(Tienda.IUSAUsuario) 
+                        && p.IUSACodigo.Equals(Tienda.IUSACodigo)
+                        && p.IUSAUsuario.Equals(Tienda.IUSAUsuario)
                         && p.IUSAContraseña.Equals(Tienda.IUSAContraseña)
                         && p.PCPAYUsuario.Equals(Tienda.PCPAYUsuario)
                         && p.PCPAYContraseña.Equals(Tienda.PCPAYContraseña)
@@ -141,8 +179,9 @@ namespace SIGES.Controllers
                     {
                         System_Sis_Tienda obj = SIGES.System_Sis_Tienda.Where(p => p.IDTienda.Equals(idTienda)).First();
                         obj.NoTienda = Tienda.NoTienda;
-                        obj.IDSupervision = Tienda.IDSupervision;                        
-                        obj.NombreS = Tienda.NombreS;                        
+                        obj.IDSupervision = Tienda.IDSupervision;
+                        obj.Nombre = Tienda.Nombre;
+                        obj.NombreS = Tienda.NombreS;
                         obj.IDSupervisor = Tienda.IDSupervisor;
                         obj.UNombre = Tienda.UNombre;
                         obj.IDLider = Tienda.IDLider;

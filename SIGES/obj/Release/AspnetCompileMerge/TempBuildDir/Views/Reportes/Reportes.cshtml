@@ -1,0 +1,95 @@
+﻿@using SIGES.Models;
+@{
+    ViewBag.Title = "Reportes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    #chart {
+        max-width: 1050px;
+        margin: 35px auto;
+    }
+</style>
+<script src="~/Scripts/polyfill.min.js"></script>
+<script src="~/Scripts/classList.min.js"></script>
+<script src="~/Scripts/findindex_polyfill_mdn.js"></script>
+<link href="~/Content/dataTables.bootstrap4.css" rel="stylesheet" />
+<script src="~/Scripts/apexcharts.js"></script>
+<script>
+    
+    var _seed = 42;
+    Math.random = function () {
+        _seed = _seed * 16807 % 2147483647;
+        return (_seed - 1) / 2147483646;
+    };
+</script>
+<h2>Reportes</h2>
+<div class="card">
+    <div class="card-body">
+        <div id="chart"></div>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Tabla de incidencias</h5>
+        <div class="table-responsive">
+            <table id="zero_config"
+                   class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>Reporte</th>
+                        <th>Incidencia</th>
+                        <th>Sucursal</th>
+                        <th>Fecha Reporte</th>
+                        <th>Fecha Solución</th>
+                        <th>Estatus</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        if (IncidenciasSupervision.IDRIncidencia != null)
+                        {
+                            for (int i = 0; i < IncidenciasSupervision.IDRIncidencia.Count(); i++)
+                            {
+                                string Estatus = "En proceso...";
+                                string EstiloLetras = "color:red;";
+                                if (IncidenciasSupervision.Estatus[i] == 0)
+                                {
+                                    Estatus = "Finalizada";
+                                    EstiloLetras = "color:green;";
+                                }
+                                <tr>
+                                    <td>@IncidenciasSupervision.IDRIncidencia[i]</td>
+                                    <td>@IncidenciasSupervision.NombreIncidencia[i]</td>
+                                    <td>@IncidenciasSupervision.Tienda[i].Replace("Plus ", "Plus-")</td>
+                                    <td>@IncidenciasSupervision.ReporteFecha[i]</td>
+                                    <td>@IncidenciasSupervision.SolucionFecha[i]</td>
+                                    <td style="@EstiloLetras">@Estatus</td>
+                                </tr>
+                            }
+                        }
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>Reporte</th>
+                        <th>Incidencia</th>
+                        <th>Sucursal</th>
+                        <th>Fecha Reporte</th>
+                        <th>Fecha Solución</th>
+                        <th>Estatus</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jquery.min.js"></script>
+<script src="~/Scripts/datatables.min.js"></script>
+<script src="~/Scripts/Own/JS_System_Reportes_Supervision.js"></script>
+
+<script>
+    $("#zero_config").DataTable();
+</script>

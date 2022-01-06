@@ -1,4 +1,5 @@
 ﻿using SIGES.Filtro;
+using SIGES.Models;
 using System;
 using System.Linq;
 using System.Web.Mvc;
@@ -114,6 +115,22 @@ namespace SIGES.Controllers
         public JsonResult BDPerfiles()
         {
             var DatosPaginas = SIGES.System_Sis_PerfilUsuario.Where(p => p.Estatus.Equals(1))
+                .Select(p => new
+                {
+                    ID = p.IDPerfil,
+                    Nombre = p.Perfil,
+                    p.Nivel,
+                    p.Permisos,
+                    p.Comentarios
+                });
+            return Json(DatosPaginas, JsonRequestBehavior.AllowGet);
+        }
+
+        //Consulta todos los perfiles menor a su nivel
+        public JsonResult BDPerfilesNivel()
+        {
+            long LVLPerfil = Convert.ToInt64(Session["LVLPerfil"]);
+            var DatosPaginas = SIGES.System_Sis_PerfilUsuario.Where(p => p.Estatus.Equals(1) && p.Nivel > LVLPerfil)
                 .Select(p => new
                 {
                     ID = p.IDPerfil,
